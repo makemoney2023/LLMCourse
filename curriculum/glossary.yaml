@@ -117,7 +117,7 @@ terms:
 
   - id: brief-md
     term: BRIEF.md
-    aliases: ["brief.md", "project brief"]
+    aliases: ["project brief"]
     shortDefinition: "A one-page summary of the problem for later reuse."
     longDefinition: |
       BRIEF.md is a short project summary many teams keep in a repo or wiki.
@@ -127,7 +127,7 @@ terms:
 
   - id: sources-md
     term: SOURCES.md
-    aliases: ["sources.md"]
+    aliases: ["sources list"]
     shortDefinition: "A list of links, dates, and why each source matters."
     longDefinition: |
       SOURCES.md holds evidence: URL, date accessed, and one line on why it
