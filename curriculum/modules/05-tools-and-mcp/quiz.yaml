@@ -1,0 +1,54 @@
+moduleId: tools-and-mcp
+questions:
+  - id: q1
+    prompt: "What are tools, in plain words?"
+    options:
+      - id: a
+        label: "Apps the helper is allowed to open"
+      - id: b
+        label: "Wall rules only"
+      - id: c
+        label: "Unlimited memory"
+      - id: d
+        label: "Quiz scores"
+    correctOptionId: a
+    explanation: "Tools extend the loop beyond words."
+  - id: q2
+    prompt: "What is MCP like?"
+    options:
+      - id: a
+        label: "A shared app menu for helpers"
+      - id: b
+        label: "A kind of desk chair"
+      - id: c
+        label: "A brand of paper"
+      - id: d
+        label: "A password"
+    correctOptionId: a
+    explanation: "MCP standardizes how apps plug into helpers."
+  - id: q3
+    prompt: "Why keep the tool list small?"
+    options:
+      - id: a
+        label: "Too many apps confuse picks and crowd the desk"
+      - id: b
+        label: "Helpers hate all tools"
+      - id: c
+        label: "Tools never return results"
+      - id: d
+        label: "Small lists ban research"
+    correctOptionId: a
+    explanation: "Less, clearer tools improve choices."
+  - id: q4
+    prompt: "When do research crawl tools belong?"
+    options:
+      - id: a
+        label: "Mostly when refreshing a research pack"
+      - id: b
+        label: "In every one-line rewrite"
+      - id: c
+        label: "Never"
+      - id: d
+        label: "Only after delete tools"
+    correctOptionId: a
+    explanation: "Separate research mode from build mode."

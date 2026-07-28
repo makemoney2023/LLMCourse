@@ -1,0 +1,26 @@
+id: standing-playbooks
+order: 4
+slug: standing-playbooks
+title: Standing playbooks
+subtitle: Always-on rules vs recipe cards
+durationMinutes: 35
+workshopSession: 2
+prerequisites:
+  - mental-model
+  - system-instructions
+objectives:
+  - Choose wall rules vs recipe cards for a task.
+  - Write one short always-on rule and one playbook.
+  - Explain how too many always-on rules crowd the desk.
+loopPlacement: Wall rules stay hot. A playbook is like a recipe card you pull out when needed.
+skipConsequence: Everything becomes noisy wall text—or nothing is reusable.
+exerciseTitles:
+  - Sort ten guidelines into wall vs recipe
+  - Write one short always-on rule
+  - Write one on-demand playbook
+toolMapping:
+  - abstraction: Always-on rules
+    surfaces: Project rules, AGENTS.md, team prompt headers, workspace guidelines
+  - abstraction: On-demand skills / playbooks
+    surfaces: Skills, saved prompts, slash commands, custom GPT instructions invoked by task
+quizCount: 4

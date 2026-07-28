@@ -1,0 +1,54 @@
+moduleId: system-instructions
+questions:
+  - id: q1
+    prompt: "What are standing instructions like?"
+    options:
+      - id: a
+        label: "Rules on the classroom wall that apply every day"
+      - id: b
+        label: "A one-time joke in a single message"
+      - id: c
+        label: "A secret the helper never reads"
+      - id: d
+        label: "Only tool output"
+    correctOptionId: a
+    explanation: "Standing instructions guide every turn in that space."
+  - id: q2
+    prompt: "What is ‘right altitude’ for wall rules?"
+    options:
+      - id: a
+        label: "Clear limits without micromanaging every step"
+      - id: b
+        label: "The longest document you can paste"
+      - id: c
+        label: "No rules at all"
+      - id: d
+        label: "Only emoji rules"
+    correctOptionId: a
+    explanation: "Short, clear constraints beat novels and vibes."
+  - id: q3
+    prompt: "Where should long facts live?"
+    options:
+      - id: a
+        label: "In BRIEF.md or SOURCES.md, not in huge wall text"
+      - id: b
+        label: "Inside every always-on rule"
+      - id: c
+        label: "Nowhere"
+      - id: d
+        label: "Only in your head"
+    correctOptionId: a
+    explanation: "Point to the pack. Keep the wall light."
+  - id: q4
+    prompt: "What should you do with fighting rules?"
+    options:
+      - id: a
+        label: "Rewrite them into one clear rule"
+      - id: b
+        label: "Add both and hope"
+      - id: c
+        label: "Hide them"
+      - id: d
+        label: "Delete all tools"
+    correctOptionId: a
+    explanation: "Conflicts confuse the helper. Pick one."

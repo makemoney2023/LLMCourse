@@ -1,0 +1,25 @@
+id: deep-research
+order: 2
+slug: deep-research
+title: Deep research
+subtitle: Find facts before you start the project
+durationMinutes: 35
+workshopSession: 1
+prerequisites:
+  - mental-model
+objectives:
+  - Explain why fact-finding first makes goals clearer.
+  - Run a small research pass and save source links.
+  - Make a short BRIEF.md and SOURCES.md pack for later use.
+loopPlacement: Research sharpens your goal. It also makes files you can put on the desk later.
+skipConsequence: You write rules from guesses. Later answers invent facts with no trail.
+exerciseTitles:
+  - Scope three research questions
+  - Capture sources with links and dates
+  - Write a short cited BRIEF.md
+toolMapping:
+  - abstraction: Deep research / web extract
+    surfaces: Firecrawl, Perplexity-style research, Claude/ChatGPT deep research, browser agents, docs crawlers
+  - abstraction: Cited context pack
+    surfaces: Project BRIEF.md / research notes in repo, Notion/wiki pages, attached knowledge files
+quizCount: 4

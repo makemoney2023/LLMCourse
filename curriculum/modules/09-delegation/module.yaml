@@ -1,0 +1,24 @@
+id: delegation
+order: 9
+slug: delegation
+title: Delegation
+subtitle: Ask a specialist for one clear job
+durationMinutes: 30
+workshopSession: 3
+prerequisites:
+  - tools-and-mcp
+  - conversation-and-compaction
+objectives:
+  - Know when to split work for a specialist.
+  - Write a short job contract for a helper or teammate.
+  - Spot unsafe parallel work on the same file.
+loopPlacement: A subagent is like a specialist classmate with their own desk. Results come back to you.
+skipConsequence: One desk carries every job—or two helpers overwrite the same work.
+exerciseTitles:
+  - Split a big job into specialist briefs
+  - Write a delegation contract
+  - Spot unsafe parallel work
+toolMapping:
+  - abstraction: Delegation / subagents
+    surfaces: Subagents, custom GPTs per role, parallel coding agents, team handoffs to specialists
+quizCount: 4

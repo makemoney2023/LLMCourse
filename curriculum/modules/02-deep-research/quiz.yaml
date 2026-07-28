@@ -1,0 +1,54 @@
+moduleId: deep-research
+questions:
+  - id: q1
+    prompt: "Why research before writing standing rules?"
+    options:
+      - id: a
+        label: "So goals and words come from sources, not guesses"
+      - id: b
+        label: "Because only Firecrawl works"
+      - id: c
+        label: "To fill the desk with every page forever"
+      - id: d
+        label: "So you can skip checking later"
+    correctOptionId: a
+    explanation: "Research makes goals real. Rules from guesses encode the wrong problem."
+  - id: q2
+    prompt: "What belongs in a simple project pack?"
+    options:
+      - id: a
+        label: "A short BRIEF.md and a SOURCES.md with links and dates"
+      - id: b
+        label: "Only the chat scroll"
+      - id: c
+        label: "Every raw page pasted into wall rules"
+      - id: d
+        label: "Secrets and API keys"
+    correctOptionId: a
+    explanation: "Short cited files beat scrollback and keep wall rules light."
+  - id: q3
+    prompt: "How should research files feed later chats?"
+    options:
+      - id: a
+        label: "Save cited files; attach short parts when needed"
+      - id: b
+        label: "Paste the full crawl into every rule block"
+      - id: c
+        label: "Never save sources"
+      - id: d
+        label: "Turn every page into always-on rules"
+    correctOptionId: a
+    explanation: "Keep synthesis short. Pull pages from the binder when needed."
+  - id: q4
+    prompt: "Which research question is best?"
+    options:
+      - id: a
+        label: "What login steps do the official docs require?"
+      - id: b
+        label: "Tell me everything about software"
+      - id: c
+        label: "Research the future"
+      - id: d
+        label: "Find something cool"
+    correctOptionId: a
+    explanation: "Narrow questions make useful sources."

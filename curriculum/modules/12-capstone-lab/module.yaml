@@ -1,0 +1,33 @@
+id: capstone-lab
+order: 12
+slug: capstone-lab
+title: Capstone lab
+subtitle: Run one real job through the whole loop
+durationMinutes: 45
+workshopSession: 4
+prerequisites:
+  - mental-model
+  - deep-research
+  - system-instructions
+  - standing-playbooks
+  - tools-and-mcp
+  - retrieval-and-grounding
+  - conversation-and-compaction
+  - memory-systems
+  - delegation
+  - human-craft
+  - verify-and-harden
+objectives:
+  - Pick a real workflow you own and map it to the loop.
+  - Set up research pack, wall rules, tools, and checks.
+  - Run once, measure, and write a short look-back.
+loopPlacement: "Capstone uses every stop: research, wall rules, desk, tools, memory, check."
+skipConsequence: Ideas stay only ideas. Monday habits do not change.
+exerciseTitles:
+  - Choose and scope your capstone workflow
+  - Configure loop artifacts
+  - Run, measure, and write a look-back
+toolMapping:
+  - abstraction: Full stack
+    surfaces: Whatever tools the learner actually uses day to day
+quizCount: 3

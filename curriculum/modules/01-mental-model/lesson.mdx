@@ -1,0 +1,117 @@
+# Mental model: LLMs, agents, and the context loop
+
+## What this is
+
+Many people treat an AI chat like a search box. You type. You read. You leave. That works for easy questions. Real work is different. You ask, attach a file, fix a draft, run a tool, and check the result.
+
+This lesson gives you one map. It is called the **context loop**. A loop is a path that goes around and comes back. Every other lesson zooms in on one part of this map.
+
+An **LLM** is a text engine. It reads words and writes words. An **agent** is an LLM that can also act. It may call a **tool** — a helper the model can open, like an app on your phone.
+
+## Why it matters
+
+Without this map, new features feel random. "Add custom instructions." "Use @ mentions." "Turn on memory." Teams try tips one at a time. Rules fight each other. Quality drops. Nobody knows why.
+
+With the map, you can name what you are doing. "We are adding standing context." "That tool result is eating desk space." That makes fixes easier.
+
+## Big ideas
+
+### LLM chat vs agent loop
+
+In a simple chat, text goes in and text comes out. Nothing else happens.
+
+An **agent loop** goes in circles:
+
+1. The model reads everything in its **context window**. Think of this as **desk space** — only so much fits at once.
+2. The model thinks and either replies or calls a tool.
+3. The tool sends back an **observation**. That is the result you get back, like a search snippet or file text.
+4. The new result sits on the desk. The model reads it and continues.
+
+You are not talking to a database. You are steering a loop. Text, tools, and results all share the same desk.
+
+### Desk space is limited
+
+The **context window** is the model's desk for one session. Everything loaded uses space:
+
+- Standing instructions (like **classroom wall rules** that stay up all day)
+- Project rules and playbooks (a **playbook** is like a recipe card you open when needed)
+- Tool lists and helper descriptions
+- Attached files and search results
+- Every message you send and every reply
+- Notes pulled back in from memory
+
+When the desk fills up, apps may cut old stuff or warn you. Quality often drops first. The model may "forget" early turns.
+
+**Design rule:** Treat desk space like a budget. Keep standing rules lean. Pull in files only when needed. Long chats may need a short summary note to clear the desk — that is **compaction**.
+
+### A simple walkthrough
+
+You ask an agent to draft a customer email about a late shipment.
+
+1. **Standing context** loads — your tone rules.
+2. You state **user intent**.
+3. The model calls a **tool** to look up the order. The result is an **observation**.
+4. The model drafts using your intent plus the order facts.
+5. You **verify** — check the tracking number before you send.
+
+If step 5 fails, your next intent might be "Fix the date." The loop runs again.
+
+### The parts of the loop
+
+| Part | What it is |
+|------|------------|
+| **User intent** | What you want done, clear enough to check |
+| **Standing context** | Rules and instructions loaded before you type |
+| **Context window** | Everything on the desk this turn |
+| **Model** | The brain that reads the desk and writes |
+| **Tools / retrieval** | Helpers and facts the model can pull in |
+| **Observations** | Tool and search results added to the desk |
+| **Memory & compaction** | Sticky notes and short summaries for later |
+| **Human verify** | You check the work before you trust it |
+
+**Verify** means check work before turning it in. What you learn feeds the **next intent** — fix, approve, or start over.
+
+## Where this sits in the loop
+
+This lesson is **the whole map**. Later lessons zoom in:
+
+- Module 2: deep research (fact-finding before you start)
+- Module 3: system instructions (standing rules)
+- Module 4: standing playbooks (always-on rules vs recipe cards)
+- Module 5: tools and MCP (apps the helper may open)
+- Module 6: retrieval (look up in a binder)
+- Modules 7–9: compaction, memory, delegation
+- Modules 10–11: human craft and verify
+
+When a product UI confuses you, ask: **Which part of the loop am I setting up?**
+
+## What goes wrong if you skip it
+
+- Features feel like random hacks. Teams copy prompts with no plan.
+- Instructions, files, and tool results **stack up silently** until quality crashes.
+- People blame "the model" when the desk is full or aimed wrong.
+- You verify too late — after bad output is already in a doc or ticket.
+
+## Where this shows up in tools
+
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Desk space | Chat length limits | Project chat limits | Context meter | "Thread too long" |
+| Agent loop | Agent mode, tools | Projects with tools | Agent, terminal, MCP | Agent mode |
+| Standing rules | Custom instructions | Project instructions | Rules, AGENTS.md | Instructions file |
+| Tools | Browse, plugins | Tools, MCP | Built-in tools, MCP | Extensions |
+| Observations | Tool messages in chat | Tool blocks | Tool output in transcript | Action results |
+| Memory | Memory toggle | Project docs | Rules files, index | Copilot memories |
+| Verify | You review before send | You review artifacts | Diff review | PR review |
+
+Names change. The loop stays the same.
+
+## Tips
+
+1. **Say the loop out loud** when pairing with a teammate.
+2. **Start with done criteria** — even one sentence — so verify has something to check.
+3. **Start fresh with a handoff note** when quality drifts in a long chat.
+4. **One job per session** when you can. Mixed jobs pollute the desk.
+5. **Draw the loop** for your team before picking a product.
+
+You do not need every vendor feature memorized. You need to know **where** each practice belongs — and what breaks when it is missing.

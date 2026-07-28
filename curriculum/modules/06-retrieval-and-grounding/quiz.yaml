@@ -1,0 +1,54 @@
+moduleId: retrieval-and-grounding
+questions:
+  - id: q1
+    prompt: "What is retrieval like?"
+    options:
+      - id: a
+        label: "Looking something up in a binder before answering"
+      - id: b
+        label: "Deleting all rules"
+      - id: c
+        label: "Turning off the desk"
+      - id: d
+        label: "Guessing faster"
+    correctOptionId: a
+    explanation: "Retrieval brings evidence onto the desk."
+  - id: q2
+    prompt: "What should you attach for project facts?"
+    options:
+      - id: a
+        label: "BRIEF.md or a source from SOURCES.md"
+      - id: b
+        label: "Every file you own"
+      - id: c
+        label: "Only emojis"
+      - id: d
+        label: "Nothing ever"
+    correctOptionId: a
+    explanation: "Use the research pack. Keep it lean."
+  - id: q3
+    prompt: "What is grounding?"
+    options:
+      - id: a
+        label: "Making the answer rest on real pages, not guesses"
+      - id: b
+        label: "Making text longer"
+      - id: c
+        label: "Hiding sources"
+      - id: d
+        label: "Removing tools"
+    correctOptionId: a
+    explanation: "Grounded answers can point to evidence."
+  - id: q4
+    prompt: "What if the source is missing?"
+    options:
+      - id: a
+        label: "Say you do not know, or ask for the page"
+      - id: b
+        label: "Invent a confident answer"
+      - id: c
+        label: "Ignore the question"
+      - id: d
+        label: "Add twenty more tools"
+    correctOptionId: a
+    explanation: "Do not invent. Retrieve or stop."

@@ -1,0 +1,54 @@
+moduleId: human-craft
+questions:
+  - id: q1
+    prompt: "What belongs in a short spec?"
+    options:
+      - id: a
+        label: "Outcome, limits, sources, and done checks"
+      - id: b
+        label: "Only ‘make it good’"
+      - id: c
+        label: "Secrets"
+      - id: d
+        label: "Twenty unrelated jobs"
+    correctOptionId: a
+    explanation: "Specs aim the helper."
+  - id: q2
+    prompt: "What is reverse questioning?"
+    options:
+      - id: a
+        label: "Asking the helper to interview you before drafting"
+      - id: b
+        label: "Deleting the brief"
+      - id: c
+        label: "Running all tools at once"
+      - id: d
+        label: "Skipping checks"
+    correctOptionId: a
+    explanation: "Clarify first, then draft."
+  - id: q3
+    prompt: "When should you require approval?"
+    options:
+      - id: a
+        label: "Before send, delete, pay, or production changes"
+      - id: b
+        label: "Never"
+      - id: c
+        label: "Only for spelling"
+      - id: d
+        label: "After the damage is done"
+    correctOptionId: a
+    explanation: "Gate risky actions."
+  - id: q4
+    prompt: "Why one job per turn?"
+    options:
+      - id: a
+        label: "Stacked asks get ignored as the desk fills"
+      - id: b
+        label: "Helpers can only count to one forever"
+      - id: c
+        label: "Tools ban lists"
+      - id: d
+        label: "BRIEF.md forbids it"
+    correctOptionId: a
+    explanation: "Focus keeps quality high."

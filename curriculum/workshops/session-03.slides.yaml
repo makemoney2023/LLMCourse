@@ -1,0 +1,192 @@
+id: session-03
+title: Clean chats, memory, and specialists
+subtitle: Workshop Session 3
+durationMinutes: 90
+outcome: Hand off cleanly, save the right sticky notes, and give specialists a clear job contract.
+moduleSlugs:
+  - conversation-and-compaction
+  - memory-systems
+  - delegation
+slides:
+  - id: title
+    layout: title
+    title: LLM Leverage
+    subtitle: Session 3 — Conversation, memory & delegation
+    body: 90 minutes · Keep the desk clean; share clear jobs
+    notes: Open with a long-thread horror story — ask for one from the room.
+  - id: outcome
+    layout: bullets
+    title: What you will leave with
+    bullets:
+      - Choose continue vs fresh start
+      - Sort facts into the right memory place
+      - Write a specialist job contract
+    notes: "Tie back to the loop nodes: observe → memory → window."
+  - id: agenda
+    layout: bullets
+    title: Agenda
+    bullets:
+      - 0–10 · Long-thread stories
+      - 10–30 · Clean chats and handoffs
+      - 30–55 · Memory sticky notes
+      - 55–80 · Specialist contracts
+      - 80–90 · Loop review
+    notes: Keep demos short so labs get oxygen.
+  - id: section-conversation
+    layout: section
+    title: Conversation & compaction
+    subtitle: Working papers on the desk — not a diary
+    notes: Tool dumps are the usual silent killer.
+  - id: conversation-points
+    layout: bullets
+    title: What accumulates
+    timing: 6 min
+    bullets:
+      - User turns, assistant turns, tool results
+      - Stale observations outrank new intent
+      - Compaction must keep decisions & constraints
+      - Restart beats another confused reply
+    notes: Ask who has corrected the same mistake three times in one thread.
+  - id: demo-handoff
+    layout: steps
+    title: Live demo — handoff & restart
+    timing: 10 min
+    steps:
+      - Grow a messy thread on purpose
+      - Write a 10-bullet handoff summary
+      - Open a fresh chat with the brief
+      - Show successful continuation
+    notes: |-
+      SETUP
+      • Start a chat you are willing to "ruin." Have a second blank chat ready.
+      • Handoff template on a sticky or slide corner:
+        Goal / Done means / Constraints / Sources / Decisions locked / Do not / Open questions
+
+      STEP-BY-STEP
+      1) Grow a messy thread on purpose: change topics twice; paste a large tool dump or log; reject an idea then let the model reintroduce it.
+      2) Stop. Say: "This thread is now a contaminated working set."
+      3) Write a handoff summary live using the template (10 bullets max). Do not paste the whole transcript.
+      4) Open a fresh chat. Paste only the handoff + any one needed source.
+      5) Ask for the next concrete step. Show that clean continuation is possible without the sludge.
+      6) Optional: show a bad product memory ("User's favorite color is green") poisoning a new session; delete/correct it.
+
+      FACILITATOR TIPS
+      • If learners say "just keep scrolling," ask how they'd onboard a teammate mid-task — that is the handoff test.
+  - id: activity-continue
+    layout: activity
+    title: Lab — continue vs restart
+    timing: 10 min
+    body: Five scenarios on a shared list. For each — continue or restart? Why?
+    bullets:
+      - Topic shift mid-thread
+      - Codebase changed under you
+      - Tool result is stale
+      - Small polish on the same draft
+      - Model keeps reintroducing a rejected idea
+    notes: |-
+      GOAL
+      Fast judgment practice: continue vs restart.
+
+      HOW TO RUN (10 min)
+      1) Read five scenarios (on slide or spoken).
+      2) Hands up: Continue / Restart.
+      3) Debate only 1–2 contentious ones for 60 seconds each.
+      4) Teach the default: topic shift, stale tools, or repeated misunderstanding → restart with handoff.
+
+      SCENARIO CUES (if you invent your own)
+      • Same draft, tighten tone → continue
+      • New stakeholder goal → restart
+      • Repo changed under you → restart
+      • Model re-adds a rejected approach → restart
+      • One clarifying question mid-flow → continue
+  - id: section-memory
+    layout: section
+    title: Memory systems
+    subtitle: Sticky notes for next time
+    notes: Important facts belong in docs you can audit.
+  - id: memory-points
+    layout: bullets
+    title: Memory tiers
+    timing: 8 min
+    bullets:
+      - In-context — this session only
+      - External notes — team source of truth
+      - Product memory — preferences with prune ritual
+      - Secrets never go in memory
+    notes: Show a bad auto-memory if you have a safe example.
+  - id: activity-memory
+    layout: activity
+    title: Lab — classify & prune
+    timing: 15 min
+    body: Sort ten facts (provided or invent from your team). Draft a prune list.
+    bullets:
+      - Promote stable rules to standing instructions
+      - Delete stale “memories”
+      - Date remaining facts
+    notes: |-
+      GOAL
+      Classify facts into tiers and produce a prune list.
+
+      HOW TO RUN (15 min)
+      1) Provide 10 facts (or have pairs invent from their team): preferences, API URLs, owners, temporary hypotheses, secrets (fake).
+      2) Sort into: in-context / external notes / product memory / never-store.
+      3) Each person names one real thing they will delete or move this week.
+
+      CALL OUT
+      • Secrets → never in memory
+      • Stable process → standing rule or external note
+      • Today's hypothesis → in-context only
+  - id: section-delegation
+    layout: section
+    title: Delegation
+    subtitle: Specialists need clear jobs
+    notes: Parallel without a merge owner is chaos.
+  - id: delegation-points
+    layout: bullets
+    title: When to split
+    timing: 5 min
+    bullets:
+      - Different tools or standing context
+      - Independent artifacts
+      - Clarify first — then delegate
+      - Cap parallel workers until merge is easy
+    notes: Human handoffs and subagents use the same contract shape.
+  - id: activity-delegation
+    layout: activity
+    title: Lab — delegation contract
+    timing: 18 min
+    body: Split a mega-task into two specialist briefs.
+    bullets:
+      - Goal · inputs · tools · out of scope
+      - Done criteria · return format
+      - Merge owner named
+    notes: |-
+      GOAL
+      A two-specialist delegation contract with a named merge owner.
+
+      HOW TO RUN (18 min)
+      1) Pick a mega-task (launch checklist, research+draft, implement+review).
+      2) Split into Specialist A and B briefs using the slide fields.
+      3) Facilitator spot-check: are they editing the same file/rows? If yes, serialize or redefine ownership.
+      4) Read one contract aloud; room votes safe / unsafe parallelization.
+
+      CONTRACT MUST INCLUDE
+      Goal, inputs, tools allowed/forbidden, out of scope, done criteria, return format, merge owner.
+  - id: discussion
+    layout: discussion
+    title: Loop synthesis
+    timing: 8 min
+    bullets:
+      - Which node failed in your last long thread?
+      - What belongs in memory vs a handoff brief?
+      - Where would a specialist have helped last week?
+    notes: Point at the loop diagram while people answer.
+  - id: takeaway
+    layout: takeaway
+    title: Take-home
+    bullets:
+      - Finish Modules 7–9 in the app
+      - Bring a memory prune list to Session 4
+      - Reuse your job contract once at work
+    body: Self-paced modules are linked below.
+    notes: Show the links. Done.

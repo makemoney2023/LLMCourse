@@ -1,0 +1,25 @@
+id: human-craft
+order: 10
+slug: human-craft
+title: Human craft
+subtitle: Clear asks, one job, smart approvals
+durationMinutes: 35
+workshopSession: 4
+prerequisites:
+  - mental-model
+  - deep-research
+  - standing-playbooks
+objectives:
+  - Write a short task spec with done checks.
+  - Keep one job per turn; ask clarifying questions first when needed.
+  - Pick plan mode vs go mode and when to require approval.
+loopPlacement: Your clear ask feeds the desk. Approvals gate risky tool use.
+skipConsequence: The helper races at the wrong target. Approvals come too late—or too often.
+exerciseTitles:
+  - Turn a vague ask into a one-page spec
+  - Practice reverse questioning
+  - Pick mode and approval rules
+toolMapping:
+  - abstraction: Human craft
+    surfaces: Prompt specs, plan modes, approval dialogs, review-before-apply flows
+quizCount: 4

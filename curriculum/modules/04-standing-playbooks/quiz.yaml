@@ -1,0 +1,54 @@
+moduleId: standing-playbooks
+questions:
+  - id: q1
+    prompt: "What is a playbook like?"
+    options:
+      - id: a
+        label: "A recipe card you open for one kind of task"
+      - id: b
+        label: "A secret key"
+      - id: c
+        label: "Unlimited desk space"
+      - id: d
+        label: "A random joke"
+    correctOptionId: a
+    explanation: "Playbooks are on-demand procedures."
+  - id: q2
+    prompt: "What should stay always-on?"
+    options:
+      - id: a
+        label: "Short rules that are true for most tasks"
+      - id: b
+        label: "Every workflow step you have ever used"
+      - id: c
+        label: "Whole websites"
+      - id: d
+        label: "Nothing"
+    correctOptionId: a
+    explanation: "Always-on text must stay small or it crowds the desk."
+  - id: q3
+    prompt: "Where do long fact lists belong?"
+    options:
+      - id: a
+        label: "In SOURCES.md or BRIEF.md, not in wall rules"
+      - id: b
+        label: "In every always-on block"
+      - id: c
+        label: "Only in jokes"
+      - id: d
+        label: "In tool names"
+    correctOptionId: a
+    explanation: "Facts are binder pages. Rules are wall text."
+  - id: q4
+    prompt: "Why do playbooks need triggers?"
+    options:
+      - id: a
+        label: "So people know when to pull the recipe card"
+      - id: b
+        label: "So the desk becomes infinite"
+      - id: c
+        label: "So tools turn off"
+      - id: d
+        label: "So research is banned"
+    correctOptionId: a
+    explanation: "No trigger means the playbook stays unused."

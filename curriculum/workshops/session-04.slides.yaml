@@ -1,0 +1,183 @@
+id: session-04
+title: Clear asks, checks, and capstone
+subtitle: Workshop Session 4
+durationMinutes: 120
+outcome: Write a clear spec, check the work, and run one real loop end to end.
+moduleSlugs:
+  - human-craft
+  - verify-and-harden
+  - capstone-lab
+slides:
+  - id: title
+    layout: title
+    title: LLM Leverage
+    subtitle: Session 4 — Human craft, verify & capstone
+    body: 120 minutes · Aim well, check, then practice
+    notes: Longest session. Protect the 45-minute capstone block ruthlessly.
+  - id: outcome
+    layout: bullets
+    title: What you will leave with
+    bullets:
+      - A short spec with done checks
+      - Simple approval habits
+      - One measured before/after on a real job
+    notes: Collect memory prune lists from Session 3 in the first 3 minutes.
+  - id: agenda
+    layout: bullets
+    title: Agenda
+    bullets:
+      - 0–15 · Specs and reverse questions
+      - 15–35 · Modes and approvals
+      - 35–55 · Failure patterns and safety
+      - 55–100 · Capstone lab
+      - 100–120 · Look-backs and team defaults
+    notes: Put end time on the board.
+  - id: section-craft
+    layout: section
+    title: Human craft
+    subtitle: Intent is a product you ship into the window
+    notes: Eager models invent goals. Specs prevent that.
+  - id: craft-points
+    layout: bullets
+    title: Spec essentials
+    timing: 6 min
+    bullets:
+      - Outcome + audience
+      - Constraints (must / must-not)
+      - Sources to use
+      - Done when… (3–7 checks)
+      - One job per turn
+    notes: Show an 8-line template. Resist writing a novel.
+  - id: reverse
+    layout: steps
+    title: Reverse prompting
+    timing: 8 min
+    steps:
+      - Take a vague stakeholder ask
+      - Tell the model — ask clarifying questions only
+      - Answer as the stakeholder
+      - Authorize the draft only after
+    notes: |-
+      SETUP
+      • Bring a vague stakeholder ask (real or invented): "Can you make the onboarding better?"
+      • Do not draft until questions are answered.
+
+      STEP-BY-STEP
+      1) Paste the vague ask.
+      2) Instruct the model: "Ask me the 5–8 questions you need. Do not draft yet."
+      3) Answer 2–3 questions live with the room (invite volunteers to answer as the stakeholder).
+      4) Only then: "Draft against this spec" with Done when checks visible.
+      5) Contrast how much less rework you expect vs jumping straight to a draft.
+
+      FACILITATOR TIPS
+      • If the model drafts anyway, stop it and reinforce the gate.
+      • Point out reverse prompting is a human craft move — it works in every product.
+  - id: activity-spec
+    layout: activity
+    title: Lab — one-page spec
+    timing: 10 min
+    body: Turn a vague request from your week into a spec with Done when…
+    notes: |-
+      GOAL
+      An 8-line spec a partner could execute cold.
+
+      HOW TO RUN (10 min)
+      1) 5 min — Write spec from a vague request this week.
+      2) 4 min — Pair swap: partner marks anything they'd have to ask you.
+      3) 1 min — Add missing Done when checks.
+
+      RUBRIC
+      If a stranger still needs three questions, the spec is not done.
+  - id: modes
+    layout: bullets
+    title: Modes & approvals
+    timing: 8 min
+    bullets:
+      - Plan/ask when scope is fuzzy or blast radius is high
+      - Autonomous when the checklist is clear
+      - Always approve — sends, deletes, prod, secrets
+      - Rubber-stamping is not a policy
+    notes: Scenario cards if you have them; otherwise rapid oral scenarios.
+  - id: section-verify
+    layout: section
+    title: Verify & harden
+    subtitle: Fluent ≠ correct
+    notes: Verification closes the loop.
+  - id: failure-modes
+    layout: bullets
+    title: Failure modes clinic
+    timing: 8 min
+    bullets:
+      - Context pollution
+      - Conflicting rules
+      - Tool/skill overload
+      - Stale summaries
+      - Ungrounded fluency
+      - Goal drift
+    notes: Ask which node failed for each short story from the room.
+  - id: security
+    layout: bullets
+    title: Security habits
+    timing: 6 min
+    bullets:
+      - No secrets in prompts or memory
+      - Least-privilege tools
+      - Treat untrusted docs as adversarial
+      - Review connectors like browser extensions
+    notes: One concrete “don’t paste the API key” story beats a slide of theory.
+  - id: section-capstone
+    layout: section
+    title: Capstone lab
+    subtitle: Configure → run → verify → measure
+    notes: Announce time boxes. Circulate; do not lecture.
+  - id: capstone-constraints
+    layout: bullets
+    title: Capstone constraints
+    timing: 5 min
+    bullets:
+      - Real workflow you own
+      - Standing instruction + playbook + grounding + done checklist
+      - One before/after measure (time, revisions, or error caught)
+      - Finishable in this room
+    notes: Kill scope creep early.
+  - id: capstone-run
+    layout: activity
+    title: Build & run
+    timing: 40 min
+    body: Configure the loop artifacts, execute once, verify against your checklist.
+    bullets:
+      - 0–10 · Configure
+      - 10–30 · Run
+      - 30–40 · Verify + note the metric
+    notes: |-
+      GOAL
+      Configure → run → verify → measure on a real workflow.
+
+      HOW TO RUN (40 min)
+      • 0–10 Configure: standing instruction, playbook, grounding, done checklist, tool allowlist.
+      • 10–30 Run: one end-to-end attempt in their real tool.
+      • 30–40 Verify against checklist; write the metric (time, revisions, or error caught).
+
+      FACILITATOR MOVES
+      • Soft chimes at 10 / 30 / 40.
+      • If stuck at minute 12, force a scope cut: smaller artifact, fewer sources.
+      • Ban greenfield fantasies — must be a workflow they own.
+      • Collect 3 metrics on a shared board for the retro.
+  - id: retro
+    layout: discussion
+    title: Retrospectives
+    timing: 12 min
+    bullets:
+      - What moved the metric?
+      - What will you promote to a team default?
+      - What will you delete from standing context?
+    notes: Capture defaults in a shared doc live.
+  - id: takeaway
+    layout: takeaway
+    title: Course close
+    bullets:
+      - Finish Module 12 look-back in the app if needed
+      - Publish team defaults where people will see them
+      - Revisit in 30 days and prune what did not stick
+    body: Self-paced modules stay ready for review — links below.
+    notes: Thank the room. Point to modules one last time.

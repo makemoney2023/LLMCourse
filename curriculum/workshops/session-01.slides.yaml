@@ -1,0 +1,189 @@
+id: session-01
+title: Map, research pack, and wall rules
+subtitle: Workshop Session 1
+durationMinutes: 90
+outcome: Draw the loop. Leave with BRIEF.md and SOURCES.md. Write short wall rules from facts.
+moduleSlugs:
+  - mental-model
+  - deep-research
+  - system-instructions
+slides:
+  - id: title
+    layout: title
+    title: LLM Leverage
+    subtitle: Session 1 — Mental model, deep research & instructions
+    body: 90 minutes · Find facts before you set rules
+    notes: "Welcome. Promise: by the end they have a BRIEF.md + SOURCES.md habit, not just prompt tips."
+  - id: outcome
+    layout: bullets
+    title: What you will leave with
+    timing: 2 min
+    bullets:
+      - Draw the context loop in plain words
+      - Start a research pack with sources
+      - Write short wall rules from the brief
+    notes: Ask who has started a project by chatting with no sources. Normalize it—then replace the habit.
+  - id: agenda
+    layout: bullets
+    title: Agenda
+    timing: 90 min
+    bullets:
+      - 0–20 · The loop map and a messy ask demo
+      - 20–55 · Deep research into BRIEF.md and SOURCES.md
+      - 55–80 · Wall rules from evidence
+      - 80–90 · Share and take-home
+    notes: Protect the research lab. Standing playbooks move to Session 2.
+  - id: loop
+    layout: bullets
+    title: The loop in plain words
+    timing: 8 min
+    bullets:
+      - Your goal and research feed the desk
+      - Wall rules steer every turn
+      - Apps and lookups bring results back
+      - You check the work before you use it
+    notes: Draw research as upstream of standing instructions. Evidence before configuration.
+  - id: demo-messy
+    layout: steps
+    title: Live demo — messy ask
+    timing: 8 min
+    steps:
+      - Open any AI helper with tools on
+      - Paste a vague ask with many jobs
+      - "Say out loud: goal? wall rules? sources? check?"
+      - Do not fix it yet — name the broken stop
+    notes: |-
+      SETUP (before class)
+      • Open ChatGPT, Claude, Cursor, or Copilot — any UI with tools.
+      • Seed prompt: "Rewrite our Q3 plan, research competitors, draft a board email, and fix onboarding FAQ — make it good."
+
+      STEP-BY-STEP
+      1) Share screen. Paste messy prompt. Send.
+      2) Pause. Ask the room to label: Intent (how many jobs?), Standing context (any?), Retrieval (sources?), Verify (done means?).
+      3) Explicitly do not fix yet — diagnosis before treatment.
+      4) Optional: let one fluent but unfocused answer finish. Fluency ≠ quality.
+
+      FACILITATOR TIPS
+      • Park "better prompt" ideas for the clean rewrite later.
+      • Timebox ~8 minutes.
+  - id: section-research
+    layout: section
+    title: Deep research
+    subtitle: Find facts before you write rules
+    notes: "Bridge: fixing prompts is not enough if the problem is made up. Research first."
+  - id: research-points
+    layout: bullets
+    title: Why research first
+    timing: 5 min
+    bullets:
+      - Chat may invent — research collects
+      - A cited pack makes goals clearer
+      - BRIEF.md and SOURCES.md beat scrollback
+      - Later lookups need real pages to open
+    notes: Show empty custom instructions vs a one-page brief with links. Ask which they'd trust.
+  - id: context-pack
+    layout: bullets
+    title: Your project pack
+    timing: 5 min
+    bullets:
+      - BRIEF.md — one-page summary
+      - SOURCES.md — links, dates, why they matter
+      - Optional glossary — shared words
+      - Keep raw scrapes out of wall rules
+    notes: Minimum viable pack = BRIEF + SOURCES. Raw crawls stay in a scrap folder—not in always-on instructions.
+  - id: demo-research
+    layout: steps
+    title: Live demo — research pack
+    timing: 12 min
+    steps:
+      - Write three narrow research questions
+      - Gather with Firecrawl or another research tool
+      - Save SOURCES.md with links and dates
+      - Write a short BRIEF.md with citations
+      - Show how you will attach it later
+    notes: |-
+      SETUP
+      • Pick a concrete sample project (e.g. "SDR prep pack for chiropractic clinics" or a domain your room knows).
+      • Have Firecrawl MCP, Firecrawl API/UI, or a product deep-research/browse mode ready.
+      • Empty folder or repo path: research/demo-project/
+
+      STEP-BY-STEP
+      1) On a whiteboard, write THREE narrow questions (not "research the market"). Example:
+         - What public pages describe the clinic's services?
+         - What do top review sites commonly ding in this niche?
+         - What claims would be unsafe/medical for an AI assistant to invent?
+      2) Say: "We're collecting, not vibing."
+      3) Firecrawl path (adapt if using another tool):
+         a) Search/map candidate URLs for question 1.
+         b) Scrape 2–3 primary pages to markdown.
+         c) Paste URLs + accessed date + one-line relevance into SOURCES.md live.
+         d) Repeat lightly for questions 2–3 (don't boil the ocean—timebox).
+      4) Write BRIEF.md live (≤1 page):
+         - Problem / users
+         - Constraints & non-goals
+         - What we learned (each bullet → source)
+         - Open questions
+         - Recommended next build step
+      5) Show the handoff: "Next session/module we attach BRIEF.md + excerpts—not the whole crawl."
+      6) Optional: start a fresh chat, attach only BRIEF.md, ask for a standing-instruction draft grounded in the brief.
+
+      FACILITATOR TIPS
+      • If Firecrawl isn't available, do the same flow with careful manual browse + copy into markdown. The habit matters more than the brand.
+      • Call out context budget: raw scrapes are files; synthesis is what enters the hot window.
+      • Invite the room to challenge any uncited sentence in BRIEF.md.
+  - id: activity-research
+    layout: activity
+    title: Lab — scope and sources
+    timing: 15 min
+    body: Pick a real project. Write a scope card. Start SOURCES.md with at least three links.
+    bullets:
+      - One-sentence problem
+      - Three questions and a time box
+      - SOURCES.md with URL, date, and why
+    notes: |-
+      HOW TO RUN (15 min)
+      1) 2 min — Pick a real project (not a toy).
+      2) 5 min — Scope card (questions + out of scope + timebox).
+      3) 6 min — Capture at least 3 real sources into SOURCES.md (phones/laptops ok).
+      4) 2 min — Pair check: is each question answerable? Any vibes without links?
+
+      DONE LOOKS LIKE
+      Someone else could continue the research without the chat history.
+  - id: section-instructions
+    layout: section
+    title: System instructions
+    subtitle: Write wall rules from the brief
+    notes: "Transition: instructions without research encode folklore."
+  - id: instructions-points
+    layout: bullets
+    title: Wall rule craft
+    timing: 5 min
+    bullets:
+      - Right level — clear limits, not novels
+      - Pull must-nots from BRIEF.md
+      - Point to SOURCES.md for facts
+      - Fix rules that fight each other
+    notes: "Demo editing an instruction block to say: Prefer BRIEF.md; ask if facts missing; never invent medical claims."
+  - id: activity-instructions
+    layout: activity
+    title: Lab — rules from evidence
+    timing: 12 min
+    body: Draft or rewrite a short wall rule block using your brief and sources.
+    bullets:
+      - About 12 lines or fewer
+      - One do-not-invent rule
+      - Point to the brief or sources
+    notes: |-
+      HOW TO RUN
+      Circulate asking: "Which line is only true because of a source you captured?" Delete lines that are style fluff.
+      End with 2 volunteers reading BEFORE vs AFTER length.
+  - id: takeaway
+    layout: takeaway
+    title: Take-home
+    timing: 5 min
+    bullets:
+      - Finish Modules 1–3 in the app
+      - Finish BRIEF.md and SOURCES.md
+      - Bring the pack to Session 2
+    body: Self-paced modules are linked below.
+    notes: Point at Module 2 Deep research link. Standing playbooks are next session.

@@ -1,0 +1,26 @@
+id: tools-and-mcp
+order: 5
+slug: tools-and-mcp
+title: Tools & MCP
+subtitle: Apps the helper is allowed to open
+durationMinutes: 35
+workshopSession: 2
+prerequisites:
+  - mental-model
+  - standing-playbooks
+objectives:
+  - Explain how tool lists shape what the helper can do.
+  - Describe MCP as a shared menu of apps.
+  - Choose a small tool list for one workflow.
+loopPlacement: The helper picks a tool, gets a result, and puts that result back on the desk.
+skipConsequence: Too many apps confuse choices. Too few apps lead to fake ‘I checked’ answers.
+exerciseTitles:
+  - List tools in your helper today
+  - Design a five-tool allow list
+  - Write one clear tool description
+toolMapping:
+  - abstraction: Tools
+    surfaces: Built-in browse/code/search tools, function calling, plugins
+  - abstraction: MCP / connectors
+    surfaces: MCP servers, ChatGPT connectors, Claude integrations, IDE tool bridges
+quizCount: 4

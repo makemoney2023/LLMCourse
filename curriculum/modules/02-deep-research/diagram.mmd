@@ -1,0 +1,19 @@
+flowchart LR
+  question[ResearchQuestions]
+  gather[DeepResearch_Firecrawl]
+  sources[SOURCES_md]
+  brief[BRIEF_md]
+  intent[SharperIntent]
+  window[ContextWindow]
+  standing[StandingInstructions_later]
+  retrieve[Retrieval_later]
+
+  question --> gather
+  gather --> sources
+  gather --> brief
+  brief --> intent
+  sources --> retrieve
+  brief --> retrieve
+  intent --> window
+  retrieve --> window
+  brief --> standing

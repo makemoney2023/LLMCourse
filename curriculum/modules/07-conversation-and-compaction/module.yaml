@@ -1,0 +1,26 @@
+id: conversation-and-compaction
+order: 7
+slug: conversation-and-compaction
+title: Conversation & compaction
+subtitle: Keep the desk clean as the chat grows
+durationMinutes: 30
+workshopSession: 3
+prerequisites:
+  - mental-model
+  - retrieval-and-grounding
+objectives:
+  - See how messages and tool results pile up on the desk.
+  - Write a short handoff note when the desk gets messy.
+  - Choose continue vs start fresh for common cases.
+loopPlacement: The chat is working papers on the desk. Compaction is a short note so you can clear space.
+skipConsequence: Old junk steers new answers. Quality drops near the edge of desk space.
+exerciseTitles:
+  - Label turns in a sample thread
+  - Write a handoff note for a fresh chat
+  - Choose continue or restart
+toolMapping:
+  - abstraction: Conversation
+    surfaces: Chat threads, agent transcripts, tool result messages
+  - abstraction: Compaction
+    surfaces: Auto-summaries, "summarize and continue", manual handoff notes
+quizCount: 4

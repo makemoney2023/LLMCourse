@@ -1,0 +1,54 @@
+moduleId: verify-and-harden
+questions:
+  - id: q1
+    prompt: "What does verify mean here?"
+    options:
+      - id: a
+        label: "Checking work before you use or send it"
+      - id: b
+        label: "Making text longer"
+      - id: c
+        label: "Deleting BRIEF.md"
+      - id: d
+        label: "Turning off the desk"
+    correctOptionId: a
+    explanation: "Verify closes the quality loop."
+  - id: q2
+    prompt: "Which is a common failure?"
+    options:
+      - id: a
+        label: "Sure words with no source on the desk"
+      - id: b
+        label: "Having done checks"
+      - id: c
+        label: "Using a short allow list"
+      - id: d
+        label: "Asking clarifying questions"
+    correctOptionId: a
+    explanation: "Ungrounded fluency is confident guessing."
+  - id: q3
+    prompt: "What is a basic safety habit?"
+    options:
+      - id: a
+        label: "Never put secrets in chats or memory"
+      - id: b
+        label: "Approve every action without looking"
+      - id: c
+        label: "Enable every plugin"
+      - id: d
+        label: "Skip source checks"
+    correctOptionId: a
+    explanation: "Secrets and blind approvals create harm."
+  - id: q4
+    prompt: "After a miss, what should you update?"
+    options:
+      - id: a
+        label: "The playbook or wall rule that would catch it next time"
+      - id: b
+        label: "Nothing"
+      - id: c
+        label: "Only the font"
+      - id: d
+        label: "Delete all sources"
+    correctOptionId: a
+    explanation: "Harden the loop defaults."

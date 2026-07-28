@@ -1,0 +1,160 @@
+id: session-02
+title: Recipe cards, tools, and lookup
+subtitle: Workshop Session 2
+durationMinutes: 90
+outcome: Turn your research pack into recipe cards, a small tool list, and look-up-then-answer habits.
+moduleSlugs:
+  - standing-playbooks
+  - tools-and-mcp
+  - retrieval-and-grounding
+slides:
+  - id: title
+    layout: title
+    title: LLM Leverage
+    subtitle: Session 2 — Playbooks, tools & retrieval
+    body: 90 minutes · Use the pack. Do not reinvent it in chat.
+    notes: Collect Session 1 BRIEF.md / SOURCES.md take-homes in the first 3 minutes.
+  - id: outcome
+    layout: bullets
+    title: What you will leave with
+    bullets:
+      - Sort wall rules vs recipe cards
+      - Design a small tool list
+      - Look up from BRIEF.md before answering
+    notes: If someone has no pack, give them a 5-minute micro-research before labs.
+  - id: agenda
+    layout: bullets
+    title: Agenda
+    bullets:
+      - 0–10 · Recap packs from Session 1
+      - 10–30 · Recipe cards and wall rules
+      - 30–55 · Tools and MCP
+      - 55–80 · Lookup labs with the pack
+      - 80–90 · One runbook card
+    notes: Keep retrieval tied to their markdown packs—that is the through-line.
+  - id: section-playbooks
+    layout: section
+    title: Standing playbooks
+    subtitle: Wall rules vs recipe cards
+    notes: "Rules come FROM the brief. Example: non-goals in BRIEF become must-not rules."
+  - id: rules-vs-skills
+    layout: bullets
+    title: Sorting test
+    timing: 5 min
+    bullets:
+      - Wall = true for almost every task here
+      - Recipe card = one workflow with a trigger
+      - Facts stay in SOURCES.md
+      - If everything is always on, nothing stands out
+    notes: "Rapid-fire: brand voice (rule) vs 'draft board update' (playbook) vs pricing table (source file)."
+  - id: activity-playbooks
+    layout: activity
+    title: Lab — one rule + one playbook
+    timing: 12 min
+    body: Using BRIEF.md, write one short wall rule and one recipe card with triggers.
+    bullets:
+      - Rule pulls limits from the brief
+      - Recipe has trigger and done checks
+      - No long fact lists on the wall
+    notes: Call out anyone pasting competitor lists into rules—that belongs in SOURCES/BRIEF retrieval.
+  - id: section-tools
+    layout: section
+    title: Tools & MCP
+    subtitle: Apps the helper may open
+    notes: Firecrawl-like tools are for gathering packs—not for every trivial turn.
+  - id: demo-tools
+    layout: steps
+    title: Live demo — tool overload
+    timing: 8 min
+    steps:
+      - Show a long list of apps/plugins
+      - Ask one narrow job
+      - Notice wrong or ignored app picks
+      - Cut to a small list and try again
+    notes: |-
+      SETUP
+      • Use an assistant with many plugins/connectors/MCP tools enabled (or simulate a bloated tool catalog in instructions).
+      • Prepare a narrow task, e.g. "Quote the refund window from our policy doc."
+      • Decide a research-mode allowlist (may include Firecrawl) vs a build-mode allowlist (usually excludes crawl tools).
+
+      STEP-BY-STEP
+      1) Show the tool/plugin list. Count them aloud. Say: "Each description costs context and decision space."
+      2) Run the narrow task with the bloated set. Watch for wrong tool picks or ignored tools.
+      3) Narrate without fixing yet: "The model is shopping in a messy toolbox."
+      4) Disable extras. Keep at most 5 tools. Explicitly park Firecrawl/deep-research tools unless you are refreshing evidence.
+      5) Rerun the same ask. Compare tool selection and answer specificity.
+      6) On a board, write: Build allowlist (max 5) · Research allowlist · Never-list (send/delete/prod/pay).
+
+      FACILITATOR TIPS
+      • If you cannot disable tools live, paste two system prompts: 15 tool blurbs vs 3.
+      • Tie back to Session 1: research tools create BRIEF/SOURCES; they are not needed every drafting turn.
+  - id: activity-tools
+    layout: activity
+    title: Lab — minimal tool set
+    timing: 10 min
+    body: Max five tools for your workflow. Say if research tools are research-only.
+    bullets:
+      - One-line purpose each
+      - Never-list
+      - Research mode vs build mode
+    notes: "Push never-lists: send, delete, prod write, pay."
+  - id: section-retrieval
+    layout: section
+    title: Retrieval & grounding
+    subtitle: Open the binder. Do not hope the helper remembers.
+    notes: This is where Session 1 artifacts pay rent.
+  - id: demo-retrieval
+    layout: steps
+    title: Live demo — look up, then answer
+    timing: 10 min
+    steps:
+      - Ask a fact question with no file
+      - Watch a sure-sounding guess
+      - Attach BRIEF.md or one source
+      - Require a quote or “I don’t know”
+    notes: |-
+      SETUP
+      • Use a learner's BRIEF.md / SOURCES.md from Session 1 when possible.
+      • Pick a fact question whose answer is in that pack (or a known policy PDF).
+
+      STEP-BY-STEP
+      1) Ask the fact question with NO attachment and NO search. Let the model answer.
+      2) Pause. Ask: "How would we know if this is true?" Label ungrounded fluency.
+      3) Attach BRIEF.md or one primary URL/excerpt from SOURCES.md.
+      4) Re-ask with: "Quote the source; if missing, say you don't know."
+      5) Compare invented confidence vs cited answer.
+      6) Optional third run: dump a huge raw crawl folder vs the one-page brief — show noise vs signal.
+
+      FACILITATOR TIPS
+      • Celebrate the boring correct answer.
+      • Slogan: standing instructions ≠ evidence; Session 1 packs are retrieval fuel.
+      • If nobody brought a pack, spend 3 minutes making a tiny SOURCES.md live, then demo.
+  - id: activity-grounding
+    layout: activity
+    title: Lab — lookup checklist
+    timing: 12 min
+    body: Name required pack files and a stop-if-missing rule.
+    bullets:
+      - "Required: BRIEF.md and which sources"
+      - Optional files
+      - Do not invent if missing
+    notes: "Pair share: would you bet $100 the next answer is grounded?"
+  - id: combined
+    layout: activity
+    title: One runbook card
+    timing: 10 min
+    body: "One card: recipe trigger, tools, pack files, done check."
+    bullets:
+      - Allowed tools (max 5)
+      - Required markdown pack files
+      - Done when
+    notes: Photograph/paste to shared doc. This card is the Session 2 artifact.
+  - id: takeaway
+    layout: takeaway
+    title: Take-home
+    bullets:
+      - Finish Modules 4–6 in the app
+      - Refresh SOURCES.md once this week
+      - Use the runbook card on one real task
+    body: Self-paced modules are linked below.
+    notes: Point to standing-playbooks, tools-and-mcp, retrieval-and-grounding links.

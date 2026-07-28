@@ -1,0 +1,24 @@
+id: system-instructions
+order: 3
+slug: system-instructions
+title: System instructions
+subtitle: Wall rules that guide every chat
+durationMinutes: 30
+workshopSession: 1
+prerequisites:
+  - mental-model
+  - deep-research
+objectives:
+  - Explain what standing instructions do before you type.
+  - Write short wall rules at the right level of detail.
+  - Spot and fix rules that fight each other.
+loopPlacement: Standing instructions sit on the wall. They shape every turn on the desk.
+skipConsequence: Hidden rules steer every answer. Conflicts are hard to see from the chat alone.
+exerciseTitles:
+  - Audit a rule block you already use
+  - Rewrite bloated rules to be short
+  - Fix two rules that fight
+toolMapping:
+  - abstraction: System / custom instructions
+    surfaces: ChatGPT custom instructions, Claude project instructions, Cursor rules/system layers, Copilot instructions
+quizCount: 4

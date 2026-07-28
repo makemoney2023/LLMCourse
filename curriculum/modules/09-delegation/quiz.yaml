@@ -1,0 +1,54 @@
+moduleId: delegation
+questions:
+  - id: q1
+    prompt: "What is a subagent like?"
+    options:
+      - id: a
+        label: "A specialist classmate with their own desk"
+      - id: b
+        label: "Unlimited wall rules"
+      - id: c
+        label: "A deleted source"
+      - id: d
+        label: "A secret key"
+    correctOptionId: a
+    explanation: "Specialists get scoped jobs and return results."
+  - id: q2
+    prompt: "What must a delegation contract include?"
+    options:
+      - id: a
+        label: "Goal, inputs, done checks, and a merge owner"
+      - id: b
+        label: "Only emojis"
+      - id: c
+        label: "Every company file"
+      - id: d
+        label: "No boundaries"
+    correctOptionId: a
+    explanation: "Contracts prevent collisions and fuzzy work."
+  - id: q3
+    prompt: "Which parallel plan is unsafe?"
+    options:
+      - id: a
+        label: "Two helpers editing the same file with no owner"
+      - id: b
+        label: "One helper drafts while another reviews a copy"
+      - id: c
+        label: "Research on different sources"
+      - id: d
+        label: "One person merges at the end"
+    correctOptionId: a
+    explanation: "Shared mutable work needs a single owner."
+  - id: q4
+    prompt: "When should you NOT delegate yet?"
+    options:
+      - id: a
+        label: "When the goal is still fuzzy"
+      - id: b
+        label: "When inputs are clear"
+      - id: c
+        label: "When done checks exist"
+      - id: d
+        label: "When outputs do not overlap"
+    correctOptionId: a
+    explanation: "Clarify first, then split."

@@ -1,0 +1,26 @@
+id: verify-and-harden
+order: 11
+slug: verify-and-harden
+title: Verify & harden
+subtitle: Check work and keep the loop safe
+durationMinutes: 35
+workshopSession: 4
+prerequisites:
+  - human-craft
+  - tools-and-mcp
+objectives:
+  - Build a short done checklist.
+  - Name common failure patterns in plain words.
+  - Use basic safety habits for secrets and permissions.
+loopPlacement: Checking your work closes the loop. Safer defaults protect future loops.
+skipConsequence: Fluent wrong work ships. Secrets leak. Bad recipes spread.
+exerciseTitles:
+  - Build a done checklist
+  - Diagnose three failed runs
+  - Harden tools and permissions
+toolMapping:
+  - abstraction: Verification
+    surfaces: Tests, review UIs, output checklists, eval prompts
+  - abstraction: Security
+    surfaces: Permission modes, secret redaction, MCP trust prompts, sandboxing
+quizCount: 4

@@ -1,0 +1,54 @@
+moduleId: conversation-and-compaction
+questions:
+  - id: q1
+    prompt: "What is compaction like?"
+    options:
+      - id: a
+        label: "A short note so you can clear the desk"
+      - id: b
+        label: "Deleting the helper"
+      - id: c
+        label: "Adding more PDFs"
+      - id: d
+        label: "Turning off checks"
+    correctOptionId: a
+    explanation: "Compaction shrinks old clutter into a usable note."
+  - id: q2
+    prompt: "When should you restart?"
+    options:
+      - id: a
+        label: "When the topic shifts or old junk keeps winning"
+      - id: b
+        label: "After every single word"
+      - id: c
+        label: "Never"
+      - id: d
+        label: "Only on weekends"
+    correctOptionId: a
+    explanation: "Restart with a handoff when the desk is contaminated."
+  - id: q3
+    prompt: "What should a handoff keep?"
+    options:
+      - id: a
+        label: "Goal, done checks, sources, and do-not list"
+      - id: b
+        label: "Every raw log"
+      - id: c
+        label: "Only emojis"
+      - id: d
+        label: "Secrets"
+    correctOptionId: a
+    explanation: "Keep signal. Drop sludge."
+  - id: q4
+    prompt: "Why are tool dumps risky in long chats?"
+    options:
+      - id: a
+        label: "They use lots of desk space and can bury the goal"
+      - id: b
+        label: "They shrink the desk forever"
+      - id: c
+        label: "They remove wall rules"
+      - id: d
+        label: "They ban research"
+    correctOptionId: a
+    explanation: "Huge results crowd the context window."

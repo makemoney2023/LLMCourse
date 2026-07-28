@@ -1,0 +1,25 @@
+id: retrieval-and-grounding
+order: 6
+slug: retrieval-and-grounding
+title: Retrieval & grounding
+subtitle: Look things up before you answer
+durationMinutes: 35
+workshopSession: 2
+prerequisites:
+  - mental-model
+  - deep-research
+  - tools-and-mcp
+objectives:
+  - Explain retrieval as looking facts up in a binder.
+  - Use BRIEF.md and SOURCES.md as grounding files.
+  - Practice retrieve-then-answer instead of guessing.
+loopPlacement: Retrieval brings binder pages onto the desk so answers rest on evidence.
+skipConsequence: Answers sound sure but may be invented. Or the desk fills with junk files.
+exerciseTitles:
+  - Pick sources for three task types
+  - Trim an overstuffed file pack
+  - Write retrieve-then-answer steps
+toolMapping:
+  - abstraction: Retrieval
+    surfaces: File upload, @file/@folder, web search, knowledge bases, RAG, codebase search
+quizCount: 4

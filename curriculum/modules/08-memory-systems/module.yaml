@@ -1,0 +1,23 @@
+id: memory-systems
+order: 8
+slug: memory-systems
+title: Memory systems
+subtitle: Sticky notes that help next time
+durationMinutes: 30
+workshopSession: 3
+prerequisites:
+  - conversation-and-compaction
+objectives:
+  - Sort facts into desk, binder notes, or sticky memory.
+  - Choose what should persist across chats.
+  - Prune bad or old memory entries.
+loopPlacement: Memory sticky notes come back onto the desk in later sessions.
+skipConsequence: You re-explain everything—or a wrong sticky note steers every future chat.
+exerciseTitles:
+  - Sort ten facts by memory place
+  - Draft a project note template
+  - Prune a noisy memory list
+toolMapping:
+  - abstraction: Memory
+    surfaces: Chat memory toggles, project docs, CLAUDE.md/AGENTS.md notes, personal knowledge bases
+quizCount: 4

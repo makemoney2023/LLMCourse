@@ -1,0 +1,24 @@
+id: mental-model
+order: 1
+slug: mental-model
+title: Mental model
+subtitle: How AI helpers think, act, and use space
+durationMinutes: 25
+workshopSession: 1
+prerequisites: []
+objectives:
+  - Tell the difference between a simple chat and a helper that uses tools.
+  - Explain the context window like desk space that can fill up.
+  - "Point to each part of the loop: ask, rules, tools, check."
+loopPlacement: This map shows the whole loop. Later modules zoom in on each part.
+skipConsequence: Without this map, tips feel random. You cannot tell why answers go wrong.
+exerciseTitles:
+  - Map your last AI chat onto the loop
+  - Find waste in a messy ask
+  - Rewrite a fuzzy ask into a clear goal
+toolMapping:
+  - abstraction: Context window
+    surfaces: Chat history limits, token counters, "conversation too long" warnings
+  - abstraction: Agent loop
+    surfaces: Tool-using assistants, coding agents, research agents with browse/search
+quizCount: 4

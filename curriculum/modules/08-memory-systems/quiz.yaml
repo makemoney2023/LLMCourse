@@ -1,0 +1,54 @@
+moduleId: memory-systems
+questions:
+  - id: q1
+    prompt: "What is memory like in this course?"
+    options:
+      - id: a
+        label: "Sticky notes you keep for next time"
+      - id: b
+        label: "A bigger monitor"
+      - id: c
+        label: "A delete button for tools"
+      - id: d
+        label: "A kind of quiz"
+    correctOptionId: a
+    explanation: "Memory brings durable facts back later."
+  - id: q2
+    prompt: "Where should important project facts live?"
+    options:
+      - id: a
+        label: "In binder notes you control, like BRIEF.md"
+      - id: b
+        label: "Only in jokes"
+      - id: c
+        label: "Inside secrets vaults in the chat"
+      - id: d
+        label: "Nowhere"
+    correctOptionId: a
+    explanation: "Prefer auditable docs for important facts."
+  - id: q3
+    prompt: "What should never go in memory?"
+    options:
+      - id: a
+        label: "Secrets and API keys"
+      - id: b
+        label: "Tone preferences"
+      - id: c
+        label: "Project links"
+      - id: d
+        label: "Open questions"
+    correctOptionId: a
+    explanation: "Secrets do not belong in prompts or memory."
+  - id: q4
+    prompt: "Why prune memory?"
+    options:
+      - id: a
+        label: "Old wrong stickies can steer future chats"
+      - id: b
+        label: "Pruning bans research"
+      - id: c
+        label: "Pruning removes the desk"
+      - id: d
+        label: "Pruning deletes BRIEF.md automatically"
+    correctOptionId: a
+    explanation: "Uncurated memory becomes slow pollution."
