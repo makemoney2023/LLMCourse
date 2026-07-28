@@ -4,6 +4,7 @@ import { parseExercises } from "@/lib/markdown";
 import { wordsIn } from "./readability";
 
 const REQUIRED_LESSON_H2 = [
+  "## In plain words",
   "## What this is",
   "## Why it matters",
   "## Big ideas",
@@ -40,6 +41,27 @@ describe("authored module content quality", () => {
           `${meta.slug} missing ${heading}`,
         ).toBe(true);
       }
+      const plainBlock = content!.lessonMarkdown.match(
+        /## In plain words\n([\s\S]*?)(?:\n## )/,
+      )?.[1] ?? "";
+      expect(plainBlock, `${meta.slug} In plain words: Goal`).toMatch(/Goal/i);
+      expect(plainBlock, `${meta.slug} In plain words: Do this`).toMatch(
+        /Do this/i,
+      );
+      expect(
+        plainBlock,
+        `${meta.slug} In plain words: You'll know`,
+      ).toMatch(/You.?ll know/i);
+
+      if (meta.order > 1) {
+        const moduleColonRefs =
+          content!.lessonMarkdown.match(/Module\s+\d+:/g) ?? [];
+        expect(
+          moduleColonRefs.length,
+          `${meta.slug} has module laundry list (${moduleColonRefs.length} "Module N:" refs; max 3)`,
+        ).toBeLessThanOrEqual(3);
+      }
+
       expect(
         content!.lessonMarkdown.toLowerCase(),
         `${meta.slug} should not be placeholder`,

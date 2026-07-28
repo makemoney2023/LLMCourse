@@ -20,6 +20,8 @@ You do not need to be an engineer for Modules 1–3 and Workshop 1.
 
 ## Simple words we reuse
 
+Start here. The full course glossary (with hover tips in lessons) lives in the app at `/glossary`.
+
 | Hard term | Plain meaning |
 |-----------|----------------|
 | Context window | Desk space for one homework session |
