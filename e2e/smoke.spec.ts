@@ -29,10 +29,27 @@ async function submitQuiz(page: Page) {
   await page.getByRole("button", { name: "Submit quiz" }).click();
 }
 
-test("home → module → steps → practice path", async ({ page }) => {
+test("home marketing CTAs and learner entry", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "LLM Leverage" })).toBeVisible();
-  await page.getByRole("link", { name: "Start Module 1" }).click();
+  await expect(page.getByRole("link", { name: "LLM Leverage" }).first()).toBeVisible();
+  await expect(
+    page.getByRole("heading", {
+      name: /Train teams to get reliable AI output/i,
+    }),
+  ).toBeVisible();
+  await expect(page.getByRole("link", { name: /Preview the course/i })).toBeVisible();
+  await page.getByRole("link", { name: /Plan a team rollout/i }).click();
+  await expect(page.locator("#rollout")).toBeVisible();
+  await page.getByRole("link", { name: /Talk to us/i }).first().click();
+  await expect(page.locator("#contact")).toBeVisible();
+  await page.getByRole("link", { name: /Preview the course/i }).first().click();
+  await expect(
+    page.getByRole("heading", { level: 1, name: "Mental model", exact: true }),
+  ).toBeVisible();
+});
+
+test("module → steps → practice path", async ({ page }) => {
+  await page.goto("/modules/mental-model");
   await expect(
     page.getByRole("heading", { level: 1, name: "Mental model", exact: true }),
   ).toBeVisible();
