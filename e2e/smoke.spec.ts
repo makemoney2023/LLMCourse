@@ -13,8 +13,14 @@ async function completeAllExercises(page: Page) {
   const count = await boxes.count();
   expect(count).toBeGreaterThan(0);
   for (let i = 0; i < count; i++) {
-    await boxes.nth(i).check();
+    const box = boxes.nth(i);
+    await box.scrollIntoViewIfNeeded();
+    await box.click({ force: true });
   }
+  // Completing the last exercise advances focus to the quiz automatically.
+  await expect(
+    page.getByRole("heading", { name: "Check for understanding" }),
+  ).toBeVisible({ timeout: 10_000 });
 }
 
 async function submitQuiz(page: Page) {
@@ -129,10 +135,17 @@ test("quiz stays locked until steps and exercises; then unlocks next module", as
 }) => {
   await page.goto("/modules/mental-model");
   await expect(
-    page.getByText(/Mark every practice exercise done to unlock the quiz/i),
+    page.getByRole("heading", { name: "Get oriented" }),
   ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Mark step done" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Practice" })).toHaveCount(0);
 
   await completeLessonSteps(page);
+  await expect(page.getByRole("heading", { name: "Practice" })).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Continue to quiz" }),
+  ).toBeDisabled();
+
   await completeAllExercises(page);
 
   await expect(
@@ -144,7 +157,7 @@ test("quiz stays locked until steps and exercises; then unlocks next module", as
   await expect(
     page.getByRole("link", { name: /View certificate/i }),
   ).toBeVisible();
-  await expect(page.getByText(/Module complete/i)).toBeVisible();
+  await expect(page.getByText(/Module complete · quiz/i)).toBeVisible();
 
   await page.goto("/modules/deep-research");
   await expect(

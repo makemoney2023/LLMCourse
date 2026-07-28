@@ -13,7 +13,6 @@ import { ModuleStepper, type StepperItem } from "@/components/module-stepper";
 import { WorkedDemo } from "@/components/worked-demo";
 import { useProgress } from "@/components/progress-provider";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import type { ModuleDemo } from "@/lib/curriculum/load-demo";
 import type { ModuleMeta, Quiz } from "@/lib/curriculum/types";
 import type { ParsedExercise } from "@/lib/markdown";
@@ -82,24 +81,27 @@ export function ModuleLearnerFlow({
     }
     if (!practiceDone) return PRACTICE_STEP_ID;
     if (!moduleDone) return QUIZ_STEP_ID;
-    return meta.steps[0]?.id ?? PRACTICE_STEP_ID;
+    return QUIZ_STEP_ID;
   }, [meta.steps, doneSteps, practiceDone, moduleDone]);
 
+  // Keep focus on the first incomplete step as progress advances
+  // (e.g. last exercise checked → jump to quiz).
   useEffect(() => {
     if (!moduleUnlocked) return;
-    setFocusStep((prev) => prev ?? defaultFocus);
+    setFocusStep(defaultFocus);
   }, [moduleUnlocked, defaultFocus]);
+
+  const activeStep = focusStep ?? defaultFocus;
 
   const stepperItems: StepperItem[] = meta.steps.map((step) => {
     const done = doneSteps.includes(step.id);
     const unlocked = isStepUnlocked(progress, meta, step.id);
     if (!unlocked) return { id: step.id, title: step.title, status: "locked" };
-    if (done) return { id: step.id, title: step.title, status: "done" };
-    return {
-      id: step.id,
-      title: step.title,
-      status: focusStep === step.id ? "current" : "current",
-    };
+    if (done && step.id !== activeStep)
+      return { id: step.id, title: step.title, status: "done" };
+    if (step.id === activeStep)
+      return { id: step.id, title: step.title, status: "current" };
+    return { id: step.id, title: step.title, status: "available" };
   });
 
   stepperItems.push({
@@ -107,9 +109,11 @@ export function ModuleLearnerFlow({
     title: "Practice",
     status: !practiceUnlocked
       ? "locked"
-      : practiceDone
+      : practiceDone && activeStep !== PRACTICE_STEP_ID
         ? "done"
-        : "current",
+        : activeStep === PRACTICE_STEP_ID
+          ? "current"
+          : "available",
   });
   stepperItems.push({
     id: QUIZ_STEP_ID,
@@ -117,14 +121,13 @@ export function ModuleLearnerFlow({
     status: !quizUnlocked
       ? "locked"
       : moduleDone || progress.quizScores[meta.id] != null
-        ? "done"
-        : "current",
+        ? activeStep === QUIZ_STEP_ID
+          ? "current"
+          : "done"
+        : activeStep === QUIZ_STEP_ID
+          ? "current"
+          : "available",
   });
-
-  const normalizedStepper = normalizeCurrent(
-    stepperItems,
-    focusStep ?? defaultFocus,
-  );
 
   if (!moduleUnlocked) {
     const reason = unlockReason(progress, modules, meta.id);
@@ -142,81 +145,50 @@ export function ModuleLearnerFlow({
     );
   }
 
+  const activeChunk = stepChunks.find((c) => c.stepId === activeStep);
+  const isLessonStep = Boolean(activeChunk);
+  const lessonDone = activeChunk
+    ? doneSteps.includes(activeChunk.stepId)
+    : false;
+
+  function goNextFromLesson(stepId: string) {
+    completeStep(meta.id, stepId);
+    const ids = meta.steps.map((s) => s.id);
+    const idx = ids.indexOf(stepId);
+    setFocusStep(ids[idx + 1] ?? PRACTICE_STEP_ID);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
-    <div className="space-y-10">
+    <div className="flex min-h-[70vh] flex-col gap-4">
       <ModuleStepper
-        items={normalizedStepper}
+        items={stepperItems}
         onSelect={(id) => {
           if (id === PRACTICE_STEP_ID && practiceUnlocked) setFocusStep(id);
           else if (id === QUIZ_STEP_ID && quizUnlocked) setFocusStep(id);
           else if (isStepUnlocked(progress, meta, id)) setFocusStep(id);
-          const el = document.getElementById(`step-${id}`);
-          el?.scrollIntoView({ behavior: "smooth", block: "start" });
+          window.scrollTo({ top: 0, behavior: "smooth" });
         }}
       />
 
-      <div className="flex flex-wrap gap-2">
-        <ContinueCourseButton
-          modules={modules}
-          exerciseIdsByModule={exerciseIdsByModule}
-          label="Continue"
-        />
-      </div>
-
-      {stepChunks.map((chunk) => {
-        const unlocked = isStepUnlocked(progress, meta, chunk.stepId);
-        const done = doneSteps.includes(chunk.stepId);
-        if (!unlocked) {
-          return (
-            <section
-              key={chunk.stepId}
-              id={`step-${chunk.stepId}`}
-              className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-5"
-            >
-              <h2 className="font-heading text-2xl tracking-tight">
-                {chunk.title}
-              </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Complete the previous step to unlock this section.
-              </p>
-            </section>
-          );
-        }
-        return (
+      <div className="flex-1 space-y-6 pb-36">
+        {isLessonStep && activeChunk ? (
           <section
-            key={chunk.stepId}
-            id={`step-${chunk.stepId}`}
-            className="space-y-4"
+            id={`step-${activeChunk.stepId}`}
+            className="space-y-5"
+            aria-labelledby={`step-title-${activeChunk.stepId}`}
           >
-            <div className="flex flex-wrap items-end justify-between gap-3">
-              <h2 className="font-heading text-2xl tracking-tight">
-                {chunk.title}
-              </h2>
-              {done ? (
-                <span className="text-xs font-medium text-emerald-800">
-                  Step done
-                </span>
-              ) : (
-                <Button
-                  type="button"
-                  size="sm"
-                  onClick={() => {
-                    completeStep(meta.id, chunk.stepId);
-                    const ids = meta.steps.map((s) => s.id);
-                    const idx = ids.indexOf(chunk.stepId);
-                    const nextId = ids[idx + 1];
-                    setFocusStep(nextId ?? PRACTICE_STEP_ID);
-                  }}
-                >
-                  Mark step done
-                </Button>
-              )}
-            </div>
-            <GlossaryProse html={chunk.html} termsById={termsById} />
-            {chunk.stepId === "ideas" && demo ? (
+            <h2
+              id={`step-title-${activeChunk.stepId}`}
+              className="font-heading text-3xl tracking-tight"
+            >
+              {activeChunk.title}
+            </h2>
+            <GlossaryProse html={activeChunk.html} termsById={termsById} />
+            {activeChunk.stepId === "ideas" && demo ? (
               <WorkedDemo demo={demo} />
             ) : null}
-            {chunk.stepId === "apply" ? (
+            {activeChunk.stepId === "apply" ? (
               <div className="space-y-3 rounded-2xl border border-border/60 bg-card/30 p-4">
                 <h3 className="font-heading text-xl">In the loop</h3>
                 <p className="text-sm text-muted-foreground">{loopPlacement}</p>
@@ -230,38 +202,34 @@ export function ModuleLearnerFlow({
               </div>
             ) : null}
           </section>
-        );
-      })}
+        ) : null}
 
-      <Separator />
+        {activeStep === PRACTICE_STEP_ID ? (
+          <section
+            id={`step-${PRACTICE_STEP_ID}`}
+            aria-labelledby="exercises-heading"
+            className="space-y-4"
+          >
+            <h2
+              id="exercises-heading"
+              className="font-heading text-3xl tracking-tight"
+            >
+              Practice
+            </h2>
+            <p className="text-sm text-muted-foreground">
+              Mark each exercise Done. Then continue to the quiz.
+            </p>
+            <ExerciseList
+              moduleId={meta.id}
+              exercises={exercises}
+              termsById={termsById}
+            />
+          </section>
+        ) : null}
 
-      <section
-        id={`step-${PRACTICE_STEP_ID}`}
-        aria-labelledby="exercises-heading"
-        className="space-y-4"
-      >
-        <h2 id="exercises-heading" className="font-heading text-2xl">
-          Practice
-        </h2>
-        {!practiceUnlocked ? (
-          <p className="rounded-2xl border border-dashed border-border/80 bg-muted/20 p-5 text-sm text-muted-foreground">
-            Finish Get oriented, Big ideas, and Put it to work to unlock
-            exercises.
-          </p>
-        ) : (
-          <ExerciseList
-            moduleId={meta.id}
-            exercises={exercises}
-            termsById={termsById}
-          />
-        )}
-      </section>
-
-      {quiz ? (
-        <>
-          <Separator />
-          <div id={`step-${QUIZ_STEP_ID}`}>
-            {quizUnlocked ? (
+        {activeStep === QUIZ_STEP_ID ? (
+          <div id={`step-${QUIZ_STEP_ID}`} className="space-y-6">
+            {quizUnlocked && quiz ? (
               <ModuleQuiz quiz={quiz} moduleSlug={meta.slug} />
             ) : (
               <section className="space-y-3 rounded-2xl border border-dashed border-border/80 bg-muted/20 p-5">
@@ -273,65 +241,105 @@ export function ModuleLearnerFlow({
                 </p>
               </section>
             )}
+            <div className="flex flex-wrap items-center gap-3 pt-2">
+              <ModuleCompleteStatus moduleId={meta.id} />
+              <Button asChild variant="outline">
+                <Link href={`/workshops/session-0${meta.workshopSession}`}>
+                  Facilitator notes (Workshop {meta.workshopSession})
+                </Link>
+              </Button>
+              <Button asChild variant="ghost">
+                <Link href={`/try/session-0${meta.workshopSession}`}>
+                  Try-it sandbox
+                </Link>
+              </Button>
+            </div>
+            <nav
+              className="flex flex-wrap justify-between gap-3 border-t border-border pt-6"
+              aria-label="Module pagination"
+            >
+              {prev ? (
+                <Button asChild variant="ghost">
+                  <Link href={`/modules/${prev.slug}`}>← {prev.title}</Link>
+                </Button>
+              ) : (
+                <span />
+              )}
+              {next ? (
+                isModuleUnlocked(progress, modules, next.id) ? (
+                  <Button asChild variant="ghost">
+                    <Link href={`/modules/${next.slug}`}>{next.title} →</Link>
+                  </Button>
+                ) : (
+                  <Button type="button" variant="ghost" disabled>
+                    {next.title} → (locked)
+                  </Button>
+                )
+              ) : null}
+            </nav>
           </div>
-        </>
-      ) : null}
-
-      <div className="flex flex-wrap items-center gap-3 pt-2">
-        <ModuleCompleteStatus moduleId={meta.id} />
-        <Button asChild variant="outline">
-          <Link href={`/workshops/session-0${meta.workshopSession}`}>
-            Facilitator notes (Workshop {meta.workshopSession})
-          </Link>
-        </Button>
-        <Button asChild variant="ghost">
-          <Link href={`/try/session-0${meta.workshopSession}`}>
-            Try-it sandbox
-          </Link>
-        </Button>
+        ) : null}
       </div>
 
-      <nav
-        className="flex flex-wrap justify-between gap-3 border-t border-border pt-6"
-        aria-label="Module pagination"
-      >
-        {prev ? (
-          <Button asChild variant="ghost">
-            <Link href={`/modules/${prev.slug}`}>← {prev.title}</Link>
-          </Button>
-        ) : (
-          <span />
-        )}
-        {next ? (
-          isModuleUnlocked(progress, modules, next.id) ? (
-            <Button asChild variant="ghost">
-              <Link href={`/modules/${next.slug}`}>{next.title} →</Link>
-            </Button>
-          ) : (
-            <Button type="button" variant="ghost" disabled>
-              {next.title} → (locked)
-            </Button>
-          )
-        ) : null}
-      </nav>
+      {/* Sticky primary action — always findable */}
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border/80 bg-background/95 px-4 py-3 backdrop-blur sm:px-6">
+        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 lg:pl-64">
+          <p className="text-sm text-muted-foreground">
+            {isLessonStep
+              ? lessonDone
+                ? "Step complete"
+                : "Read this section, then mark it done to continue."
+              : activeStep === PRACTICE_STEP_ID
+                ? practiceDone
+                  ? "Practice complete — continue to the quiz."
+                  : "Check Done on every exercise below."
+                : moduleDone
+                  ? "Module complete"
+                  : "Answer the quiz to finish this module."}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {isLessonStep && activeChunk && !lessonDone ? (
+              <Button
+                type="button"
+                size="lg"
+                className="min-w-[12rem]"
+                onClick={() => goNextFromLesson(activeChunk.stepId)}
+              >
+                Mark step done
+              </Button>
+            ) : null}
+            {isLessonStep && activeChunk && lessonDone ? (
+              <Button
+                type="button"
+                size="lg"
+                className="min-w-[12rem]"
+                onClick={() => {
+                  const ids = meta.steps.map((s) => s.id);
+                  const idx = ids.indexOf(activeChunk.stepId);
+                  setFocusStep(ids[idx + 1] ?? PRACTICE_STEP_ID);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Next step
+              </Button>
+            ) : null}
+            {activeStep === PRACTICE_STEP_ID ? (
+              <Button
+                type="button"
+                size="lg"
+                className="min-w-[12rem]"
+                disabled={!practiceDone || !quizUnlocked}
+                onClick={() => {
+                  setFocusStep(QUIZ_STEP_ID);
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                Continue to quiz
+              </Button>
+            ) : null}
+          </div>
+        </div>
+      </div>
     </div>
   );
-}
-
-function normalizeCurrent(
-  items: StepperItem[],
-  focusStep: string,
-): StepperItem[] {
-  const focus =
-    items.some((i) => i.id === focusStep && i.status !== "locked")
-      ? focusStep
-      : (items.find((i) => i.status !== "locked" && i.status !== "done")?.id ??
-        focusStep);
-
-  return items.map((item) => {
-    if (item.status === "locked") return item;
-    if (item.id === focus) return { ...item, status: "current" };
-    if (item.status === "done") return item;
-    return { ...item, status: "available" };
-  });
 }

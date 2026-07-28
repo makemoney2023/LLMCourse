@@ -171,16 +171,16 @@ export default async function ModulePage({ params }: Props) {
 
         <RoleExampleCallout overlaysByTrack={overlaysByTrack} />
 
-        <section aria-labelledby="objectives-heading">
-          <h2 id="objectives-heading" className="font-heading text-2xl">
+        <details className="rounded-2xl border border-border/60 bg-card/30 px-4 py-3">
+          <summary className="cursor-pointer font-heading text-lg tracking-tight">
             Learning objectives
-          </h2>
+          </summary>
           <ul className="mt-3 list-disc space-y-1 pl-5 text-sm leading-relaxed">
             {meta.objectives.map((objective) => (
               <li key={objective}>{objective}</li>
             ))}
           </ul>
-        </section>
+        </details>
 
         <ModuleLearnerFlow
           modules={modules}
