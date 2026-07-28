@@ -20,6 +20,8 @@ You do not need to be an engineer for Modules 1–3 and Workshop 1.
 
 ## How to use this course
 
+The home page (`/`) is for buyers evaluating the course; learners start at the Modules hub (`/modules`).
+
 1. Pick a **role track** (Ops / Sales / Eng / Marketing) so examples match your job.
 2. Download **BRIEF.md** and **SOURCES.md** templates from Resources.
 3. Work modules in order. Each module has short steps (orient → ideas → apply), then practice, then quiz. Later modules stay locked until you finish the quiz.

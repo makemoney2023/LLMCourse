@@ -9,6 +9,8 @@
 
 ## Learner experience content
 
+The marketing home (`/`) is the buyer-facing course overview. The learner hub starts at `/modules`, where Continue, checkpoints, and the module list live.
+
 | Path | Purpose |
 |------|---------|
 | `curriculum/templates/` | BRIEF / SOURCES / HANDOFF starters (also copied to `public/templates/`) |

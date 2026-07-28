@@ -3,9 +3,14 @@ import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const marketingDir = join(process.cwd(), "src/components/marketing");
+const appDir = join(process.cwd(), "src/app");
 
 function source(file: string) {
   return readFileSync(join(marketingDir, file), "utf8");
+}
+
+function appSource(file: string) {
+  return readFileSync(join(appDir, file), "utf8");
 }
 
 function normalizedSource(file: string) {
@@ -64,6 +69,38 @@ describe("marketing home section contracts", () => {
     }
     for (const href of ["/modules/mental-model", "/workshops", "#contact"]) {
       expect(footer).toContain(`href: "${href}"`);
+    }
+  });
+
+  it("keeps marketing sections on home and learner controls on modules", () => {
+    const home = appSource("page.tsx");
+    const modules = appSource("modules/page.tsx");
+    const sectionNames = [
+      "HomeHero",
+      "HomeProblem",
+      "HomeOutcomes",
+      "HomeIncluded",
+      "HomeHowItWorks",
+      "HomeRollout",
+      "HomeContact",
+      "HomeFooter",
+    ];
+
+    let previousSectionIndex = -1;
+    for (const sectionName of sectionNames) {
+      expect(home).toContain(`<${sectionName} />`);
+      const sectionIndex = home.indexOf(`<${sectionName} />`);
+      expect(sectionIndex).toBeGreaterThan(previousSectionIndex);
+      previousSectionIndex = sectionIndex;
+    }
+
+    for (const learnerComponent of [
+      "ContinueCourseButton",
+      "CheckpointBanner",
+      "ModuleList",
+    ]) {
+      expect(home).not.toContain(`<${learnerComponent}`);
+      expect(modules).toContain(`<${learnerComponent}`);
     }
   });
 });
