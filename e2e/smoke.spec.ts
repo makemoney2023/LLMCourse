@@ -159,6 +159,14 @@ test("quiz stays locked until steps and exercises; then unlocks next module", as
   ).toBeVisible();
   await expect(page.getByText(/Module complete · quiz/i)).toBeVisible();
 
+  await page.getByRole("link", { name: /View certificate/i }).click();
+  await expect(page).toHaveURL(/\/certificates\/module-mental-model$/);
+  await expect(
+    page.getByRole("heading", { name: /Module certificate — Mental model/i }),
+  ).toBeVisible();
+  await expect(page.getByText(/This certificate is locked/i)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /Print/i })).toBeVisible();
+
   await page.goto("/modules/deep-research");
   await expect(
     page.getByRole("heading", { level: 1, name: "Deep research", exact: true }),
