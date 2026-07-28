@@ -19,14 +19,42 @@ terms:
       fits at once. Keep standing rules lean. Pull in files only when needed.
     relatedModules: [mental-model]
 
+  - id: llm
+    term: LLM
+    aliases: ["large language model", "language model"]
+    shortDefinition: "A text engine that reads words and writes words."
+    longDefinition: |
+      An LLM (large language model) predicts helpful next words from the text
+      on its desk. It is not a database. It needs clear goals, rules, and
+      sources to do real work well.
+    relatedModules: [mental-model]
+
+  - id: agent
+    term: agent
+    aliases: ["agents", "agent loop"]
+    shortDefinition: "An LLM that can also act by opening tools."
+    longDefinition: |
+      An agent is a helper that can call tools, read results, and continue.
+      You steer a loop: ask, act, observe, check. Simple chat only writes text.
+    relatedModules: [mental-model, tools-and-mcp]
+
   - id: standing-instructions
     term: standing instructions
-    aliases: ["wall rules", "system instructions", "classroom wall rules"]
+    aliases: ["wall rules", "classroom wall rules"]
     shortDefinition: "Rules on the classroom wall — loaded before you ask."
     longDefinition: |
       Standing instructions guide every answer in a space. They cover tone,
       limits, and what to do when something is unclear. They are not facts.
       Point to your research pack for proof.
+    relatedModules: [system-instructions]
+
+  - id: system-instructions
+    term: system instructions
+    aliases: ["custom instructions", "project instructions"]
+    shortDefinition: "Product name for standing instructions / wall rules."
+    longDefinition: |
+      Many apps call wall rules “system instructions,” “custom instructions,”
+      or “project instructions.” Same job: always-on behavior, not a binder of facts.
     relatedModules: [system-instructions]
 
   - id: playbook
@@ -58,6 +86,16 @@ terms:
       which apps to turn on.
     relatedModules: [tools-and-mcp]
 
+  - id: allow-list
+    term: allow list
+    aliases: ["allow-list", "enabled tools"]
+    shortDefinition: "The short list of apps you turn on for a job."
+    longDefinition: |
+      An allow list is the set of tools you enable. Smaller lists reduce wrong
+      picks and risky actions. Pair it with a never-list for send, delete, pay,
+      and production changes.
+    relatedModules: [tools-and-mcp]
+
   - id: retrieval
     term: retrieval
     aliases: []
@@ -86,35 +124,6 @@ terms:
       Save a short pack with links and dates so later chats do not guess.
     relatedModules: [deep-research]
 
-  - id: compaction
-    term: compaction
-    aliases: ["handoff note", "handoff notes"]
-    shortDefinition: "A short note so you can clear the desk and keep going."
-    longDefinition: |
-      Compaction shrinks a long chat into the facts you still need: goal,
-      done checks, locked choices, sources, and open questions. Then you can
-      restart clean without losing the thread.
-    relatedModules: [conversation-and-compaction]
-
-  - id: memory
-    term: memory
-    aliases: ["sticky notes"]
-    shortDefinition: "Sticky notes for next time — facts that should return later."
-    longDefinition: |
-      Memory stores facts across sessions. Keep durable truths. Prune secrets,
-      one-day guesses, and huge tables. Prefer binder notes you control for
-      project truth.
-    relatedModules: [memory-systems]
-
-  - id: verify
-    term: verify
-    aliases: ["verification", "done checks"]
-    shortDefinition: "Checking your work before you turn it in."
-    longDefinition: |
-      Verify means you check the output against done criteria before you trust
-      it. Look at numbers, names, and sources. Fix, approve, or start over.
-    relatedModules: [verify-and-harden, human-craft]
-
   - id: brief-md
     term: BRIEF.md
     aliases: ["project brief"]
@@ -142,3 +151,226 @@ terms:
       An observation is a tool or search result added to the chat. It uses desk
       space. Huge dumps can bury your goal — summarize before the next turn.
     relatedModules: [mental-model, tools-and-mcp]
+
+  - id: compaction
+    term: compaction
+    aliases: ["handoff note", "handoff notes"]
+    shortDefinition: "A short note so you can clear the desk and keep going."
+    longDefinition: |
+      Compaction shrinks a long chat into the facts you still need: goal,
+      done checks, locked choices, sources, and open questions. Then you can
+      restart clean without losing the thread.
+    relatedModules: [conversation-and-compaction]
+
+  - id: memory
+    term: memory
+    aliases: ["sticky notes"]
+    shortDefinition: "Sticky notes for next time — facts that should return later."
+    longDefinition: |
+      Memory stores facts across sessions. Keep durable truths. Prune secrets,
+      one-day guesses, and huge tables. Prefer binder notes you control for
+      project truth.
+    relatedModules: [memory-systems]
+
+  - id: subagent
+    term: subagent
+    aliases: ["subagents", "specialist"]
+    shortDefinition: "A specialist helper with its own desk and a clear job."
+    longDefinition: |
+      A subagent is like a specialist classmate. You write a brief. They work
+      on their own desk. They return results. You merge. Do not let two helpers
+      edit the same file without a merge owner.
+    relatedModules: [delegation]
+
+  - id: delegation
+    term: delegation
+    aliases: []
+    shortDefinition: "Giving one clear job to a specialist helper."
+    longDefinition: |
+      Delegation splits a mega-task into smaller jobs with contracts: goal,
+      inputs, tools, out of scope, done checks, and who merges. Parallel work
+      needs safe file ownership.
+    relatedModules: [delegation]
+
+  - id: verify
+    term: verify
+    aliases: ["verification"]
+    shortDefinition: "Checking your work before you turn it in."
+    longDefinition: |
+      Verify means you check the output against done criteria before you trust
+      it. Look at numbers, names, and sources. Fix, approve, or start over.
+    relatedModules: [verify-and-harden, human-craft]
+
+  - id: done-checks
+    term: done checks
+    aliases: ["done checklist", "acceptance criteria"]
+    shortDefinition: "A short list that proves the job is finished."
+    longDefinition: |
+      Done checks are testable signs of finished work. Write them before you
+      generate. Use them when you verify. Vague goals make weak checks.
+    relatedModules: [human-craft, verify-and-harden]
+
+  - id: user-intent
+    term: user intent
+    aliases: ["intent", "your goal"]
+    shortDefinition: "What you want done, clear enough to check."
+    longDefinition: |
+      User intent is your ask for this turn or job. Clear intent names the
+      outcome, audience, limits, and done checks. Vague intent wastes desk space.
+    relatedModules: [mental-model, human-craft]
+
+  - id: prompt
+    term: prompt
+    aliases: ["prompts"]
+    shortDefinition: "The words you type to steer the helper this turn."
+    longDefinition: |
+      A prompt is your message. Strong prompts state the job, constraints, and
+      sources. They do not replace wall rules, playbooks, or research packs.
+    relatedModules: [human-craft]
+
+  - id: hallucination
+    term: hallucination
+    aliases: ["made-up facts", "invented facts"]
+    shortDefinition: "When the helper invents details that are not in your sources."
+    longDefinition: |
+      Hallucination is a plain risk: confident wrong facts. Reduce it with
+      deep research, retrieval, citations, and verify. Never paste guesses into wall rules.
+    relatedModules: [deep-research, retrieval-and-grounding, verify-and-harden]
+
+  - id: standing-context
+    term: standing context
+    aliases: []
+    shortDefinition: "Rules and files loaded before you type your ask."
+    longDefinition: |
+      Standing context is the quiet stuff already on the desk: wall rules,
+      project notes, and sometimes memory. It shapes every answer until you change it.
+    relatedModules: [mental-model, system-instructions]
+
+  - id: firecrawl
+    term: Firecrawl
+    aliases: []
+    shortDefinition: "One example research tool that can collect clean page text."
+    longDefinition: |
+      Firecrawl is one brand of research helper. Other browse or deep-research
+      tools can do similar work. The habit matters more than the brand: save
+      sources with dates into your pack.
+    relatedModules: [deep-research]
+
+  - id: citation
+    term: citation
+    aliases: ["citations"]
+    shortDefinition: "A pointer to the source that supports a claim."
+    longDefinition: |
+      A citation links a claim to a page, file, or note. In this course, put
+      links and dates in SOURCES.md and keep BRIEF.md claims tied to those sources.
+    relatedModules: [deep-research, retrieval-and-grounding]
+
+  - id: reverse-prompting
+    term: reverse prompting
+    aliases: ["reverse prompt"]
+    shortDefinition: "Ask the helper what it needs before it starts work."
+    longDefinition: |
+      Reverse prompting surfaces missing facts and fuzzy goals early. The helper
+      asks clarifying questions. You answer. Then it drafts. This cuts rework.
+    relatedModules: [human-craft]
+
+  - id: approval
+    term: approval
+    aliases: ["approvals", "human approval"]
+    shortDefinition: "A human gate before a risky action ships."
+    longDefinition: |
+      Approval means a person reviews a plan, diff, or send before it happens.
+      Use approvals for delete, pay, public posts, and production changes.
+    relatedModules: [human-craft, verify-and-harden]
+
+  - id: context-loop
+    term: context loop
+    aliases: ["the loop"]
+    shortDefinition: "The course map: goal, desk, tools, results, memory, and check."
+    longDefinition: |
+      The context loop is the path work takes with an AI helper. Your goal and
+      rules load onto the desk. The helper may use tools. Results return. You
+      verify. Memory and notes feed the next turn.
+    relatedModules: [mental-model]
+
+  - id: binder
+    term: binder
+    aliases: ["binder lookup"]
+    shortDefinition: "Our plain name for files and sources you look up on demand."
+    longDefinition: |
+      The binder is where project facts live: BRIEF.md, SOURCES.md, wikis, and
+      docs. Retrieval is looking something up in that binder when you need it.
+    relatedModules: [retrieval-and-grounding]
+
+  - id: never-list
+    term: never-list
+    aliases: ["never list"]
+    shortDefinition: "Actions the helper must not take without a person."
+    longDefinition: |
+      A never-list names banned or gated actions: send email, delete, pay,
+      deploy to production. Put it in wall rules or the tool allow list setup.
+    relatedModules: [tools-and-mcp, verify-and-harden]
+
+  - id: merge-owner
+    term: merge owner
+    aliases: ["merge-owner"]
+    shortDefinition: "The one person who combines specialist results."
+    longDefinition: |
+      When you delegate, name a merge owner. That person integrates outputs and
+      resolves conflicts. Without a merge owner, parallel helpers collide.
+    relatedModules: [delegation]
+
+  - id: prune
+    term: prune
+    aliases: ["pruning"]
+    shortDefinition: "Delete stale or unsafe notes from memory and rules."
+    longDefinition: |
+      Prune means clean house. Remove secrets, expired facts, and conflicting
+      wall lines. Fresh desks and honest sticky notes beat a pile of junk.
+    relatedModules: [memory-systems, system-instructions]
+
+  - id: token
+    term: token
+    aliases: ["tokens"]
+    shortDefinition: "A small chunk of text the model counts as desk usage."
+    longDefinition: |
+      Tools often measure desk space in tokens. You do not need exact math.
+      Know the idea: longer files and tool dumps cost more room on the desk.
+    relatedModules: [mental-model, conversation-and-compaction]
+
+  - id: rag
+    term: RAG
+    aliases: ["retrieval augmented generation"]
+    shortDefinition: "A setup that looks up documents, then answers from them."
+    longDefinition: |
+      RAG means the system retrieves snippets, then the model writes with those
+      snippets on the desk. It is retrieval plus generation. You still verify citations.
+    relatedModules: [retrieval-and-grounding]
+
+  - id: context-pack
+    term: context pack
+    aliases: ["research pack"]
+    shortDefinition: "A short set of files you reuse: brief, sources, and limits."
+    longDefinition: |
+      A context pack is the take-home from deep research. At minimum keep a
+      one-page summary and a sources list. Later modules attach the pack instead
+      of re-chatting folklore.
+    relatedModules: [deep-research]
+
+  - id: human-craft
+    term: human craft
+    aliases: []
+    shortDefinition: "Your skill at writing clear asks, modes, and gates."
+    longDefinition: |
+      Human craft is the part only you own: specs, reverse prompting, approval
+      choices, and judgment. Tools speed work. You aim it.
+    relatedModules: [human-craft]
+
+  - id: capstone
+    term: capstone
+    aliases: ["capstone lab"]
+    shortDefinition: "The final practice run of the full loop on real work."
+    longDefinition: |
+      The capstone is where you configure the loop, run one real workflow, verify,
+      and keep what worked as a team default.
+    relatedModules: [capstone-lab]
