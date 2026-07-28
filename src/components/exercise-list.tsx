@@ -1,5 +1,6 @@
 "use client";
 
+import { GlossaryProse } from "@/components/glossary-prose";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -57,19 +58,16 @@ export function ExerciseList({
                 </Label>
               </div>
             </div>
-            <div
-              className="prose-course text-sm"
-              dangerouslySetInnerHTML={{ __html: exercise.bodyHtml }}
-            />
+            <GlossaryProse html={exercise.bodyHtml} className="text-sm" />
             <div className="mt-4">
               {isRevealed ? (
                 <div className="rounded-lg bg-muted/50 p-3">
                   <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                     Answer key
                   </p>
-                  <div
-                    className="prose-course text-sm"
-                    dangerouslySetInnerHTML={{ __html: exercise.answerHtml }}
+                  <GlossaryProse
+                    html={exercise.answerHtml}
+                    className="text-sm"
                   />
                 </div>
               ) : (

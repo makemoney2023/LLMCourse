@@ -29,6 +29,8 @@ export type QuizOption = {
 export type QuizQuestion = {
   id: string;
   prompt: string;
+  /** Optional glossary-linked HTML for the prompt stem. */
+  promptHtml?: string;
   options: QuizOption[];
   correctOptionId: string;
   explanation: string;

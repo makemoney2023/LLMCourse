@@ -9,12 +9,15 @@ import { ModuleQuiz } from "@/components/module-quiz";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { GlossaryProse } from "@/components/glossary-prose";
+import { loadGlossary } from "@/lib/curriculum/glossary";
 import {
   getModuleBySlug,
   listModules,
   loadModuleContent,
 } from "@/lib/curriculum/load-curriculum";
-import { parseExercises, renderMarkdown } from "@/lib/markdown";
+import { linkGlossaryTerms } from "@/lib/curriculum/link-glossary";
+import { parseExercises, renderLearnerMarkdown } from "@/lib/markdown";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -36,9 +39,22 @@ export default async function ModulePage({ params }: Props) {
   if (!content) notFound();
 
   const { meta } = content;
+  const glossary = loadGlossary();
   const lessonMarkdown = content.lessonMarkdown.replace(/^#\s+.+\n+/, "");
-  const lessonHtml = renderMarkdown(lessonMarkdown);
-  const exercises = parseExercises(content.exercisesMarkdown);
+  const lessonHtml = renderLearnerMarkdown(lessonMarkdown, glossary.terms);
+  const exercises = parseExercises(content.exercisesMarkdown, glossary.terms);
+  const quiz = content.quiz
+    ? {
+        ...content.quiz,
+        questions: content.quiz.questions.map((question) => ({
+          ...question,
+          promptHtml: linkGlossaryTerms(
+            `<span>${escapeHtml(question.prompt)}</span>`,
+            glossary.terms,
+          ),
+        })),
+      }
+    : null;
   const index = modules.findIndex((m) => m.slug === slug);
   const prev = index > 0 ? modules[index - 1] : null;
   const next = index >= 0 && index < modules.length - 1 ? modules[index + 1] : null;
@@ -76,10 +92,7 @@ export default async function ModulePage({ params }: Props) {
           <h2 id="lesson-heading" className="sr-only">
             Lesson
           </h2>
-          <div
-            className="prose-course"
-            dangerouslySetInnerHTML={{ __html: lessonHtml }}
-          />
+          <GlossaryProse html={lessonHtml} />
         </section>
 
         <section aria-labelledby="loop-heading" className="space-y-3">
@@ -105,10 +118,10 @@ export default async function ModulePage({ params }: Props) {
           <ExerciseList moduleId={meta.id} exercises={exercises} />
         </section>
 
-        {content.quiz ? (
+        {quiz ? (
           <>
             <Separator />
-            <ModuleQuiz quiz={content.quiz} />
+            <ModuleQuiz quiz={quiz} />
           </>
         ) : null}
 
@@ -141,4 +154,12 @@ export default async function ModulePage({ params }: Props) {
       </article>
     </div>
   );
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }

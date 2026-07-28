@@ -140,6 +140,10 @@
   .prose-course :where(a) {
     @apply text-primary underline underline-offset-2;
   }
+  .prose-course :where(a.glossary-term),
+  a.glossary-term {
+    @apply cursor-help font-medium text-foreground underline decoration-dotted decoration-primary/70 underline-offset-4;
+  }
   .prose-course :where(code) {
     @apply rounded bg-muted px-1 py-0.5 text-[0.9em];
   }

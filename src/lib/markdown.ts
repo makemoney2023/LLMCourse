@@ -1,4 +1,6 @@
 import { marked } from "marked";
+import type { GlossaryTerm } from "@/lib/curriculum/glossary";
+import { linkGlossaryTerms } from "@/lib/curriculum/link-glossary";
 
 marked.setOptions({
   gfm: true,
@@ -9,6 +11,14 @@ export function renderMarkdown(markdown: string): string {
   return marked.parse(markdown, { async: false }) as string;
 }
 
+/** Markdown → HTML with first-occurrence glossary links. */
+export function renderLearnerMarkdown(
+  markdown: string,
+  terms: GlossaryTerm[],
+): string {
+  return linkGlossaryTerms(renderMarkdown(markdown), terms);
+}
+
 export type ParsedExercise = {
   id: string;
   title: string;
@@ -17,7 +27,10 @@ export type ParsedExercise = {
 };
 
 /** Split exercises.md into exercise blocks with gated answer keys. */
-export function parseExercises(markdown: string): ParsedExercise[] {
+export function parseExercises(
+  markdown: string,
+  terms: GlossaryTerm[] = [],
+): ParsedExercise[] {
   const chunks = markdown.split(/^##\s+Exercise\s+/m).slice(1);
   return chunks.map((chunk, index) => {
     const lines = chunk.trim().split("\n");
@@ -38,11 +51,16 @@ export function parseExercises(markdown: string): ParsedExercise[] {
       )
       .trim();
 
+    const render = (md: string) =>
+      terms.length > 0
+        ? renderLearnerMarkdown(md, terms)
+        : renderMarkdown(md);
+
     return {
       id,
       title,
-      bodyHtml: renderMarkdown(bodyMarkdown),
-      answerHtml: renderMarkdown(answerMarkdown),
+      bodyHtml: render(bodyMarkdown),
+      answerHtml: render(answerMarkdown),
     };
   });
 }

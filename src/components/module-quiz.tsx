@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { GlossaryProse } from "@/components/glossary-prose";
 import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
 import type { Quiz } from "@/lib/curriculum/types";
@@ -41,9 +42,17 @@ export function ModuleQuiz({ quiz }: { quiz: Quiz }) {
             key={question.id}
             className="rounded-xl border border-border/80 bg-card/40 p-4"
           >
-            <p className="mb-3 font-medium">
-              {index + 1}. {question.prompt}
-            </p>
+            <div className="mb-3 font-medium">
+              <span className="mr-1">{index + 1}.</span>
+              {question.promptHtml ? (
+                <GlossaryProse
+                  html={question.promptHtml}
+                  className="inline [&_p]:mb-0 [&_p]:inline"
+                />
+              ) : (
+                question.prompt
+              )}
+            </div>
             <fieldset className="space-y-2">
               <legend className="sr-only">{question.prompt}</legend>
               {question.options.map((option) => {
