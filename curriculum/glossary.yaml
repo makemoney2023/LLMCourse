@@ -1,0 +1,144 @@
+terms:
+  - id: context-window
+    term: context window
+    aliases: ["context windows"]
+    shortDefinition: "The helper's desk for one session — only so much fits at once."
+    longDefinition: |
+      The context window is everything the helper can see in one session.
+      Think of it as desk space for one homework session. Messages, rules,
+      files, and tool results all share that desk. When it fills up, quality
+      often drops before the app warns you.
+    relatedModules: [mental-model, conversation-and-compaction]
+
+  - id: desk-space
+    term: desk space
+    aliases: []
+    shortDefinition: "A plain name for the context window — room on the helper's desk."
+    longDefinition: |
+      Desk space is our course name for the context window. Only so much
+      fits at once. Keep standing rules lean. Pull in files only when needed.
+    relatedModules: [mental-model]
+
+  - id: standing-instructions
+    term: standing instructions
+    aliases: ["wall rules", "system instructions", "classroom wall rules"]
+    shortDefinition: "Rules on the classroom wall — loaded before you ask."
+    longDefinition: |
+      Standing instructions guide every answer in a space. They cover tone,
+      limits, and what to do when something is unclear. They are not facts.
+      Point to your research pack for proof.
+    relatedModules: [system-instructions]
+
+  - id: playbook
+    term: playbook
+    aliases: ["playbooks", "recipe card", "recipe cards"]
+    shortDefinition: "A recipe card you pull out for one kind of job."
+    longDefinition: |
+      A playbook is a short guide for one workflow. It has a trigger, steps,
+      and done checks. Put always-true rules on the wall. Put one-job steps
+      on a recipe card.
+    relatedModules: [standing-playbooks]
+
+  - id: tool
+    term: tool
+    aliases: ["tools"]
+    shortDefinition: "An app the helper is allowed to open, like browse or read a file."
+    longDefinition: |
+      Tools let the helper act, not only chat. Each tool has a name and a
+      short description. Keep the list small so the helper picks the right app.
+    relatedModules: [tools-and-mcp]
+
+  - id: mcp
+    term: MCP
+    aliases: ["Model Context Protocol"]
+    shortDefinition: "A shared way to plug apps into helpers — like a shared app menu."
+    longDefinition: |
+      MCP stands for Model Context Protocol. It is a shared shape for listing
+      tools so different helpers can use the same connectors. You still choose
+      which apps to turn on.
+    relatedModules: [tools-and-mcp]
+
+  - id: retrieval
+    term: retrieval
+    aliases: []
+    shortDefinition: "Looking something up in a binder before you answer."
+    longDefinition: |
+      Retrieval means pulling the right page or note into the desk when you
+      need facts. Attach or search your sources. Do not ask the helper to
+      invent what your binder already holds.
+    relatedModules: [retrieval-and-grounding]
+
+  - id: grounding
+    term: grounding
+    aliases: []
+    shortDefinition: "Tying answers to real sources you can check."
+    longDefinition: |
+      Grounding means the answer rests on evidence you provided or looked up.
+      Ask for citations. Check numbers and dates against the source.
+    relatedModules: [retrieval-and-grounding]
+
+  - id: deep-research
+    term: deep research
+    aliases: ["fact-finding"]
+    shortDefinition: "Fact-finding before you start a project."
+    longDefinition: |
+      Deep research collects real pages and notes first. Then you build.
+      Save a short pack with links and dates so later chats do not guess.
+    relatedModules: [deep-research]
+
+  - id: compaction
+    term: compaction
+    aliases: ["handoff note", "handoff notes"]
+    shortDefinition: "A short note so you can clear the desk and keep going."
+    longDefinition: |
+      Compaction shrinks a long chat into the facts you still need: goal,
+      done checks, locked choices, sources, and open questions. Then you can
+      restart clean without losing the thread.
+    relatedModules: [conversation-and-compaction]
+
+  - id: memory
+    term: memory
+    aliases: ["sticky notes"]
+    shortDefinition: "Sticky notes for next time — facts that should return later."
+    longDefinition: |
+      Memory stores facts across sessions. Keep durable truths. Prune secrets,
+      one-day guesses, and huge tables. Prefer binder notes you control for
+      project truth.
+    relatedModules: [memory-systems]
+
+  - id: verify
+    term: verify
+    aliases: ["verification", "done checks"]
+    shortDefinition: "Checking your work before you turn it in."
+    longDefinition: |
+      Verify means you check the output against done criteria before you trust
+      it. Look at numbers, names, and sources. Fix, approve, or start over.
+    relatedModules: [verify-and-harden, human-craft]
+
+  - id: brief-md
+    term: BRIEF.md
+    aliases: ["brief.md", "project brief"]
+    shortDefinition: "A one-page summary of the problem for later reuse."
+    longDefinition: |
+      BRIEF.md is a short project summary many teams keep in a repo or wiki.
+      It states the goal, limits, and key facts with citations. Attach it later
+      instead of pasting a whole research crawl.
+    relatedModules: [deep-research, retrieval-and-grounding]
+
+  - id: sources-md
+    term: SOURCES.md
+    aliases: ["sources.md"]
+    shortDefinition: "A list of links, dates, and why each source matters."
+    longDefinition: |
+      SOURCES.md holds evidence: URL, date accessed, and one line on why it
+      matters. Refresh it when facts change. Use it when answers must be grounded.
+    relatedModules: [deep-research, retrieval-and-grounding]
+
+  - id: observation
+    term: observation
+    aliases: ["observations", "tool result", "tool results"]
+    shortDefinition: "What a tool sends back onto the desk after it runs."
+    longDefinition: |
+      An observation is a tool or search result added to the chat. It uses desk
+      space. Huge dumps can bury your goal — summarize before the next turn.
+    relatedModules: [mental-model, tools-and-mcp]
