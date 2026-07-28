@@ -3,21 +3,21 @@
 ## Exercise 1: Label turns in a sample thread
 **id:** ex-1
 
-Take a real or sample thread from your helper app. Label each turn as **user**, **helper**, or **tool result**. Count how many tool-result turns appear. Circle the bulkiest one.
+Take a real or sample thread from your helper app. Label each turn as **user**, **helper**, or **tool result**. Count how many tool-result turns appear. Circle the bulkiest one. Write two sentences on why that turn should be compacted first.
 
 <details>
 <summary>Answer key</summary>
 
 Tool results are often the bulkiest desk items. Mark them clearly so you know what to compact first.
 
-**Worked example:** Turn 1 user ("Summarize refund policy"). Turn 2 tool result (40-page scrape). Turn 3 helper (summary). The tool turn is bulkiest — ask for ten bullets next time.
+**Worked example:** Turn 1 user ("Summarize refund policy"). Turn 2 tool result (40-page scrape). Turn 3 helper (summary). The tool turn is bulkiest — ask for ten bullets next time, then drop the raw log from the active thread.
 
 </details>
 
 ## Exercise 2: Write a handoff note for a fresh chat
 **id:** ex-2
 
-Write a handoff with Goal, Done, Constraints, Sources, Do not, and Open questions. Keep it under fifteen lines. A teammate should continue from this note alone.
+Write a handoff with Goal, Done, Constraints, Sources, Do not, and Open questions. Keep it under fifteen lines. A teammate should continue from this note alone — no old chat needed.
 
 <details>
 <summary>Answer key</summary>
@@ -31,7 +31,7 @@ If a teammate could continue from only this note, it is strong. Drop raw logs an
 ## Exercise 3: Choose continue or restart
 **id:** ex-3
 
-For five short scenarios, pick **continue** or **restart** and say why in one sentence each.
+For five short scenarios, pick **continue** or **restart** and say why in one sentence each. Include at least one topic shift and one stale-tool case.
 
 <details>
 <summary>Answer key</summary>

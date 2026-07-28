@@ -3,7 +3,7 @@
 ## Exercise 1: Split a big job into specialist briefs
 **id:** ex-1
 
-Take a mega-task (launch one-pager, feature spec, or event plan). Split it into two specialist jobs. Write one goal line and one out-of-scope line for each.
+Take a mega-task (launch one-pager, feature spec, or event plan). Split it into two specialist jobs. Write one goal line and one out-of-scope line for each. Each job should use different tools or outputs.
 
 <details>
 <summary>Answer key</summary>
@@ -17,7 +17,7 @@ Each specialist should own different outputs. No shared editable file unless one
 ## Exercise 2: Write a delegation contract
 **id:** ex-2
 
-Fill a full contract: goal, inputs, allowed tools, out of scope, done checks, return format, merge owner. Use a real or sample task.
+Fill a full contract: goal, inputs, allowed tools, out of scope, done checks, return format, merge owner. Use a real or sample task. Done checks must be testable — a teammate can say yes or no.
 
 <details>
 <summary>Answer key</summary>

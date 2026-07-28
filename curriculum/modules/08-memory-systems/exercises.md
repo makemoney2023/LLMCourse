@@ -17,7 +17,7 @@ Secrets → never. Today's hypothesis → desk. Stable process → binder or wal
 ## Exercise 2: Draft a project note template
 **id:** ex-2
 
-Make a tiny binder template with Goal, Owners, Links, Do not, and Open questions. Fill it with real or sample content in under ten lines.
+Make a tiny binder template with Goal, Owners, Links, Do not, and Open questions. Fill it with real or sample content in under ten lines. A new teammate should read it on Monday and start work without a long re-brief.
 
 <details>
 <summary>Answer key</summary>
