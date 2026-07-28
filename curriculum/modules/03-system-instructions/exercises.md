@@ -21,12 +21,12 @@ Keep limits that stop real harm. Cut style essays nobody verifies.
 ## Exercise 2: Rewrite bloated rules to be short
 **id:** ex-2
 
-Take a long rule block (yours or a sample). Cut it to 12 lines or fewer at the right altitude. Add one line pointing to BRIEF.md or SOURCES.md if you have them from Module 2.
+Take a long rule block (yours or a sample). Cut it to 12 lines or fewer at the right altitude. Add one line pointing to BRIEF.md or SOURCES.md if you have them from deep research.
 
 <details>
 <summary>Answer key</summary>
 
-Before (bloated): "When writing emails, use a friendly tone, include a greeting, mention the weather if appropriate, sign with Best regards unless…" (15 micro-rules for one task → belongs on a recipe card, Module 4.)
+Before (bloated): "When writing emails, use a friendly tone, include a greeting, mention the weather if appropriate, sign with Best regards unless…" (15 micro-rules for one task → belongs on a recipe card, not the wall.)
 
 After (wall, 8 lines):
 
