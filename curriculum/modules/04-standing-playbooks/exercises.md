@@ -5,16 +5,16 @@
 
 List ten guidelines from your work (or use the sample below). Mark each **wall** or **recipe**. Explain two choices in one sentence each.
 
-Sample: (1) Never share API keys. (2) Weekly status format with risks. (3) Competitor price table. (4) Ask if facts missing. (5) Incident postmortem steps. (6) Use BRIEF.md for limits. (7) PR description template. (8) Friendly tone. (9) CSV export policy numbers. (10) Board email triggers on "QBR draft."
+Sample: (1) Never share API keys. (2) Weekly status format with risks. (3) Competitor price table. (4) Ask if facts missing. (5) Incident postmortem steps. (6) Use the one-page summary (BRIEF.md) for limits. (7) PR description template. (8) Friendly tone. (9) CSV export policy numbers. (10) Board email triggers on "QBR draft."
 
 <details>
 <summary>Answer key</summary>
 
 Worked sort:
 
-- Wall: 1, 4, 6, 8 (true almost always — secrets, missing facts, limits pointer, tone default).
-- Recipe: 2, 5, 7, 10 (one workflow each — status, incident, PR, QBR).
-- SOURCES.md (not wall or recipe): 3, 9 — facts, not behavior rules.
+- **Wall:** 1, 4, 6, 8 — true almost always (secrets, missing facts, limits pointer, tone default).
+- **Recipe:** 2, 5, 7, 10 — one workflow each (status, incident, PR, QBR).
+- **SOURCES.md (not wall or recipe):** 3, 9 — facts, not behavior rules.
 
 Explain: "Weekly status format" is recipe because it applies only on status day, not every chat. "Never share API keys" is wall because it must hold for every task including small asks.
 
@@ -32,7 +32,7 @@ Worked example (8 lines):
 
 1. You help engineers draft docs and review diffs.
 2. Never commit secrets; redact tokens in examples.
-3. Use BRIEF.md and SOURCES.md for product facts.
+3. Use the one-page summary (BRIEF.md) and proof list (SOURCES.md) for product facts.
 4. Ask one question if requirements are unclear.
 5. Do not run prod deploys or delete commands.
 6. Be direct; skip filler praise.

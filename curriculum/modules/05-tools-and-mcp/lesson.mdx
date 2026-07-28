@@ -1,5 +1,13 @@
 # Tools and MCP
 
+## In plain words
+
+**Goal:** Give the helper a small, clear set of apps it may open — and keep research tools separate from daily build work.
+
+**Do this:** Inventory what is enabled. Keep at most five tools for one workflow. Write a never-list for send, delete, pay, and prod changes. Match each tool name to a one-line job anyone can read.
+
+**You'll know it worked:** The helper opens the right app on the first try, observations stay small, and verify catches real facts — not fake "I checked the file" claims.
+
 ## What this is
 
 **Tools** are apps the helper is allowed to open — browse the web, read a file, run a search, call an API. Without tools, the model only uses words. It may pretend it checked your calendar or read a doc.
@@ -30,13 +38,13 @@ Clear names beat clever names. "read_local_file" beats "data_wizard_9000."
 
 When a tool runs, the result returns to the desk. That blob is an observation — search snippets, file text, API JSON.
 
-Observations use desk space. A ten-page crawl in one turn can crowd out your BRIEF.md and your question.
+Observations use desk space. A ten-page crawl in one turn can crowd out your one-page summary (BRIEF.md) and your question.
 
 **Design rule:** Prefer small tool outputs. Summarize or trim before the next turn when you can.
 
 ### Research tools vs build tools
 
-**Firecrawl** and similar tools are great for Module 2 research packs. They collect pages for BRIEF.md and SOURCES.md.
+**Firecrawl** is one example research tool. It collects pages for your one-page summary (BRIEF.md) and proof list (SOURCES.md). Other browse and crawl tools work the same way.
 
 You may not need them for every short drafting task. A daily build session might need: read file, search repo, run terminal. A research session might add: browse, deep crawl, save sources.
 
@@ -64,22 +72,9 @@ If step 4 opens the wrong tool twice, shrink the list or rewrite one tool descri
 
 ## Where this sits in the loop
 
-Module 1 mapped the full context loop. Tools are **apps the helper may open** during the agent loop — after standing context loads and after you state intent.
+Tools sit between playbooks and retrieval. Module 4: standing playbooks may say "use tool X" in a card step. Module 6: retrieval and grounding decides which facts should land on the desk — often via read or search tools.
 
-They sit between playbooks and retrieval:
-
-- Module 2: deep research (Firecrawl-like tools for fact packs)
-- Module 3: system instructions (classroom wall rules)
-- Module 4: standing playbooks (recipe cards that may say "use tool X")
-- Module 5: tools and MCP (this lesson — shared app menu)
-- Module 6: retrieval and grounding (binder lookup — often via read/search tools)
-- Module 7: compaction (short note to clear desk after big tool dumps)
-- Module 8: memory (sticky notes — not a live tool result)
-- Module 9: delegation (another agent with its own tool list)
-- Modules 10–11: human craft and verify (check work before turn in)
-- Module 12: capstone (run the full loop on real work)
-
-Tools fetch and act. Retrieval (Module 6) decides **which facts** should be on the desk. Wall rules (Module 3) decide **whether** to guess or ask when tools fail.
+Tools fetch and act. Retrieval picks **which pages** matter. Wall rules decide **whether** to guess or ask when tools fail.
 
 ## What goes wrong if you skip it
 
@@ -108,4 +103,4 @@ Names change. The habits stay: small allow list, clear descriptions, research to
 3. **Keep research crawl tools out of daily drafting** unless you are refreshing facts.
 4. **Rewrite fuzzy tool blurbs** until a new teammate gets it in one read.
 5. **Check observations size** after big tool runs. Compact or trim before you continue.
-6. **Match Module 4 recipe cards** — a card step should name which tool to use when.
+6. **Match recipe cards** — a card step should name which tool to use when.

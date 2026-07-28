@@ -23,7 +23,7 @@ How-to needs retrieve from docs. Numbers need retrieve plus quote. Tone may use 
 ## Exercise 2: Trim an overstuffed file pack
 **id:** ex-2
 
-Scenario: you attached five huge PDFs for one question: "What is the Basic plan CSV export rule?" List what you keep, what you remove, and what you attach instead from BRIEF.md or SOURCES.md.
+Scenario: you attached five huge PDFs for one question: "What is the Basic plan CSV export rule?" List what you keep, what you remove, and what you attach instead from your one-page summary (BRIEF.md) or proof list (SOURCES.md).
 
 <details>
 <summary>Answer key</summary>
@@ -49,7 +49,7 @@ Write a six-step mini-playbook that forces lookup from BRIEF.md or SOURCES.md be
 Worked example:
 
 1. Restate the factual question in one line.
-2. Open BRIEF.md or the SOURCES.md row named in the ask.
+2. Open the one-page summary (BRIEF.md) or the SOURCES.md row named in the ask.
 3. Attach only the section that holds the answer.
 4. Quote the exact line(s) in the reply.
 5. Answer yes/no or short fact using only that quote.

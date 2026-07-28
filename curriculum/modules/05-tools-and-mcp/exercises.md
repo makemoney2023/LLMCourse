@@ -12,13 +12,13 @@ Worked example inventory (build mode):
 
 | Tool | Tag | Why |
 |------|-----|-----|
-| read_file | useful | Pull BRIEF.md and source snippets |
+| read_file | useful | Pull the one-page summary (BRIEF.md) and source snippets |
 | codebase_search | useful | Find policy strings in repo |
 | terminal | maybe | Only when running tests user requested |
 | Firecrawl | noise | Research-only — off for daily drafts |
 | send_email | noise | Never enable; violates never-list |
 
-If you cannot name a purpose in one line, it is probably noise for that workflow. Move Firecrawl to research sessions only (Module 2).
+If you cannot name a purpose in one line, it is probably noise for that workflow. Move Firecrawl to research sessions only — when you refresh your proof list (SOURCES.md).
 
 </details>
 
@@ -36,7 +36,7 @@ Allow: (1) read_file — open handbook slice. (2) search_repo — find template.
 
 Never-list: send_email, delete_ticket, charge_card, prod_deploy.
 
-Firecrawl/deep crawl: research-only — enable when refreshing SOURCES.md, not when drafting from existing files.
+Firecrawl and deep crawl tools are research-only. Enable them when refreshing SOURCES.md, not when drafting from files already on the desk.
 
 </details>
 
@@ -50,7 +50,7 @@ Pick a fuzzy tool name from your setup. Rewrite its description: what it does, w
 
 Before: "data_wizard — powerful data helper for all your needs."
 
-After: "read_local_file — Reads a file path inside the project repo. Use for BRIEF.md, SOURCES.md, and handbook snippets. Do not use for .env, keys, or paths outside the repo."
+After: "read_local_file — Reads a file path inside the project repo. Use for the one-page summary (BRIEF.md), proof list (SOURCES.md), and handbook snippets. Do not use for .env, keys, or paths outside the repo."
 
 Good descriptions let a new teammate predict when the model should open the app — and when it should not.
 
