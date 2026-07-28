@@ -42,6 +42,9 @@ export default function HomePage() {
             <Button asChild variant="outline" size="lg">
               <Link href="/workshops">Workshop series</Link>
             </Button>
+            <Button asChild variant="ghost" size="lg">
+              <Link href="/glossary">Glossary</Link>
+            </Button>
           </div>
         </div>
       </section>

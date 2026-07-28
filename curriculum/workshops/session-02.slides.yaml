@@ -28,7 +28,7 @@ slides:
     bullets:
       - 0–10 · Recap packs from Session 1
       - 10–30 · Recipe cards and wall rules
-      - 30–55 · Tools and MCP
+      - 30–55 · Tools and the shared app menu (MCP)
       - 55–80 · Lookup labs with the pack
       - 80–90 · One runbook card
     notes: Keep retrieval tied to their markdown packs—that is the through-line.
@@ -59,7 +59,7 @@ slides:
     notes: Call out anyone pasting competitor lists into rules—that belongs in SOURCES/BRIEF retrieval.
   - id: section-tools
     layout: section
-    title: Tools & MCP
+    title: Tools & the shared app menu
     subtitle: Apps the helper may open
     notes: Firecrawl-like tools are for gathering packs—not for every trivial turn.
   - id: demo-tools
