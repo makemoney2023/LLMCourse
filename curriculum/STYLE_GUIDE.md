@@ -37,6 +37,13 @@ Use this for every learner-facing rewrite (lessons, exercises, quizzes, COURSE.m
 - Unique ids; aliases must not collide (case-insensitive)
 - See `docs/COURSE_OPERATIONS.md`
 
+## Worked demos (optional per module)
+
+- File: `curriculum/modules/<nn-slug>/demo.yaml`
+- Images: `public/course/demos/<slug>/before.svg` (or `.png`) and `after.svg`
+- Required for modules 5 (tools-and-mcp), 6 (retrieval-and-grounding), and 11 (verify-and-harden)
+- Keep chrome tool-agnostic (generic “Helper” UI). Prefer before/after pairs that match Big ideas.
+
 ## Analogy bank
 
 | Term | Analogy |

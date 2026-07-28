@@ -44,9 +44,19 @@ export default async function WorkshopSessionPage({ params }: Props) {
             slide deck — use arrow keys or Present mode.
           </p>
         </div>
-        <Button asChild variant="ghost">
-          <Link href="/workshops">← All workshops</Link>
-        </Button>
+        <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline">
+            <Link href={`/try/${id}`}>Try-it sandbox</Link>
+          </Button>
+          {id === "session-04" ? (
+            <Button asChild variant="outline">
+              <Link href="/gallery">Capstone gallery</Link>
+            </Button>
+          ) : null}
+          <Button asChild variant="ghost">
+            <Link href="/workshops">← All workshops</Link>
+          </Button>
+        </div>
       </div>
 
       <WorkshopDeck session={session} />
@@ -76,6 +86,26 @@ export default async function WorkshopSessionPage({ params }: Props) {
             </li>
           ))}
         </ul>
+        <p className="pt-2 text-sm">
+          Practice this session:{" "}
+          <Link
+            href={`/try/${id}`}
+            className="text-primary underline underline-offset-2"
+          >
+            open the try-it sandbox
+          </Link>
+          {id === "session-04" ? (
+            <>
+              {" · "}
+              <Link
+                href="/gallery"
+                className="text-primary underline underline-offset-2"
+              >
+                browse the capstone gallery
+              </Link>
+            </>
+          ) : null}
+        </p>
       </section>
     </div>
   );

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { CheckpointBanner } from "@/components/checkpoint-banner";
 import { LoopMap } from "@/components/loop-map";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -50,6 +51,10 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
+      </section>
+
+      <section className="mt-10" aria-label="Progress checkpoints">
+        <CheckpointBanner />
       </section>
 
       <section className="mt-16 space-y-4" aria-labelledby="loop-heading">

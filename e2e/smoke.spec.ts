@@ -68,4 +68,25 @@ test("workshops index links to slide deck and modules", async ({ page }) => {
   await expect(
     page.getByRole("link", { name: /Module 1: Mental model/i }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Try-it sandbox/i }).first(),
+  ).toBeVisible();
+});
+
+test("module quiz unlocks certificate link", async ({ page }) => {
+  await page.goto("/modules/mental-model");
+  await page.getByRole("button", { name: "Mark module complete" }).click();
+  const quiz = page.getByRole("heading", { name: "Check for understanding" });
+  await expect(quiz).toBeVisible();
+  const radios = page.locator('input[type="radio"]');
+  const names = await radios.evaluateAll((nodes) => [
+    ...new Set(nodes.map((n) => (n as HTMLInputElement).name)),
+  ]);
+  for (const name of names) {
+    await page.locator(`input[type="radio"][name="${name}"]`).first().check();
+  }
+  await page.getByRole("button", { name: "Submit quiz" }).click();
+  await expect(
+    page.getByRole("link", { name: /View certificate/i }),
+  ).toBeVisible();
 });

@@ -119,6 +119,19 @@ export default async function ModulePage({ params }: Props) {
           ) : null}
           {slug === "capstone-lab" ? (
             <p className="text-sm">
+              Templates:{" "}
+              <a className="text-primary underline underline-offset-2" href="/templates/BRIEF.md" download>
+                BRIEF.md
+              </a>
+              {" · "}
+              <a className="text-primary underline underline-offset-2" href="/templates/SOURCES.md" download>
+                SOURCES.md
+              </a>
+              {" · "}
+              <a className="text-primary underline underline-offset-2" href="/templates/HANDOFF.md" download>
+                HANDOFF.md
+              </a>
+              {" · "}
               <Link href="/gallery" className="text-primary underline underline-offset-2">
                 Browse capstone gallery
               </Link>
