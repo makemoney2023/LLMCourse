@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import type { CourseProgress, RoleTrackId } from "@/lib/curriculum/types";
+import { recordQuizAndCompleteModule } from "@/lib/progress/access";
 import {
   acknowledgePackSaved,
   claimCertificate,
@@ -16,7 +17,7 @@ import {
   loadProgressFromStorage,
   markExerciseComplete,
   markModuleComplete,
-  markQuizScore,
+  markStepComplete,
   PROGRESS_STORAGE_KEY,
   progressPercent,
   recordSandboxCompare,
@@ -29,6 +30,7 @@ type ProgressContextValue = {
   progress: CourseProgress;
   percent: number;
   completeModule: (moduleId: string) => void;
+  completeStep: (moduleId: string, stepId: string) => void;
   completeExercise: (moduleId: string, exerciseId: string) => void;
   setQuizScore: (moduleId: string, score: number) => void;
   revealExerciseAnswer: (moduleId: string, exerciseId: string) => void;
@@ -68,6 +70,10 @@ export function ProgressProvider({
     setProgress((p) => markModuleComplete(p, moduleId));
   }, []);
 
+  const completeStep = useCallback((moduleId: string, stepId: string) => {
+    setProgress((p) => markStepComplete(p, moduleId, stepId));
+  }, []);
+
   const completeExercise = useCallback(
     (moduleId: string, exerciseId: string) => {
       setProgress((p) => markExerciseComplete(p, moduleId, exerciseId));
@@ -76,7 +82,7 @@ export function ProgressProvider({
   );
 
   const setQuizScore = useCallback((moduleId: string, score: number) => {
-    setProgress((p) => markQuizScore(p, moduleId, score));
+    setProgress((p) => recordQuizAndCompleteModule(p, moduleId, score));
   }, []);
 
   const revealExerciseAnswer = useCallback(
@@ -111,6 +117,7 @@ export function ProgressProvider({
       progress,
       percent: progressPercent(progress, totalModules),
       completeModule,
+      completeStep,
       completeExercise,
       setQuizScore,
       revealExerciseAnswer,
@@ -124,6 +131,7 @@ export function ProgressProvider({
       progress,
       totalModules,
       completeModule,
+      completeStep,
       completeExercise,
       setQuizScore,
       revealExerciseAnswer,

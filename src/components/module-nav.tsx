@@ -1,18 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Lock } from "lucide-react";
 import type { ModuleMeta } from "@/lib/curriculum/types";
 import { useProgress } from "@/components/progress-provider";
+import { ContinueCourseButton } from "@/components/continue-course-button";
+import { isModuleUnlocked, unlockReason } from "@/lib/progress/access";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function ModuleNav({
   modules,
   currentSlug,
+  exerciseIdsByModule = {},
 }: {
   modules: ModuleMeta[];
   currentSlug?: string;
+  exerciseIdsByModule?: Record<string, string[]>;
 }) {
   const { progress } = useProgress();
 
@@ -21,11 +25,21 @@ export function ModuleNav({
       className="hidden w-64 shrink-0 lg:block"
       aria-label="Module navigation"
     >
-      <ScrollArea className="h-[calc(100vh-8rem)] pr-3">
+      <div className="mb-3">
+        <ContinueCourseButton
+          modules={modules}
+          exerciseIdsByModule={exerciseIdsByModule}
+          label="Continue"
+          className="w-full"
+        />
+      </div>
+      <ScrollArea className="h-[calc(100vh-10rem)] pr-3">
         <ol className="space-y-1">
           {modules.map((mod) => {
             const done = progress.completedModules.includes(mod.id);
+            const unlocked = isModuleUnlocked(progress, modules, mod.id);
             const active = mod.slug === currentSlug;
+            const reason = unlockReason(progress, modules, mod.id);
             return (
               <li key={mod.id}>
                 <Link
@@ -35,7 +49,9 @@ export function ModuleNav({
                     active
                       ? "bg-secondary text-foreground"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
+                    !unlocked && "opacity-80",
                   )}
+                  title={reason ?? undefined}
                 >
                   <span
                     className={cn(
@@ -46,14 +62,22 @@ export function ModuleNav({
                     )}
                     aria-hidden
                   >
-                    {done ? <Check className="size-3" /> : mod.order}
+                    {done ? (
+                      <Check className="size-3" />
+                    ) : !unlocked ? (
+                      <Lock className="size-3" />
+                    ) : (
+                      mod.order
+                    )}
                   </span>
                   <span>
                     <span className="block font-medium text-foreground/90">
                       {mod.title}
                     </span>
                     <span className="block text-xs text-muted-foreground">
-                      {mod.durationMinutes} min · Workshop {mod.workshopSession}
+                      {unlocked
+                        ? `${mod.durationMinutes} min · Workshop ${mod.workshopSession}`
+                        : reason}
                     </span>
                   </span>
                 </Link>

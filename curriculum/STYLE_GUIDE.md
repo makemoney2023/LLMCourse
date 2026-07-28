@@ -37,6 +37,29 @@ Use this for every learner-facing rewrite (lessons, exercises, quizzes, COURSE.m
 - Unique ids; aliases must not collide (case-insensitive)
 - See `docs/COURSE_OPERATIONS.md`
 
+## Module steps (locking)
+
+Every `module.yaml` must declare:
+
+```yaml
+steps:
+  - id: orient
+    title: Get oriented
+    headings: ["In plain words", "What this is", "Why it matters"]
+  - id: ideas
+    title: Big ideas
+    headings: ["Big ideas"]
+  - id: apply
+    title: Put it to work
+    headings:
+      - "Where this sits in the loop"
+      - "What goes wrong if you skip it"
+      - "Where this shows up in tools"
+      - "Tips"
+```
+
+Learners mark each step done in order. Practice (exercises) then quiz unlock next. Submitting the quiz completes the module and unlocks the next one.
+
 ## Worked demos (optional per module)
 
 - File: `curriculum/modules/<nn-slug>/demo.yaml`

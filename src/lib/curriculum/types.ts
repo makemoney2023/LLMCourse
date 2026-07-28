@@ -3,6 +3,12 @@ export type ToolMapping = {
   surfaces: string;
 };
 
+export type ModuleLessonStep = {
+  id: string;
+  title: string;
+  headings: string[];
+};
+
 export type ModuleMeta = {
   id: string;
   order: number;
@@ -19,6 +25,8 @@ export type ModuleMeta = {
   toolMapping: ToolMapping[];
   quizCount: number;
   dirName: string;
+  /** Ordered lesson submodules mapped to H2 headings in lesson.mdx */
+  steps: ModuleLessonStep[];
 };
 
 export type QuizOption = {
@@ -102,6 +110,8 @@ export type RoleTrackId =
 export type CourseProgress = {
   completedModules: string[];
   completedExercises: Record<string, string[]>;
+  /** moduleId -> completed lesson step ids (orient/ideas/apply) */
+  completedSteps: Record<string, string[]>;
   quizScores: Record<string, number>;
   revealedAnswers: Record<string, string[]>;
   roleTrack: RoleTrackId;

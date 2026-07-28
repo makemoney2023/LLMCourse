@@ -22,3 +22,18 @@ toolMapping:
   - abstraction: Delegation / subagents
     surfaces: Subagents, custom GPTs per role, parallel coding agents, team handoffs to specialists
 quizCount: 4
+
+steps:
+  - id: orient
+    title: Get oriented
+    headings: ["In plain words", "What this is", "Why it matters"]
+  - id: ideas
+    title: Big ideas
+    headings: ["Big ideas"]
+  - id: apply
+    title: Put it to work
+    headings:
+      - "Where this sits in the loop"
+      - "What goes wrong if you skip it"
+      - "Where this shows up in tools"
+      - "Tips"

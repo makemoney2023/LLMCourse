@@ -4,6 +4,7 @@ import {
   markExerciseComplete,
   markModuleComplete,
   markQuizScore,
+  markStepComplete,
   progressPercent,
   revealAnswer,
   serializeProgress,
@@ -14,7 +15,16 @@ describe("progress helpers", () => {
   it("starts empty", () => {
     const p = emptyProgress();
     expect(p.completedModules).toEqual([]);
+    expect(p.completedSteps).toEqual({});
     expect(progressPercent(p, 12)).toBe(0);
+  });
+
+  it("tracks lesson steps per module", () => {
+    let p = emptyProgress();
+    p = markStepComplete(p, "mental-model", "orient");
+    p = markStepComplete(p, "mental-model", "orient");
+    p = markStepComplete(p, "mental-model", "ideas");
+    expect(p.completedSteps["mental-model"]).toEqual(["orient", "ideas"]);
   });
 
   it("marks modules complete without duplicates", () => {

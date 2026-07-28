@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { listModules, loadModuleContent } from "./load-curriculum";
 import { parseExercises } from "@/lib/markdown";
+import { LESSON_STEP_IDS } from "@/lib/progress/access";
 import { wordsIn } from "./readability";
 
 const REQUIRED_LESSON_H2 = [
@@ -121,6 +122,31 @@ describe("authored module content quality", () => {
       expect(demo, slug).not.toBeNull();
       expect(demo!.beforeImage).toMatch(/\.(svg|png|webp)$/);
       expect(demo!.afterImage).toMatch(/\.(svg|png|webp)$/);
+    }
+  });
+
+  it("every module declares canonical lesson steps with real headings", () => {
+    for (const meta of listModules()) {
+      expect(
+        meta.steps.map((s) => s.id),
+        `${meta.slug} step ids`,
+      ).toEqual([...LESSON_STEP_IDS]);
+      const content = loadModuleContent(meta.slug);
+      expect(content).not.toBeNull();
+      for (const step of meta.steps) {
+        expect(step.title.length, `${meta.slug}.${step.id} title`).toBeGreaterThan(
+          0,
+        );
+        expect(step.headings.length, `${meta.slug}.${step.id} headings`).toBeGreaterThan(
+          0,
+        );
+        for (const heading of step.headings) {
+          expect(
+            content!.lessonMarkdown.includes(`## ${heading}`),
+            `${meta.slug} missing ## ${heading} for step ${step.id}`,
+          ).toBe(true);
+        }
+      }
     }
   });
 });

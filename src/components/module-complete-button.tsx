@@ -1,20 +1,24 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
+import { Badge } from "@/components/ui/badge";
 
-export function ModuleCompleteButton({ moduleId }: { moduleId: string }) {
-  const { progress, completeModule } = useProgress();
+/** Status-only: modules complete when the quiz is submitted. */
+export function ModuleCompleteStatus({ moduleId }: { moduleId: string }) {
+  const { progress } = useProgress();
   const done = progress.completedModules.includes(moduleId);
+  const quizScore = progress.quizScores[moduleId];
+
+  if (done) {
+    return (
+      <Badge variant="secondary">
+        Module complete
+        {quizScore != null ? ` · quiz ${quizScore}%` : ""}
+      </Badge>
+    );
+  }
 
   return (
-    <Button
-      type="button"
-      variant={done ? "secondary" : "default"}
-      onClick={() => completeModule(moduleId)}
-      disabled={done}
-    >
-      {done ? "Module marked complete" : "Mark module complete"}
-    </Button>
+    <Badge variant="outline">Complete this module by finishing the quiz</Badge>
   );
 }

@@ -1,14 +1,20 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CheckpointBanner } from "@/components/checkpoint-banner";
+import { ContinueCourseButton } from "@/components/continue-course-button";
 import { LoopMap } from "@/components/loop-map";
-import { Badge } from "@/components/ui/badge";
+import { ModuleList } from "@/components/module-list";
 import { Button } from "@/components/ui/button";
-import { listModules, listWorkshopSessions } from "@/lib/curriculum/load-curriculum";
+import {
+  listModuleExerciseIds,
+  listModules,
+  listWorkshopSessions,
+} from "@/lib/curriculum/load-curriculum";
 
 export default function HomePage() {
   const modules = listModules();
   const workshops = listWorkshopSessions();
+  const exerciseIdsByModule = listModuleExerciseIds();
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
@@ -40,6 +46,11 @@ export default function HomePage() {
                 <ArrowRight className="size-4" />
               </Link>
             </Button>
+            <ContinueCourseButton
+              modules={modules}
+              exerciseIdsByModule={exerciseIdsByModule}
+              label="Continue"
+            />
             <Button asChild variant="outline" size="lg">
               <Link href="/workshops">Workshop series</Link>
             </Button>
@@ -81,37 +92,15 @@ export default function HomePage() {
               Modules
             </h2>
             <p className="mt-1 text-muted-foreground">
-              {modules.length} self-paced lessons with exercises, diagrams, and
-              short quizzes.
+              {modules.length} self-paced lessons. Steps unlock in order; the
+              next module opens after you finish the quiz.
             </p>
           </div>
           <Button asChild variant="ghost">
             <Link href="/modules">View all</Link>
           </Button>
         </div>
-        <ol className="grid gap-3 sm:grid-cols-2">
-          {modules.map((mod) => (
-            <li key={mod.id}>
-              <Link
-                href={`/modules/${mod.slug}`}
-                className="group flex h-full flex-col rounded-2xl border border-border/70 bg-card/50 p-4 transition-all hover:-translate-y-0.5 hover:border-foreground/20 hover:bg-card"
-              >
-                <div className="mb-2 flex items-center gap-2">
-                  <Badge variant="secondary">Module {mod.order}</Badge>
-                  <span className="text-xs text-muted-foreground">
-                    {mod.durationMinutes} min
-                  </span>
-                </div>
-                <p className="font-heading text-xl tracking-tight group-hover:text-primary">
-                  {mod.title}
-                </p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  {mod.subtitle}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ol>
+        <ModuleList modules={modules} variant="grid" />
       </section>
 
       <section className="mt-16 mb-8" aria-labelledby="workshops-heading">

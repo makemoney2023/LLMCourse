@@ -7,6 +7,7 @@ export function emptyProgress(): CourseProgress {
   return {
     completedModules: [],
     completedExercises: {},
+    completedSteps: {},
     quizScores: {},
     revealedAnswers: {},
     roleTrack: "general",
@@ -14,6 +15,22 @@ export function emptyProgress(): CourseProgress {
     sandboxAttempts: {},
     certificateClaims: [],
     packSavedAck: false,
+  };
+}
+
+export function markStepComplete(
+  progress: CourseProgress,
+  moduleId: string,
+  stepId: string,
+): CourseProgress {
+  const existing = progress.completedSteps[moduleId] ?? [];
+  if (existing.includes(stepId)) return progress;
+  return {
+    ...progress,
+    completedSteps: {
+      ...progress.completedSteps,
+      [moduleId]: [...existing, stepId],
+    },
   };
 }
 
@@ -131,6 +148,7 @@ export function deserializeProgress(
       ...emptyProgress(),
       completedModules: parsed.completedModules ?? [],
       completedExercises: parsed.completedExercises ?? {},
+      completedSteps: parsed.completedSteps ?? {},
       quizScores: parsed.quizScores ?? {},
       revealedAnswers: parsed.revealedAnswers ?? {},
       roleTrack: parsed.roleTrack ?? "general",

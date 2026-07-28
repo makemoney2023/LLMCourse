@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import { parseExercises } from "@/lib/markdown";
 import type {
   ModuleContent,
   ModuleMeta,
@@ -41,7 +42,11 @@ function parseModuleYaml(dirName: string): ModuleMeta {
   const filePath = path.join(modulesRoot(), dirName, "module.yaml");
   const raw = fs.readFileSync(filePath, "utf8");
   const data = parseYaml(raw) as Omit<ModuleMeta, "dirName">;
-  return { ...data, dirName };
+  return {
+    ...data,
+    steps: Array.isArray(data.steps) ? data.steps : [],
+    dirName,
+  };
 }
 
 export function listModules(): ModuleMeta[] {
@@ -83,6 +88,18 @@ export function loadModuleContent(slug: string): ModuleContent | null {
     diagramSource: readOptional(path.join(dir, "diagram.mmd")),
     quiz: loadQuiz(meta.dirName, meta.id),
   };
+}
+
+/** Exercise ids keyed by module id — for continue/unlock helpers. */
+export function listModuleExerciseIds(): Record<string, string[]> {
+  const out: Record<string, string[]> = {};
+  for (const meta of listModules()) {
+    const content = loadModuleContent(meta.slug);
+    out[meta.id] = parseExercises(content?.exercisesMarkdown ?? "").map(
+      (e) => e.id,
+    );
+  }
+  return out;
 }
 
 type WorkshopDeckYaml = {

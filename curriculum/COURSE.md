@@ -22,7 +22,7 @@ You do not need to be an engineer for Modules 1–3 and Workshop 1.
 
 1. Pick a **role track** (Ops / Sales / Eng / Marketing) so examples match your job.
 2. Download **BRIEF.md** and **SOURCES.md** templates from Resources.
-3. Work modules in order. Hover or tap dotted terms for glossary help.
+3. Work modules in order. Each module has short steps (orient → ideas → apply), then practice, then quiz. Later modules stay locked until you finish the quiz.
 4. After each workshop session, try the **static sandbox** (compare your draft to a model answer).
 5. Finish with the **capstone** and skim the gallery for scoped examples.
 
