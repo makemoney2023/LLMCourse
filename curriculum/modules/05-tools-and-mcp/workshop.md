@@ -2,7 +2,7 @@
 
 **Workshop session:** 2  
 **Module duration:** ~35 minutes  
-**Opens Session 2** after loop recap
+**Follows:** Standing playbooks in Session 2
 
 ## Purpose
 
@@ -12,12 +12,11 @@ Learners see tools as part of the loop—not magic—and leave with a slimmer, c
 
 | Segment | Minutes | Activity |
 |---------|---------|----------|
-| Recap | 5 | Session 1 take-homes; loop + standing context refresh. |
 | Teach | 10 | Tool cycle demo; MCP as catalog; minimal set principle. |
 | Exercise 1 | 8 | Individual inventory; pair compare disable lists. |
 | Exercise 2 | 10 | Groups pick workflow; pitch minimal tool set. |
 | Exercise 3 | 7 | Rewrite one bad tool description live. |
-| Bridge | 5 | Preview Module 5: retrieval as evidence, not noise. |
+| Bridge | 5 | Preview Module 6: retrieval as evidence, not noise. |
 
 ## Demo steps
 

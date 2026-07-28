@@ -20,7 +20,7 @@ Learners build done checklists, diagnose traces, and harden permissions—closin
 
 ## Demo steps
 
-1. Show trace with stale tool output → wrong fix (link Module 6).
+1. Show trace with stale tool output → wrong fix (link Module 7 compaction / Module 6 retrieval).
 2. Conflicting playbooks example—agent violates team norm.
 3. Secret in chat screenshot (sanitized)—rotate + rule.
 4. Golden task re-run: playbook change → regression caught.

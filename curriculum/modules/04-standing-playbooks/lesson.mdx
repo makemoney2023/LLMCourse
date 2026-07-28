@@ -2,53 +2,107 @@
 
 ## What this is
 
-A **playbook** is like a recipe card. You pull it out when you cook that dish.
-**Always-on rules** stay on the wall. They apply to most work in a space.
+A **playbook** is like a recipe card. You pull it out when you cook that dish — status email, incident note, PR write-up. **Always-on rules** stay on the classroom wall. They apply to most work in a space.
+
+This lesson teaches you to split **wall** from **recipe card**. The wall stays short and stable. Playbooks hold steps, triggers, and "done when" checks for named jobs.
+
+Facts from Module 2 live in **BRIEF.md** and **SOURCES.md**. Behavior defaults live on the wall (Module 3). Workflow steps live on recipe cards. Mixing all three on the wall fills the desk and confuses the helper.
 
 ## Why it matters
 
-A team pasted a great prompt into every chat. The desk filled with noise.
-Another team wrote nothing down. Every chat started from zero.
-You need both: a short wall and good recipe cards.
+One team pasted a great prompt into every chat. "Write the board update like this…" with twelve steps. The desk filled with unused rules. Quality dropped mid-thread because tool results had no room.
+
+Another team wrote nothing down. Every chat started from zero. Tone drifted. Done checks changed person to person.
+
+You need both: a **short wall** and **good recipe cards**. The wall says who you are and what never to do. The card says how to run this one workflow today.
 
 ## Big ideas
 
-### Always-on rules
+### Always-on rules (the wall)
 
 Keep them short, stable, and true most of the time.
-Example: “Do not share secrets. Ask if a fact is missing.”
 
-These sit next to Module 3 wall instructions. Many tools call them project rules.
+Examples: "Do not share secrets." "Ask if a fact is missing." "Use BRIEF.md for product limits."
 
-### On-demand playbooks
+These sit next to Module 3 wall instructions. Many tools call them project rules or AGENTS.md lines. They load every turn whether you need them or not.
 
-Use them for a special job: status email, incident note, PR write-up.
-Give trigger words so people know when to use them.
-Keep steps and “done when” checks on the card—not on the wall.
+**Design rule:** If a line is true for almost every task, it stays on the wall. If not, move it to a recipe card.
+
+### On-demand playbooks (recipe cards)
+
+Use a recipe card for a special job with a clear start and end.
+
+A good card includes:
+
+- **Trigger phrases** — words that tell people when to open the card. Example: "/status", "draft board update."
+- **Steps** — numbered actions in order.
+- **Done checks** — testable lines verify can use. Example: "Includes date, owner, and one risk line."
+
+Keep steps and done checks on the card — not on the wall. Pull the card in only when the task matches.
 
 ### Facts are not rules
 
-Long competitor lists belong in SOURCES.md from Module 2.
-Do not paste them into always-on rules.
+Long competitor lists, API field tables, and pricing grids belong in **SOURCES.md** from Module 2. Do not paste them into always-on rules. That burns desk space and goes stale fast.
 
-## Where it sits in the loop
+Point playbooks at the binder: "Read pricing from SOURCES.md row 4 before drafting."
 
-Wall rules stay in standing context. Recipe cards enter when the task matches.
+**Design rule:** Rules say what to do. Facts say what is true. Never confuse the two on the wall.
+
+### A simple walkthrough
+
+Your team sends a weekly status email. You already have BRIEF.md from research.
+
+1. **Wall check** — Wall has tone, secrets rule, and "cite SOURCES.md for numbers." Nothing about status format.
+2. **Write the card** — Trigger: "weekly status." Steps: gather wins, risks, asks. Done: under 200 words, dated, one link max.
+3. **Test once** — Open a fresh chat. Paste the card. Run one real status. Check done lines.
+4. **Store it** — Save as a skill, slash command, or saved prompt. Name it so others find it.
+5. **Verify** — A teammate uses only the card plus BRIEF.md. They succeed without your chat history.
+
+If step 5 fails, the card is missing a step or a done check. Fix the card, not the wall.
+
+## Where this sits in the loop
+
+Module 1 mapped the full context loop. Playbooks decide **what stays on the wall** vs **what enters on demand**.
+
+They bridge standing rules and tools:
+
+- Module 2: deep research (BRIEF.md and SOURCES.md for facts)
+- Module 3: system instructions (classroom wall rules)
+- Module 4: standing playbooks (this lesson — wall vs recipe cards)
+- Module 5: tools and MCP (apps the helper may open during a card step)
+- Module 6: retrieval and grounding (binder lookup inside a workflow)
+- Module 7: compaction (short note to clear desk after long card runs)
+- Module 8: memory (sticky notes — not a substitute for recipe cards)
+- Module 9: delegation (hand a card to another agent)
+- Modules 10–11: human craft and verify (check work before turn in)
+- Module 12: capstone (run the full loop on real work)
+
+Wall rules stay in standing context every turn. Recipe cards enter when the task matches. That keeps desk space for tool results and retrieved pages.
 
 ## What goes wrong if you skip it
 
-The desk fills with unused rules. Or quality resets every chat.
+- The desk fills with unused rules from pasted mega-prompts. Tool output gets squeezed out.
+- Every chat reinvents the same workflow. Quality and tone drift across teammates.
+- Facts get pasted onto the wall as rules. They go stale and nobody knows which line to trust.
+- Playbooks have no trigger phrase. People forget they exist and rewrite from scratch.
+- Done checks live only in someone's head. Verify becomes "looks fine I guess."
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Always-on rules | Project rules, AGENTS.md, guidelines |
-| Playbooks | Skills, saved prompts, slash commands |
-| Triggers | “/status”, “draft board update” |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Always-on rules | Custom instructions | Project instructions | AGENTS.md, rules files | Instructions file |
+| Playbooks | GPTs, saved prompts | Skills, project workflows | Skills, .cursor/skills | Prompt files, agents |
+| Triggers | GPT name, prompt title | Skill slash commands | Skill invoke, @ mention | Command palette prompts |
+| Done checks | User verify before send | Artifact review | Diff review, checklist in skill | PR template lines |
+
+Names change. The split stays: short wall, named recipe cards, facts in the binder.
 
 ## Tips
 
-- If a line is only for one workflow, make it a recipe card.
-- Keep wall rules under one short screen.
-- Build playbooks from BRIEF.md constraints when you can.
+1. **If a line is only for one workflow, make it a recipe card.** Do not put it on the wall.
+2. **Keep wall rules under one short screen.** Everything on the wall loads every turn.
+3. **Build playbooks from BRIEF.md constraints** when you can. Cards should match real limits.
+4. **Name triggers clearly.** "/incident", "draft QBR" — people must know when to open the card.
+5. **Write done checks a human can test.** "Includes owner name" beats "sounds professional."
+6. **Review cards quarterly.** Delete cards nobody used in ninety days.

@@ -2,51 +2,110 @@
 
 ## What this is
 
-**Tools** are apps the helper is allowed to open.
-**MCP** is a shared way to plug those apps in. Think of a shared app menu.
+**Tools** are apps the helper is allowed to open — browse the web, read a file, run a search, call an API. Without tools, the model only uses words. It may pretend it checked your calendar or read a doc.
+
+**MCP** (Model Context Protocol) is a shared way to plug those apps in. Think of it as a **shared app menu**. Many helpers can list the same tools the same way. You enable the ones you need. You leave the rest off.
+
+Tools sit in **desk space** with your messages. Each tool has a name and a short description. The helper reads that list every turn and picks whether to act or just reply.
 
 ## Why it matters
 
-Without tools, a helper only uses words. It may pretend to check a calendar.
-With too many tools, it picks the wrong app. A small clear list works best.
+Without tools, a helper only chatters. It may sound like it ran a check when it did not. That fails verify fast on real work.
+
+With too many tools, the helper picks the wrong app. It may browse when it should read a local file. It may call five tools when one would do. Each result lands on the desk as an **observation**. Huge dumps bury your goal and push old context off the desk.
+
+A small clear list works best. Research tools and build tools often belong on different lists.
 
 ## Big ideas
 
 ### Tool lists steer choices
 
-Each tool has a name and a short description.
-The helper reads that list from the desk.
-Clear names beat clever names.
+Each enabled tool shows up on the desk with a name and description. The helper uses those words to decide what to open.
+
+Clear names beat clever names. "read_local_file" beats "data_wizard_9000."
+
+**Design rule:** If you cannot explain a tool's job in one line, disable it for that workflow.
 
 ### Observations come back
 
-When a tool runs, the result returns to the desk.
-That result uses desk space. Huge dumps can bury your goal.
+When a tool runs, the result returns to the desk. That blob is an observation — search snippets, file text, API JSON.
+
+Observations use desk space. A ten-page crawl in one turn can crowd out your BRIEF.md and your question.
+
+**Design rule:** Prefer small tool outputs. Summarize or trim before the next turn when you can.
 
 ### Research tools vs build tools
 
-Firecrawl-like tools are great for Module 2 research packs.
-You may not need them for every short drafting task.
-Use a research mode list and a build mode list.
+**Firecrawl** and similar tools are great for Module 2 research packs. They collect pages for BRIEF.md and SOURCES.md.
 
-## Where it sits in the loop
+You may not need them for every short drafting task. A daily build session might need: read file, search repo, run terminal. A research session might add: browse, deep crawl, save sources.
 
-Goal in → helper may open an app → result back on the desk → next step.
+Use a **research mode list** and a **build mode list**. Turn research crawl tools off when you are only editing copy from files you already have.
+
+**Design rule:** Match tools to the job. Research mode collects facts. Build mode uses facts already on the desk.
+
+### MCP as shared app menu
+
+MCP servers register tools in a standard shape. Cursor, Claude, and other hosts can show the same menu entries. That helps teams share one connector setup instead of retyping tool blurbs everywhere.
+
+You still curate the allow list. MCP does not mean "enable everything." It means "plug in the same way."
+
+### A simple walkthrough
+
+You draft a customer email using facts from your repo.
+
+1. **Pick the job** — Build mode, not research mode. Firecrawl stays off.
+2. **Allow list** — Enable: read file, search repo, (optional) fetch one URL. Max five tools.
+3. **Never-list** — Disable: send email, delete files, pay, prod deploy.
+4. **Ask with intent** — "Draft refund reply using BRIEF.md tone. Cite order row from CRM export."
+5. **Verify** — Check the order number in the source file before you send.
+
+If step 4 opens the wrong tool twice, shrink the list or rewrite one tool description.
+
+## Where this sits in the loop
+
+Module 1 mapped the full context loop. Tools are **apps the helper may open** during the agent loop — after standing context loads and after you state intent.
+
+They sit between playbooks and retrieval:
+
+- Module 2: deep research (Firecrawl-like tools for fact packs)
+- Module 3: system instructions (classroom wall rules)
+- Module 4: standing playbooks (recipe cards that may say "use tool X")
+- Module 5: tools and MCP (this lesson — shared app menu)
+- Module 6: retrieval and grounding (binder lookup — often via read/search tools)
+- Module 7: compaction (short note to clear desk after big tool dumps)
+- Module 8: memory (sticky notes — not a live tool result)
+- Module 9: delegation (another agent with its own tool list)
+- Modules 10–11: human craft and verify (check work before turn in)
+- Module 12: capstone (run the full loop on real work)
+
+Tools fetch and act. Retrieval (Module 6) decides **which facts** should be on the desk. Wall rules (Module 3) decide **whether** to guess or ask when tools fail.
 
 ## What goes wrong if you skip it
 
-Wrong tool picks. Fake actions. Or a desk flooded with tool noise.
+- The helper fakes actions. It says "I checked the file" when it only guessed.
+- Wrong tool picks waste time. Five browse calls when one file read would do.
+- The desk floods with tool noise. Your question and BRIEF.md get squeezed out.
+- Research crawl tools stay on during drafts. Slow runs and stale web junk pile up.
+- No never-list. A helper might delete, send, or deploy when you only wanted a draft.
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Tools | Browse, code, search, plugins |
-| MCP | Connectors and MCP servers |
-| Allow list | Enabled apps only |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Tools | Browse, code, plugins | Tools, computer use | Terminal, search, edit | Extensions, agents |
+| MCP | MCP connectors | MCP servers | MCP in settings | MCP via host app |
+| Allow list | Enabled plugins toggle | Tool permissions | MCP enable per server | Extension enable list |
+| Observations | Tool messages in chat | Tool result blocks | Tool output in transcript | Action result panels |
+| Research vs build | Deep research vs chat | Research project vs edit | Firecrawl MCP vs code tools | Research agent vs IDE |
+
+Names change. The habits stay: small allow list, clear descriptions, research tools separate from build tools.
 
 ## Tips
 
-- Max five tools for one workflow.
-- Write a never-list (send, delete, pay, prod changes).
-- Keep research crawl tools out of daily drafting unless refreshing facts.
+1. **Max five tools for one workflow.** More tools mean more wrong picks.
+2. **Write a never-list** — send, delete, pay, prod changes. Say it on the wall too.
+3. **Keep research crawl tools out of daily drafting** unless you are refreshing facts.
+4. **Rewrite fuzzy tool blurbs** until a new teammate gets it in one read.
+5. **Check observations size** after big tool runs. Compact or trim before you continue.
+6. **Match Module 4 recipe cards** — a card step should name which tool to use when.

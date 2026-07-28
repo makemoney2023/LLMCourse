@@ -56,4 +56,4 @@ Establish shared vocabulary before anyone touches custom instructions or playboo
 
 - Pick a demo task that completes in ≤3 tool turns.
 - Avoid customer-specific secrets in live demo.
-- Read Session 1 agenda for handoff to Module 2 (standing context).
+- Read Session 1 agenda for handoff to Module 2 (deep research pack).

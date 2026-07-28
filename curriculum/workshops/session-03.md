@@ -1,6 +1,6 @@
 # Workshop Session 3 — Conversation, memory & delegation
 
-**Modules:** 6–8 (`conversation-and-compaction`, `memory-systems`, `delegation`)  
+**Modules:** 7–9 (`conversation-and-compaction`, `memory-systems`, `delegation`)  
 **Duration:** 90 minutes  
 **Outcome:** Learners can hand off cleanly, store the right memories, and delegate with a contract.
 
@@ -9,9 +9,9 @@
 | Minutes | Activity |
 |--------:|----------|
 | 0–10 | Recap + horror stories of long threads |
-| 10–30 | Module 6: continue vs restart decisions |
-| 30–55 | Module 7: memory tier sorting + prune |
-| 55–80 | Module 8: specialist briefs + unsafe parallelization |
+| 10–30 | Module 7: continue vs restart decisions |
+| 30–55 | Module 8: memory tier sorting + prune |
+| 55–80 | Module 9: specialist briefs + unsafe parallelization |
 | 80–90 | Synthesis on the loop diagram |
 
 ## Demo script
@@ -26,4 +26,4 @@ Draft a delegation contract for a two-person (or two-agent) split: inputs, tools
 
 ## Take-home
 
-Complete Modules 6–8; bring a memory prune list to Session 4.
+Complete Modules 7–9; bring a memory prune list to Session 4.

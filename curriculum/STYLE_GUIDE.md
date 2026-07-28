@@ -12,7 +12,7 @@ Use this for every learner-facing rewrite (lessons, exercises, quizzes, COURSE.m
    - What this is
    - Why it matters (one story)
    - Big ideas (plain meaning → tiny example)
-   - Where it sits in the loop
+   - Where this sits in the loop
    - What goes wrong if you skip it
    - Where this shows up in tools
    - Tips

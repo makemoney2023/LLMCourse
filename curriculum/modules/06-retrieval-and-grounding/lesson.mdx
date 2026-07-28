@@ -2,51 +2,112 @@
 
 ## What this is
 
-**Retrieval** is like looking something up in a binder before you answer.
-**Grounding** means the answer rests on those pages—not on guesses.
+**Retrieval** is like looking something up in a binder before you answer. You bring the right page to the desk — a file, a link, a search hit — then you read it.
+
+**Grounding** means the answer rests on those pages, not on guesses. Fluent words are not the same as true words. If the job needs your policy or your **BRIEF.md**, the helper must see that page first.
+
+**Cite then answer** is the habit: name the source, quote or point to it, then write the reply. If the page is missing, say you do not know. Do not invent.
 
 ## Why it matters
 
-Fluent words are not the same as true words.
-If the job needs your policy or your BRIEF.md, the helper must see that page.
+A support lead asked for refund rules. The helper wrote a clear, confident policy paragraph. It sounded perfect. None of it matched the real handbook. A customer almost got the wrong deadline.
+
+The wall rules said "be helpful." Nobody attached the handbook page. Retrieval was skipped. Grounding failed. Verify caught it — but only because a human read the draft before send.
+
+When facts matter, retrieve first. Ground second. Answer third.
 
 ## Big ideas
 
 ### Retrieve, then answer
 
-1. Name the question.
-2. Bring the right page to the desk (file, link, search hit).
-3. Answer from that page.
-4. If the page is missing, say you do not know.
+Use this order every time facts matter:
+
+1. **Name the question** — What exact fact do you need?
+2. **Bring the page to the desk** — Attach BRIEF.md, a SOURCES.md row, or one good doc section.
+3. **Quote or point** — Pull the line that holds the answer.
+4. **Answer from that page** — No extra facts from memory.
+5. **Stop if missing** — Say "not in the sources" instead of guessing.
+
+**Design rule:** If you cannot point to a line, the answer is not grounded yet.
 
 ### Use your research pack
 
-From Module 2, keep BRIEF.md and SOURCES.md handy.
-Attach short parts. Do not dump every raw crawl every time.
+From Module 2, keep **BRIEF.md** and **SOURCES.md** handy. They are your team's binder.
+
+Attach short parts — one section, one row, one glossary entry. Do not dump every raw crawl onto the desk every turn. That buries the question and wastes desk space.
+
+When SOURCES.md has the link, retrieve the smallest slice that answers today’s ask.
 
 ### Standing rules are not evidence
 
-Wall rules steer behavior. They are not your fact binder.
-Memory sticky notes are also not today’s source of truth.
+Module 3 wall rules steer behavior. They are not your fact binder. A line that says "we never discount" is a rule — not proof of this quarter's promo.
 
-## Where it sits in the loop
+Module 8 **sticky notes** (memory) are also not today's source of truth. Memory helps across sessions. Retrieval pulls the page for **this** answer.
 
-Your goal plus binder pages feed the desk. Then the helper can answer with proof.
+**Design rule:** Behavior on the wall. Facts in the binder. Do not mix them at answer time.
+
+### Grounding vs sounding smart
+
+Models are good at smooth prose. That is not grounding. Grounding means a teammate can follow your cite back to the source and find the same fact.
+
+Ask for quotes when stakes are high. "Quote the refund window from handbook section 4, then draft the reply."
+
+### A simple walkthrough
+
+You answer: "Can plan Basic export CSV this month?"
+
+1. **Retrieve** — Attach BRIEF.md limits section and the SOURCES.md row for the pricing page (dated last week).
+2. **Quote** — Helper pulls: "Basic plan: no CSV export. Pro plan: CSV included."
+3. **Answer** — "No. Basic cannot export CSV. Pro can. Source: pricing page, dated 2026-07-21."
+4. **Verify** — You open the link in SOURCES.md. The line matches.
+5. **If missing** — If the page changed, update SOURCES.md before you reuse the answer.
+
+If step 4 fails, you skipped retrieve or used a stale file. Fix the binder, not the chat tone.
+
+## Where this sits in the loop
+
+Module 1 mapped the full context loop. Retrieval and grounding happen **when facts must be on the desk before the model writes**.
+
+They follow tools and feed verify:
+
+- Module 2: deep research (BRIEF.md and SOURCES.md in the binder)
+- Module 3: system instructions (wall says "do not invent — check the binder")
+- Module 4: standing playbooks (recipe cards may say "retrieve X first")
+- Module 5: tools and MCP (read file, search, attach — how pages arrive)
+- Module 6: retrieval and grounding (this lesson — cite then answer)
+- Module 7: compaction (short note to clear desk after big retrieves)
+- Module 8: memory (sticky notes — recall later, not proof now)
+- Module 9: delegation (pass retrieved pages with the handoff)
+- Modules 10–11: human craft and verify (check work before turn in)
+- Module 12: capstone (run the full loop on real work)
+
+Retrieval decides **what evidence** is on the desk. Tools (Module 5) are often **how** you fetch it. Verify (Module 11) checks that cites match real pages.
 
 ## What goes wrong if you skip it
 
-Confident wrong answers. Or a desk buried under huge unused files.
+- Confident wrong answers. Smooth prose hides missing proof.
+- The desk gets buried under huge unused PDFs. The model never finds the right paragraph.
+- Wall rules get treated as facts. Stale "always" lines replace live policy.
+- Chat memory replaces SOURCES.md. Nobody can audit where a number came from.
+- You verify tone but not cites. Errors ship because the draft "sounded right."
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Retrieval | File attach, @ mentions, search, knowledge bases |
-| Grounding | Quotes, citations, “unknown if missing” |
-| Pack files | BRIEF.md, SOURCES.md |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Retrieval | File upload, browse | Project files, @ doc | @ file, codebase search | @ workspace, repo index |
+| Grounding | "Use only uploaded files" | Citations in projects | "Quote from attached file" | Source-linked answers |
+| Pack files | BRIEF.md in project | Project knowledge | Repo BRIEF.md, SOURCES.md | Wiki pages |
+| Missing source | "I don't have that file" | Ask to attach | Prompt to @ mention | Fallback to search |
+| Cite then answer | User prompt pattern | Project instructions | Rule in AGENTS.md | Review comment templates |
+
+Names change. The habit stays: retrieve, quote, answer — or say unknown.
 
 ## Tips
 
-- Prefer one good page over twenty random PDFs.
-- Say “quote the source.”
-- Refresh SOURCES.md when facts change.
+1. **Prefer one good page over twenty random PDFs.** Small beats big on the desk.
+2. **Say "quote the source"** when stakes are high. Tone tasks need less; number tasks need more.
+3. **Refresh SOURCES.md when facts change.** Stale cites fail verify silently.
+4. **Attach BRIEF.md sections**, not the whole research crawl, unless you truly need all of it.
+5. **Separate retrieve steps in recipe cards** (Module 4). Make lookup explicit before draft steps.
+6. **Verify cites, not vibes.** Open the link. Match the line. Then approve the send.

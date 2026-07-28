@@ -3,40 +3,60 @@
 ## Exercise 1: Scope three research questions
 **id:** ex-1
 
-Pick a real project. Write one sentence for the problem.
-Write three research questions. Write what is out of scope. Set a time box.
+Pick a real project (support bot, internal wiki, or course module). Write one sentence for the problem. Write three narrow research questions. Write what is out of scope. Set a 90-minute time box.
 
 <details>
 <summary>Answer key</summary>
 
-Good questions are narrow. Weak ones sound like “research the market.”
-Example: “What does the official docs say about login steps?”
+Weak: "Research AI for sales." Too broad — no check for done.
+
+Worked example — project: clinic appointment reminder bot.
+
+- Problem: "SDRs need accurate first-call facts from the public clinic site."
+- Q1: "What services does the site list today?"
+- Q2: "What contact and booking paths are on the site?"
+- Q3: "What claims does the site make that we must not exaggerate?"
+- Out of scope: competitor pricing, internal CRM fields, medical advice.
+- Time box: 90 minutes, then write BRIEF.md even if one question stays open.
 
 </details>
 
 ## Exercise 2: Capture sources with links and dates
 **id:** ex-2
 
-Answer your questions with a research tool or careful browsing.
-List at least five sources: URL, date, one-line why it matters.
+Answer your three questions with a research tool (Firecrawl, browse, or careful manual reading). List at least five sources. Each row: URL, date accessed, one line on why it matters.
 
 <details>
 <summary>Answer key</summary>
 
-If your only source is “the chat said so,” you did not do deep research.
-Prefer first-hand pages. Note the date. Pages change.
+Bad row: "ChatGPT summary of healthcare." Not first-hand — no URL you can re-open.
+
+Worked example row:
+
+| URL | Date | Why it matters |
+|-----|------|----------------|
+| https://example-clinic.com/services | 2026-07-28 | Official service list for Q1 answer |
+| https://example-clinic.com/book | 2026-07-28 | Booking steps SDRs must quote correctly |
+
+If every row points to a page you can open again, you did real deep research.
 
 </details>
 
 ## Exercise 3: Write a short cited BRIEF.md
 **id:** ex-3
 
-Write BRIEF.md (one page) and SOURCES.md.
-Each big claim in BRIEF.md should point to a source.
+Write BRIEF.md (about one page) and SOURCES.md. Each big claim in BRIEF.md should point to a row in SOURCES.md. List at least two open questions.
 
 <details>
 <summary>Answer key</summary>
 
-Checklist: clearer goal than before; risky claims have links; open questions listed; a teammate could continue without the chat.
+Worked example snippet for BRIEF.md:
+
+**Goal:** Help SDRs prep first calls using only public clinic pages.  
+**Users:** SDRs on week-one onboarding.  
+**Limit:** No medical advice; cite site for every service claim. (See SOURCES.md rows 1–3.)  
+**Open questions:** Is telehealth listed under Services or Booking? (Check row 2 after site update.)
+
+Checklist: goal is sharper than "build AI helper"; risky claims have source rows; a teammate could continue without your chat.
 
 </details>

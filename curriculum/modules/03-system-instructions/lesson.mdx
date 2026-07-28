@@ -2,58 +2,108 @@
 
 ## What this is
 
-**Standing instructions** are like rules on the classroom wall.
-They are there before you ask the first question.
-They guide every answer in that space.
+**Standing instructions** are like rules on the classroom wall. They are loaded before you ask the first question. They guide every answer in that space — tone, limits, and what to do when something is unclear.
+
+In tools, these show up as custom instructions, project instructions, or agent rules files. They sit in **desk space** next to your messages every turn. They are not a chat message. They are always there.
+
+Standing instructions tell the helper **how to behave**. They do not replace facts. Point to **BRIEF.md** and **SOURCES.md** from Module 2 for proof. Do not paste whole pages onto the wall.
 
 ## Why it matters
 
-Jordan’s helper kept writing long jokes. Jordan never asked for jokes.
-An old wall rule said “be playful.” Nobody remembered it.
-Wall rules are powerful because they are quiet.
+Jordan's helper kept opening every reply with long jokes. Jordan never asked for jokes that week. An old wall rule said "be playful and entertaining." Nobody remembered it was still on. Jordan spent hours tweaking chat prompts while the quiet wall rule shaped every answer.
+
+Wall rules are powerful because they are quiet. You forget they exist. The model does not. One stale line can fight your current task for weeks.
 
 ## Big ideas
 
 ### What wall rules should cover
 
-- Who the helper is for (writer, analyst, coding partner)
-- Always / never rules (tone, secrets, made-up numbers)
-- What to do when something is unclear (ask vs guess)
-- What is out of bounds
+Good wall rules answer four questions:
+
+- **Who** is the helper for? Writer, analyst, coding partner, coach?
+- **Always / never** — tone, secrets, made-up numbers, medical claims?
+- **When unclear** — ask a short question or guess and label it?
+- **Out of bounds** — what must the helper refuse or escalate?
+
+Keep each line short. A teammate should read the wall in under one minute.
+
+**Design rule:** If a line only applies to one workflow, it belongs on a recipe card (Module 4), not on the wall.
 
 ### Right altitude
 
-Too vague: “Be helpful.”
-Too detailed: twenty pages of micro steps for every task.
-Right altitude: clear limits, short defaults, room for the task.
+Too vague: "Be helpful." That gives no test for verify.
 
-Write wall rules from your BRIEF.md when you can.
-Point to SOURCES.md for facts. Do not paste whole pages into the wall.
+Too detailed: twenty pages of micro-steps for every task. That eats desk space and fights playbooks.
 
-### Conflicts
+Right altitude: clear limits, short defaults, room for the task at hand. Write wall rules from your **BRIEF.md** when you can. Add one line: "Prefer facts from BRIEF.md and SOURCES.md. Ask if missing."
 
-If one rule says “be brief” and another says “explain everything,” the helper gets confused.
-Pick one. Delete the fight.
+Do not paste competitor lists, API docs, or whole research crawls into the wall. Facts live in the binder. Behavior lives on the wall.
 
-## Where it sits in the loop
+### Conflicts on the wall
 
-Wall rules load into desk space with your ask. They steer every turn.
+If one rule says "be brief" and another says "explain everything in full," the helper gets confused. It may flip styles mid-chat. You will blame the model when the wall is fighting itself.
+
+Pick one priority. Delete the fight. Merge pairs into one clear line when you can.
+
+Example fix: "Be brief by default. Give detail only when asked."
+
+**Design rule:** Read the wall when answers feel weird for no reason. Conflicts hide in old lines nobody reviews.
+
+### A simple walkthrough
+
+You set up a project space after Module 2 research.
+
+1. **Open BRIEF.md** — Note tone, users, and hard limits from your pack.
+2. **Draft the wall** — Twelve lines or fewer. Cover who, always/never, unclear, out of bounds.
+3. **Point to proof** — Add: "Use BRIEF.md and SOURCES.md for facts. Do not invent numbers."
+4. **Conflict check** — Read aloud. Cut any two lines that disagree.
+5. **Test one task** — Ask a real question. Check tone and fact behavior before you invite the team.
+
+If step 5 fails, fix the wall before you add recipe cards or tools.
+
+## Where this sits in the loop
+
+Module 1 showed the full context loop. Standing instructions are **classroom wall rules** — always in standing context before user intent arrives.
+
+They sit between research and playbooks:
+
+- Module 2: deep research (facts for your brief)
+- Module 3: system instructions (this lesson — how to behave)
+- Module 4: standing playbooks (wall vs recipe cards for special jobs)
+- Module 5: tools and MCP (apps the helper may open)
+- Module 6: retrieval and grounding (binder lookup at answer time)
+- Module 7: compaction (short note to clear desk)
+- Module 8: memory (sticky notes for later)
+- Module 9: delegation (hand work to another agent)
+- Modules 10–11: human craft and verify (check work before turn in)
+- Module 12: capstone (run the full loop on real work)
+
+Wall rules steer every turn. They do not fetch facts — Module 6 does that. They do not run tools — Module 5 does that. Keep the wall lean so those parts still fit on the desk.
 
 ## What goes wrong if you skip it
 
-Quiet conflicts shape answers. You debug the chat and miss the wall.
+- Quiet conflicts shape answers. You debug the chat and miss the wall.
+- Every chat reinvents tone and limits from scratch. Quality swings person to person.
+- You paste research onto the wall. Desk space fills. Early messages get pushed off.
+- Helpers invent facts because no wall line says to check BRIEF.md or ask.
+- Old rules from a past project steer a new project wrong for weeks.
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Standing instructions | Custom instructions, project instructions, agent rules |
-| Conflicts | Mixed tones or opposite “always” lines |
-| Evidence link | “Prefer BRIEF.md; ask if facts are missing” |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Standing instructions | Custom instructions | Project instructions | Rules, AGENTS.md, CLAUDE.md | Instructions file |
+| Conflict signals | Mixed tone in one thread | Contradictory project lines | Rules vs user ask fight | Opposite always/never lines |
+| Evidence pointer | "Use uploaded project files" | "Check project knowledge" | "Read BRIEF.md and SOURCES.md" | "Prefer repo docs" |
+| Wall size | Character limits shown | Project instruction limits | Rules file length | Config file limits |
+
+Names change. The wall habit stays: short, stable, behavior only — facts in the binder.
 
 ## Tips
 
-- Keep wall rules under about 12 short lines.
-- Put recipes in a playbook (a recipe card for one job), not on the wall.
-- After research, update wall rules from the brief.
-- Read wall rules when answers feel “weird for no reason.”
+1. **Keep wall rules under about twelve short lines.** Long walls eat desk space silently.
+2. **Put recipes in a playbook**, not on the wall. One job, one recipe card.
+3. **After research, update wall rules from the brief.** New limits belong on the wall early.
+4. **Add one line that points to BRIEF.md and SOURCES.md.** Do not paste those files whole.
+5. **Read the wall when answers feel off.** Stale rules are the top silent cause.
+6. **Delete before you add.** A shorter wall beats a longer wall with fights in it.

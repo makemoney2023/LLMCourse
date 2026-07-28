@@ -30,7 +30,7 @@ Learners practice specs, reverse prompting, and mode/approval choices—putting 
 - "What does your team always approve before vs after?"
 - "When is autonomous mode irresponsible in your role?"
 - "What's one acceptance criterion you will add tomorrow?"
-- "How do playbooks (Module 3) differ from per-task specs?"
+- "How do playbooks (Module 4) differ from per-task specs?"
 
 ## Materials
 

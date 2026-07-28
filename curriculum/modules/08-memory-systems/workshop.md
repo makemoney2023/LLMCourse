@@ -30,11 +30,11 @@ Learners classify facts by memory tier, draft a project note template, and pract
 - "What do you currently re-explain every session?"
 - "Where is team truth stored—and can you PR it?"
 - "What should never enter product memory?"
-- "How does your handoff template (Module 6) feed external notes?"
+- "How does your handoff template (Module 7) feed external notes?"
 
 ## Session 3 synthesis
 
-After Module 8: working context (6), durable memory (7), parallel windows (8)—three ways context scales beyond one thread.
+After Module 8: working context (Module 7 compaction), durable memory (Module 8), parallel windows next (Module 9)—three ways context scales beyond one thread.
 
 ## Materials
 

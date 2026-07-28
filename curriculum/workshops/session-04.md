@@ -1,6 +1,6 @@
 # Workshop Session 4 — Human craft, verify & capstone
 
-**Modules:** 9–11 (`human-craft`, `verify-and-harden`, `capstone-lab`)  
+**Modules:** 10–12 (`human-craft`, `verify-and-harden`, `capstone-lab`)  
 **Duration:** 120 minutes  
 **Outcome:** Each learner completes one end-to-end loop run on a real workflow.
 

@@ -2,50 +2,116 @@
 
 ## What this is
 
-**Delegation** means giving one clear job to a specialist.
-A **subagent** is like a specialist classmate with their own desk.
+**Delegation** means giving one clear job to a specialist. A **subagent** is like a specialist classmate with their own desk. You write a brief. They work. They return results. You merge.
+
+This lesson teaches when to split work, how to write a job contract, and why parallel helpers need a **merge owner**.
+
+One messy chat tried to research, write, and review at once. The desk overflowed. This module fixes that pattern.
 
 ## Why it matters
 
-One messy chat tried to research, write, and review at once.
-The desk overflowed. Parallel helpers then edited the same file.
-Clear jobs and one merge owner fix that.
+Priya asked one agent to research competitors, draft a blog post, and review legal risk. Tool dumps stacked up. The draft cited old search results. Then Priya launched two more helpers. Both edited the same file. She spent an hour untangling merges.
+
+Clear jobs and one merge owner would have saved the afternoon. Delegation is not "more AI." It is smaller desks with sharper aim.
 
 ## Big ideas
 
 ### When to split
 
-Split when jobs need different rules or tools.
-Split when work can proceed without sharing the same editable file.
-Clarify the goal first. Then split.
+Split when jobs need **different rules or tools**. Split when work can proceed without sharing the same editable file.
+
+Do not split until the goal is clear. Use human craft (Module 10) or a short plan first. Vague parent goals make vague child jobs.
+
+**Design rule:** If two jobs would fight for the same file, split ownership — or run them one at a time.
 
 ### The job contract
 
-Include: goal, inputs, allowed tools, out of scope, done checks, return format, merge owner.
+Every specialist brief is a small recipe card. Include:
+
+- **Goal** — one outcome
+- **Inputs** — files, links, BRIEF.md excerpts
+- **Allowed tools** — least apps needed
+- **Out of scope** — what not to touch
+- **Done checks** — how to know it is finished
+- **Return format** — bullets, diff, table, etc.
+- **Merge owner** — one person who integrates results
+
+If merge owner is missing, stop and name one.
 
 ### Safe vs unsafe parallel
 
-Safe: two different docs.
-Unsafe: two helpers editing the same module with no owner.
+**Safe parallel** examples:
 
-## Where it sits in the loop
+- Research helper on competitors.doc
+- Writer helper on outline.doc
+- Two different docs, two different owners
 
-You launch specialists with their own desk space. Their results return as new papers on your desk.
+**Unsafe parallel** examples:
+
+- Two helpers editing the same code module
+- Two helpers updating the same spreadsheet rows
+- Two merges with no owner and no file locks
+
+Unsafe work needs serialization or a single merge owner with a clear lock.
+
+### A simple walkthrough
+
+You need a product launch one-pager with research and copy.
+
+1. **Clarify** — Goal: one-page launch summary for sales. Done: cites SOURCES.md, plain tone.
+2. **Split** — Research job: gather three competitor facts. Writing job: draft from BRIEF.md only.
+3. **Contracts** — Each brief lists tools, out of scope, return format, merge owner (you).
+4. **Run research first** — Research returns ten bullets with links. You verify (Module 11).
+5. **Run writer second** — Writer gets bullets + BRIEF.md. No browse tools needed.
+6. **Merge** — You paste into one doc. You check done criteria. You compact if starting a fresh polish chat.
+
+If step 4 fails verify, do not pass bad bullets to the writer.
+
+## Where this sits in the loop
+
+Delegation sits after memory and before human craft sharpens your aim:
+
+- Module 2: deep research (fact-finding before you start)
+- Module 3: system instructions (standing wall rules)
+- Module 4: standing playbooks (wall vs recipe cards)
+- Module 5: tools and MCP (apps the helper may open)
+- Module 6: retrieval (look up in a binder)
+- Module 7: compaction (short note to clear desk)
+- Module 8: memory (sticky notes for later)
+- Module 9: delegation (specialist desks — this lesson)
+- Module 10: human craft (how you aim the helper)
+- Module 11: verify (check work before turn-in)
+- Module 12: capstone (run the full loop)
+
+You launch specialists with their own desk space. Their results return as new papers on your desk. Compaction and verify still apply to the merged outcome.
 
 ## What goes wrong if you skip it
 
-One overloaded desk—or colliding edits.
+- One overloaded desk — research logs bury the draft ask.
+- Colliding edits — two helpers change the same file.
+- No merge owner — nobody integrates or checks conflicts.
+- Vague briefs — specialists invent scope.
+- Too many parallel helpers — merge cost explodes.
+- Skipped verify on sub-results — bad facts spread downstream.
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Subagents | Specialist agents, custom GPTs |
-| Contracts | Task briefs and tickets |
-| Merge owner | One person who integrates results |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Subagents | Custom GPTs, tasks | Subagents, projects | Agent tasks, subagents | Agent modes |
+| Contracts | Task briefs | Project instructions | Task prompts, tickets | Work items |
+| Merge owner | Human reviewer | Human reviewer | PR author | PR owner |
+| Parallelism | Multiple chats | Parallel tasks | Parallel agents | Multi-agent flows |
+
+Names change. The contract and merge owner stay non-negotiable.
 
 ## Tips
 
-- Name the job, not the brand of model.
-- Cap parallel helpers until merge is easy.
-- Bring BRIEF.md into the brief when facts matter.
+1. **Name the job, not the brand** of model — "research brief," not "GPT-5."
+2. **Cap parallel helpers** until merge is easy — start with two, not six.
+3. **Bring BRIEF.md into every brief** when facts matter.
+4. **Verify sub-results** before passing them downstream.
+5. **Serialize unsafe edits** — one file, one editor at a time.
+6. **Compact between acts** — handoff notes between research and writing phases.
+
+Delegation multiplies desks. You still own the merged result.

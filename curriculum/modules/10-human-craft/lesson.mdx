@@ -2,55 +2,121 @@
 
 ## What this is
 
-**Human craft** is how you aim the helper.
-You write a clear ask. You keep one job at a time. You approve risky moves.
+**Human craft** is how you aim the helper. You write a clear ask. You keep one job at a time. You choose modes. You approve risky moves before they run.
+
+Helpers are eager. A fuzzy ask still gets a polished answer — aimed wrong. Your craft is the steering wheel on the context loop.
+
+This lesson covers short specs, reverse prompting, and approval gates. It connects your intent to everything on the desk.
 
 ## Why it matters
 
-Helpers are eager. A fuzzy ask still gets a polished answer—aimed wrong.
-Your craft is the steering wheel.
+Jordan typed: "Make this better." The helper rewrote a legal paragraph as marketing fluff. Jordan was upset. The ask had no audience, no limits, and no done checks.
+
+A six-line spec would have fixed it. Outcome: plain summary for customers. Limits: no new claims. Sources: BRIEF.md. Done: three bullet points under 100 words.
+
+Craft is not "prompt tricks." It is clear intent so verify has something to check.
 
 ## Big ideas
 
 ### Short specs win
 
-Include outcome, audience, limits, sources (often BRIEF.md), and done checks.
-You do not need a novel. You need clarity.
+You do not need a novel. You need clarity. A good spec fits on one screen:
+
+- **Outcome** — what artifact you want
+- **Audience** — who will read or use it
+- **Limits** — what not to do
+- **Sources** — BRIEF.md, SOURCES.md, or named files
+- **Done checks** — how you will know it is right
+
+**Design rule:** If a teammate could run your spec without asking three follow-up questions, it is strong enough.
 
 ### One job per turn
 
-Stacking ten asks in one message drops later asks.
-Finish, check, then next.
+Stacking ten asks in one message drops later asks. The model may do the first two well and skim the rest.
+
+Finish one job. Verify lightly. Then send the next intent. Mixed jobs pollute the desk the same way mixed topics do in Module 7.
 
 ### Reverse questioning
 
-If the ask is fuzzy, tell the helper: “Ask questions first. Do not draft yet.”
-Answer. Then allow the draft.
+When the ask is fuzzy, flip the order. Tell the helper: "Ask questions first. Do not draft yet."
+
+Answer the questions. Then allow the draft. This is **reverse prompting** — you let the helper pull clarity from you before it spends tokens guessing.
+
+Use it when scope is unclear, stakes are high, or you feel stuck on wording.
 
 ### Modes and approvals
 
-Use plan mode when scope is unclear or risk is high.
-Require approval for send, delete, pay, and production changes.
+**Plan mode** (or "questions only") fits unclear scope and high risk. The helper maps steps before acting.
 
-## Where it sits in the loop
+**Go mode** fits clear checklist work with low blast radius.
 
-Your intent feeds the desk. You also gate tools and close with verify.
+Require **approval** before:
+
+- Sending email or messages to real people
+- Deleting files or data
+- Paying, purchasing, or changing billing
+- Production deploys and live config changes
+
+Rubber-stamp approvals are worse than no gate — they train you to ignore warnings.
+
+### A simple walkthrough
+
+You need a status note for your manager.
+
+1. **Spec** — Outcome: five-bullet weekly status. Audience: manager. Limits: no invented metrics. Sources: ticket links in BRIEF.md. Done: each bullet cites a ticket or says "blocked."
+2. **Mode** — Clear scope → go mode. If metrics were unclear → plan mode first.
+3. **One job** — Ask for status only. Do not also ask for slide design in the same turn.
+4. **Run** — Helper drafts. Tool results stay small.
+5. **Verify** — Module 11 checklist: done checks, sources, no secrets, no extra edits.
+6. **Next intent** — If slides are next, compact or restart with a fresh handoff.
+
+If step 5 fails, fix the spec — not the model brand.
+
+## Where this sits in the loop
+
+Human craft is **how your intent feeds the desk** and how you gate tools before verify:
+
+- Module 2: deep research (fact-finding before you start)
+- Module 3: system instructions (standing wall rules)
+- Module 4: standing playbooks (wall vs recipe cards)
+- Module 5: tools and MCP (apps the helper may open)
+- Module 6: retrieval (look up in a binder)
+- Module 7: compaction (short note to clear desk)
+- Module 8: memory (sticky notes for later)
+- Module 9: delegation (specialist desks)
+- Module 10: human craft (how you aim the helper — this lesson)
+- Module 11: verify (check work before turn-in)
+- Module 12: capstone (run the full loop)
+
+Craft sits at the front of every turn. Bad intent wastes good wall rules, tools, and memory.
 
 ## What goes wrong if you skip it
 
-Fast wrong work. Rubber-stamp approvals. Blame aimed at “the model.”
+- Fast wrong work — polished but mis-aimed.
+- Rubber-stamp approvals — risky sends slip through.
+- Blame aimed at "the model" when the spec was vague.
+- Ten asks in one message — later jobs get skimmed.
+- Plan mode skipped on high-risk jobs — no shared map.
+- Verify fails because done checks were never written.
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Specs | First message, tickets, plan mode |
-| Reverse questions | “Ask clarifying questions” |
-| Approvals | Confirm dialogs before actions |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Specs | First message, custom GPT | Project instructions | Task prompt, rules | Issue description |
+| Reverse questions | "Ask me questions first" | Clarifying questions mode | Plan mode | Ask mode |
+| Approvals | Confirm before browse/send | Tool approval prompts | Command allow lists | PR approval gates |
+| One job | Thread discipline | Task scoping | Agent task focus | Single work item |
+
+Names change. Your spec, mode, and approval habits travel with you.
 
 ## Tips
 
-- Keep an eight-line spec template.
-- End with “Done when:” and three checks.
-- Separate explore chats from execute chats.
-- Bring SOURCES.md when facts matter.
+1. **Keep an eight-line spec template** in a recipe card (Module 4).
+2. **End every spec with "Done when:"** and three checks.
+3. **Separate explore chats from execute chats** — research vs ship.
+4. **Bring SOURCES.md when facts matter** — do not rely on memory alone.
+5. **Use reverse prompting** when you feel vague — force questions first.
+6. **Match mode to risk** — plan when blast radius is high.
+
+You steer the loop. The helper accelerates — it does not choose the destination.

@@ -30,7 +30,7 @@ Learners split mega-tasks, write delegation contracts, and spot unsafe paralleli
 - "When did parallel agents help vs hurt?"
 - "Who is merge owner on your team today?"
 - "Which tasks must stay read-only for research agents?"
-- "How does delegation interact with approvals (preview Module 9)?"
+- "How does delegation interact with approvals (preview Module 10)?"
 
 ## Session 3 close
 

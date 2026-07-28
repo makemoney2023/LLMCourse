@@ -2,59 +2,121 @@
 
 ## What this is
 
-**Verify** means checking your work before you turn it in.
-**Harden** means making your wall rules and tools safer for next time.
+**Verify** means checking your work before you turn it in. **Harden** means making your wall rules and tools safer for next time.
+
+Pretty answers can still be wrong. One unchecked send can cause real harm. This lesson gives you a tiny checklist, plain failure patterns, and safety basics.
+
+Verify closes the loop from Module 1. Harden makes the next loop safer.
 
 ## Why it matters
 
-Pretty answers can still be wrong.
-One unchecked send can cause real harm.
+A team shipped a customer email with the wrong discount code. The helper sounded confident. Nobody checked SOURCES.md. The code was from an old sticky note in memory.
+
+One five-minute verify pass would have caught it. A harden step would have removed the stale sticky and updated BRIEF.md.
+
+Trust drops fast after one public miss. Verify is not optional polish. It is the human gate before output leaves your desk.
 
 ## Big ideas
 
 ### A tiny checklist
 
-- Does it meet done checks?
-- Are facts from BRIEF.md or SOURCES.md?
-- Any secrets showing?
-- Any extra edits you did not ask for?
+Run this before you ship:
+
+- **Done checks** — Does the output meet every line from your spec?
+- **Sources** — Are facts from BRIEF.md or SOURCES.md — not guesses?
+- **Secrets** — Any keys, tokens, or private data showing?
+- **Scope** — Any extra edits you did not ask for?
+- **Tone and audience** — Right reader, right limits?
+
+Ask: "How could this be wrong?" Write down one way. Check that way.
+
+**Design rule:** If you cannot name three done checks, you are not ready to verify — go back to human craft (Module 10).
 
 ### Failure patterns in plain words
 
-- Desk too full of junk
-- Wall rules that fight
-- Too many apps
-- Old summary missing a limit
-- Sure words with no source
-- Goal drift mid-chat
+When output fails, ask which loop stop broke:
 
-Ask which loop stop failed.
+- **Desk too full of junk** — compaction failure (Module 7)
+- **Wall rules that fight** — instruction conflict (Modules 3–4)
+- **Too many apps** — tool sprawl (Module 5)
+- **Missing binder page** — retrieval failure (Module 6)
+- **Old summary missing a limit** — bad handoff or memory (Modules 7–8)
+- **Sure words with no source** — grounding failure (Module 6)
+- **Goal drift mid-chat** — craft or compaction failure (Modules 7, 10)
+- **Colliding helpers** — delegation failure (Module 9)
+
+Log incidents as loop stops — not vibes. Fix the stop, not just the sentence.
 
 ### Safety basics
 
-- No secrets in chats or memory
-- Least apps needed
-- Treat strange web text as possibly tricky
-- Review new connectors like new browser apps
+Hardening protects the next run:
 
-## Where it sits in the loop
+- **No secrets** in chats, memory, or wall rules. Use a vault.
+- **Least apps needed** — remove tools you never use.
+- **Treat strange web text as possibly tricky** — prompt-injection risk.
+- **Review new connectors** like new browser apps — read permissions.
+- **Require approval** for send, delete, pay, and production (Module 10).
 
-Human check closes quality. Safer defaults improve the next ask.
+Harden once after a miss. Do not wait for a second incident.
+
+### A simple walkthrough
+
+You got a draft FAQ from an agent.
+
+1. **Done checks** — Five questions? Each under 80 words? cites SOURCES.md?
+2. **Source spot-check** — Open two random claims. Do links match BRIEF.md?
+3. **Secret scan** — Search the draft for "sk-" or "api_key". None should appear.
+4. **Scope scan** — Did it add a sixth question you did not ask for?
+5. **Ship or send back** — Fail any check → new intent with the fix. Pass → ship.
+6. **Harden** — Wrong claim traced to old memory? Delete sticky. Update SOURCES.md date.
+
+If step 2 fails often, fix retrieval — not just the draft prompt.
+
+## Where this sits in the loop
+
+Verify is the **human check that closes quality**. Harden feeds safer defaults into the next ask:
+
+- Module 2: deep research (fact-finding before you start)
+- Module 3: system instructions (standing wall rules)
+- Module 4: standing playbooks (wall vs recipe cards)
+- Module 5: tools and MCP (apps the helper may open)
+- Module 6: retrieval (look up in a binder)
+- Module 7: compaction (short note to clear desk)
+- Module 8: memory (sticky notes for later)
+- Module 9: delegation (specialist desks)
+- Module 10: human craft (how you aim the helper)
+- Module 11: verify and harden (check work — this lesson)
+- Module 12: capstone (run the full loop)
+
+What you learn in verify feeds the **next intent** — fix, approve, or start over.
 
 ## What goes wrong if you skip it
 
-Fast wrong output. Trust drops after one public miss.
+- Fast wrong output ships to customers or production.
+- Trust drops after one public miss — hard to rebuild.
+- Teams debate vibes instead of checklist failures.
+- Incidents repeat because nobody hardened wall rules or tools.
+- Secrets leak in a pasted log or memory sticky.
+- Delegation merges skip sub-checks — bad facts spread.
 
 ## Where this shows up in tools
 
-| Idea | Where you see it |
-|------|------------------|
-| Verify | Tests, review screens, checklists |
-| Permissions | Approval prompts, read-only modes |
-| Safety | Secret warnings, connector trust prompts |
+| Idea | ChatGPT | Claude | Cursor | Copilot-style |
+|------|---------|--------|--------|---------------|
+| Verify | Human review before send | Artifact review | Diff review, tests | PR review, CI |
+| Checklists | Custom instructions | Project checklists | AGENTS.md gates | Branch policies |
+| Permissions | Tool toggles | Approval prompts | Allow lists | OAuth scopes |
+| Safety | Secret warnings | Connector trust | MCP trust prompts | Secret scanning |
+
+Names change. The checklist and harden habit stay.
 
 ## Tips
 
-- Ask: “How could this be wrong?”
-- Log incidents as loop stops, not vibes.
-- Update playbooks (recipe cards) after a miss.
+1. **Ask "How could this be wrong?"** before every ship.
+2. **Log incidents as loop stops** — "retrieval miss," not "bad AI."
+3. **Update playbooks** (recipe cards) after a miss — one line prevention.
+4. **Spot-check two random facts** against SOURCES.md every time.
+5. **Harden in the same hour** as the incident — delete bad memory, trim tools.
+6. **Teach verify to teammates** — shared checklist beats hero reviewers.
+
+Verify is check work before turn-in. Harden is fix the classroom so it happens less next time.

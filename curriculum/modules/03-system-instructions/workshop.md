@@ -6,7 +6,7 @@
 
 ## Purpose
 
-Learners audit real standing instructions, practice altitude, and resolve conflicts before adding playbooks in Module 3.
+Learners audit real standing instructions, practice altitude, and resolve conflicts before adding playbooks in Module 4.
 
 ## Timing
 
@@ -17,7 +17,7 @@ Learners audit real standing instructions, practice altitude, and resolve confli
 | Exercise 2 | 8 | Individual rewrite of bloated block (lesson); pairs compare diffs. |
 | Exercise 3 | 7 | Small groups resolve A/B conflict; share precedence patterns. |
 | Exercise 1 | 5 | Start personal audit; finish as homework if needed. |
-| Bridge | 3 | Preview Module 3: rules vs on-demand skills. |
+| Bridge | 3 | Preview Module 4: rules vs on-demand skills. |
 
 ## Demo steps
 
