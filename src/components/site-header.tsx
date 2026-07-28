@@ -8,7 +8,7 @@ import { ResetProgressButton } from "@/components/reset-progress-button";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Overview" },
+  { href: "/", label: "Home" },
   { href: "/modules", label: "Modules" },
   { href: "/resources", label: "Resources" },
   { href: "/glossary", label: "Glossary" },
@@ -18,6 +18,7 @@ const links = [
 export function SiteHeader() {
   const pathname = usePathname();
   const { percent } = useProgress();
+  const showProgress = pathname !== "/";
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-md">
@@ -54,13 +55,15 @@ export function SiteHeader() {
             })}
           </nav>
         </div>
-        <div className="flex items-center gap-3" aria-label="Course progress">
-          <Progress value={percent} className="h-1.5" />
-          <span className="w-12 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
-            {Math.round(percent)}%
-          </span>
-          <ResetProgressButton />
-        </div>
+        {showProgress ? (
+          <div className="flex items-center gap-3" aria-label="Course progress">
+            <Progress value={percent} className="h-1.5" />
+            <span className="w-12 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+              {Math.round(percent)}%
+            </span>
+            <ResetProgressButton />
+          </div>
+        ) : null}
       </div>
     </header>
   );
