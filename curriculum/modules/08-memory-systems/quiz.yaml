@@ -13,6 +13,10 @@ questions:
         label: "A kind of quiz"
     correctOptionId: a
     explanation: "Memory brings durable facts back later."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [memory]
   - id: q2
     prompt: "Where should important project facts live?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Nowhere"
     correctOptionId: a
     explanation: "Prefer auditable docs for important facts."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [memory]
   - id: q3
     prompt: "What should never go in memory?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Open questions"
     correctOptionId: a
     explanation: "Secrets do not belong in prompts or memory."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [memory]
   - id: q4
     prompt: "Why prune memory?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "Pruning deletes BRIEF.md automatically"
     correctOptionId: a
     explanation: "Uncurated memory becomes slow pollution."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [memory]

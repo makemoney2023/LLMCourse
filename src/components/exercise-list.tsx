@@ -1,6 +1,9 @@
 "use client";
 
-import { GlossaryProse } from "@/components/glossary-prose";
+import {
+  GlossaryProse,
+  type GlossaryTermView,
+} from "@/components/glossary-prose";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
@@ -10,9 +13,11 @@ import type { ParsedExercise } from "@/lib/markdown";
 export function ExerciseList({
   moduleId,
   exercises,
+  termsById = {},
 }: {
   moduleId: string;
   exercises: ParsedExercise[];
+  termsById?: Record<string, GlossaryTermView>;
 }) {
   const { progress, completeExercise, revealExerciseAnswer } = useProgress();
   const completed = progress.completedExercises[moduleId] ?? [];
@@ -58,7 +63,11 @@ export function ExerciseList({
                 </Label>
               </div>
             </div>
-            <GlossaryProse html={exercise.bodyHtml} className="text-sm" />
+            <GlossaryProse
+              html={exercise.bodyHtml}
+              className="text-sm"
+              termsById={termsById}
+            />
             <div className="mt-4">
               {isRevealed ? (
                 <div className="rounded-lg bg-muted/50 p-3">
@@ -68,6 +77,7 @@ export function ExerciseList({
                   <GlossaryProse
                     html={exercise.answerHtml}
                     className="text-sm"
+                    termsById={termsById}
                   />
                 </div>
               ) : (

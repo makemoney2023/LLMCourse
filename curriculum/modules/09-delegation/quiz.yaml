@@ -13,6 +13,10 @@ questions:
         label: "A secret key"
     correctOptionId: a
     explanation: "Specialists get scoped jobs and return results."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [delegation, subagent]
   - id: q2
     prompt: "What must a delegation contract include?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "No boundaries"
     correctOptionId: a
     explanation: "Contracts prevent collisions and fuzzy work."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [delegation, subagent]
   - id: q3
     prompt: "Which parallel plan is unsafe?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "One person merges at the end"
     correctOptionId: a
     explanation: "Shared mutable work needs a single owner."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [delegation, subagent]
   - id: q4
     prompt: "When should you NOT delegate yet?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "When outputs do not overlap"
     correctOptionId: a
     explanation: "Clarify first, then split."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [delegation, subagent]

@@ -7,6 +7,21 @@
 3. Run `npm run build` before shipping.
 4. Workshop **slide decks** live in `curriculum/workshops/session-XX.slides.yaml` (layouts: title, section, bullets, steps, activity, discussion, takeaway). Optional prose agendas remain in `session-XX.md`. Per-module facilitator notes stay in each module's `workshop.md`.
 
+## Learner experience content
+
+| Path | Purpose |
+|------|---------|
+| `curriculum/templates/` | BRIEF / SOURCES / HANDOFF starters (also copied to `public/templates/`) |
+| `curriculum/tracks/*.yaml` | Role-track example overlays |
+| `curriculum/sandboxes/*.yaml` | Static try-it exercises |
+| `curriculum/gallery/capstone-examples.yaml` | Capstone before/after stories |
+| `curriculum/modules/*/demo.yaml` + `public/course/demos/` | Worked before/after visuals |
+| `curriculum/glossary.yaml` | Hover/sheet glossary |
+
+After editing templates, copy into `public/templates/` so downloads work.
+
+Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1).
+
 ## Glossary terms
 
 Canonical definitions live in `curriculum/glossary.yaml`.

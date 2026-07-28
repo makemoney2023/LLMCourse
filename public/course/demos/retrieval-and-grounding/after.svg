@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#f4f6f8"/>
+  <rect x="40" y="40" width="880" height="460" rx="16" fill="#fff" stroke="#d0d7de"/>
+  <rect x="40" y="40" width="880" height="56" rx="16" fill="#027a48"/>
+  <text x="64" y="76" font-family="system-ui,sans-serif" font-size="22" fill="#fff">Ask with SOURCES.md</text>
+  <foreignObject x="64" y="120" width="832" height="340">
+    <div xmlns="http://www.w3.org/1999/xhtml" style="font-family:system-ui,sans-serif;font-size:20px;line-height:1.45;color:#24292f;white-space:pre-wrap">Attached: SOURCES.md#refund-policy
+A: 30 days from delivery (SOURCES.md, accessed 2026-07-01).
+Verify: Matches binder.</div>
+  </foreignObject>
+</svg>

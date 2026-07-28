@@ -18,6 +18,14 @@ By the end, you can:
 This course is for many kinds of teams.
 You do not need to be an engineer for Modules 1–3 and Workshop 1.
 
+## How to use this course
+
+1. Pick a **role track** (Ops / Sales / Eng / Marketing) so examples match your job.
+2. Download **BRIEF.md** and **SOURCES.md** templates from Resources.
+3. Work modules in order. Hover or tap dotted terms for glossary help.
+4. After each workshop session, try the **static sandbox** (compare your draft to a model answer).
+5. Finish with the **capstone** and skim the gallery for scoped examples.
+
 ## Simple words we reuse
 
 Start here. The full course glossary (with hover tips in lessons) lives in the app at `/glossary`.

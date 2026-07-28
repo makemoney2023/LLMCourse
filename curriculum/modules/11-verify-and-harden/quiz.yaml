@@ -13,6 +13,10 @@ questions:
         label: "Turning off the desk"
     correctOptionId: a
     explanation: "Verify closes the quality loop."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [verify]
   - id: q2
     prompt: "Which is a common failure?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Asking clarifying questions"
     correctOptionId: a
     explanation: "Ungrounded fluency is confident guessing."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [verify]
   - id: q3
     prompt: "What is a basic safety habit?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Skip source checks"
     correctOptionId: a
     explanation: "Secrets and blind approvals create harm."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [verify]
   - id: q4
     prompt: "After a miss, what should you update?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "Delete all sources"
     correctOptionId: a
     explanation: "Harden the loop defaults."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [verify]

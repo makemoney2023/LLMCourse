@@ -13,6 +13,10 @@ questions:
         label: "Twenty unrelated jobs"
     correctOptionId: a
     explanation: "Specs aim the helper."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [prompt, done-checks]
   - id: q2
     prompt: "What is reverse questioning?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Skipping checks"
     correctOptionId: a
     explanation: "Clarify first, then draft."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [prompt, done-checks]
   - id: q3
     prompt: "When should you require approval?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "After the damage is done"
     correctOptionId: a
     explanation: "Gate risky actions."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [prompt, done-checks]
   - id: q4
     prompt: "Why one job per turn?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "BRIEF.md forbids it"
     correctOptionId: a
     explanation: "Focus keeps quality high."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [prompt, done-checks]

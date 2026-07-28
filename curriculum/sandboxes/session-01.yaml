@@ -1,0 +1,23 @@
+id: session-01
+title: "Write a grounded wall rule"
+subtitle: "Session 1 practice"
+starterPrompt: |
+  You help a small sales team write first-touch emails.
+  Write 6–10 standing instructions (wall rules).
+  Prefer facts from BRIEF.md and SOURCES.md.
+  Ask if facts are missing. Never invent medical claims or prices.
+constraints:
+  - "Point to BRIEF.md / SOURCES.md"
+  - "Include at least one always/never line"
+  - "No invented numbers"
+modelAnswer: |
+  You are a sales writing partner for clinic outreach.
+  Prefer facts from BRIEF.md and SOURCES.md. Ask if missing.
+  Always: short, respectful, plain language.
+  Never: invent prices, medical claims, or patient details.
+  When unsure: ask one clarifying question before drafting.
+  Out of bounds: legal advice, diagnosis language.
+rubric:
+  - "Mentions BRIEF or SOURCES"
+  - "Has an always/never line"
+  - "Avoids inventing numbers"

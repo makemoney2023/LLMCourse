@@ -1,0 +1,7 @@
+title: "Too many apps vs a small allow list"
+captionBefore: "Every connector on — helper picks a risky tool for a draft job."
+captionAfter: "Five tools or fewer — reads the file and drafts from facts."
+beforeImage: /course/demos/tools-and-mcp/before.svg
+afterImage: /course/demos/tools-and-mcp/after.svg
+altBefore: "Helper window with a huge enabled-tool list and a wrong pay-tool call"
+altAfter: "Helper window with a short allow list and a clean file-read draft"

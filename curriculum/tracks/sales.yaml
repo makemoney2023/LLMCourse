@@ -1,0 +1,23 @@
+id: sales
+label: Sales
+modules:
+  deep-research:
+    story: "You prep a first clinic call. Guessing pricing from chat burned last quarter."
+    exampleAsk: "Build BRIEF.md for Acme Clinic outreach. Three questions. No medical claims."
+    watchOut: "Do not invent competitor prices — put links in SOURCES.md."
+  tools-and-mcp:
+    story: "You want CRM lookup for a reply, not a send button."
+    exampleAsk: "Draft a follow-up using the account note. Do not send email."
+    watchOut: "Keep send/pay tools off your daily allow list."
+  retrieval-and-grounding:
+    story: "Prospect asks about refund timing on a sample kit."
+    exampleAsk: "Answer from SOURCES.md#sample-policy. Cite the line."
+    watchOut: "If the binder is silent, say you will check — do not invent."
+  human-craft:
+    story: "Your AE asks for 'something punchy' with no done checks."
+    exampleAsk: "One-pager for first call. Audience: clinic owner. Done: 5 bullets + 1 CTA."
+    watchOut: "Reverse-prompt when the ask has no audience or done checks."
+  capstone-lab:
+    story: "Improve weekly prospect research notes."
+    exampleAsk: "Run the loop once: pack → wall → recipe → tools → verify."
+    watchOut: "Measure revision count vs last week's notes."

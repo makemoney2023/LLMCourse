@@ -1,0 +1,22 @@
+id: session-03
+title: "Write a handoff note"
+subtitle: "Session 3 practice"
+starterPrompt: |
+  Your chat is flooded with tool dumps about a refund FAQ.
+  Goal still: five FAQ answers under 80 words with citations.
+  Write a handoff note so a fresh chat can finish the job.
+constraints:
+  - "Include Goal, Done checks, Sources, Do not"
+  - "No raw tool logs"
+  - "Keep it under half a page"
+modelAnswer: |
+  Goal: five FAQ answers, each under 80 words, cite SOURCES.md.
+  Done: all five done; every claim has a source id; no secrets.
+  Locked: tone = plain; no medical claims.
+  Sources: BRIEF.md + SOURCES.md#refund.
+  Do not: invent phone numbers; paste crawl dumps.
+  Open: confirm weekend support hours with ops.
+rubric:
+  - "Has Goal and Done checks"
+  - "Names sources"
+  - "Omits raw logs"

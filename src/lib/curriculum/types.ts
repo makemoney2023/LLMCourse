@@ -26,6 +26,12 @@ export type QuizOption = {
   label: string;
 };
 
+export type QuizRemediation = {
+  lessonHeading?: string;
+  glossaryIds?: string[];
+  moduleSlug?: string;
+};
+
 export type QuizQuestion = {
   id: string;
   prompt: string;
@@ -34,6 +40,7 @@ export type QuizQuestion = {
   options: QuizOption[];
   correctOptionId: string;
   explanation: string;
+  remediation?: QuizRemediation;
 };
 
 export type Quiz = {
@@ -85,9 +92,21 @@ export type WorkshopSession = {
   slides: WorkshopSlide[];
 };
 
+export type RoleTrackId =
+  | "general"
+  | "ops"
+  | "sales"
+  | "eng"
+  | "marketing";
+
 export type CourseProgress = {
   completedModules: string[];
   completedExercises: Record<string, string[]>;
   quizScores: Record<string, number>;
   revealedAnswers: Record<string, string[]>;
+  roleTrack: RoleTrackId;
+  checkpoints: string[];
+  sandboxAttempts: Record<string, { comparedAt: string }>;
+  certificateClaims: string[];
+  packSavedAck: boolean;
 };

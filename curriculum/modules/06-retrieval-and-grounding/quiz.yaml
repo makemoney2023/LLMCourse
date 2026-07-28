@@ -13,6 +13,10 @@ questions:
         label: "Guessing faster"
     correctOptionId: a
     explanation: "Retrieval brings evidence onto the desk."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [retrieval, grounding]
   - id: q2
     prompt: "What should you attach for project facts?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Nothing ever"
     correctOptionId: a
     explanation: "Use the research pack. Keep it lean."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [retrieval, grounding]
   - id: q3
     prompt: "What is grounding?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Removing tools"
     correctOptionId: a
     explanation: "Grounded answers can point to evidence."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [retrieval, grounding]
   - id: q4
     prompt: "What if the source is missing?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "Add twenty more tools"
     correctOptionId: a
     explanation: "Do not invent. Retrieve or stop."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [retrieval, grounding]

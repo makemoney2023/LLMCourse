@@ -1,0 +1,23 @@
+id: marketing
+label: Marketing
+modules:
+  deep-research:
+    story: "Launch brief started from vibes; legal later killed three claims."
+    exampleAsk: "Research claims we can make. BRIEF.md + SOURCES.md with dates."
+    watchOut: "No medical or performance claims without a source id."
+  tools-and-mcp:
+    story: "You need web facts for a blog, then a clean writing pass."
+    exampleAsk: "Research mode first. Build mode: draft only from BRIEF.md."
+    watchOut: "Turn crawl tools off when polishing copy."
+  retrieval-and-grounding:
+    story: "Stakeholder wants a competitive blurb by lunch."
+    exampleAsk: "Use SOURCES.md competitors section. Cite each fact."
+    watchOut: "Do not blend three vendors into one made-up feature list."
+  human-craft:
+    story: "'Make it pop' arrives with no audience or channel."
+    exampleAsk: "LinkedIn post, 120 words, CTA to webinar, tone calm."
+    watchOut: "Reverse-prompt for channel and length before drafting."
+  capstone-lab:
+    story: "Improve the weekly social draft workflow."
+    exampleAsk: "Full loop once with verify for claims and tone."
+    watchOut: "Track legal review rounds before vs after."

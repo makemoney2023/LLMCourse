@@ -8,17 +8,21 @@ import {
   useMemo,
   useState,
 } from "react";
-import type { CourseProgress } from "@/lib/curriculum/types";
+import type { CourseProgress, RoleTrackId } from "@/lib/curriculum/types";
 import {
-  deserializeProgress,
+  acknowledgePackSaved,
+  claimCertificate,
   emptyProgress,
+  loadProgressFromStorage,
   markExerciseComplete,
   markModuleComplete,
   markQuizScore,
   PROGRESS_STORAGE_KEY,
   progressPercent,
+  recordSandboxCompare,
   revealAnswer,
   serializeProgress,
+  setRoleTrack,
 } from "@/lib/progress/progress";
 
 type ProgressContextValue = {
@@ -28,6 +32,10 @@ type ProgressContextValue = {
   completeExercise: (moduleId: string, exerciseId: string) => void;
   setQuizScore: (moduleId: string, score: number) => void;
   revealExerciseAnswer: (moduleId: string, exerciseId: string) => void;
+  chooseRoleTrack: (track: RoleTrackId) => void;
+  ackPackSaved: () => void;
+  markSandboxCompared: (sandboxId: string) => void;
+  claimCert: (claimId: string) => void;
   resetProgress: () => void;
 };
 
@@ -44,8 +52,7 @@ export function ProgressProvider({
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
-    const stored = window.localStorage.getItem(PROGRESS_STORAGE_KEY);
-    setProgress(deserializeProgress(stored));
+    setProgress(loadProgressFromStorage());
     setHydrated(true);
   }, []);
 
@@ -79,6 +86,22 @@ export function ProgressProvider({
     [],
   );
 
+  const chooseRoleTrack = useCallback((track: RoleTrackId) => {
+    setProgress((p) => setRoleTrack(p, track));
+  }, []);
+
+  const ackPackSaved = useCallback(() => {
+    setProgress((p) => acknowledgePackSaved(p));
+  }, []);
+
+  const markSandboxCompared = useCallback((sandboxId: string) => {
+    setProgress((p) => recordSandboxCompare(p, sandboxId));
+  }, []);
+
+  const claimCert = useCallback((claimId: string) => {
+    setProgress((p) => claimCertificate(p, claimId));
+  }, []);
+
   const resetProgress = useCallback(() => {
     setProgress(emptyProgress());
   }, []);
@@ -91,6 +114,10 @@ export function ProgressProvider({
       completeExercise,
       setQuizScore,
       revealExerciseAnswer,
+      chooseRoleTrack,
+      ackPackSaved,
+      markSandboxCompared,
+      claimCert,
       resetProgress,
     }),
     [
@@ -100,6 +127,10 @@ export function ProgressProvider({
       completeExercise,
       setQuizScore,
       revealExerciseAnswer,
+      chooseRoleTrack,
+      ackPackSaved,
+      markSandboxCompared,
+      claimCert,
       resetProgress,
     ],
   );

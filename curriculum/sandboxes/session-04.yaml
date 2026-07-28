@@ -1,0 +1,22 @@
+id: session-04
+title: "Turn a vague ask into a spec"
+subtitle: "Session 4 practice"
+starterPrompt: |
+  Stakeholder: "Make our onboarding email better ASAP."
+  Rewrite as a one-page spec with outcome, audience, limits,
+  sources, and done checks. Add one reverse-prompt question.
+constraints:
+  - "Names audience and channel"
+  - "Has done checks"
+  - "Includes a clarifying question"
+modelAnswer: |
+  Outcome: rewrite welcome email for new clinic partners.
+  Audience: practice managers; channel: email; length ≤180 words.
+  Limits: no medical claims; no inventing SLAs.
+  Sources: BRIEF.md + SOURCES.md#onboarding.
+  Done: CTA to booking link; reading grade ~8; cites one source.
+  Reverse prompt: What must the CTA open — calendar or form?
+rubric:
+  - "Audience named"
+  - "Done checks present"
+  - "Asks a clarifying question"

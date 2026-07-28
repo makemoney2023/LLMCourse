@@ -1,0 +1,23 @@
+id: eng
+label: Engineering
+modules:
+  deep-research:
+    story: "You are scoping an API change. Chat invented endpoint names last time."
+    exampleAsk: "Deep research the official docs. BRIEF.md with linked endpoints only."
+    watchOut: "Code comments are not sources unless you cite the file path."
+  tools-and-mcp:
+    story: "Agent mode has terminal + deploy enabled by habit."
+    exampleAsk: "Allow: read, search, test. Never: prod deploy, force-push."
+    watchOut: "Research crawl tools off during implementation turns."
+  retrieval-and-grounding:
+    story: "Bugfix needs the real error from the log, not a guess."
+    exampleAsk: "Attach the failing log excerpt. Propose a fix with file cites."
+    watchOut: "Huge log dumps — compact to ten bullets first."
+  human-craft:
+    story: "Ticket says 'make it better' with no acceptance criteria."
+    exampleAsk: "PR scope: one module. Done: tests green + diff under 200 lines."
+    watchOut: "Ask for stop-after-plan on risky refactors."
+  capstone-lab:
+    story: "Improve code-review comment drafting with the loop."
+    exampleAsk: "Pack + recipe for review comments; verify against style guide."
+    watchOut: "Measure comments revised after human review."

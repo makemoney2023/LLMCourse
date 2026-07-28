@@ -13,6 +13,10 @@ questions:
         label: "Quiz scores"
     correctOptionId: a
     explanation: "Tools extend the loop beyond words."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [tool, mcp]
   - id: q2
     prompt: "What is MCP like?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "A password"
     correctOptionId: a
     explanation: "MCP standardizes how apps plug into helpers."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [tool, mcp]
   - id: q3
     prompt: "Why keep the tool list small?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Small lists ban research"
     correctOptionId: a
     explanation: "Less, clearer tools improve choices."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [tool, mcp]
   - id: q4
     prompt: "When do research crawl tools belong?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "Only after delete tools"
     correctOptionId: a
     explanation: "Separate research mode from build mode."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [tool, mcp]

@@ -14,6 +14,10 @@ questions:
     correctOptionId: a
     explanation: "An agent loop goes in circles — think, call a tool, read the result, think again. Simple chat is text in, text out."
 
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [context-window, agent]
+
   - id: q2
     prompt: "Why is the context window like limited desk space?"
     options:
@@ -27,6 +31,10 @@ questions:
         label: "Limits only apply on free plans"
     correctOptionId: a
     explanation: "Everything loaded into a session uses desk space. Quality often drops as the desk fills up."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [context-window, agent]
 
   - id: q3
     prompt: "Where does human verify fit in the loop?"
@@ -42,6 +50,10 @@ questions:
     correctOptionId: a
     explanation: "Verify means check work before turning it in. Fixes and approvals become your next intent."
 
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [context-window, agent]
+
   - id: q4
     prompt: "Which item is an observation in the loop?"
     options:
@@ -55,3 +67,7 @@ questions:
         label: "The model's training data from before you chatted"
     correctOptionId: a
     explanation: "Observations are tool and search results fed back onto the desk. Standing instructions are not observations."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [context-window, agent]

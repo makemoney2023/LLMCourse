@@ -109,4 +109,18 @@ describe("authored module content quality", () => {
       expect(lesson, `capstone missing ${needle}`).toContain(needle);
     }
   });
+
+  it("priority modules ship worked demos", async () => {
+    const { loadModuleDemo } = await import("./load-demo");
+    for (const slug of [
+      "tools-and-mcp",
+      "retrieval-and-grounding",
+      "verify-and-harden",
+    ]) {
+      const demo = loadModuleDemo(slug);
+      expect(demo, slug).not.toBeNull();
+      expect(demo!.beforeImage).toMatch(/\.(svg|png|webp)$/);
+      expect(demo!.afterImage).toMatch(/\.(svg|png|webp)$/);
+    }
+  });
 });

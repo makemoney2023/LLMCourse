@@ -13,6 +13,10 @@ questions:
         label: "Something you will never do again"
     correctOptionId: a
     explanation: "Real and finishable beats fantasy scope."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [capstone, context-loop]
   - id: q2
     prompt: "What should you configure before generating?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Nothing"
     correctOptionId: a
     explanation: "Setup makes the run teach the loop."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [capstone, context-loop]
   - id: q3
     prompt: "What should a look-back include?"
     options:
@@ -39,3 +47,7 @@ questions:
         label: "A promise to skip checks next time"
     correctOptionId: a
     explanation: "Measure and keep a durable habit."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [capstone, context-loop]

@@ -1,6 +1,7 @@
 import { marked } from "marked";
 import type { GlossaryTerm } from "@/lib/curriculum/glossary";
 import { linkGlossaryTerms } from "@/lib/curriculum/link-glossary";
+import { addHeadingIds } from "@/lib/markdown-ids";
 
 marked.setOptions({
   gfm: true,
@@ -8,10 +9,10 @@ marked.setOptions({
 });
 
 export function renderMarkdown(markdown: string): string {
-  return marked.parse(markdown, { async: false }) as string;
+  return addHeadingIds(marked.parse(markdown, { async: false }) as string);
 }
 
-/** Markdown → HTML with first-occurrence glossary links. */
+/** Markdown → HTML with heading ids and first-occurrence glossary links. */
 export function renderLearnerMarkdown(
   markdown: string,
   terms: GlossaryTerm[],

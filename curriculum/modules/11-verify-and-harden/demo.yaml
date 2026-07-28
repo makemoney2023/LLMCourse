@@ -1,0 +1,7 @@
+title: "Ship blind vs verify then harden"
+captionBefore: "FAQ posted with an invented phone number."
+captionAfter: "Checklist catches it; wall rule stops the next miss."
+beforeImage: /course/demos/verify-and-harden/before.svg
+afterImage: /course/demos/verify-and-harden/after.svg
+altBefore: "Incident note about a dead phone line from an unchecked FAQ"
+altAfter: "Done checks passed and a harden rule against inventing contacts"

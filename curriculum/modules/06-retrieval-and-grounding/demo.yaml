@@ -1,0 +1,7 @@
+title: "Ungrounded vs grounded answer"
+captionBefore: "No binder attached — confident wrong number."
+captionAfter: "SOURCES.md attached — cite then answer."
+beforeImage: /course/demos/retrieval-and-grounding/before.svg
+afterImage: /course/demos/retrieval-and-grounding/after.svg
+altBefore: "Chat inventing a 90-day refund window with no source"
+altAfter: "Chat citing a 30-day refund window from SOURCES.md"

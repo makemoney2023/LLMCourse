@@ -1,0 +1,52 @@
+examples:
+  - id: sales-call-prep
+    role: Sales
+    workflow: "First-call prep notes"
+    before: "25 min of re-googling; two invented clinic facts"
+    after: "12 min with BRIEF/SOURCES; zero invented facts in review"
+    configured:
+      - "BRIEF.md + SOURCES.md pack"
+      - "Wall rules: no medical claims"
+      - "Recipe card for call prep"
+      - "Verify: two random facts against sources"
+    lesson: "Pack first. Prompts second."
+  - id: ops-status
+    role: Operations
+    workflow: "Weekly status note"
+    before: "45 min; stale tool dump reused twice"
+    after: "20 min; handoff note + fresh chat each Monday"
+    configured:
+      - "Compaction handoff template"
+      - "Allow list: wiki read + ticket search"
+      - "Done checklist for timestamps"
+    lesson: "Restart beats polishing a polluted desk."
+  - id: eng-review
+    role: Engineering
+    workflow: "PR review comments"
+    before: "Agent edited the same file in parallel twice"
+    after: "Research agent read-only; you merge comments"
+    configured:
+      - "Delegation contract + merge owner"
+      - "Never-list: force-push, prod deploy"
+      - "Verify via tests + diff review"
+    lesson: "Parallel helpers need one merge owner."
+  - id: marketing-claims
+    role: Marketing
+    workflow: "Launch blurb"
+    before: "Legal rejected three uncited claims"
+    after: "One legal pass; every claim has a source id"
+    configured:
+      - "SOURCES.md with dates"
+      - "Wall: no performance claims without S#"
+      - "Verify spot-check before publish"
+    lesson: "Grounding is cheaper than rewrites."
+  - id: support-faq
+    role: Operations
+    workflow: "Customer FAQ draft"
+    before: "Invented phone number shipped"
+    after: "Checklist caught it; harden rule added same hour"
+    configured:
+      - "Done checks for contacts"
+      - "Retrieval from policy binder"
+      - "Harden wall rule after incident"
+    lesson: "Verify closes the loop; harden keeps it closed."

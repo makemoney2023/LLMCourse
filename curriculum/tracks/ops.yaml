@@ -1,0 +1,23 @@
+id: ops
+label: Operations
+modules:
+  deep-research:
+    story: "You are rewriting a ticket triage playbook. Folklore rules keep sneaking in."
+    exampleAsk: "Research our current SLA docs. BRIEF.md with citations only."
+    watchOut: "Paste policy links into SOURCES.md, not into wall rules."
+  tools-and-mcp:
+    story: "Agents keep opening the wrong queue search."
+    exampleAsk: "Allow list: read wiki, search tickets. Never: close ticket, refund."
+    watchOut: "Mutating tools need human approval."
+  retrieval-and-grounding:
+    story: "Shift handoff asks for yesterday's outage facts."
+    exampleAsk: "Summarize from the outage doc in the binder. Quote times."
+    watchOut: "Stale chat memory is not a source of truth."
+  human-craft:
+    story: "A vague 'fix the bot' request lands in your inbox."
+    exampleAsk: "Spec: stop after plan. Done: root cause + two fix options."
+    watchOut: "Mode = plan-first when production is involved."
+  capstone-lab:
+    story: "Tighten the weekly status note workflow."
+    exampleAsk: "Configure pack + recipe + verify checklist; run once."
+    watchOut: "Track time-to-first-draft before and after."

@@ -13,6 +13,10 @@ questions:
         label: "So you can skip checking later"
     correctOptionId: a
     explanation: "Research makes goals real. Rules from guesses encode the wrong problem."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [deep-research, brief-md]
   - id: q2
     prompt: "What belongs in a simple project pack?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Secrets and API keys"
     correctOptionId: a
     explanation: "Short cited files beat scrollback and keep wall rules light."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [deep-research, brief-md]
   - id: q3
     prompt: "How should research files feed later chats?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Turn every page into always-on rules"
     correctOptionId: a
     explanation: "Keep synthesis short. Pull pages from the binder when needed."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [deep-research, brief-md]
   - id: q4
     prompt: "Which research question is best?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "Find something cool"
     correctOptionId: a
     explanation: "Narrow questions make useful sources."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [deep-research, brief-md]

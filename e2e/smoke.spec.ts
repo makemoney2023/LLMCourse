@@ -31,8 +31,27 @@ test("glossary page lists terms and hash targets", async ({ page }) => {
   const termLink = page.locator("a.glossary-term").first();
   await expect(termLink).toBeVisible();
   await expect(termLink).toHaveAttribute("href", /\/glossary#/);
-  await termLink.hover();
-  await expect(page.getByRole("tooltip")).toBeVisible();
+  await termLink.dispatchEvent("click");
+  await expect(page.getByTestId("glossary-sheet")).toBeVisible();
+  await expect(
+    page.getByTestId("glossary-sheet").getByRole("link", { name: /Open full glossary/i }),
+  ).toBeVisible();
+});
+
+test("resources hub and try-it sandbox", async ({ page }) => {
+  await page.goto("/resources");
+  await expect(page.getByRole("heading", { name: "Resources" })).toBeVisible();
+  await page.getByRole("link", { name: /Write a grounded wall rule/i }).click();
+  await expect(page.getByRole("heading", { name: /grounded wall rule/i })).toBeVisible();
+  await page.getByPlaceholder(/Write your answer/i).fill("Prefer BRIEF.md. Never invent prices. Ask if missing.");
+  await page.getByRole("button", { name: /Compare to model answer/i }).click();
+  await expect(page.getByRole("heading", { name: "Model answer" })).toBeVisible();
+});
+
+test("capstone gallery loads", async ({ page }) => {
+  await page.goto("/gallery");
+  await expect(page.getByRole("heading", { name: "Capstone gallery" })).toBeVisible();
+  await expect(page.getByText(/First-call prep notes/i)).toBeVisible();
 });
 
 test("workshops index links to slide deck and modules", async ({ page }) => {

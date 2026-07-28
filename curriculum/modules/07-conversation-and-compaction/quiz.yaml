@@ -13,6 +13,10 @@ questions:
         label: "Turning off checks"
     correctOptionId: a
     explanation: "Compaction shrinks old clutter into a usable note."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [compaction]
   - id: q2
     prompt: "When should you restart?"
     options:
@@ -26,6 +30,10 @@ questions:
         label: "Only on weekends"
     correctOptionId: a
     explanation: "Restart with a handoff when the desk is contaminated."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [compaction]
   - id: q3
     prompt: "What should a handoff keep?"
     options:
@@ -39,6 +47,10 @@ questions:
         label: "Secrets"
     correctOptionId: a
     explanation: "Keep signal. Drop sludge."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [compaction]
   - id: q4
     prompt: "Why are tool dumps risky in long chats?"
     options:
@@ -52,3 +64,7 @@ questions:
         label: "They ban research"
     correctOptionId: a
     explanation: "Huge results crowd the context window."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [compaction]

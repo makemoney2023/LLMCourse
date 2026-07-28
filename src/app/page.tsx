@@ -43,6 +43,9 @@ export default function HomePage() {
               <Link href="/workshops">Workshop series</Link>
             </Button>
             <Button asChild variant="ghost" size="lg">
+              <Link href="/resources">Resources</Link>
+            </Button>
+            <Button asChild variant="ghost" size="lg">
               <Link href="/glossary">Glossary</Link>
             </Button>
           </div>
