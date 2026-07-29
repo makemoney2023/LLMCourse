@@ -1,70 +1,72 @@
 moduleId: human-craft
 questions:
   - id: q1
-    prompt: "What belongs in a short spec?"
+    prompt: What belongs in a short spec?
     options:
       - id: a
-        label: "Outcome, limits, sources, and done checks"
+        label: Outcome, limits, sources, and done checks
       - id: b
-        label: "Only ‘make it good’"
+        label: Only ‘make it good’
       - id: c
-        label: "Secrets"
+        label: Secrets
       - id: d
-        label: "Twenty unrelated jobs"
+        label: Twenty unrelated jobs
     correctOptionId: a
-    explanation: "Specs aim the helper."
-
+    explanation: Specs aim the helper.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [prompt, done-checks]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prompt
+        - done-checks
   - id: q2
-    prompt: "What is reverse questioning?"
+    prompt: What is reverse questioning?
     options:
       - id: a
-        label: "Asking the helper to interview you before drafting"
+        label: Deleting the brief
       - id: b
-        label: "Deleting the brief"
+        label: Asking the helper to interview you before drafting
       - id: c
-        label: "Running all tools at once"
+        label: Running all tools at once
       - id: d
-        label: "Skipping checks"
-    correctOptionId: a
-    explanation: "Clarify first, then draft."
-
+        label: Skipping checks
+    correctOptionId: b
+    explanation: Clarify first, then draft.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [reverse-prompting]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - reverse-prompting
   - id: q3
-    prompt: "When should you require approval?"
+    prompt: When should you require approval?
     options:
       - id: a
-        label: "Before send, delete, pay, or production changes"
+        label: Never
       - id: b
-        label: "Never"
+        label: Only for spelling
       - id: c
-        label: "Only for spelling"
+        label: Before send, delete, pay, or production changes
       - id: d
-        label: "After the damage is done"
-    correctOptionId: a
-    explanation: "Gate risky actions."
-
+        label: After the damage is done
+    correctOptionId: c
+    explanation: Gate risky actions.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [approval]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - approval
   - id: q4
-    prompt: "Why one job per turn?"
+    prompt: Why one job per turn?
     options:
       - id: a
-        label: "Stacked asks get ignored as the desk fills"
+        label: Helpers can only count to one forever
       - id: b
-        label: "Helpers can only count to one forever"
+        label: Tools ban lists
       - id: c
-        label: "Tools ban lists"
+        label: BRIEF.md forbids it
       - id: d
-        label: "BRIEF.md forbids it"
-    correctOptionId: a
-    explanation: "Focus keeps quality high."
-
+        label: Stacked asks get ignored as the desk fills
+    correctOptionId: d
+    explanation: Focus keeps quality high.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [human-craft, context-window]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - human-craft
+        - context-window

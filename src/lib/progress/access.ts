@@ -65,12 +65,22 @@ export function isQuizUnlocked(
   return exerciseIds.every((id) => done.includes(id));
 }
 
+/** Minimum quiz score (percent) required to mark a module complete. */
+export const QUIZ_PASS_PERCENT = 75;
+
 export function recordQuizAndCompleteModule(
   progress: CourseProgress,
   moduleId: string,
   score: number,
 ): CourseProgress {
-  return markModuleComplete(markQuizScore(progress, moduleId, score), moduleId);
+  const withScore = markQuizScore(progress, moduleId, score);
+  const best = withScore.quizScores[moduleId] ?? score;
+  if (best < QUIZ_PASS_PERCENT) return withScore;
+  return markModuleComplete(withScore, moduleId);
+}
+
+export function didQuizPass(score: number | null | undefined): boolean {
+  return score != null && score >= QUIZ_PASS_PERCENT;
 }
 
 export function getContinueTarget(

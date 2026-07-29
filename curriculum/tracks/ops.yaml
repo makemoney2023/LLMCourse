@@ -1,10 +1,22 @@
 id: ops
 label: Operations
 modules:
+  mental-model:
+    story: "Your on-call team treats every support chat like a search box, then wonders why status notes keep contradicting the ticket queue."
+    exampleAsk: "Help me name each part of this outage thread: the goal, the standing rules, what context we have, which tools are allowed, and how we will check the result."
+    watchOut: "If you cannot point to where a triage fix belongs, you are guessing — not steering."
   deep-research:
     story: "You're rewriting a ticket triage playbook, and folklore rules keep sneaking back in."
     exampleAsk: "Research our current SLA docs, and write a BRIEF.md where every claim has a citation."
     watchOut: "Paste policy links into SOURCES.md, not into your wall rules."
+  system-instructions:
+    story: "Old service level agreement rules from a retired wiki page still shape every bot reply while you debug the latest chat prompt."
+    exampleAsk: "Draft about twelve short standing rules for our support bot: who it helps, what it always and never does, when to ask a human, and what is out of bounds."
+    watchOut: "Point to the policy binder for facts. Do not paste whole ticket threads onto the wall."
+  standing-playbooks:
+    story: "A mega-prompt gets pasted into every outage chat and fills the desk with steps nobody follows during triage."
+    exampleAsk: "Sort each guideline into standing rules or a recipe card. Write one card for ticket triage with trigger phrases, steps, and done checks."
+    watchOut: "If a line is only for one workflow like refunds, keep it off the wall."
   tools-and-mcp:
     story: "Agents keep opening the wrong queue search."
     exampleAsk: "Allow the helper to read the wiki and search tickets. Never let it close a ticket or issue a refund on its own."
@@ -13,10 +25,26 @@ modules:
     story: "A shift handoff needs yesterday's outage facts."
     exampleAsk: "Summarize the outage doc from the binder, and quote the exact timestamps."
     watchOut: "Stale chat memory is not a source of truth — check the binder instead."
+  conversation-and-compaction:
+    story: "A long outage thread reused stale status notes after the incident had already moved to recovery."
+    exampleAsk: "Write a handoff note with the goal, done checks, sources, and things to avoid so a fresh chat can continue triage."
+    watchOut: "Start a fresh chat when the incident phase shifts or the same wrong status keeps coming back."
+  memory-systems:
+    story: "A wrong service level agreement note from last quarter keeps showing up in every new support chat."
+    exampleAsk: "Sort each fact into chat-only, binder note, or bot memory. Date anything that may change like outage windows."
+    watchOut: "Never store customer details in chat memory. Prefer binder notes you can audit."
+  delegation:
+    story: "Two helpers edited the same status note and nobody knew which triage rules were current."
+    exampleAsk: "Write a short specialist brief for the triage bot with goal, allowed tools, done checks, output owner, and merge owner."
+    watchOut: "Shared truth needs one home. Shared edits need one owner."
   human-craft:
     story: "A vague 'fix the bot' request lands in your inbox."
-    exampleAsk: "Ask the helper to stop after planning. It's done when you have the root cause plus two fix options to choose from."
+    exampleAsk: "Ask the helper to stop after planning. It is done when you have the root cause plus two fix options to choose from."
     watchOut: "Use plan mode first whenever production systems are involved."
+  verify-and-harden:
+    story: "A confident status update went to customers with the wrong outage window that a five-minute check would have caught."
+    exampleAsk: "Run done checks, sources, customer data, scope, and tone before you post. Name one way this status note could be wrong."
+    watchOut: "Log failures as loop stops and tighten the rules or tools the same hour."
   capstone-lab:
     story: "You want to tighten up your weekly status note workflow."
     exampleAsk: "Set up your research pack, a recipe card, and a verify checklist, then run the workflow once."

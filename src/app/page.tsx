@@ -5,6 +5,7 @@ import { HomeHowItWorks } from "@/components/marketing/home-how-it-works";
 import { HomeIncluded } from "@/components/marketing/home-included";
 import { HomeOutcomes } from "@/components/marketing/home-outcomes";
 import { HomeProblem } from "@/components/marketing/home-problem";
+import { HomeProof } from "@/components/marketing/home-proof";
 import { HomeRollout } from "@/components/marketing/home-rollout";
 
 export default function HomePage() {
@@ -13,6 +14,7 @@ export default function HomePage() {
       <HomeHero />
       <HomeProblem />
       <HomeOutcomes />
+      <HomeProof />
       <HomeIncluded />
       <HomeHowItWorks />
       <HomeRollout />

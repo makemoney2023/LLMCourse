@@ -1,0 +1,27 @@
+id: module-memory-systems
+title: "Sort facts into memory tiers"
+subtitle: "Module 8 practice"
+starterPrompt: |
+  Sort each item into desk-only, binder note, or product sticky memory.
+  Say what to prune or never store.
+
+  1. Today's draft reply wording
+  2. Support email address for the product
+  3. API key someone pasted in chat
+  4. "Launch is March 12" (never verified)
+  5. Preference for plain language, no hype
+  6. Full pricing table with 40 rows
+constraints:
+  - "Important facts prefer binder notes with dates"
+  - "Secrets never go in memory"
+  - "Huge tables link from SOURCES.md instead"
+modelAnswer: |
+  Desk-only: today's draft reply wording.
+  Binder: support email; pricing table lives in SOURCES.md with a date (link, do not paste).
+  Product sticky: plain language, no hype.
+  Never store: API key (rotate it); unverified March 12 launch date until confirmed in BRIEF.md.
+  Prune: delete any sticky that conflicts with BRIEF.md.
+rubric:
+  - "Secrets marked never-store"
+  - "Pricing goes to binder or SOURCES"
+  - "Tone preference can be a sticky"

@@ -46,6 +46,7 @@ export function ModuleLearnerFlow({
   exerciseIdsByModule,
   prev,
   next,
+  sandboxId,
 }: {
   modules: ModuleMeta[];
   meta: ModuleMeta;
@@ -60,6 +61,7 @@ export function ModuleLearnerFlow({
   exerciseIdsByModule: Record<string, string[]>;
   prev: ModuleMeta | null;
   next: ModuleMeta | null;
+  sandboxId: string;
 }) {
   const { progress, completeStep } = useProgress();
   const exerciseIds = exercises.map((e) => e.id);
@@ -249,9 +251,7 @@ export function ModuleLearnerFlow({
                 </Link>
               </Button>
               <Button asChild variant="ghost">
-                <Link href={`/try/session-0${meta.workshopSession}`}>
-                  Try-it sandbox
-                </Link>
+                <Link href={`/try/${sandboxId}`}>Try-it sandbox</Link>
               </Button>
             </div>
             <nav
@@ -295,7 +295,7 @@ export function ModuleLearnerFlow({
                   : "Check Done on every exercise below."
                 : moduleDone
                   ? "Module complete"
-                  : "Answer the quiz to finish this module."}
+                  : "Score 75% or higher on the quiz to finish this module."}
           </p>
           <div className="flex flex-wrap gap-2">
             {isLessonStep && activeChunk && !lessonDone ? (

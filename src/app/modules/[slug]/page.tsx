@@ -17,6 +17,7 @@ import {
 } from "@/lib/curriculum/load-curriculum";
 import { linkGlossaryTerms } from "@/lib/curriculum/link-glossary";
 import { splitLessonIntoSteps } from "@/lib/curriculum/split-lesson-steps";
+import { sandboxIdForModule } from "@/lib/curriculum/sandbox-for-module";
 import {
   getTrackOverlay,
   listRoleTracks,
@@ -90,6 +91,7 @@ export default async function ModulePage({ params }: Props) {
   const next =
     index >= 0 && index < modules.length - 1 ? modules[index + 1]! : null;
   const exerciseIdsByModule = listModuleExerciseIds();
+  const sandboxId = sandboxIdForModule(meta);
 
   return (
     <div className="mx-auto flex max-w-6xl gap-8 px-4 py-8 sm:px-6">
@@ -196,6 +198,7 @@ export default async function ModulePage({ params }: Props) {
           exerciseIdsByModule={exerciseIdsByModule}
           prev={prev}
           next={next}
+          sandboxId={sandboxId}
         />
       </article>
     </div>

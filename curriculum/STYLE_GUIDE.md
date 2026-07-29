@@ -62,7 +62,7 @@ steps:
       - "Tips"
 ```
 
-Learners mark each step done in order. Practice (exercises) then quiz unlock next. Submitting the quiz completes the module and unlocks the next one.
+Learners mark each step done in order. Practice (exercises) then quiz unlock next. Scoring 75% or higher on the quiz completes the module and unlocks the next one. Best score is kept across retries; option order is shuffled per question.
 
 ## Worked demos (optional per module)
 

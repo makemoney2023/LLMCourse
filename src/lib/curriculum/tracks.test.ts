@@ -8,10 +8,13 @@ describe("role tracks", () => {
     );
   });
 
-  it("returns sales overlay for deep-research and null for unknown", () => {
+  it("returns sales and general overlays for deep-research", () => {
     expect(getTrackOverlay("sales", "deep-research")?.exampleAsk).toMatch(
       /BRIEF/i,
     );
-    expect(getTrackOverlay("general", "deep-research")).toBeNull();
+    expect(getTrackOverlay("general", "deep-research")?.exampleAsk).toMatch(
+      /BRIEF|SOURCES/i,
+    );
+    expect(getTrackOverlay("sales", "not-a-module")).toBeNull();
   });
 });

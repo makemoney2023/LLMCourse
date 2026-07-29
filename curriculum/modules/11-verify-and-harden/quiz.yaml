@@ -1,70 +1,73 @@
 moduleId: verify-and-harden
 questions:
   - id: q1
-    prompt: "What does verify mean here?"
+    prompt: What does verify mean here?
     options:
       - id: a
-        label: "Checking work before you use or send it"
+        label: Checking work before you use or send it
       - id: b
-        label: "Making text longer"
+        label: Making text longer
       - id: c
-        label: "Deleting BRIEF.md"
+        label: Deleting BRIEF.md
       - id: d
-        label: "Turning off the desk"
+        label: Turning off the desk
     correctOptionId: a
-    explanation: "Verify closes the quality loop."
-
+    explanation: Verify closes the quality loop.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [verify]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
   - id: q2
-    prompt: "Which is a common failure?"
+    prompt: Which is a common failure?
     options:
       - id: a
-        label: "Sure words with no source on the desk"
+        label: Having done checks
       - id: b
-        label: "Having done checks"
+        label: Sure words with no source on the desk
       - id: c
-        label: "Using a short allow list"
+        label: Using a short allow list
       - id: d
-        label: "Asking clarifying questions"
-    correctOptionId: a
-    explanation: "Ungrounded fluency is confident guessing."
-
+        label: Asking clarifying questions
+    correctOptionId: b
+    explanation: Ungrounded fluency is confident guessing.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [verify, hallucination]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
+        - hallucination
   - id: q3
-    prompt: "What is a basic safety habit?"
+    prompt: What is a basic safety habit?
     options:
       - id: a
-        label: "Never put secrets in chats or memory"
+        label: Approve every action without looking
       - id: b
-        label: "Approve every action without looking"
+        label: Enable every plugin
       - id: c
-        label: "Enable every plugin"
+        label: Never put secrets in chats or memory
       - id: d
-        label: "Skip source checks"
-    correctOptionId: a
-    explanation: "Secrets and blind approvals create harm."
-
+        label: Skip source checks
+    correctOptionId: c
+    explanation: Secrets and blind approvals create harm.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [never-list, approval]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - never-list
+        - approval
   - id: q4
-    prompt: "After a miss, what should you update?"
+    prompt: After a miss, what should you update?
     options:
       - id: a
-        label: "The playbook or wall rule that would catch it next time"
+        label: Nothing
       - id: b
-        label: "Nothing"
+        label: Only the font
       - id: c
-        label: "Only the font"
+        label: Delete all sources
       - id: d
-        label: "Delete all sources"
-    correctOptionId: a
-    explanation: "Harden the loop defaults."
-
+        label: The playbook or wall rule that would catch it next time
+    correctOptionId: d
+    explanation: Harden the loop defaults.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [playbook, standing-instructions]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
+        - standing-instructions

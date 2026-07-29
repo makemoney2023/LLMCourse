@@ -1,10 +1,22 @@
 id: marketing
 label: Marketing
 modules:
+  mental-model:
+    story: "Your team treats every launch chat like a search box, then wonders why legal keeps flagging claims that were never sourced."
+    exampleAsk: "Help me name each part of this launch thread: the goal, the standing rules, what context we have, which tools are allowed, and how we will check the result."
+    watchOut: "If you cannot point to where a copy fix belongs, you are guessing — not steering."
   deep-research:
     story: "A launch brief was written from gut feel, and legal later killed three of its claims."
     exampleAsk: "Research which claims we're allowed to make, and write them up in BRIEF.md with a SOURCES.md that includes dates."
     watchOut: "Don't make medical or performance claims unless you can point to a specific row in SOURCES.md."
+  system-instructions:
+    story: "Quiet old brand voice rules keep shaping every reply while people debug the chat prompt instead."
+    exampleAsk: "Draft about twelve short standing rules for launch copy: who we write for, what we always and never claim, when to ask legal, and what is out of bounds."
+    watchOut: "Point to BRIEF.md for facts. Do not paste whole competitor pages onto the wall."
+  standing-playbooks:
+    story: "A mega-prompt gets pasted into every webinar prep and fills the desk with steps nobody runs before legal review."
+    exampleAsk: "Sort each guideline into standing rules or a recipe card. Write one card for LinkedIn post drafts with trigger phrases, steps, and done checks."
+    watchOut: "If a line is only for one channel like blog posts, keep it off the wall."
   tools-and-mcp:
     story: "You need to pull facts from the web for a blog post, then do a clean writing pass afterward."
     exampleAsk: "Start in research mode to gather facts, then switch to build mode and draft using only what's in BRIEF.md."
@@ -13,10 +25,26 @@ modules:
     story: "A stakeholder wants a competitor comparison blurb by lunchtime."
     exampleAsk: "Pull from the competitors section of SOURCES.md, and cite the source for every fact you use."
     watchOut: "Don't blend three vendors' features into one list that no single vendor actually offers."
+  conversation-and-compaction:
+    story: "A long launch thread reused stale claim notes after the campaign had already moved to legal review."
+    exampleAsk: "Write a handoff note with the goal, done checks, sources, and things to avoid so a fresh chat can continue the launch draft."
+    watchOut: "Start a fresh chat when the channel shifts or the same unapproved claim keeps coming back."
+  memory-systems:
+    story: "A wrong competitor note from months ago keeps showing up in every new launch chat."
+    exampleAsk: "Sort each fact into chat-only, binder note, or brand memory. Date anything that may change like approved claims."
+    watchOut: "Never store unreleased product details in chat memory. Prefer binder notes you can audit."
+  delegation:
+    story: "Two helpers edited the same webinar blurb and nobody knew which approved claims were current."
+    exampleAsk: "Write a short specialist brief for the copy helper with goal, allowed tools, done checks, output owner, and merge owner."
+    watchOut: "Shared truth needs one home. Shared edits need one owner."
   human-craft:
     story: "A request to 'make it pop' arrives with no audience and no channel specified."
     exampleAsk: "Write a LinkedIn post of about 120 words, in a calm tone, that ends with a clear invite to register for the webinar."
     watchOut: "If the channel and length aren't clear, ask the helper to question you first before it starts drafting."
+  verify-and-harden:
+    story: "A confident launch draft almost shipped with an unapproved claim that a five-minute check would have caught."
+    exampleAsk: "Run done checks, sources, claims, scope, and tone before you publish. Name one way this copy could be wrong."
+    watchOut: "Log failures as loop stops and tighten the rules or tools the same hour."
   capstone-lab:
     story: "You want to improve your weekly social media draft workflow."
     exampleAsk: "Run the full loop once on this workflow, and make sure your verify step checks both claims and tone."

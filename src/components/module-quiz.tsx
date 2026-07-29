@@ -6,6 +6,8 @@ import { GlossaryProse } from "@/components/glossary-prose";
 import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
 import type { Quiz } from "@/lib/curriculum/types";
+import { QUIZ_PASS_PERCENT, didQuizPass } from "@/lib/progress/access";
+import { shuffleQuestionOptions } from "@/lib/quiz/shuffle-options";
 import { slugifyHeading } from "@/lib/markdown-ids";
 import { cn } from "@/lib/utils";
 
@@ -20,15 +22,22 @@ export function ModuleQuiz({
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
 
+  const displayQuestions = useMemo(
+    () => quiz.questions.map((question) => shuffleQuestionOptions(question)),
+    [quiz.questions],
+  );
+
   const score = useMemo(() => {
     if (!submitted) return null;
-    const correct = quiz.questions.filter(
+    const correct = displayQuestions.filter(
       (q) => answers[q.id] === q.correctOptionId,
     ).length;
-    return Math.round((correct / quiz.questions.length) * 100);
-  }, [answers, quiz.questions, submitted]);
+    return Math.round((correct / displayQuestions.length) * 100);
+  }, [answers, displayQuestions, submitted]);
 
   const saved = progress.quizScores[quiz.moduleId];
+  const moduleDone = progress.completedModules.includes(quiz.moduleId);
+  const passed = didQuizPass(score) || moduleDone;
 
   if (quiz.questions.length === 0) return null;
 
@@ -40,12 +49,12 @@ export function ModuleQuiz({
         </h2>
         <p className="text-sm text-muted-foreground">
           {saved != null
-            ? `Best score saved: ${saved}%`
-            : "Answer all questions, then submit."}
+            ? `Best score saved: ${saved}% · Need ${QUIZ_PASS_PERCENT}% to complete`
+            : `Answer all questions, then submit. Need ${QUIZ_PASS_PERCENT}% to complete.`}
         </p>
       </div>
       <ol className="space-y-5">
-        {quiz.questions.map((question, index) => {
+        {displayQuestions.map((question, index) => {
           const selected = answers[question.id];
           const isWrong =
             submitted &&
@@ -149,11 +158,11 @@ export function ModuleQuiz({
             type="button"
             disabled={Object.keys(answers).length < quiz.questions.length}
             onClick={() => {
-              const correct = quiz.questions.filter(
+              const correct = displayQuestions.filter(
                 (q) => answers[q.id] === q.correctOptionId,
               ).length;
               const nextScore = Math.round(
-                (correct / quiz.questions.length) * 100,
+                (correct / displayQuestions.length) * 100,
               );
               setQuizScore(quiz.moduleId, nextScore);
               setSubmitted(true);
@@ -163,7 +172,12 @@ export function ModuleQuiz({
           </Button>
         ) : (
           <>
-            <p className="text-sm font-medium">Score: {score}%</p>
+            <p className="text-sm font-medium">
+              Score: {score}%
+              {passed
+                ? " — module complete"
+                : ` — need ${QUIZ_PASS_PERCENT}% to complete`}
+            </p>
             <Button
               type="button"
               variant="outline"
@@ -174,7 +188,7 @@ export function ModuleQuiz({
             >
               Retry
             </Button>
-            {moduleCertificateLink(quiz.moduleId)}
+            {moduleDone ? moduleCertificateLink(quiz.moduleId) : null}
           </>
         )}
       </div>

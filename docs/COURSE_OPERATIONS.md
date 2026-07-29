@@ -14,8 +14,8 @@ The marketing home (`/`) is the buyer-facing course overview. The learner hub st
 | Path | Purpose |
 |------|---------|
 | `curriculum/templates/` | BRIEF / SOURCES / HANDOFF starters (also copied to `public/templates/`) |
-| `curriculum/tracks/*.yaml` | Role-track example overlays |
-| `curriculum/sandboxes/*.yaml` | Static try-it exercises |
+| `curriculum/tracks/*.yaml` | Role-track example overlays (all 12 modules for each track) |
+| `curriculum/sandboxes/*.yaml` | Static try-it exercises (`session-*` for workshops; `module-*` preferred on module pages) |
 | `curriculum/gallery/capstone-examples.yaml` | Capstone before/after stories |
 | `curriculum/modules/*/demo.yaml` + `public/course/demos/` | Worked before/after visuals |
 | `curriculum/modules/*/module.yaml` `steps:` | Lesson submodules (orient / ideas / apply) mapped to H2 headings |
@@ -23,7 +23,7 @@ The marketing home (`/`) is the buyer-facing course overview. The learner hub st
 
 After editing templates, copy into `public/templates/` so downloads work.
 
-Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner submits its quiz. Module N+1 unlocks only after Module N is complete.
+Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Module N+1 unlocks only after Module N is complete. Quiz options are shuffled with a deterministic seed per question so the correct choice is not always first.
 
 ## Glossary terms
 
@@ -46,7 +46,11 @@ Learner progress is stored in `localStorage` under key `llm-course-progress-v2` 
 1. Lesson steps unlock in order (`orient` → `ideas` → `apply`).
 2. Practice unlocks when all three lesson steps are marked done.
 3. Quiz unlocks when every exercise in the module is marked done.
-4. Submitting the quiz marks the module complete and unlocks the next module.
+4. Scoring 75%+ on the quiz marks the module complete and unlocks the next module. Below that, the score is saved (best kept) and the learner can retry.
+
+## Contact email
+
+Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel project settings) to enable the home-page rollout form. Without it, the contact CTA stays disabled and shows a setup hint. Do not hardcode a personal inbox in the source.
 
 ## Deploy
 

@@ -114,10 +114,25 @@ describe("access helpers", () => {
     expect(isQuizUnlocked(p, m, exerciseIds)).toBe(true);
   });
 
-  it("quiz submit records score and completes the module", () => {
+  it("quiz submit at or above pass threshold completes the module", () => {
     let p = emptyProgress();
     p = recordQuizAndCompleteModule(p, "mental-model", 80);
     expect(p.quizScores["mental-model"]).toBe(80);
+    expect(p.completedModules).toContain("mental-model");
+  });
+
+  it("quiz submit below pass threshold records score but does not complete", () => {
+    let p = emptyProgress();
+    p = recordQuizAndCompleteModule(p, "mental-model", 50);
+    expect(p.quizScores["mental-model"]).toBe(50);
+    expect(p.completedModules).not.toContain("mental-model");
+  });
+
+  it("completes the module when a later retry reaches the pass threshold", () => {
+    let p = emptyProgress();
+    p = recordQuizAndCompleteModule(p, "mental-model", 50);
+    p = recordQuizAndCompleteModule(p, "mental-model", 75);
+    expect(p.quizScores["mental-model"]).toBe(75);
     expect(p.completedModules).toContain("mental-model");
   });
 

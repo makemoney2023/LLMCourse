@@ -65,9 +65,12 @@ describe("marketing home section contracts", () => {
     expect(outcomes).not.toContain("BRIEF/SOURCES");
     expect(outcomes).not.toContain("ungrounded");
 
-    expect(normalizedSource("home-included.tsx")).toContain(
-      "12 modules · 4 workshop decks · static sandboxes · templates · glossary · capstone gallery.",
-    );
+    const included = normalizedSource("home-included.tsx");
+    expect(included).toContain("About 5 hours self-paced");
+    expect(included).toContain("listModules");
+    expect(source("home-proof.tsx")).toContain("What changed after one loop run.");
+    expect(source("home-proof.tsx")).toContain("sales-call-prep");
+    expect(source("home-proof.tsx")).toContain("ops-status");
   });
 
   it("embeds the loop map and exposes rollout and contact anchors", () => {
@@ -81,9 +84,13 @@ describe("marketing home section contracts", () => {
     expect(howItWorks).toContain("<LoopMap />");
     expect(rollout).toContain('id="rollout"');
     expect(contact).toContain('id="contact"');
-    expect(contact).toContain("mailto:");
+    expect(contact).toContain("getContactEmail");
+    expect(contact).toContain("buildRolloutMailto");
+    expect(contact).toContain("NEXT_PUBLIC_CONTACT_EMAIL");
     expect(contact).toContain("Email us about a rollout");
-    expect(contact).not.toContain("disabled");
+    expect(contact).toContain("disabled");
+    expect(contact).not.toContain("chrisb@superpatch.com");
+    expect(contact).not.toContain("hello@llmleverage.course");
     expect(contact).not.toContain("[your address]");
   });
 
@@ -106,6 +113,7 @@ describe("marketing home section contracts", () => {
       "HomeHero",
       "HomeProblem",
       "HomeOutcomes",
+      "HomeProof",
       "HomeIncluded",
       "HomeHowItWorks",
       "HomeRollout",

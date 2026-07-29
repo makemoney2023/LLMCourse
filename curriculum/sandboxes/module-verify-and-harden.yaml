@@ -1,0 +1,29 @@
+id: module-verify-and-harden
+title: "Catch a draft before it ships"
+subtitle: "Module 11 practice"
+starterPrompt: |
+  Draft FAQ answer to review:
+  "Refunds take 3–5 days. Call us at 555-0100. We also offer a 20% loyalty
+  discount automatically. I already checked SOURCES.md."
+
+  Known truth in SOURCES.md: refunds take 5–7 business days; phone is
+  555-0199; no automatic loyalty discount this quarter.
+
+  Run the verify checklist. List every failure. Write one harden step.
+constraints:
+  - "Check done facts against sources"
+  - "Catch invented phone and discount"
+  - "Name one harden action"
+modelAnswer: |
+  Failures:
+  - Sources: 3–5 days ≠ 5–7 business days in SOURCES.md.
+  - Sources: phone 555-0100 ≠ 555-0199.
+  - Scope/facts: loyalty discount not in sources — invented.
+  - Grounding: "I already checked SOURCES.md" is a fake check claim.
+
+  Harden: update wall rule — "Quote refund timing and phone from SOURCES.md;
+  never invent discounts." Delete any sticky about automatic loyalty pricing.
+rubric:
+  - "Flags wrong refund window"
+  - "Flags wrong phone"
+  - "Includes a harden step"

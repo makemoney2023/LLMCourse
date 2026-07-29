@@ -1,0 +1,27 @@
+id: module-standing-playbooks
+title: "Split wall vs recipe card"
+subtitle: "Module 4 practice"
+starterPrompt: |
+  You have these guidelines mixed together:
+  - Never share customer secrets.
+  - For weekly status: gather wins, risks, asks; keep under 200 words.
+  - Ask if a fact is missing from BRIEF.md.
+  - Trigger words: "weekly status", "/status".
+  - Done when dated, owner named, one risk line.
+
+  Sort each into wall (always-on) or recipe card (on demand).
+  Draft the recipe card with trigger, steps, and done checks.
+constraints:
+  - "Wall stays short and always true"
+  - "Recipe has trigger, steps, done checks"
+  - "Facts are not pasted onto the wall"
+modelAnswer: |
+  Wall: Never share customer secrets. Ask if a fact is missing from BRIEF.md.
+
+  Recipe card — trigger: "weekly status" or /status.
+  Steps: gather wins, risks, asks from tickets; draft under 200 words; add date and owner.
+  Done: dated, owner named, one risk line, under 200 words.
+rubric:
+  - "Secrets rule stays on the wall"
+  - "Status steps live on the card"
+  - "Done checks are testable"

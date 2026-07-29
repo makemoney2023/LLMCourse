@@ -1,53 +1,56 @@
 moduleId: capstone-lab
 questions:
   - id: q1
-    prompt: "What makes a good capstone workflow?"
+    prompt: What makes a good capstone workflow?
     options:
       - id: a
-        label: "A real job you own that can finish in one practice block"
+        label: A real job you own that can finish in one practice block
       - id: b
-        label: "A giant rewrite of the whole company"
+        label: A giant rewrite of the whole company
       - id: c
-        label: "A toy with no artifact"
+        label: A toy with no artifact
       - id: d
-        label: "Something you will never do again"
+        label: Something you will never do again
     correctOptionId: a
-    explanation: "Real and finishable beats fantasy scope."
-
+    explanation: Real and finishable beats fantasy scope.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [capstone, context-loop]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - capstone
+        - context-loop
   - id: q2
-    prompt: "What should you configure before generating?"
+    prompt: What should you configure before generating?
     options:
       - id: a
-        label: "Research pack, wall rules, playbook, tools, and done checks"
+        label: Only a funny opener
       - id: b
-        label: "Only a funny opener"
+        label: Research pack, wall rules, playbook, tools, and done checks
       - id: c
-        label: "Every plugin on earth"
+        label: Every plugin on earth
       - id: d
-        label: "Nothing"
-    correctOptionId: a
-    explanation: "Setup makes the run teach the loop."
-
+        label: Nothing
+    correctOptionId: b
+    explanation: Setup makes the run teach the loop.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [context-loop, standing-instructions]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - context-loop
+        - standing-instructions
   - id: q3
-    prompt: "What should a look-back include?"
+    prompt: What should a look-back include?
     options:
       - id: a
-        label: "One metric and one default to keep"
+        label: Only vibes
       - id: b
-        label: "Only vibes"
+        label: Secrets
       - id: c
-        label: "Secrets"
+        label: One metric and one default to keep
       - id: d
-        label: "A promise to skip checks next time"
-    correctOptionId: a
-    explanation: "Measure and keep a durable habit."
-
+        label: A promise to skip checks next time
+    correctOptionId: c
+    explanation: Measure and keep a durable habit.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [capstone, done-checks]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - capstone
+        - done-checks

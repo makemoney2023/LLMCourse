@@ -1,70 +1,73 @@
 moduleId: standing-playbooks
 questions:
   - id: q1
-    prompt: "What is a playbook like?"
+    prompt: What is a playbook like?
     options:
       - id: a
-        label: "A recipe card you open for one kind of task"
+        label: A recipe card you open for one kind of task
       - id: b
-        label: "A secret key"
+        label: A secret key
       - id: c
-        label: "Unlimited desk space"
+        label: Unlimited desk space
       - id: d
-        label: "A random joke"
+        label: A random joke
     correctOptionId: a
-    explanation: "Playbooks are on-demand procedures."
-
+    explanation: Playbooks are on-demand procedures.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [playbook]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
   - id: q2
-    prompt: "What should stay always-on?"
+    prompt: What should stay always-on?
     options:
       - id: a
-        label: "Short rules that are true for most tasks"
+        label: Every workflow step you have ever used
       - id: b
-        label: "Every workflow step you have ever used"
+        label: Short rules that are true for most tasks
       - id: c
-        label: "Whole websites"
+        label: Whole websites
       - id: d
-        label: "Nothing"
-    correctOptionId: a
-    explanation: "Always-on text must stay small or it crowds the desk."
-
+        label: Nothing
+    correctOptionId: b
+    explanation: Always-on text must stay small or it crowds the desk.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [standing-instructions, playbook]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - standing-instructions
+        - playbook
   - id: q3
-    prompt: "Where do long fact lists belong?"
+    prompt: Where do long fact lists belong?
     options:
       - id: a
-        label: "In SOURCES.md or BRIEF.md, not in wall rules"
+        label: In every always-on block
       - id: b
-        label: "In every always-on block"
+        label: Only in jokes
       - id: c
-        label: "Only in jokes"
+        label: In SOURCES.md or BRIEF.md, not in wall rules
       - id: d
-        label: "In tool names"
-    correctOptionId: a
-    explanation: "Facts are binder pages. Rules are wall text."
-
+        label: In tool names
+    correctOptionId: c
+    explanation: Facts are binder pages. Rules are wall text.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [sources-md, brief-md]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - sources-md
+        - brief-md
   - id: q4
-    prompt: "Why do playbooks need triggers?"
+    prompt: Why do playbooks need triggers?
     options:
       - id: a
-        label: "So people know when to pull the recipe card"
+        label: So the desk becomes infinite
       - id: b
-        label: "So the desk becomes infinite"
+        label: So tools turn off
       - id: c
-        label: "So tools turn off"
+        label: So research is banned
       - id: d
-        label: "So research is banned"
-    correctOptionId: a
-    explanation: "No trigger means the playbook stays unused."
-
+        label: So people know when to pull the recipe card
+    correctOptionId: d
+    explanation: No trigger means the playbook stays unused.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [playbook, done-checks]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
+        - done-checks

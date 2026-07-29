@@ -50,6 +50,13 @@ describe("progress helpers", () => {
     expect(p.revealedAnswers["mental-model"]).toEqual(["ex-1"]);
   });
 
+  it("keeps the best quiz score when a retry scores lower", () => {
+    let p = emptyProgress();
+    p = markQuizScore(p, "mental-model", 100);
+    p = markQuizScore(p, "mental-model", 50);
+    expect(p.quizScores["mental-model"]).toBe(100);
+  });
+
   it("round-trips through serialize/deserialize", () => {
     let p = emptyProgress();
     p = markModuleComplete(p, "human-craft");

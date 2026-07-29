@@ -1,70 +1,73 @@
 moduleId: conversation-and-compaction
 questions:
   - id: q1
-    prompt: "What is compaction like?"
+    prompt: What is compaction like?
     options:
       - id: a
-        label: "A short note so you can clear the desk"
+        label: A short note so you can clear the desk
       - id: b
-        label: "Deleting the helper"
+        label: Deleting the helper
       - id: c
-        label: "Adding more PDFs"
+        label: Adding more PDFs
       - id: d
-        label: "Turning off checks"
+        label: Turning off checks
     correctOptionId: a
-    explanation: "Compaction shrinks old clutter into a usable note."
-
+    explanation: Compaction shrinks old clutter into a usable note.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [compaction]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
   - id: q2
-    prompt: "When should you restart?"
+    prompt: When should you restart?
     options:
       - id: a
-        label: "When the topic shifts or old junk keeps winning"
+        label: After every single word
       - id: b
-        label: "After every single word"
+        label: When the topic shifts or old junk keeps winning
       - id: c
-        label: "Never"
+        label: Never
       - id: d
-        label: "Only on weekends"
-    correctOptionId: a
-    explanation: "Restart with a handoff when the desk is contaminated."
-
+        label: Only on weekends
+    correctOptionId: b
+    explanation: Restart with a handoff when the desk is contaminated.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [compaction, context-window]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
+        - context-window
   - id: q3
-    prompt: "What should a handoff keep?"
+    prompt: What should a handoff keep?
     options:
       - id: a
-        label: "Goal, done checks, sources, and do-not list"
+        label: Every raw log
       - id: b
-        label: "Every raw log"
+        label: Only emojis
       - id: c
-        label: "Only emojis"
+        label: Goal, done checks, sources, and do-not list
       - id: d
-        label: "Secrets"
-    correctOptionId: a
-    explanation: "Keep signal. Drop sludge."
-
+        label: Secrets
+    correctOptionId: c
+    explanation: Keep signal. Drop sludge.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [compaction, done-checks]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
+        - done-checks
   - id: q4
-    prompt: "Why are tool dumps risky in long chats?"
+    prompt: Why are tool dumps risky in long chats?
     options:
       - id: a
-        label: "They use lots of desk space and can bury the goal"
+        label: They shrink the desk forever
       - id: b
-        label: "They shrink the desk forever"
+        label: They remove wall rules
       - id: c
-        label: "They remove wall rules"
+        label: They ban research
       - id: d
-        label: "They ban research"
-    correctOptionId: a
-    explanation: "Huge results crowd the context window."
-
+        label: They use lots of desk space and can bury the goal
+    correctOptionId: d
+    explanation: Huge results crowd the context window.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [observation, context-window]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - observation
+        - context-window

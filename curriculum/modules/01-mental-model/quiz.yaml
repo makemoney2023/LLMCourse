@@ -1,73 +1,76 @@
 moduleId: mental-model
 questions:
   - id: q1
-    prompt: "What is an agent loop compared to a simple one-shot chat?"
+    prompt: What is an agent loop compared to a simple one-shot chat?
     options:
       - id: a
-        label: "The model can call tools, get results back, and keep thinking in the same chat"
+        label: The model can call tools, get results back, and keep thinking in the same chat
       - id: b
-        label: "The model remembers every chat you ever had with no limit"
+        label: The model remembers every chat you ever had with no limit
       - id: c
-        label: "You must send exactly one message per task"
+        label: You must send exactly one message per task
       - id: d
-        label: "Tools replace the need for desk space"
+        label: Tools replace the need for desk space
     correctOptionId: a
-    explanation: "An agent loop goes in circles — think, call a tool, read the result, think again. Simple chat is text in, text out."
-
+    explanation: An agent loop goes in circles — think, call a tool, read the result, think again.
+      Simple chat is text in, text out.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [agent, context-loop]
-
+      lessonHeading: Big ideas
+      glossaryIds:
+        - agent
+        - context-loop
   - id: q2
-    prompt: "Why is the context window like limited desk space?"
+    prompt: Why is the context window like limited desk space?
     options:
       - id: a
-        label: "Rules, messages, files, and tool results all share the same limited space"
+        label: Models refuse to read more than one file per chat
       - id: b
-        label: "Models refuse to read more than one file per chat"
+        label: Rules, messages, files, and tool results all share the same limited space
       - id: c
-        label: "Only your messages count toward the limit"
+        label: Only your messages count toward the limit
       - id: d
-        label: "Limits only apply on free plans"
-    correctOptionId: a
-    explanation: "Everything loaded into a session uses desk space. Quality often drops as the desk fills up."
-
+        label: Limits only apply on free plans
+    correctOptionId: b
+    explanation: Everything loaded into a session uses desk space. Quality often drops as the desk fills up.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [context-window, desk-space]
-
+      lessonHeading: Big ideas
+      glossaryIds:
+        - context-window
+        - desk-space
   - id: q3
-    prompt: "Where does human verify fit in the loop?"
+    prompt: Where does human verify fit in the loop?
     options:
       - id: a
-        label: "You check the output, then your next request builds on what you learned"
+        label: It only runs before your first message
       - id: b
-        label: "It only runs before your first message"
+        label: It replaces the need for tools
       - id: c
-        label: "It replaces the need for tools"
+        label: You check the output, then your next request builds on what you learned
       - id: d
-        label: "You can skip it if the model sounds sure"
-    correctOptionId: a
-    explanation: "Verify means check work before turning it in. Fixes and approvals become your next intent."
-
+        label: You can skip it if the model sounds sure
+    correctOptionId: c
+    explanation: Verify means check work before turning it in. Fixes and approvals become your next intent.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [verify, user-intent]
-
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
+        - user-intent
   - id: q4
-    prompt: "Which item is an observation in the loop?"
+    prompt: Which item is an observation in the loop?
     options:
       - id: a
-        label: "Text from a search tool added back into the chat"
+        label: Your custom instructions in settings
       - id: b
-        label: "Your custom instructions in settings"
+        label: A note saved only in a notebook, never loaded
       - id: c
-        label: "A note saved only in a notebook, never loaded"
+        label: The model's training data from before you chatted
       - id: d
-        label: "The model's training data from before you chatted"
-    correctOptionId: a
-    explanation: "Observations are tool and search results fed back onto the desk. Standing instructions are not observations."
-
+        label: Text from a search tool added back into the chat
+    correctOptionId: d
+    explanation: Observations are tool and search results fed back onto the desk. Standing instructions
+      are not observations.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [observation, agent]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - observation
+        - agent

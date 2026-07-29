@@ -1,70 +1,74 @@
 moduleId: retrieval-and-grounding
 questions:
   - id: q1
-    prompt: "What is retrieval like?"
+    prompt: What is retrieval like?
     options:
       - id: a
-        label: "Looking something up in a binder before answering"
+        label: Looking something up in a binder before answering
       - id: b
-        label: "Deleting all rules"
+        label: Deleting all rules
       - id: c
-        label: "Turning off the desk"
+        label: Turning off the desk
       - id: d
-        label: "Guessing faster"
+        label: Guessing faster
     correctOptionId: a
-    explanation: "Retrieval brings evidence onto the desk."
-
+    explanation: Retrieval brings evidence onto the desk.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [retrieval, binder]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - retrieval
+        - binder
   - id: q2
-    prompt: "What should you attach for project facts?"
+    prompt: What should you attach for project facts?
     options:
       - id: a
-        label: "BRIEF.md or a source from SOURCES.md"
+        label: Every file you own
       - id: b
-        label: "Every file you own"
+        label: BRIEF.md or a source from SOURCES.md
       - id: c
-        label: "Only emojis"
+        label: Only emojis
       - id: d
-        label: "Nothing ever"
-    correctOptionId: a
-    explanation: "Use the research pack. Keep it lean."
-
+        label: Nothing ever
+    correctOptionId: b
+    explanation: Use the research pack. Keep it lean.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [brief-md, sources-md]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - brief-md
+        - sources-md
   - id: q3
-    prompt: "What is grounding?"
+    prompt: What is grounding?
     options:
       - id: a
-        label: "Making the answer rest on real pages, not guesses"
+        label: Making text longer
       - id: b
-        label: "Making text longer"
+        label: Hiding sources
       - id: c
-        label: "Hiding sources"
+        label: Making the answer rest on real pages, not guesses
       - id: d
-        label: "Removing tools"
-    correctOptionId: a
-    explanation: "Grounded answers can point to evidence."
-
+        label: Removing tools
+    correctOptionId: c
+    explanation: Grounded answers can point to evidence.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [grounding, citation]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - grounding
+        - citation
   - id: q4
-    prompt: "What if the source is missing?"
+    prompt: What if the source is missing?
     options:
       - id: a
-        label: "Say you do not know, or ask for the page"
+        label: Invent a confident answer
       - id: b
-        label: "Invent a confident answer"
+        label: Ignore the question
       - id: c
-        label: "Ignore the question"
+        label: Add twenty more tools
       - id: d
-        label: "Add twenty more tools"
-    correctOptionId: a
-    explanation: "Do not invent. Retrieve or stop."
-
+        label: Say you do not know, or ask for the page
+    correctOptionId: d
+    explanation: Do not invent. Retrieve or stop.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [grounding, hallucination]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - grounding
+        - hallucination

@@ -1,21 +1,49 @@
+"use client";
+
+import { useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { buildRolloutMailto } from "@/lib/marketing/build-rollout-mailto";
+import { getContactEmail } from "@/lib/marketing/contact-email";
 
-/** Swap this when a production inbox or Cal.com URL is ready. */
-const CONTACT_EMAIL = "hello@llmleverage.course";
-const MAILTO_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-  "LLM Leverage team rollout",
-)}`;
+const CONTACT_SUBJECT = "LLM Leverage team rollout";
 
 const fields = [
-  { id: "contact-name", label: "Name", type: "text" },
-  { id: "contact-email", label: "Work email", type: "email" },
-  { id: "contact-company", label: "Company", type: "text" },
-  { id: "contact-note", label: "Note", type: "text" },
+  { id: "contact-name", label: "Name", type: "text", key: "name" as const },
+  {
+    id: "contact-email",
+    label: "Work email",
+    type: "email",
+    key: "workEmail" as const,
+  },
+  {
+    id: "contact-company",
+    label: "Company",
+    type: "text",
+    key: "company" as const,
+  },
+  { id: "contact-note", label: "Note", type: "text", key: "note" as const },
 ] as const;
 
 export function HomeContact() {
+  const contactEmail = getContactEmail();
+  const [values, setValues] = useState({
+    name: "",
+    workEmail: "",
+    company: "",
+    note: "",
+  });
+
+  const mailtoHref = useMemo(() => {
+    if (!contactEmail) return null;
+    return buildRolloutMailto({
+      to: contactEmail,
+      subject: CONTACT_SUBJECT,
+      ...values,
+    });
+  }, [contactEmail, values]);
+
   return (
     <section
       id="contact"
@@ -46,26 +74,50 @@ export function HomeContact() {
                 type={field.type}
                 className="mt-2 bg-background"
                 aria-describedby="contact-helper"
+                value={values[field.key]}
+                onChange={(event) =>
+                  setValues((prev) => ({
+                    ...prev,
+                    [field.key]: event.target.value,
+                  }))
+                }
               />
             </div>
           ))}
           <div className="flex flex-col items-start gap-3 sm:col-span-2">
-            <Button asChild>
-              <a href={MAILTO_HREF}>Email us about a rollout</a>
-            </Button>
+            {mailtoHref ? (
+              <Button asChild>
+                <a href={mailtoHref}>Email us about a rollout</a>
+              </Button>
+            ) : (
+              <Button type="button" disabled aria-disabled="true">
+                Email us about a rollout
+              </Button>
+            )}
             <p
               id="contact-helper"
               className="text-sm leading-6 text-muted-foreground"
             >
-              Opens your email app to{" "}
-              <a
-                href={MAILTO_HREF}
-                className="underline underline-offset-4 hover:text-foreground"
-              >
-                {CONTACT_EMAIL}
-              </a>
-              . Include name, company, and team size in the note above if
-              helpful.
+              {mailtoHref ? (
+                <>
+                  Opens your email app to{" "}
+                  <a
+                    href={mailtoHref}
+                    className="underline underline-offset-4 hover:text-foreground"
+                  >
+                    {contactEmail}
+                  </a>
+                  . Your name, company, and note are included in the message.
+                </>
+              ) : (
+                <>
+                  Email coming soon — set{" "}
+                  <code className="rounded bg-muted px-1 py-0.5 text-xs">
+                    NEXT_PUBLIC_CONTACT_EMAIL
+                  </code>{" "}
+                  to enable this form.
+                </>
+              )}
             </p>
           </div>
         </div>

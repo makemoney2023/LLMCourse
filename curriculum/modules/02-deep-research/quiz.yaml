@@ -1,70 +1,74 @@
 moduleId: deep-research
 questions:
   - id: q1
-    prompt: "Why research before writing standing rules?"
+    prompt: Why research before writing standing rules?
     options:
       - id: a
-        label: "So goals and words come from sources, not guesses"
+        label: So goals and words come from sources, not guesses
       - id: b
-        label: "Because only Firecrawl works"
+        label: Because only Firecrawl works
       - id: c
-        label: "To fill the desk with every page forever"
+        label: To fill the desk with every page forever
       - id: d
-        label: "So you can skip checking later"
+        label: So you can skip checking later
     correctOptionId: a
-    explanation: "Research makes goals real. Rules from guesses encode the wrong problem."
-
+    explanation: Research makes goals real. Rules from guesses encode the wrong problem.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, hallucination]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - deep-research
+        - hallucination
   - id: q2
-    prompt: "What belongs in a simple project pack?"
+    prompt: What belongs in a simple project pack?
     options:
       - id: a
-        label: "A short BRIEF.md and a SOURCES.md with links and dates"
+        label: Only the chat scroll
       - id: b
-        label: "Only the chat scroll"
+        label: A short BRIEF.md and a SOURCES.md with links and dates
       - id: c
-        label: "Every raw page pasted into wall rules"
+        label: Every raw page pasted into wall rules
       - id: d
-        label: "Secrets and API keys"
-    correctOptionId: a
-    explanation: "Short cited files beat scrollback and keep wall rules light."
-
+        label: Secrets and API keys
+    correctOptionId: b
+    explanation: Short cited files beat scrollback and keep wall rules light.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [brief-md, sources-md]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - brief-md
+        - sources-md
   - id: q3
-    prompt: "How should research files feed later chats?"
+    prompt: How should research files feed later chats?
     options:
       - id: a
-        label: "Save cited files; attach short parts when needed"
+        label: Paste the full crawl into every rule block
       - id: b
-        label: "Paste the full crawl into every rule block"
+        label: Never save sources
       - id: c
-        label: "Never save sources"
+        label: Save cited files; attach short parts when needed
       - id: d
-        label: "Turn every page into always-on rules"
-    correctOptionId: a
-    explanation: "Keep synthesis short. Pull pages from the binder when needed."
-
+        label: Turn every page into always-on rules
+    correctOptionId: c
+    explanation: Keep synthesis short. Pull pages from the binder when needed.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [context-pack, retrieval]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - context-pack
+        - retrieval
   - id: q4
-    prompt: "Which research question is best?"
+    prompt: Which research question is best?
     options:
       - id: a
-        label: "What login steps do the official docs require?"
+        label: Tell me everything about software
       - id: b
-        label: "Tell me everything about software"
+        label: Research the future
       - id: c
-        label: "Research the future"
+        label: Find something cool
       - id: d
-        label: "Find something cool"
-    correctOptionId: a
-    explanation: "Narrow questions make useful sources."
-
+        label: What login steps do the official docs require?
+    correctOptionId: d
+    explanation: Narrow questions make useful sources.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, context-pack]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - deep-research
+        - context-pack

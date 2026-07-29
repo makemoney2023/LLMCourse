@@ -1,3 +1,51 @@
 id: general
 label: General
-modules: {}
+modules:
+  mental-model:
+    story: "Your team treats every AI chat like a search box, then wonders why quality swings."
+    exampleAsk: "Help me name each part of this chat using the context loop: goal, wall rules, desk space, tools, and check."
+    watchOut: "If you cannot point to where a fix belongs, you are guessing — not steering."
+  deep-research:
+    story: "A project started from confident chat answers and later matched none of the real docs."
+    exampleAsk: "Ask three narrow questions, save links with dates, and write BRIEF.md plus SOURCES.md."
+    watchOut: "Do not write wall rules from guesses. Collect proof first."
+  system-instructions:
+    story: "Quiet old rules keep shaping every reply while people debug the chat prompt instead."
+    exampleAsk: "Draft about twelve short wall rules covering who, always and never, when unclear, and out of bounds."
+    watchOut: "Point to BRIEF.md for facts. Do not paste whole pages onto the wall."
+  standing-playbooks:
+    story: "A mega-prompt gets pasted into every chat and fills the desk with unused steps."
+    exampleAsk: "Sort each guideline into wall or recipe card. Write one card with trigger phrases, steps, and done checks."
+    watchOut: "If a line is only for one workflow, keep it off the wall."
+  tools-and-mcp:
+    story: "The helper sounds like it checked a file when it only guessed."
+    exampleAsk: "List at most five tools for this job and a never-list for send, delete, pay, and production changes."
+    watchOut: "Keep research crawl tools off during daily drafting unless you are refreshing facts."
+  retrieval-and-grounding:
+    story: "A fluent answer almost shipped with a policy that was never in the handbook."
+    exampleAsk: "Attach the smallest useful slice from BRIEF.md or SOURCES.md, quote the line, then answer."
+    watchOut: "If you cannot point to a line, say you do not know."
+  conversation-and-compaction:
+    story: "A long thread reused stale tool output after the topic had already shifted."
+    exampleAsk: "Write a handoff with Goal, Done checks, Sources, and Do not so a fresh chat can continue."
+    watchOut: "Restart when the topic shifts or the same mistake keeps returning."
+  memory-systems:
+    story: "A wrong sticky note from months ago keeps showing up in every new chat."
+    exampleAsk: "Sort each fact into desk-only, binder note, or product memory. Date anything that may change."
+    watchOut: "Never store secrets in chat memory. Prefer binder notes you can audit."
+  delegation:
+    story: "Two helpers edited the same draft and nobody knew which rules were current."
+    exampleAsk: "Write a short specialist brief with goal, allowed tools, done checks, output owner, and merge owner."
+    watchOut: "Shared truth needs one home. Shared edits need one owner."
+  human-craft:
+    story: "A fuzzy ask got a polished answer aimed at the wrong audience."
+    exampleAsk: "Write a short spec with outcome, audience, limits, sources, and done checks. One job only."
+    watchOut: "If the ask has no audience or done checks, ask the helper to question you first."
+  verify-and-harden:
+    story: "A confident draft shipped with a wrong number that a five-minute check would have caught."
+    exampleAsk: "Run done checks, sources, secrets, scope, and tone before you ship. Name one way this could be wrong."
+    watchOut: "Log failures as loop stops and harden the wall or tools the same hour."
+  capstone-lab:
+    story: "Reading the modules did not change Monday habits until one timed run on real work."
+    exampleAsk: "Pick one finishable workflow, configure the loop, run once with a timer, and write a look-back."
+    watchOut: "Cut scope until one artifact fits under ninety minutes."

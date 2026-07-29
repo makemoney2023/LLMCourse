@@ -1,10 +1,22 @@
 id: eng
 label: Engineering
 modules:
+  mental-model:
+    story: "Your team treats every debugging chat like a search box, then wonders why pull request notes keep contradicting the test logs."
+    exampleAsk: "Help me name each part of this bugfix thread: the goal, the standing rules, what context we have, which tools are allowed, and how we will check the result."
+    watchOut: "If you cannot point to where a code fix belongs, you are guessing — not steering."
   deep-research:
     story: "You're scoping an API change. Last time, the chat invented endpoint names that didn't exist."
     exampleAsk: "Do deep research on the official docs, then write a BRIEF.md that only lists endpoints you can link to."
     watchOut: "Code comments are not sources unless you cite the file path they came from."
+  system-instructions:
+    story: "Quiet old deploy rules keep shaping every reply while people debug the chat prompt instead."
+    exampleAsk: "Draft about twelve short standing rules for this repo: who the helper serves, what it always and never does, when to ask a human, and what is out of bounds."
+    watchOut: "Point to BRIEF.md for facts. Do not paste whole log dumps onto the wall."
+  standing-playbooks:
+    story: "A mega-prompt gets pasted into every pull request review and fills the desk with steps nobody runs before merge."
+    exampleAsk: "Sort each guideline into standing rules or a recipe card. Write one card for code review with trigger phrases, steps, and done checks."
+    watchOut: "If a line is only for one workflow like hotfix deploys, keep it off the wall."
   tools-and-mcp:
     story: "Out of habit, agent mode still has both the terminal and production deploy turned on."
     exampleAsk: "Allow the helper to read files, search the repo, and run tests. Never let it deploy to production or force-push."
@@ -13,10 +25,26 @@ modules:
     story: "A bugfix needs the real error from the log, not a guess."
     exampleAsk: "Attach the failing log excerpt, and ask for a fix that points to the exact files it touches."
     watchOut: "Don't paste a huge log dump. Compact it to ten bullets first."
+  conversation-and-compaction:
+    story: "A long debugging thread reused stale test output after the fix had already moved to a different module."
+    exampleAsk: "Write a handoff note with the goal, done checks, sources, and things to avoid so a fresh chat can continue the bugfix."
+    watchOut: "Start a fresh chat when the root cause shifts or the same wrong file keeps getting blamed."
+  memory-systems:
+    story: "A wrong API note from months ago keeps showing up in every new scoping chat."
+    exampleAsk: "Sort each fact into chat-only, binder note, or project memory. Date anything that may change like endpoint contracts."
+    watchOut: "Never store secrets in chat memory. Prefer binder notes you can audit."
+  delegation:
+    story: "Two helpers edited the same pull request description and nobody knew which test rules were current."
+    exampleAsk: "Write a short specialist brief for the review helper with goal, allowed tools, done checks, output owner, and merge owner."
+    watchOut: "Shared truth needs one home. Shared edits need one owner."
   human-craft:
     story: "A ticket says 'make it better,' with no acceptance criteria."
-    exampleAsk: "Scope the PR to one module. It's done when tests are green and the diff is under 200 lines."
+    exampleAsk: "Scope the pull request to one module. It is done when tests are green and the diff is under 200 lines."
     watchOut: "On risky refactors, ask the helper to stop after planning so you can review before it touches any code."
+  verify-and-harden:
+    story: "A confident code fix almost merged with a failing test that a five-minute check would have caught."
+    exampleAsk: "Run done checks, sources, secrets, scope, and style before you merge. Name one way this change could be wrong."
+    watchOut: "Log failures as loop stops and tighten the rules or tools the same hour."
   capstone-lab:
     story: "You want to improve how you draft code review comments using the full loop."
     exampleAsk: "Set up a research pack and a recipe card for review comments, then verify each draft against the style guide."

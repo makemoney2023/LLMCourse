@@ -1,0 +1,29 @@
+id: module-mental-model
+title: "Rewrite a messy ask"
+subtitle: "Module 1 practice"
+starterPrompt: |
+  Messy ask: "Hey! Write a blog about our API, use this whole 80-page PDF,
+  always use Oxford commas, never mention Competitor X, make it funny but
+  serious, and also research trends. Thanks!!!"
+
+  Rewrite into one clear goal with three done-when checks.
+  Say what belongs on the desk and what to leave off.
+constraints:
+  - "One job only"
+  - "Three done-when checks"
+  - "Names what stays off the desk"
+modelAnswer: |
+  Goal: Write an 800-word developer blog post explaining our REST API auth
+  flow for new integrators.
+
+  Done when:
+  1. Every endpoint name matches the public docs (SOURCES.md row 1).
+  2. Tone is professional with one light humor line max.
+  3. Competitor X is not named.
+
+  On the desk: BRIEF.md, auth section excerpt, wall rules for Oxford commas.
+  Off the desk: full 80-page PDF; trend research (separate research pass).
+rubric:
+  - "One clear goal"
+  - "Three done checks"
+  - "Says what to leave off the desk"

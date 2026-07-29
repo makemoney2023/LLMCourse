@@ -1,10 +1,22 @@
 id: sales
 label: Sales
 modules:
+  mental-model:
+    story: "Your team treats every clinic outreach chat like a search box, then wonders why follow-up notes keep missing key account details."
+    exampleAsk: "Help me name each part of this call prep thread: the goal, the standing rules, what context we have, which tools are allowed, and how we will check the result."
+    watchOut: "If you cannot point to where a sales fix belongs, you are guessing — not steering."
   deep-research:
     story: "You're prepping for a first call with a clinic. Last quarter, guessing at pricing from a chat answer cost you the deal."
     exampleAsk: "Research Acme Clinic outreach and write it up as BRIEF.md. Answer three narrow questions, and include no medical claims."
     watchOut: "Don't invent competitor prices. Put a real link in SOURCES.md instead."
+  system-instructions:
+    story: "Quiet old sample kit rules keep shaping every reply while people debug the chat prompt instead."
+    exampleAsk: "Draft about twelve short standing rules for clinic outreach: who we write for, what we always and never say, when to ask a human, and what is out of bounds."
+    watchOut: "Point to BRIEF.md for facts. Do not paste whole CRM notes onto the wall."
+  standing-playbooks:
+    story: "A mega-prompt gets pasted into every clinic call prep and fills the desk with steps nobody uses on a live call."
+    exampleAsk: "Sort each guideline into standing rules or a recipe card. Write one card for first-call prep with trigger phrases, steps, and done checks."
+    watchOut: "If a line is only for sample kit follow-ups, keep it off the wall."
   tools-and-mcp:
     story: "You want the helper to look up the account in your CRM and draft a reply — not to hit send."
     exampleAsk: "Draft a follow-up using the account note, but don't send the email yourself."
@@ -13,10 +25,26 @@ modules:
     story: "A prospect asks how long refunds take on a sample kit."
     exampleAsk: "Answer using the sample policy row in SOURCES.md, and quote the exact line."
     watchOut: "If SOURCES.md doesn't cover it, say you'll check and get back to them — don't guess."
+  conversation-and-compaction:
+    story: "A long clinic thread reused stale pricing notes after the conversation had already moved to a sample kit request."
+    exampleAsk: "Write a handoff note with the goal, done checks, sources, and things to avoid so a fresh chat can continue call prep."
+    watchOut: "Start a fresh chat when the deal stage shifts or the same wrong claim keeps coming back."
+  memory-systems:
+    story: "A wrong pricing note from months ago keeps showing up in every new clinic outreach chat."
+    exampleAsk: "Sort each fact into chat-only, binder note, or product memory. Date anything that may change like sample kit terms."
+    watchOut: "Never store prospect contact details in chat memory. Prefer binder notes you can audit."
+  delegation:
+    story: "Two helpers edited the same follow-up email and nobody knew which clinic facts were current."
+    exampleAsk: "Write a short specialist brief for call prep with goal, allowed tools, done checks, output owner, and merge owner."
+    watchOut: "Shared truth needs one home. Shared edits need one owner."
   human-craft:
-    story: "Your account executive (AE) asks for something 'punchy,' with no audience and no way to know when it's done."
+    story: "Your account executive asks for something 'punchy,' with no audience and no way to know when it is done."
     exampleAsk: "Write a one-page sheet for a first sales call with a clinic owner. Keep it to five bullet points, plus one clear next step for the reader to take."
-    watchOut: "If the ask has no audience or no way to check it's done, ask the helper to question you first before it drafts anything."
+    watchOut: "If the ask has no audience or no way to check it is done, ask the helper to question you first before it drafts anything."
+  verify-and-harden:
+    story: "A confident outreach draft almost went out with a medical claim that a five-minute check would have caught."
+    exampleAsk: "Run done checks, sources, scope, and tone before you send. Name one way this follow-up could be wrong."
+    watchOut: "Log failures as loop stops and tighten the rules or tools the same hour."
   capstone-lab:
     story: "You want to improve your weekly prospect research notes."
     exampleAsk: "Run the full loop once on this workflow: build your research pack, set your rules, use a recipe card, pick your tools, then verify the result."

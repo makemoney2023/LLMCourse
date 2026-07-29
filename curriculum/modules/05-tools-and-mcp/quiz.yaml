@@ -1,70 +1,72 @@
 moduleId: tools-and-mcp
 questions:
   - id: q1
-    prompt: "What are tools, in plain words?"
+    prompt: What are tools, in plain words?
     options:
       - id: a
-        label: "Apps the helper is allowed to open"
+        label: Apps the helper is allowed to open
       - id: b
-        label: "Wall rules only"
+        label: Wall rules only
       - id: c
-        label: "Unlimited memory"
+        label: Unlimited memory
       - id: d
-        label: "Quiz scores"
+        label: Quiz scores
     correctOptionId: a
-    explanation: "Tools extend the loop beyond words."
-
+    explanation: Tools extend the loop beyond words.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [tool]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - tool
   - id: q2
-    prompt: "What is MCP like?"
+    prompt: What is MCP like?
     options:
       - id: a
-        label: "A shared app menu for helpers"
+        label: A kind of desk chair
       - id: b
-        label: "A kind of desk chair"
+        label: A shared app menu for helpers
       - id: c
-        label: "A brand of paper"
+        label: A brand of paper
       - id: d
-        label: "A password"
-    correctOptionId: a
-    explanation: "MCP standardizes how apps plug into helpers."
-
+        label: A password
+    correctOptionId: b
+    explanation: MCP standardizes how apps plug into helpers.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [mcp]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - mcp
   - id: q3
-    prompt: "Why keep the tool list small?"
+    prompt: Why keep the tool list small?
     options:
       - id: a
-        label: "Too many apps confuse picks and crowd the desk"
+        label: Helpers hate all tools
       - id: b
-        label: "Helpers hate all tools"
+        label: Tools never return results
       - id: c
-        label: "Tools never return results"
+        label: Too many apps confuse picks and crowd the desk
       - id: d
-        label: "Small lists ban research"
-    correctOptionId: a
-    explanation: "Less, clearer tools improve choices."
-
+        label: Small lists ban research
+    correctOptionId: c
+    explanation: Less, clearer tools improve choices.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [allow-list, observation]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - allow-list
+        - observation
   - id: q4
-    prompt: "When do research crawl tools belong?"
+    prompt: When do research crawl tools belong?
     options:
       - id: a
-        label: "Mostly when refreshing a research pack"
+        label: In every one-line rewrite
       - id: b
-        label: "In every one-line rewrite"
+        label: Never
       - id: c
-        label: "Never"
+        label: Only after delete tools
       - id: d
-        label: "Only after delete tools"
-    correctOptionId: a
-    explanation: "Separate research mode from build mode."
-
+        label: Mostly when refreshing a research pack
+    correctOptionId: d
+    explanation: Separate research mode from build mode.
     remediation:
-      lessonHeading: "Big ideas"
-      glossaryIds: [firecrawl, allow-list]
+      lessonHeading: Big ideas
+      glossaryIds:
+        - firecrawl
+        - allow-list

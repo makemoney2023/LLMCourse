@@ -25,7 +25,7 @@ The home page (`/`) is for buyers evaluating the course; learners start at the M
 
 1. Pick a **role track** (Ops / Sales / Eng / Marketing) so examples match your job.
 2. Download **BRIEF.md** and **SOURCES.md** templates from Resources.
-3. Work modules in order. Each module has short steps (orient → ideas → apply), then practice, then quiz. Later modules stay locked until you finish the quiz.
+3. Work modules in order. Each module has short steps (orient → ideas → apply), then practice, then quiz. Score 75% or higher to complete a module; later modules stay locked until you pass.
 4. After each workshop session, try the **static sandbox** (compare your draft to a model answer).
 5. Finish with the **capstone** and skim the gallery for scoped examples.
 

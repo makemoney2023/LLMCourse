@@ -66,11 +66,13 @@ export function markQuizScore(
   moduleId: string,
   score: number,
 ): CourseProgress {
+  const previous = progress.quizScores[moduleId];
+  const best = previous == null ? score : Math.max(previous, score);
   return {
     ...progress,
     quizScores: {
       ...progress.quizScores,
-      [moduleId]: score,
+      [moduleId]: best,
     },
   };
 }
