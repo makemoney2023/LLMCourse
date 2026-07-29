@@ -48,22 +48,49 @@ export default function ResourcesPage() {
 
       <section className="space-y-3">
         <h2 className="font-heading text-2xl">Try-it sandboxes</h2>
+        <h3 className="font-heading text-lg text-muted-foreground">
+          Module practice
+        </h3>
         <ul className="space-y-2">
-          {sandboxes.map((s) => (
-            <li key={s.id}>
-              <Link
-                href={`/try/${s.id}`}
-                className="text-primary underline underline-offset-2"
-              >
-                {s.title}
-              </Link>
-              {s.subtitle ? (
-                <span className="ml-2 text-sm text-muted-foreground">
-                  {s.subtitle}
-                </span>
-              ) : null}
-            </li>
-          ))}
+          {sandboxes
+            .filter((s) => s.id.startsWith("module-"))
+            .map((s) => (
+              <li key={s.id}>
+                <Link
+                  href={`/try/${s.id}`}
+                  className="text-primary underline underline-offset-2"
+                >
+                  {s.title}
+                </Link>
+                {s.subtitle ? (
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    {s.subtitle}
+                  </span>
+                ) : null}
+              </li>
+            ))}
+        </ul>
+        <h3 className="font-heading text-lg text-muted-foreground">
+          Workshop practice
+        </h3>
+        <ul className="space-y-2">
+          {sandboxes
+            .filter((s) => s.id.startsWith("session-"))
+            .map((s) => (
+              <li key={s.id}>
+                <Link
+                  href={`/try/${s.id}`}
+                  className="text-primary underline underline-offset-2"
+                >
+                  {s.title}
+                </Link>
+                {s.subtitle ? (
+                  <span className="ml-2 text-sm text-muted-foreground">
+                    {s.subtitle}
+                  </span>
+                ) : null}
+              </li>
+            ))}
         </ul>
       </section>
 

@@ -1,4 +1,7 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { expect, type Page, test } from "@playwright/test";
+import { parse as parseYaml } from "yaml";
 
 async function completeLessonSteps(page: Page) {
   for (let i = 0; i < 3; i++) {
@@ -23,14 +26,27 @@ async function completeAllExercises(page: Page) {
   ).toBeVisible({ timeout: 10_000 });
 }
 
-async function submitQuiz(page: Page) {
-  const radios = page.locator('input[type="radio"]');
-  await expect(radios.first()).toBeVisible();
-  const names = await radios.evaluateAll((nodes) => [
-    ...new Set(nodes.map((n) => (n as HTMLInputElement).name)),
-  ]);
-  for (const name of names) {
-    await page.locator(`input[type="radio"][name="${name}"]`).first().check();
+function loadCorrectAnswers(moduleDir: string): Record<string, string> {
+  const raw = readFileSync(
+    join(process.cwd(), "curriculum", "modules", moduleDir, "quiz.yaml"),
+    "utf8",
+  );
+  const quiz = parseYaml(raw) as {
+    questions: { id: string; correctOptionId: string }[];
+  };
+  return Object.fromEntries(
+    quiz.questions.map((q) => [q.id, q.correctOptionId]),
+  );
+}
+
+async function submitQuizWithAnswers(
+  page: Page,
+  answers: Record<string, string>,
+) {
+  for (const [questionId, optionId] of Object.entries(answers)) {
+    await page
+      .locator(`input[type="radio"][name="${questionId}"][value="${optionId}"]`)
+      .check();
   }
   await page.getByRole("button", { name: "Submit quiz" }).click();
 }
@@ -48,8 +64,10 @@ test("home marketing CTAs and learner entry", async ({ page }) => {
   await expect(page.locator("#rollout")).toBeVisible();
   await page.getByRole("link", { name: /^Contact$/i }).first().click();
   await expect(page.locator("#contact")).toBeVisible();
+  // Without NEXT_PUBLIC_CONTACT_EMAIL baked into the build, the contact CTA
+  // renders as a disabled button with a setup hint instead of a mailto link.
   await expect(
-    page.getByRole("link", { name: /Email us about a rollout/i }),
+    page.getByText(/Email us about a rollout/i).first(),
   ).toBeVisible();
   await page.getByRole("link", { name: /Preview the course/i }).first().click();
   await expect(
@@ -71,6 +89,12 @@ test("module → steps → practice path", async ({ page }) => {
 
   await page.getByRole("button", { name: "Reveal answer key" }).first().click();
   await expect(page.getByText("Answer key").first()).toBeVisible();
+
+  // Deep-link back to an earlier, already-unlocked step via #step-* hash.
+  // Navigate away first: Continue links always arrive from another page.
+  await page.goto("/modules");
+  await page.goto("/modules/mental-model#step-orient");
+  await expect(page.getByRole("heading", { name: "Get oriented" })).toBeVisible();
 });
 
 test("glossary page lists terms and hash targets", async ({ page }) => {
@@ -133,7 +157,7 @@ test("workshops index links to slide deck and modules", async ({ page }) => {
   ).toBeVisible();
 });
 
-test("quiz stays locked until steps and exercises; then unlocks next module", async ({
+test("quiz gates on steps and exercises; passing completes the module", async ({
   page,
 }) => {
   await page.goto("/modules/mental-model");
@@ -154,9 +178,26 @@ test("quiz stays locked until steps and exercises; then unlocks next module", as
   await expect(
     page.getByRole("heading", { name: "Check for understanding" }),
   ).toBeVisible();
+  await expect(page.getByText(/Need 75% to complete/i)).toBeVisible();
   await expect(page.getByRole("button", { name: "Submit quiz" })).toBeVisible();
 
-  await submitQuiz(page);
+  const answers = loadCorrectAnswers("01-mental-model");
+
+  // Failing attempt: answer "a" everywhere. Correct ids are distributed
+  // across a–d, so this scores below the 75% pass threshold.
+  const allA = Object.fromEntries(
+    Object.keys(answers).map((questionId) => [questionId, "a"]),
+  );
+  await submitQuizWithAnswers(page, allA);
+  await expect(page.getByText(/need 75% to complete/i).first()).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /View certificate/i }),
+  ).toHaveCount(0);
+
+  // Passing retry with the real answer key.
+  await page.getByRole("button", { name: "Retry" }).click();
+  await submitQuizWithAnswers(page, answers);
+  await expect(page.getByText(/module complete/i).first()).toBeVisible();
   await expect(
     page.getByRole("link", { name: /View certificate/i }),
   ).toBeVisible();
@@ -174,18 +215,26 @@ test("quiz stays locked until steps and exercises; then unlocks next module", as
   await expect(
     page.getByRole("heading", { level: 1, name: "Deep research", exact: true }),
   ).toBeVisible();
-  await expect(page.getByText(/This module is locked/i)).toHaveCount(0);
+  await expect(page.getByText(/Jumping ahead/i)).toHaveCount(0);
   await expect(
     page.getByRole("button", { name: "Mark step done" }).first(),
   ).toBeVisible();
 });
 
-test("module 2 stays locked until module 1 quiz is done", async ({ page }) => {
+test("jumping ahead shows the recommended-path banner", async ({ page }) => {
   await page.goto("/modules/deep-research");
-  await expect(page.getByText(/This module is locked/i)).toBeVisible();
   await expect(
-    page
-      .getByRole("article")
-      .getByText(/Finish Module 1: Mental model first/i),
+    page.getByRole("heading", { level: 1, name: "Deep research", exact: true }),
+  ).toBeVisible();
+  await expect(page.getByText(/Jumping ahead/i)).toBeVisible();
+  await expect(
+    page.getByText(/Recommended after Module 1: Mental model/i),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Back to recommended path/i }),
+  ).toBeVisible();
+  // The module is still fully usable while jumping ahead.
+  await expect(
+    page.getByRole("button", { name: "Mark step done" }).first(),
   ).toBeVisible();
 });

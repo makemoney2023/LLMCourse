@@ -28,6 +28,8 @@ import {
 
 type ProgressContextValue = {
   progress: CourseProgress;
+  /** True once progress has been loaded from localStorage on the client. */
+  hydrated: boolean;
   percent: number;
   completeModule: (moduleId: string) => void;
   completeStep: (moduleId: string, stepId: string) => void;
@@ -115,6 +117,7 @@ export function ProgressProvider({
   const value = useMemo(
     () => ({
       progress,
+      hydrated,
       percent: progressPercent(progress, totalModules),
       completeModule,
       completeStep,
@@ -129,6 +132,7 @@ export function ProgressProvider({
     }),
     [
       progress,
+      hydrated,
       totalModules,
       completeModule,
       completeStep,

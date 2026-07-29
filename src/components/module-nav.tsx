@@ -67,9 +67,7 @@ export function ModuleNav({
                       {mod.title}
                     </span>
                     <span className="block text-xs text-muted-foreground">
-                      {reason
-                        ? reason
-                        : `${mod.durationMinutes} min · Workshop ${mod.workshopSession}`}
+                      {mod.durationMinutes} min · Workshop {mod.workshopSession}
                     </span>
                   </span>
                 </Link>

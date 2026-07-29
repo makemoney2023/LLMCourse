@@ -63,7 +63,7 @@ export function ModuleLearnerFlow({
   next: ModuleMeta | null;
   sandboxId: string;
 }) {
-  const { progress, completeStep } = useProgress();
+  const { progress, hydrated, completeStep } = useProgress();
   const exerciseIds = exercises.map((e) => e.id);
   const practiceUnlocked = isPracticeUnlocked(progress, meta);
   const quizUnlocked = isQuizUnlocked(progress, meta, exerciseIds);
@@ -87,33 +87,30 @@ export function ModuleLearnerFlow({
     return QUIZ_STEP_ID;
   }, [meta.steps, doneSteps, practiceDone, moduleDone]);
 
-  const canFocusStep = useMemo(() => {
-    return (stepId: string) => {
-      if (stepId === PRACTICE_STEP_ID) return practiceUnlocked;
-      if (stepId === QUIZ_STEP_ID) return quizUnlocked;
-      return isStepUnlocked(progress, meta, stepId);
-    };
-  }, [practiceUnlocked, quizUnlocked, progress, meta]);
+  const canFocusStep = (stepId: string) => {
+    if (stepId === PRACTICE_STEP_ID) return practiceUnlocked;
+    if (stepId === QUIZ_STEP_ID) return quizUnlocked;
+    return isStepUnlocked(progress, meta, stepId);
+  };
+  // Ref keeps the focus effect below from re-running on every progress change,
+  // which would stomp a manually selected step.
+  const canFocusStepRef = useRef(canFocusStep);
+  canFocusStepRef.current = canFocusStep;
 
-  // Honor Continue deep-links once the target step is unlocked; then follow progress.
+  // Wait for stored progress, then honor a Continue deep-link once;
+  // afterwards follow progress as steps get completed.
   useEffect(() => {
+    if (!hydrated) return;
     if (!appliedHashRef.current) {
-      const fromHash = parseStepHash(
-        typeof window !== "undefined" ? window.location.hash : "",
-      );
-      if (fromHash) {
-        if (canFocusStep(fromHash)) {
-          setFocusStep(fromHash);
-          appliedHashRef.current = true;
-          return;
-        }
-        setFocusStep(defaultFocus);
+      appliedHashRef.current = true;
+      const fromHash = parseStepHash(window.location.hash);
+      if (fromHash && canFocusStepRef.current(fromHash)) {
+        setFocusStep(fromHash);
         return;
       }
-      appliedHashRef.current = true;
     }
     setFocusStep(defaultFocus);
-  }, [defaultFocus, canFocusStep]);
+  }, [hydrated, defaultFocus]);
 
   const activeStep = focusStep ?? defaultFocus;
 

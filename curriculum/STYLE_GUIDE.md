@@ -66,7 +66,7 @@ steps:
       - "Tips"
 ```
 
-Learners mark each step done in order. Practice (exercises) then quiz unlock next. Scoring 75% or higher on the quiz completes the module and unlocks the next one. Best score is kept across retries; option order is shuffled per question.
+Learners mark each step done in order. Practice (exercises) then quiz unlock next. Scoring 75% or higher on the quiz completes the module. Best score is kept across retries; option order is shuffled per question. Modules themselves are soft-open — a "recommended after Module N" banner shows when learners jump ahead.
 
 ## Worked demos (optional per module)
 

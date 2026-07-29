@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { useProgress } from "@/components/progress-provider";
 import type { ModuleMeta } from "@/lib/curriculum/types";
 import { unlockReason } from "@/lib/progress/access";
-import { cn } from "@/lib/utils";
 
 export function ModuleList({
   modules,
@@ -64,7 +63,7 @@ export function ModuleList({
                   {mod.title}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  {reason ?? mod.subtitle}
+                  {mod.subtitle}
                 </p>
               </div>
               {variant === "list" ? (
