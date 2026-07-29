@@ -27,14 +27,39 @@ export default function ResourcesPage() {
 
       <section className="space-y-3">
         <h2 className="font-heading text-2xl">Keep it fresh</h2>
+        <ul className="space-y-2 text-sm text-muted-foreground">
+          <li>
+            <Link
+              href="/review"
+              className="text-primary underline underline-offset-2"
+            >
+              Review what you learned
+            </Link>{" "}
+            — a quick mixed quiz drawn from the modules you have completed.
+          </li>
+          <li>
+            <Link
+              href="/flashcards"
+              className="text-primary underline underline-offset-2"
+            >
+              Glossary flashcards
+            </Link>{" "}
+            — flip cards for every term; missed cards come back around.
+          </li>
+        </ul>
+      </section>
+
+      <section className="space-y-3">
+        <h2 className="font-heading text-2xl">Build your context pack</h2>
         <p className="text-sm text-muted-foreground">
           <Link
-            href="/review"
+            href="/capstone"
             className="text-primary underline underline-offset-2"
           >
-            Review what you learned
+            Capstone pack builder
           </Link>{" "}
-          — a quick mixed quiz drawn from the modules you have completed.
+          — draft BRIEF, SOURCES, and HANDOFF in the browser, then download
+          the finished files.
         </p>
       </section>
 

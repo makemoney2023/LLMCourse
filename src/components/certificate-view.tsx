@@ -1,13 +1,27 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
 import {
   computeCheckpoints,
   moduleCertificateUnlocked,
 } from "@/lib/progress/checkpoints";
+
+const NAME_STORAGE_KEY = "llm-course-learner-name";
+
+function linkedInAddUrl(certTitle: string): string {
+  const now = new Date();
+  const params = new URLSearchParams({
+    startTask: "CERTIFICATION_NAME",
+    name: certTitle,
+    organizationName: "LLM Leverage Course",
+    issueYear: String(now.getFullYear()),
+    issueMonth: String(now.getMonth() + 1),
+  });
+  return `https://www.linkedin.com/profile/add?${params.toString()}`;
+}
 
 const CHECKPOINT_TITLES: Record<string, string> = {
   "session-1-pack": "Session 1 — Research pack habit",
@@ -27,6 +41,19 @@ export function CertificateView({
 }) {
   const { progress, claimCert } = useProgress();
   const [name, setName] = useState("");
+
+  useEffect(() => {
+    setName(window.localStorage.getItem(NAME_STORAGE_KEY) ?? "");
+  }, []);
+
+  const handleNameChange = (next: string) => {
+    setName(next);
+    if (next.trim() === "") {
+      window.localStorage.removeItem(NAME_STORAGE_KEY);
+    } else {
+      window.localStorage.setItem(NAME_STORAGE_KEY, next);
+    }
+  };
 
   const { title, unlocked, claimId } = useMemo(() => {
     if (id.startsWith("module-")) {
@@ -61,16 +88,27 @@ export function CertificateView({
           <Link href="/resources">Resources</Link>
         </Button>
         {unlocked ? (
-          <Button
-            type="button"
-            size="sm"
-            onClick={() => {
-              claimCert(claimId);
-              window.print();
-            }}
-          >
-            Print / Save PDF
-          </Button>
+          <>
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => {
+                claimCert(claimId);
+                window.print();
+              }}
+            >
+              Print / Save PDF
+            </Button>
+            <Button asChild variant="outline" size="sm">
+              <a
+                href={linkedInAddUrl(title)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Add to LinkedIn
+              </a>
+            </Button>
+          </>
         ) : null}
       </div>
 
@@ -91,7 +129,7 @@ export function CertificateView({
               <input
                 className="mt-1 w-full rounded-md border border-border bg-background px-3 py-2"
                 value={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => handleNameChange(e.target.value)}
                 placeholder="Your name"
               />
             </label>

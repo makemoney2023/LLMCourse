@@ -24,6 +24,8 @@ const PAGES = [
   { href: "/glossary", label: "Glossary" },
   { href: "/workshops", label: "Workshops" },
   { href: "/review", label: "Review what you learned" },
+  { href: "/flashcards", label: "Glossary flashcards" },
+  { href: "/capstone", label: "Capstone pack builder" },
   { href: "/certificates", label: "Certificates" },
 ];
 

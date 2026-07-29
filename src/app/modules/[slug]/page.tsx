@@ -170,6 +170,13 @@ export default async function ModulePage({ params }: Props) {
               </a>
               {" · "}
               <Link
+                href="/capstone"
+                className="text-primary underline underline-offset-2"
+              >
+                Build your pack in the browser
+              </Link>
+              {" · "}
+              <Link
                 href="/gallery"
                 className="text-primary underline underline-offset-2"
               >

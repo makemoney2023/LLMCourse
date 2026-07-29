@@ -156,6 +156,9 @@ export function ModuleLearnerFlow({
   const lessonDone = activeChunk
     ? doneSteps.includes(activeChunk.stepId)
     : false;
+  const activeStepTitle =
+    activeChunk?.title ??
+    (activeStep === PRACTICE_STEP_ID ? "Practice" : "Quiz");
 
   function goNextFromLesson(stepId: string) {
     completeStep(meta.id, stepId);
@@ -167,6 +170,10 @@ export function ModuleLearnerFlow({
 
   return (
     <div className="flex min-h-[70vh] flex-col gap-4">
+      {/* Announce step changes to screen readers; the visual swap is silent otherwise. */}
+      <div role="status" aria-live="polite" className="sr-only">
+        Now on: {activeStepTitle}
+      </div>
       {jumpAheadReason ? (
         <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-secondary/40 px-4 py-3">
           <div>

@@ -35,7 +35,12 @@ Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates fr
 - **Role prompt**: a one-time banner on module pages asks for the learner's role (dismissal stored under `llm-course-role-prompt-dismissed`).
 - **Recap card** appears at the quiz step once a module is complete, listing objectives and linking to the next module and `/review`.
 - **Review mode** (`/review`) samples up to 10 quiz questions from completed modules (`src/lib/quiz/review-sample.ts`); it never changes progress.
+- **Flashcards** (`/flashcards`) turn every glossary term into a flip card; missed cards re-queue until known (`src/lib/flashcards/deck.ts`).
+- **Capstone pack builder** (`/capstone`) seeds BRIEF/SOURCES/HANDOFF from `public/templates/`, saves drafts under `llm-course-capstone-<file>`, and downloads finished markdown files.
 - **Scratchpad**: per-module notes saved under `llm-course-notes-<moduleId>`, kept outside the progress store so Reset never deletes them.
+- **Returning-learner banner** on the marketing home shows percent complete and a Continue button when the device has progress.
+- **Certificates** remember the learner's name (`llm-course-learner-name`) and offer an "Add to LinkedIn" profile link alongside Print/PDF.
+- **Accessibility**: step changes announce via an `aria-live` region; global `prefers-reduced-motion` support in `globals.css`.
 
 ## Glossary terms
 

@@ -219,6 +219,40 @@ test("quiz gates on steps and exercises; passing completes the module", async ({
   await expect(
     page.getByRole("button", { name: "Mark step done" }).first(),
   ).toBeVisible();
+
+  // The marketing home now greets returning learners with progress.
+  await page.goto("/");
+  await expect(page.getByText(/Welcome back/i)).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Continue where you left off/i }),
+  ).toBeVisible();
+});
+
+test("flashcards flip and track known cards", async ({ page }) => {
+  await page.goto("/flashcards");
+  await expect(page.getByRole("heading", { name: "Flashcards" })).toBeVisible();
+  await expect(page.getByText(/0 of \d+ known/)).toBeVisible();
+  await page.getByText(/Term — select to reveal/i).click();
+  await expect(page.getByText(/^Definition$/)).toBeVisible();
+  await page.getByRole("button", { name: "Got it" }).click();
+  await expect(page.getByText(/1 of \d+ known/)).toBeVisible();
+});
+
+test("capstone builder seeds templates and persists edits", async ({
+  page,
+}) => {
+  await page.goto("/capstone");
+  await expect(
+    page.getByRole("heading", { name: /Capstone pack builder/i }),
+  ).toBeVisible();
+  const brief = page.getByLabel("BRIEF.md contents");
+  await expect(brief).toHaveValue(/# Project brief/);
+  await brief.fill("# BRIEF\n\nMy capstone project.");
+  await page.goto("/resources");
+  await page.goto("/capstone");
+  await expect(page.getByLabel("BRIEF.md contents")).toHaveValue(
+    "# BRIEF\n\nMy capstone project.",
+  );
 });
 
 test("review page shows empty state before any module is complete", async ({

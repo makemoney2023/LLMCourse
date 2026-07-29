@@ -135,6 +135,16 @@
       radial-gradient(ellipse 60% 40% at 90% 0%, oklch(0.26 0.03 240 / 0.4), transparent),
       linear-gradient(180deg, oklch(0.19 0.02 240), oklch(0.17 0.02 238));
   }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
   html {
     @apply font-sans;
   }
