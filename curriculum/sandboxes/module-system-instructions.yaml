@@ -1,0 +1,24 @@
+id: module-system-instructions
+title: "Draft a short wall"
+subtitle: "Module 3 practice"
+starterPrompt: |
+  You finished a research pack for clinic outreach emails.
+  BRIEF.md says: plain tone, no medical claims, ask when pricing is missing.
+
+  Write 8–12 standing instructions (wall rules). Cover who, always/never,
+  when unclear, and out of bounds. Point to BRIEF.md and SOURCES.md for facts.
+constraints:
+  - "Under twelve short lines"
+  - "Points to BRIEF or SOURCES"
+  - "Has always/never and out of bounds"
+modelAnswer: |
+  You are a writing partner for clinic outreach emails.
+  Prefer facts from BRIEF.md and SOURCES.md. Ask if missing.
+  Always: plain language, respectful, short.
+  Never: invent prices, medical claims, or patient details.
+  When unclear: ask one clarifying question before drafting.
+  Out of bounds: legal advice, diagnosis language, sending email.
+rubric:
+  - "Mentions BRIEF or SOURCES"
+  - "Has always/never"
+  - "Stays short"

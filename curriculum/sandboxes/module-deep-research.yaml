@@ -1,0 +1,31 @@
+id: module-deep-research
+title: "Scope a research pack"
+subtitle: "Module 2 practice"
+starterPrompt: |
+  Project: write standing rules for a customer-support helper.
+
+  Write three narrow research questions. Then draft a BRIEF.md outline
+  (goal, users, must/must not, open questions) and three SOURCES.md rows
+  with placeholder URLs, dates, and why each link matters.
+constraints:
+  - "Exactly three narrow questions"
+  - "BRIEF outline has goal and limits"
+  - "SOURCES rows include URL, date, why"
+modelAnswer: |
+  Questions:
+  1. What does the official refund policy say about timing?
+  2. Which contact channels are approved for customers?
+  3. What claims must support never make?
+
+  BRIEF.md: Goal — grounded refund replies. Users — support agents.
+  Must — cite policy. Must not — invent phone numbers or medical claims.
+  Open — weekend hours.
+
+  SOURCES.md:
+  - https://example.com/refunds · 2026-07-21 · Official timing window
+  - https://example.com/contact · 2026-07-21 · Approved phone and email
+  - https://example.com/claims · 2026-07-10 · Forbidden claim list
+rubric:
+  - "Three narrow questions"
+  - "BRIEF has must/must not"
+  - "SOURCES rows have dates"

@@ -1,0 +1,28 @@
+id: module-conversation-and-compaction
+title: "Write a clean handoff"
+subtitle: "Module 7 practice"
+starterPrompt: |
+  Your chat mixed a refund FAQ with a later ask for a sales email.
+  Tool dumps fill half the thread. Goal for the FAQ is still valid.
+
+  Write a handoff note so a fresh chat can finish the FAQ only.
+  Then write one sentence saying whether the sales email should
+  continue here or restart separately.
+constraints:
+  - "Handoff has Goal, Done, Sources, Do not"
+  - "No raw tool logs"
+  - "Says continue or restart for the sales email"
+modelAnswer: |
+  Goal: five FAQ answers on refunds, each under 80 words.
+  Done: every claim cites SOURCES.md; no invented phone numbers.
+  Locked: plain tone; no medical claims.
+  Sources: BRIEF.md + SOURCES.md#refund.
+  Do not: legal advice; paste crawl dumps.
+  Open: weekend hours need ops OK.
+
+  Sales email: restart in a separate chat with its own handoff —
+  topic shifted.
+rubric:
+  - "FAQ handoff is complete"
+  - "Omits raw logs"
+  - "Restarts the sales email"

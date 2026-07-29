@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ContinueCourseButton } from "@/components/continue-course-button";
 import { ExerciseList } from "@/components/exercise-list";
 import type { GlossaryTermView } from "@/components/glossary-prose";
@@ -24,6 +24,7 @@ import {
   QUIZ_STEP_ID,
   unlockReason,
 } from "@/lib/progress/access";
+import { parseStepHash } from "@/lib/progress/step-hash";
 
 export type StepChunkView = {
   stepId: string;
@@ -75,6 +76,7 @@ export function ModuleLearnerFlow({
   const jumpAheadReason = unlockReason(progress, modules, meta.id);
 
   const [focusStep, setFocusStep] = useState<string | null>(null);
+  const appliedHashRef = useRef(false);
 
   const defaultFocus = useMemo(() => {
     for (const step of meta.steps) {
@@ -85,11 +87,33 @@ export function ModuleLearnerFlow({
     return QUIZ_STEP_ID;
   }, [meta.steps, doneSteps, practiceDone, moduleDone]);
 
-  // Keep focus on the first incomplete step as progress advances
-  // (e.g. last exercise checked → jump to quiz).
+  const canFocusStep = useMemo(() => {
+    return (stepId: string) => {
+      if (stepId === PRACTICE_STEP_ID) return practiceUnlocked;
+      if (stepId === QUIZ_STEP_ID) return quizUnlocked;
+      return isStepUnlocked(progress, meta, stepId);
+    };
+  }, [practiceUnlocked, quizUnlocked, progress, meta]);
+
+  // Honor Continue deep-links once the target step is unlocked; then follow progress.
   useEffect(() => {
+    if (!appliedHashRef.current) {
+      const fromHash = parseStepHash(
+        typeof window !== "undefined" ? window.location.hash : "",
+      );
+      if (fromHash) {
+        if (canFocusStep(fromHash)) {
+          setFocusStep(fromHash);
+          appliedHashRef.current = true;
+          return;
+        }
+        setFocusStep(defaultFocus);
+        return;
+      }
+      appliedHashRef.current = true;
+    }
     setFocusStep(defaultFocus);
-  }, [defaultFocus]);
+  }, [defaultFocus, canFocusStep]);
 
   const activeStep = focusStep ?? defaultFocus;
 

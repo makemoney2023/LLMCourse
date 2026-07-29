@@ -1,0 +1,23 @@
+id: module-human-craft
+title: "Turn a vague ask into a spec"
+subtitle: "Module 10 practice"
+starterPrompt: |
+  Stakeholder: "Make our onboarding email better ASAP."
+
+  Rewrite as a short spec with outcome, audience, limits, sources,
+  and done checks. Add one question the helper should ask before drafting.
+constraints:
+  - "Names audience and channel"
+  - "Has done checks"
+  - "Includes a clarifying question"
+modelAnswer: |
+  Outcome: rewrite welcome email for new clinic partners.
+  Audience: practice managers; channel: email; length ≤180 words.
+  Limits: no medical claims; no inventing SLAs.
+  Sources: BRIEF.md + SOURCES.md#onboarding.
+  Done: CTA to booking link; reading grade ~8; cites one source.
+  Ask first: What must the next step open — calendar or form?
+rubric:
+  - "Audience named"
+  - "Done checks present"
+  - "Asks a clarifying question"

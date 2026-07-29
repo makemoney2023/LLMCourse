@@ -1,0 +1,27 @@
+id: module-delegation
+title: "Draft a specialist contract"
+subtitle: "Module 9 practice"
+starterPrompt: |
+  Job: product launch one-pager.
+  You will use a researcher specialist and a writer specialist.
+
+  Write a short contract covering: canonical sources, allowed tools,
+  approval gate, return format, output owner, and merge owner.
+  Add one line that keeps personal scratch chats outside the shared space.
+constraints:
+  - "Names canonical sources"
+  - "Names merge owner"
+  - "Separates researcher and writer outputs"
+modelAnswer: |
+  Canonical sources: BRIEF.md (facts), SOURCES.md (proof with dates).
+  Researcher tools: read file, search — read-only. Never edit launch.md.
+  Writer tools: edit launch.md only after fact approval.
+  Approval: person approves ten cited bullets before drafting starts.
+  Return format: researcher → research-bullets.md (handoff template).
+  Output owner: Maya owns launch.md.
+  Merge owner: Maya merges bullets into the draft after verify.
+  Outside shared space: personal brainstorm chats and rejected intros.
+rubric:
+  - "Has canonical sources"
+  - "Has merge owner"
+  - "Keeps scratch work out"

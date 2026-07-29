@@ -56,12 +56,17 @@ export function SiteHeader() {
           </nav>
         </div>
         {showProgress ? (
-          <div className="flex items-center gap-3" aria-label="Course progress">
-            <Progress value={percent} className="h-1.5" />
-            <span className="w-12 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
-              {Math.round(percent)}%
-            </span>
-            <ResetProgressButton />
+          <div className="space-y-1.5" aria-label="Course progress">
+            <div className="flex items-center gap-3">
+              <Progress value={percent} className="h-1.5" />
+              <span className="w-12 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
+                {Math.round(percent)}%
+              </span>
+              <ResetProgressButton />
+            </div>
+            <p className="text-[11px] leading-4 text-muted-foreground">
+              Progress saves on this device only.
+            </p>
           </div>
         ) : null}
       </div>

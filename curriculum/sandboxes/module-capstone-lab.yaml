@@ -1,0 +1,24 @@
+id: module-capstone-lab
+title: "Scope a 60-minute capstone"
+subtitle: "Module 12 practice"
+starterPrompt: |
+  You want to improve "all customer email" with the full context loop.
+  That scope is too big.
+
+  Cut it to one finishable workflow under 60 minutes. Name the artifact,
+  the not-do line, and the one metric you will measure before vs after.
+constraints:
+  - "One artifact only"
+  - "Time box ≤ 60 minutes"
+  - "Names a before/after metric"
+modelAnswer: |
+  Workflow: refund request replies only (not all customer email).
+  Artifact: one grounded reply draft.
+  Time box: 60 minutes (25 configure, 25 run, 10 verify + look-back).
+  Not doing: welcome emails, sales follow-ups, or tool rebuilds.
+  Metric: minutes to first usable draft, plus errors caught in verify
+  vs last week's ungrounded draft.
+rubric:
+  - "Scope is one workflow"
+  - "Time box is clear"
+  - "Metric is measurable"

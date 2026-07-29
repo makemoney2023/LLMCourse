@@ -1,0 +1,27 @@
+id: module-retrieval-and-grounding
+title: "Cite then answer"
+subtitle: "Module 6 practice"
+starterPrompt: |
+  Question: "Can plan Basic export CSV this month?"
+
+  Attached binder notes:
+  BRIEF.md limits: "Basic plan: no CSV export. Pro plan: CSV included."
+  SOURCES.md row: pricing page, dated 2026-07-21.
+
+  Write the helper's ideal reply using cite-then-answer.
+  If a fact were missing, write the stop line you would use instead.
+constraints:
+  - "Quotes or points to the binder line"
+  - "Answers from that page only"
+  - "Includes a missing-source stop line"
+modelAnswer: |
+  Quote: "Basic plan: no CSV export. Pro plan: CSV included."
+  Answer: No. Basic cannot export CSV this month. Pro can.
+  Source: BRIEF.md limits; pricing page in SOURCES.md dated 2026-07-21.
+
+  If missing: "Not in the sources I have. Attach the pricing page or
+  update SOURCES.md — I will not guess."
+rubric:
+  - "Cites before answering"
+  - "Matches Basic vs Pro fact"
+  - "Has a stop line for missing sources"

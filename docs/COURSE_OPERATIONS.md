@@ -23,7 +23,7 @@ The marketing home (`/`) is the buyer-facing course overview. The learner hub st
 
 After editing templates, copy into `public/templates/` so downloads work.
 
-Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Module N+1 unlocks only after Module N is complete. Quiz options are shuffled with a deterministic seed per question so the correct choice is not always first.
+Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Quiz options are shuffled with a deterministic seed per question so the correct choice is not always first. The header notes that progress saves on this device only. Continue links use `#step-*` hashes; the module page focuses that step once it is unlocked.
 
 ## Glossary terms
 

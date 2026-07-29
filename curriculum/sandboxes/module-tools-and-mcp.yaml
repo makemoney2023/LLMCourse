@@ -1,0 +1,20 @@
+id: module-tools-and-mcp
+title: "Trim a tool allow list"
+subtitle: "Module 5 practice"
+starterPrompt: |
+  Workflow: draft a status note from a local project doc.
+  Current tools enabled: browse, deep crawl, send email, read file,
+  search repo, deploy, delete file, calendar, CRM write.
+  Propose a max-five allow list and a never-list.
+constraints:
+  - "Max five tools for the job"
+  - "Never-list includes send/delete/deploy"
+  - "Research crawl tools off for drafting"
+modelAnswer: |
+  Allow: read file, search repo, (optional) fetch one URL.
+  Never: send email, delete file, deploy, CRM write, deep crawl.
+  Why: drafting from a local doc does not need crawl or send.
+rubric:
+  - "Five or fewer allow tools"
+  - "Never-list blocks send or deploy"
+  - "Explains why crawl stays off"

@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
 import type { ModuleMeta } from "@/lib/curriculum/types";
 import { getContinueTarget } from "@/lib/progress/access";
+import { stepIdToHash } from "@/lib/progress/step-hash";
 
 export function ContinueCourseButton({
   modules,
@@ -30,15 +31,13 @@ export function ContinueCourseButton({
       </Button>
     );
   }
-  const hash =
-    target.stepId === "quiz"
-      ? "step-quiz"
-      : target.stepId === "practice"
-        ? "step-practice"
-        : `step-${target.stepId}`;
   return (
     <Button asChild className={className}>
-      <Link href={`/modules/${target.moduleSlug}#${hash}`}>{label}</Link>
+      <Link
+        href={`/modules/${target.moduleSlug}#${stepIdToHash(target.stepId)}`}
+      >
+        {label}
+      </Link>
     </Button>
   );
 }

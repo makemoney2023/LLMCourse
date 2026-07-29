@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { listModules } from "./load-curriculum";
-import { loadSandbox } from "./load-sandboxes";
+import { listSandboxes, loadSandbox } from "./load-sandboxes";
 import { sandboxIdForModule } from "./sandbox-for-module";
 
 describe("sandboxIdForModule", () => {
@@ -11,12 +11,22 @@ describe("sandboxIdForModule", () => {
     expect(loadSandbox("module-mental-model")).not.toBeNull();
   });
 
-  it("falls back to the workshop session sandbox", () => {
-    const tools = listModules().find((m) => m.slug === "tools-and-mcp");
-    expect(tools).toBeTruthy();
-    // Session 2 sandbox remains the default for modules without a module-* file
-    // unless a module-specific file exists.
-    const id = sandboxIdForModule(tools!);
-    expect(loadSandbox(id)).not.toBeNull();
+  it("resolves a loadable sandbox for every module", () => {
+    for (const mod of listModules()) {
+      const id = sandboxIdForModule(mod);
+      expect(loadSandbox(id), `${mod.slug} → ${id}`).not.toBeNull();
+    }
+  });
+
+  it("keeps session sandboxes available for workshops", () => {
+    const ids = listSandboxes().map((s) => s.id);
+    for (const session of [
+      "session-01",
+      "session-02",
+      "session-03",
+      "session-04",
+    ]) {
+      expect(ids).toContain(session);
+    }
   });
 });
