@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ContinueCourseButton } from "@/components/continue-course-button";
 import { ExerciseList } from "@/components/exercise-list";
+import { ModuleRecapCard } from "@/components/module-recap-card";
 import type { GlossaryTermView } from "@/components/glossary-prose";
 import { GlossaryProse } from "@/components/glossary-prose";
 import { MermaidDiagram } from "@/components/mermaid-diagram";
@@ -250,6 +251,7 @@ export function ModuleLearnerFlow({
 
         {activeStep === QUIZ_STEP_ID ? (
           <div id={`step-${QUIZ_STEP_ID}`} className="space-y-6">
+            {moduleDone ? <ModuleRecapCard meta={meta} next={next} /> : null}
             {quizUnlocked && quiz ? (
               <ModuleQuiz quiz={quiz} moduleSlug={meta.slug} />
             ) : (

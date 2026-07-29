@@ -26,6 +26,19 @@ export default function ResourcesPage() {
       <CheckpointBanner />
 
       <section className="space-y-3">
+        <h2 className="font-heading text-2xl">Keep it fresh</h2>
+        <p className="text-sm text-muted-foreground">
+          <Link
+            href="/review"
+            className="text-primary underline underline-offset-2"
+          >
+            Review what you learned
+          </Link>{" "}
+          — a quick mixed quiz drawn from the modules you have completed.
+        </p>
+      </section>
+
+      <section className="space-y-3">
         <h2 className="font-heading text-2xl">Download templates</h2>
         <ul className="space-y-2 text-sm">
           <li>

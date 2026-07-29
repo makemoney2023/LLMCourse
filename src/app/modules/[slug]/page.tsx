@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { GlossaryTermView } from "@/components/glossary-prose";
 import { ModuleLearnerFlow } from "@/components/module-learner-flow";
-import { ModuleNav } from "@/components/module-nav";
+import { MobileModuleNav, ModuleNav } from "@/components/module-nav";
 import { RoleExampleCallout } from "@/components/role-example-callout";
 import { RoleTrackPicker } from "@/components/role-track-picker";
+import { RoleTrackPrompt } from "@/components/role-track-prompt";
+import { ModuleScratchpad } from "@/components/module-scratchpad";
 import { Badge } from "@/components/ui/badge";
 import { loadGlossary } from "@/lib/curriculum/glossary";
 import { loadModuleDemo } from "@/lib/curriculum/load-demo";
@@ -102,6 +104,12 @@ export default async function ModulePage({ params }: Props) {
       />
       <article className="min-w-0 flex-1 space-y-10">
         <header className="space-y-3">
+          <MobileModuleNav
+            modules={modules}
+            currentSlug={slug}
+            exerciseIdsByModule={exerciseIdsByModule}
+          />
+          <RoleTrackPrompt />
           <div className="flex flex-wrap items-center gap-2">
             <Badge>Module {meta.order}</Badge>
             <Badge variant="secondary">Workshop {meta.workshopSession}</Badge>
@@ -200,6 +208,8 @@ export default async function ModulePage({ params }: Props) {
           next={next}
           sandboxId={sandboxId}
         />
+
+        <ModuleScratchpad moduleId={meta.id} />
       </article>
     </div>
   );

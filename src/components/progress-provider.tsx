@@ -41,6 +41,8 @@ type ProgressContextValue = {
   markSandboxCompared: (sandboxId: string) => void;
   claimCert: (claimId: string) => void;
   resetProgress: () => void;
+  /** Replace all progress with an imported backup. */
+  importProgress: (next: CourseProgress) => void;
 };
 
 const ProgressContext = createContext<ProgressContextValue | null>(null);
@@ -114,6 +116,10 @@ export function ProgressProvider({
     setProgress(emptyProgress());
   }, []);
 
+  const importProgress = useCallback((next: CourseProgress) => {
+    setProgress(next);
+  }, []);
+
   const value = useMemo(
     () => ({
       progress,
@@ -129,6 +135,7 @@ export function ProgressProvider({
       markSandboxCompared,
       claimCert,
       resetProgress,
+      importProgress,
     }),
     [
       progress,
@@ -144,6 +151,7 @@ export function ProgressProvider({
       markSandboxCompared,
       claimCert,
       resetProgress,
+      importProgress,
     ],
   );
 

@@ -4,7 +4,7 @@ Plain-language, tool-agnostic course on getting better AI answers via the **cont
 
 ## Surfaces
 
-- **Self-paced app** — Next.js modules with diagrams, exercises, quizzes, and local progress
+- **Self-paced app** — Next.js modules with diagrams, exercises, quizzes, review mode, command palette search, dark mode, and local progress (with export/import backup)
 - **Workshop series** — four in-class sessions that mirror the same curriculum (`curriculum/workshops/`)
 
 ## Quick start

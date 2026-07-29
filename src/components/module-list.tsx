@@ -41,7 +41,9 @@ export function ModuleList({
                     {variant === "grid" ? `Module ${mod.order}` : mod.order}
                   </Badge>
                   {done ? (
-                    <span className="text-xs text-emerald-800">Complete</span>
+                    <span className="text-xs text-emerald-800 dark:text-emerald-300">
+                      Complete
+                    </span>
                   ) : reason ? (
                     <span className="text-xs text-muted-foreground">
                       Jump ahead OK

@@ -25,6 +25,18 @@ After editing templates, copy into `public/templates/` so downloads work.
 
 Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Quiz options are shuffled with a deterministic seed per question so the correct choice is not always first. The header notes that progress saves on this device only. Continue links use `#step-*` hashes; the module page focuses that step once it is unlocked.
 
+### Learner-experience features
+
+- **Export / Import** buttons in the header download progress as `llm-leverage-progress.json` and restore it on another device. Imports are validated (`src/lib/progress/export.ts`) so a bad file never wipes progress.
+- **Command palette** (`⌘K` or the Search button) jumps to any module, page, or glossary term.
+- **Time remaining** shows in the header, summed from incomplete modules' `durationMinutes`.
+- **Dark mode** via `next-themes` (`.dark` tokens in `globals.css`); toggle in the header.
+- **Mobile module nav**: below the `lg` breakpoint the sidebar is replaced by an "All modules" sheet on module pages.
+- **Role prompt**: a one-time banner on module pages asks for the learner's role (dismissal stored under `llm-course-role-prompt-dismissed`).
+- **Recap card** appears at the quiz step once a module is complete, listing objectives and linking to the next module and `/review`.
+- **Review mode** (`/review`) samples up to 10 quiz questions from completed modules (`src/lib/quiz/review-sample.ts`); it never changes progress.
+- **Scratchpad**: per-module notes saved under `llm-course-notes-<moduleId>`, kept outside the progress store so Reset never deletes them.
+
 ## Glossary terms
 
 Canonical definitions live in `curriculum/glossary.yaml`.

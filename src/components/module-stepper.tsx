@@ -44,7 +44,7 @@ export function ModuleStepper({
                   className={cn(
                     "flex size-6 shrink-0 items-center justify-center rounded-full border text-[10px]",
                     item.status === "done" &&
-                      "border-emerald-700/40 bg-emerald-700/15 text-emerald-800",
+                      "border-emerald-700/40 bg-emerald-700/15 text-emerald-800 dark:border-emerald-300/40 dark:bg-emerald-300/15 dark:text-emerald-300",
                     item.status === "current" &&
                       "border-foreground/30 bg-background",
                     item.status === "available" && "border-border bg-background",

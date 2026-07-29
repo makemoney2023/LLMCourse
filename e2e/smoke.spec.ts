@@ -221,6 +221,27 @@ test("quiz gates on steps and exercises; passing completes the module", async ({
   ).toBeVisible();
 });
 
+test("review page shows empty state before any module is complete", async ({
+  page,
+}) => {
+  await page.goto("/review");
+  await expect(
+    page.getByRole("heading", { name: /Review what you learned/i }),
+  ).toBeVisible();
+  await expect(page.getByText(/Nothing to review yet/i)).toBeVisible();
+  await expect(page.getByRole("link", { name: /Go to modules/i })).toBeVisible();
+});
+
+test("command palette opens and navigates", async ({ page }) => {
+  await page.goto("/modules");
+  await page.getByRole("button", { name: /Search the course/i }).click();
+  const input = page.getByPlaceholder(/Search modules, terms, pages/i);
+  await expect(input).toBeVisible();
+  await input.fill("Deep research");
+  await page.getByRole("option", { name: /Deep research/i }).first().click();
+  await expect(page).toHaveURL(/\/modules\/deep-research/);
+});
+
 test("jumping ahead shows the recommended-path banner", async ({ page }) => {
   await page.goto("/modules/deep-research");
   await expect(

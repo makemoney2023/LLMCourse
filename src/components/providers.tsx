@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeProvider } from "next-themes";
 import { ProgressProvider } from "@/components/progress-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
@@ -11,8 +12,12 @@ export function Providers({
   totalModules: number;
 }) {
   return (
-    <TooltipProvider>
-      <ProgressProvider totalModules={totalModules}>{children}</ProgressProvider>
-    </TooltipProvider>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <TooltipProvider>
+        <ProgressProvider totalModules={totalModules}>
+          {children}
+        </ProgressProvider>
+      </TooltipProvider>
+    </ThemeProvider>
   );
 }

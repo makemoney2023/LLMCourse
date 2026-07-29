@@ -4,6 +4,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SkipLink } from "@/components/skip-link";
 import { Providers } from "@/components/providers";
 import { listModules } from "@/lib/curriculum/load-curriculum";
+import { loadGlossary } from "@/lib/curriculum/glossary";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -30,17 +31,37 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const totalModules = listModules().length;
+  const modules = listModules();
+  const glossary = loadGlossary();
+  const moduleDurations = modules.map((m) => ({
+    id: m.id,
+    durationMinutes: m.durationMinutes,
+  }));
+  const paletteModules = modules.map((m) => ({
+    slug: m.slug,
+    title: m.title,
+    order: m.order,
+  }));
+  const paletteTerms = glossary.terms.map((t) => ({
+    id: t.id,
+    term: t.term,
+    shortDefinition: t.shortDefinition,
+  }));
 
   return (
     <html
       lang="en"
       className={`${fraunces.variable} ${sourceSans.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col font-body text-foreground">
-        <Providers totalModules={totalModules}>
+        <Providers totalModules={modules.length}>
           <SkipLink />
-          <SiteHeader />
+          <SiteHeader
+            moduleDurations={moduleDurations}
+            paletteModules={paletteModules}
+            paletteTerms={paletteTerms}
+          />
           <main id="main-content" className="relative flex-1" tabIndex={-1}>
             {children}
           </main>

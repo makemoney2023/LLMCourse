@@ -237,7 +237,7 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
             "max-h-[40vh] overflow-y-auto rounded-2xl border p-4 text-sm",
             presenting
               ? "border-white/15 bg-black/30 text-white/85"
-              : "border-amber-700/20 bg-amber-50/80 text-foreground/90",
+              : "border-amber-700/20 bg-amber-50/80 text-foreground/90 dark:border-amber-300/20 dark:bg-amber-950/40",
           )}
           aria-label="Facilitator notes"
         >
