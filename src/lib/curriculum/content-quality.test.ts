@@ -69,9 +69,23 @@ describe("authored module content quality", () => {
       ).not.toContain("content for `");
       expect(content!.diagramSource).toContain("flowchart");
       expect(content!.quiz, `${meta.slug} quiz`).not.toBeNull();
-      expect(content!.quiz!.questions.length).toBeGreaterThanOrEqual(
-        Math.min(3, meta.quizCount),
-      );
+      // Banks must exceed the per-attempt sample of 5 so retries vary.
+      expect(
+        content!.quiz!.questions.length,
+        `${meta.slug} quiz bank too small`,
+      ).toBeGreaterThanOrEqual(8);
+      const questionIds = content!.quiz!.questions.map((q) => q.id);
+      expect(
+        new Set(questionIds).size,
+        `${meta.slug} duplicate question ids`,
+      ).toBe(questionIds.length);
+      for (const q of content!.quiz!.questions) {
+        expect(q.options.length, `${meta.slug} ${q.id} options`).toBe(4);
+        expect(
+          q.options.some((o) => o.id === q.correctOptionId),
+          `${meta.slug} ${q.id} correctOptionId not in options`,
+        ).toBe(true);
+      }
       for (const objective of meta.objectives) {
         expect(typeof objective, `${meta.slug} objective`).toBe("string");
       }

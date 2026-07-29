@@ -23,7 +23,7 @@ toolMapping:
     surfaces: Chat threads, agent transcripts, tool result messages
   - abstraction: Compaction
     surfaces: Auto-summaries, "summarize and continue", manual handoff notes
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

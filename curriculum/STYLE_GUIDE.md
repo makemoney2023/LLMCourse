@@ -66,7 +66,7 @@ steps:
       - "Tips"
 ```
 
-Learners mark each step done in order. Practice (exercises) then quiz unlock next. Scoring 75% or higher on the quiz completes the module. Best score is kept across retries; option order is shuffled per question. Modules themselves are soft-open — a "recommended after Module N" banner shows when learners jump ahead.
+Learners mark each step done in order. Practice (exercises) then quiz unlock next. Scoring 75% or higher on the quiz completes the module. Best score is kept across retries; option order is shuffled per question. Each quiz keeps a bank of at least 8 questions and shows a sample of 5 per attempt, so retries see different questions. Modules themselves are soft-open — a "recommended after Module N" banner shows when learners jump ahead.
 
 ## Worked demos (optional per module)
 

@@ -1,8 +1,16 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { answerCard, createDeck, deckProgress, type Deck } from "@/lib/flashcards/deck";
+import { useLocalStorageState } from "@/hooks/use-local-storage-state";
+import { answerCard, deckProgress, type Deck } from "@/lib/flashcards/deck";
+import {
+  orderByPriority,
+  recordAnswer,
+  type CardStats,
+} from "@/lib/flashcards/stats";
+
+const STATS_STORAGE_KEY = "llm-course-flashcard-stats";
 
 export type FlashcardTerm = {
   id: string;
@@ -16,13 +24,30 @@ export function FlashcardDeck({ terms }: { terms: FlashcardTerm[] }) {
     () => Object.fromEntries(terms.map((t) => [t.id, t])),
     [terms],
   );
+  const [stats, setStats, statsLoaded] = useLocalStorageState<CardStats>(
+    STATS_STORAGE_KEY,
+    {},
+  );
   const [deck, setDeck] = useState<Deck | null>(null);
   const [flipped, setFlipped] = useState(false);
+  // Order the deck once per session; answering updates stats but must not
+  // reshuffle the cards mid-run.
+  const dealtRef = useRef(false);
+  const statsRef = useRef(stats);
+  statsRef.current = stats;
 
-  // Seed after mount so the server-rendered page stays deterministic.
   useEffect(() => {
-    setDeck(createDeck(Object.keys(termsById), String(Date.now())));
-  }, [termsById]);
+    if (!statsLoaded || dealtRef.current) return;
+    dealtRef.current = true;
+    setDeck({
+      queue: orderByPriority(
+        Object.keys(termsById),
+        statsRef.current,
+        String(Date.now()),
+      ),
+      learned: [],
+    });
+  }, [statsLoaded, termsById]);
 
   if (!deck) {
     return <p className="text-sm text-muted-foreground">Shuffling cards…</p>;
@@ -31,13 +56,24 @@ export function FlashcardDeck({ terms }: { terms: FlashcardTerm[] }) {
   const { learned, total } = deckProgress(deck);
   const currentId = deck.queue[0];
   const current = currentId ? termsById[currentId] : undefined;
+  const strugglingCount = Object.values(stats).filter(
+    (s) => s.misses > 0 && s.streak < 2,
+  ).length;
 
   const restart = () => {
-    setDeck(createDeck(Object.keys(termsById), String(Date.now())));
+    setDeck({
+      queue: orderByPriority(
+        Object.keys(termsById),
+        statsRef.current,
+        String(Date.now()),
+      ),
+      learned: [],
+    });
     setFlipped(false);
   };
 
   const answer = (gotIt: boolean) => {
+    if (currentId) setStats(recordAnswer(stats, currentId, gotIt));
     setDeck((prev) => (prev ? answerCard(prev, gotIt) : prev));
     setFlipped(false);
   };
@@ -49,7 +85,8 @@ export function FlashcardDeck({ terms }: { terms: FlashcardTerm[] }) {
           Deck complete — {total} terms reviewed
         </p>
         <p className="text-sm text-muted-foreground">
-          Come back tomorrow for another pass. Spacing beats cramming.
+          Come back tomorrow for another pass. Spacing beats cramming — and
+          next time, the cards you missed will come up first.
         </p>
         <Button type="button" onClick={restart}>
           Shuffle and go again
@@ -62,6 +99,9 @@ export function FlashcardDeck({ terms }: { terms: FlashcardTerm[] }) {
     <div className="space-y-4">
       <p className="text-sm text-muted-foreground" aria-live="polite">
         {learned} of {total} known · {deck.queue.length} to go
+        {strugglingCount > 0
+          ? ` · ${strugglingCount} previously missed up first`
+          : ""}
       </p>
       <button
         type="button"

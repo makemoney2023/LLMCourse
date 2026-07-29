@@ -54,3 +54,93 @@ questions:
       glossaryIds:
         - capstone
         - done-checks
+  - id: q4
+    prompt: Why the 90-minute time box?
+    options:
+      - id: a
+        label: Longer sessions are not allowed
+      - id: b
+        label: Timers make it feel like a game
+      - id: c
+        label: The desk expires after 90 minutes
+      - id: d
+        label: The constraint forces real scope — if it does not fit, cut scope, not corners
+    correctOptionId: d
+    explanation: A hard limit is the fastest way to find your true minimum viable workflow.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - capstone
+  - id: q5
+    prompt: What is the not-do line for?
+    options:
+      - id: a
+        label: Stopping scope creep mid-run — you drew the edges before you started
+      - id: b
+        label: Decoration on the brief
+      - id: c
+        label: Banning all tools
+      - id: d
+        label: Skipping the quiz
+    correctOptionId: a
+    explanation: Mid-run, everything looks worth adding. The line you drew calmly beats the urge you feel hurriedly.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - capstone
+        - user-intent
+  - id: q6
+    prompt: During the run, the helper invents a number. What is the loop-correct response?
+    options:
+      - id: a
+        label: Keep it if it sounds plausible
+      - id: b
+        label: Stop and ask it to trace the number to SOURCES.md or drop the claim
+      - id: c
+        label: Restart your computer
+      - id: d
+        label: Lower your pass bar for this run
+    correctOptionId: b
+    explanation: No source, no claim — even under time pressure. That habit is half of what the capstone teaches.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - grounding
+        - sources-md
+  - id: q7
+    prompt: Your metric shows the run was slower than the old way. What did you still win?
+    options:
+      - id: a
+        label: Nothing — the capstone failed
+      - id: b
+        label: A slower way to do your job
+      - id: c
+        label: A reusable pack plus a diagnosis — the second run is where the speed shows up
+      - id: d
+        label: An excuse to stop trying
+    correctOptionId: c
+    explanation: First runs pay the setup cost. The pack, the look-back, and the fixed loop stops are the real
+      output.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - capstone
+  - id: q8
+    prompt: What makes your eight-piece pack usable by a teammate?
+    options:
+      - id: a
+        label: Attaching your entire chat history
+      - id: b
+        label: Making every file as long as possible
+      - id: c
+        label: Naming a famous tool in each file
+      - id: d
+        label: The handoff and ownership map work without any of your private chat context
+    correctOptionId: d
+    explanation: The test of a pack is a stranger. If it only makes sense with you in the room, it is notes,
+      not a pack.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - shared-workspace
+        - capstone

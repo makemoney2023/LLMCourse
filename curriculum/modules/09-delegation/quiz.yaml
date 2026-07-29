@@ -107,3 +107,39 @@ questions:
       glossaryIds:
         - shared-workspace
         - merge-owner
+  - id: q7
+    prompt: Why does each subagent get its own desk?
+    options:
+      - id: a
+        label: Desks are free, so why not
+      - id: b
+        label: It slows them down for safety
+      - id: c
+        label: A focused desk per specialist beats one desk crowded with everything
+      - id: d
+        label: It hides your wall rules from them
+    correctOptionId: c
+    explanation: Each specialist sees only what their job needs. One shared, overloaded context degrades everyone.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - subagent
+        - context-window
+  - id: q8
+    prompt: What does the merge owner actually do?
+    options:
+      - id: a
+        label: Combines the pieces, resolves conflicts, and owns the final result
+      - id: b
+        label: Personally redoes all the work
+      - id: c
+        label: Approves everyone's time off
+      - id: d
+        label: Deletes drafts that took too long
+    correctOptionId: a
+    explanation: Parallel work needs one pair of hands at the end. The merge owner is accountable for what ships.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - merge-owner
+        - delegation

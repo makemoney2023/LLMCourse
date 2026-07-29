@@ -23,7 +23,7 @@ The marketing home (`/`) is the buyer-facing course overview. The learner hub st
 
 After editing templates, copy into `public/templates/` so downloads work.
 
-Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Quiz options are shuffled with a deterministic seed per question so the correct choice is not always first. The header notes that progress saves on this device only. Continue links use `#step-*` hashes; the module page focuses that step once it is unlocked.
+Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Each quiz keeps a bank of **8+ questions** and samples **5 per attempt** (`src/lib/quiz/sample-questions.ts`), so retries see different questions; options are shuffled with a deterministic seed per question so the correct choice is not always first. The header notes that progress saves on this device only. Continue links use `#step-*` hashes; the module page focuses that step once it is unlocked.
 
 ### Learner-experience features
 
@@ -35,7 +35,9 @@ Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates fr
 - **Role prompt**: a one-time banner on module pages asks for the learner's role (dismissal stored under `llm-course-role-prompt-dismissed`).
 - **Recap card** appears at the quiz step once a module is complete, listing objectives and linking to the next module and `/review`.
 - **Review mode** (`/review`) samples up to 10 quiz questions from completed modules (`src/lib/quiz/review-sample.ts`); it never changes progress.
-- **Flashcards** (`/flashcards`) turn every glossary term into a flip card; missed cards re-queue until known (`src/lib/flashcards/deck.ts`).
+- **Flashcards** (`/flashcards`) turn every glossary term into a flip card; missed cards re-queue until known (`src/lib/flashcards/deck.ts`). Per-card stats persist under `llm-course-flashcard-stats`, so previously missed cards surface first on the next visit (`src/lib/flashcards/stats.ts`).
+- **Feedback link**: every module step shows a "Tell us about this section" mailto prefilled with the module and step (`src/lib/feedback/feedback-mailto.ts`); it requires `NEXT_PUBLIC_CONTACT_EMAIL` and hides otherwise.
+- **Print**: printing a module page outputs the full lesson (all steps) with app chrome hidden; certificates keep their own print styles.
 - **Capstone pack builder** (`/capstone`) mirrors Module 12 end to end: a scope form (Exercise 1), all eight pack files seeded from `public/templates/` (BRIEF, SOURCES, WALL_RULES, PLAYBOOK, TOOLS, OWNERSHIP, HANDOFF, VERIFY), a readiness checklist from the exercise answer key, a LOOKBACK.md editor for after the run, and a "share your story" section that copies a gallery-format snippet. Drafts save under `llm-course-capstone-*` keys.
 - **Scratchpad**: per-module notes saved under `llm-course-notes-<moduleId>`, kept outside the progress store so Reset never deletes them.
 - **Returning-learner banner** on the marketing home shows percent complete and a Continue button when the device has progress.
@@ -69,6 +71,10 @@ Learner progress is stored in `localStorage` under key `llm-course-progress-v2` 
 ## Contact email
 
 Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel project settings) to enable the home-page rollout form. Without it, the contact CTA stays disabled and shows a setup hint. Do not hardcode a personal inbox in the source.
+
+## SEO and sharing
+
+`src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
 ## Deploy
 

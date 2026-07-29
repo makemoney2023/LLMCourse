@@ -210,3 +210,19 @@
     @apply mb-4 border-l-2 border-primary/40 pl-4 text-muted-foreground;
   }
 }
+
+/* Clean, ink-friendly output when a learner prints a lesson. */
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+  }
+  .prose-course :where(a) {
+    color: #000;
+    text-decoration: underline;
+  }
+  .prose-course :where(pre) {
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+}

@@ -5,6 +5,7 @@ import { SkipLink } from "@/components/skip-link";
 import { Providers } from "@/components/providers";
 import { listModules } from "@/lib/curriculum/load-curriculum";
 import { loadGlossary } from "@/lib/curriculum/glossary";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -17,13 +18,27 @@ const sourceSans = Source_Sans_3({
   subsets: ["latin"],
 });
 
+const description =
+  "A tool-agnostic course on the context loop: system instructions, tools, memory, and verification for better LLM output.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
   title: {
     default: "LLM Leverage Course",
     template: "%s · LLM Leverage",
   },
-  description:
-    "A tool-agnostic course on the context loop: system instructions, tools, memory, and verification for better LLM output.",
+  description,
+  openGraph: {
+    type: "website",
+    siteName: "LLM Leverage Course",
+    title: "LLM Leverage Course",
+    description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "LLM Leverage Course",
+    description,
+  },
 };
 
 export default function RootLayout({

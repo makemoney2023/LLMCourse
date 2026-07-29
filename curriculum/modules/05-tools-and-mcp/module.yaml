@@ -23,7 +23,7 @@ toolMapping:
     surfaces: Built-in browse/code/search tools, function calling, plugins
   - abstraction: MCP / connectors
     surfaces: MCP servers, ChatGPT connectors, Claude integrations, IDE tool bridges
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

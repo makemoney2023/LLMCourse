@@ -23,7 +23,7 @@ toolMapping:
     surfaces: Tests, review UIs, output checklists, eval prompts
   - abstraction: Security
     surfaces: Permission modes, secret redaction, MCP trust prompts, sandboxing
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

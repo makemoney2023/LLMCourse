@@ -22,7 +22,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: Human craft
     surfaces: Prompt specs, plan modes, approval dialogs, review-before-apply flows
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

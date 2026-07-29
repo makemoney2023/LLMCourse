@@ -199,24 +199,42 @@ export default async function ModulePage({ params }: Props) {
           </ul>
         </details>
 
-        <ModuleLearnerFlow
-          modules={modules}
-          meta={meta}
-          stepChunks={stepChunks}
-          demo={demo}
-          loopPlacement={meta.loopPlacement}
-          skipConsequence={meta.skipConsequence}
-          diagramSource={content.diagramSource}
-          exercises={exercises}
-          quiz={quiz}
-          termsById={termsById}
-          exerciseIdsByModule={exerciseIdsByModule}
-          prev={prev}
-          next={next}
-          sandboxId={sandboxId}
-        />
+        <div className="print:hidden">
+          <ModuleLearnerFlow
+            modules={modules}
+            meta={meta}
+            stepChunks={stepChunks}
+            demo={demo}
+            loopPlacement={meta.loopPlacement}
+            skipConsequence={meta.skipConsequence}
+            diagramSource={content.diagramSource}
+            exercises={exercises}
+            quiz={quiz}
+            termsById={termsById}
+            exerciseIdsByModule={exerciseIdsByModule}
+            prev={prev}
+            next={next}
+            sandboxId={sandboxId}
+          />
 
-        <ModuleScratchpad moduleId={meta.id} />
+          <ModuleScratchpad moduleId={meta.id} />
+        </div>
+
+        {/* Print-only: the whole lesson in one flow, since the interactive
+            view renders a single step at a time. */}
+        <section className="hidden print:block">
+          {stepChunks.map((chunk) => (
+            <div key={chunk.stepId} className="mb-8">
+              <h2 className="font-heading text-2xl tracking-tight">
+                {chunk.title}
+              </h2>
+              <div
+                className="prose-course mt-3"
+                dangerouslySetInnerHTML={{ __html: chunk.html }}
+              />
+            </div>
+          ))}
+        </section>
       </article>
     </div>
   );

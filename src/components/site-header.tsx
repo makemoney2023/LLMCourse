@@ -42,7 +42,7 @@ export function SiteHeader({
   const minutesLeft = remainingMinutes(progress, moduleDurations);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-border/70 bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-md print:hidden">
       <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6">
         <div className="flex items-center justify-between gap-2">
           <Link href="/" className="group min-w-0">

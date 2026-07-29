@@ -74,3 +74,75 @@ questions:
       glossaryIds:
         - observation
         - agent
+  - id: q5
+    prompt: What happens as the desk fills up?
+    options:
+      - id: a
+        label: The model gets faster
+      - id: b
+        label: Quality can drop — old clutter competes with your goal for attention
+      - id: c
+        label: Rules automatically delete themselves
+      - id: d
+        label: Nothing changes at any size
+    correctOptionId: b
+    explanation: Everything on the desk competes for attention. A crowded desk makes the goal harder to see.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - context-window
+        - desk-space
+  - id: q6
+    prompt: Which of these is a one-shot chat, not an agent loop?
+    options:
+      - id: a
+        label: The helper searches, reads results, then searches again
+      - id: b
+        label: The helper edits files and then runs the tests
+      - id: c
+        label: The helper checks a calendar tool and confirms a slot
+      - id: d
+        label: You ask one question and get one answer, no tools involved
+    correctOptionId: d
+    explanation: Text in, text out — with no tool calls and no observations — is simple chat, not a loop.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - agent
+        - context-loop
+  - id: q7
+    prompt: What is user intent in the loop?
+    options:
+      - id: a
+        label: The goal you state, which steers every later step
+      - id: b
+        label: The model's training data
+      - id: c
+        label: The menu of available tools
+      - id: d
+        label: A score the model gives your question
+    correctOptionId: a
+    explanation: Intent is the target. Every rule, tool call, and check exists to serve the goal you stated.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - user-intent
+  - id: q8
+    prompt: Why does the loop go in circles instead of a straight line?
+    options:
+      - id: a
+        label: Models are too slow for straight lines
+      - id: b
+        label: Circles use more tokens on purpose
+      - id: c
+        label: Each tool result changes what the model should do next
+      - id: d
+        label: It only circles when something breaks
+    correctOptionId: c
+    explanation: Observations feed back into thinking. The model reads what came back and adjusts — that
+      feedback is the whole point of the loop.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - observation
+        - context-loop

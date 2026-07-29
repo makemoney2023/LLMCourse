@@ -39,13 +39,31 @@ function loadCorrectAnswers(moduleDir: string): Record<string, string> {
   );
 }
 
+// Quizzes sample 5 questions from a larger bank, so answer only the
+// questions actually rendered. `wrong: true` picks an incorrect option for
+// every question, which fails deterministically regardless of the sample.
 async function submitQuizWithAnswers(
   page: Page,
   answers: Record<string, string>,
+  { wrong = false }: { wrong?: boolean } = {},
 ) {
-  for (const [questionId, optionId] of Object.entries(answers)) {
+  const questionIds = await page
+    .locator('input[type="radio"]')
+    .evaluateAll((els) =>
+      Array.from(new Set(els.map((el) => (el as HTMLInputElement).name))),
+    );
+  for (const questionId of questionIds) {
+    const correct = answers[questionId];
+    if (!correct) throw new Error(`No answer key entry for ${questionId}`);
+    let value = correct;
+    if (wrong) {
+      const options = await page
+        .locator(`input[type="radio"][name="${questionId}"]`)
+        .evaluateAll((els) => els.map((el) => (el as HTMLInputElement).value));
+      value = options.find((option) => option !== correct)!;
+    }
     await page
-      .locator(`input[type="radio"][name="${questionId}"][value="${optionId}"]`)
+      .locator(`input[type="radio"][name="${questionId}"][value="${value}"]`)
       .check();
   }
   await page.getByRole("button", { name: "Submit quiz" }).click();
@@ -183,12 +201,8 @@ test("quiz gates on steps and exercises; passing completes the module", async ({
 
   const answers = loadCorrectAnswers("01-mental-model");
 
-  // Failing attempt: answer "a" everywhere. Correct ids are distributed
-  // across a–d, so this scores below the 75% pass threshold.
-  const allA = Object.fromEntries(
-    Object.keys(answers).map((questionId) => [questionId, "a"]),
-  );
-  await submitQuizWithAnswers(page, allA);
+  // Failing attempt: pick a wrong option for every rendered question.
+  await submitQuizWithAnswers(page, answers, { wrong: true });
   await expect(page.getByText(/need 75% to complete/i).first()).toBeVisible();
   await expect(
     page.getByRole("link", { name: /View certificate/i }),

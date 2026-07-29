@@ -11,6 +11,7 @@ import { MermaidDiagram } from "@/components/mermaid-diagram";
 import { ModuleCompleteStatus } from "@/components/module-complete-button";
 import { ModuleQuiz } from "@/components/module-quiz";
 import { ModuleStepper, type StepperItem } from "@/components/module-stepper";
+import { StepFeedbackLink } from "@/components/step-feedback-link";
 import { WorkedDemo } from "@/components/worked-demo";
 import { useProgress } from "@/components/progress-provider";
 import { Button } from "@/components/ui/button";
@@ -301,6 +302,11 @@ export function ModuleLearnerFlow({
             </nav>
           </div>
         ) : null}
+
+        <StepFeedbackLink
+          context={`Module ${meta.order}: ${meta.title}`}
+          step={activeStepTitle}
+        />
       </div>
 
       {/* Sticky primary action — always findable */}

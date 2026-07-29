@@ -70,3 +70,72 @@ questions:
       glossaryIds:
         - human-craft
         - context-window
+  - id: q5
+    prompt: What stays a human job, even with a strong helper?
+    options:
+      - id: a
+        label: Typing speed
+      - id: b
+        label: Formatting tables
+      - id: c
+        label: Fixing spelling
+      - id: d
+        label: Taste and judgment — deciding what good looks like and what ships
+    correctOptionId: d
+    explanation: Helpers produce options. Choosing the right one, and owning the choice, is craft.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - human-craft
+  - id: q6
+    prompt: Your draft came back generic. Best next move?
+    options:
+      - id: a
+        label: Add limits and an example of "good" to the spec, then rerun
+      - id: b
+        label: Accept it — generic is fine
+      - id: c
+        label: Ask for the same thing but longer
+      - id: d
+        label: Switch to a different tool and hope
+    correctOptionId: a
+    explanation: Generic output usually means a generic ask. Sharpen the spec before blaming the model.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prompt
+        - human-craft
+  - id: q7
+    prompt: Why show an example of "good" instead of describing it?
+    options:
+      - id: a
+        label: Examples are just decoration
+      - id: b
+        label: It fills the desk usefully
+      - id: c
+        label: Helpers match patterns — one strong example beats three adjectives
+      - id: d
+        label: It replaces the need for done checks
+    correctOptionId: c
+    explanation: '"Punchy but professional" is a vibe. A pasted example is a target.'
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prompt
+  - id: q8
+    prompt: The helper asks you a clarifying question. You should…
+    options:
+      - id: a
+        label: Ignore it and repeat the original ask
+      - id: b
+        label: Answer it — every answered question sharpens the result
+      - id: c
+        label: Restart the chat immediately
+      - id: d
+        label: Tell it to stop asking questions
+    correctOptionId: b
+    explanation: Questions are the helper closing the gap between your head and the page. Answer them.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - reverse-prompting

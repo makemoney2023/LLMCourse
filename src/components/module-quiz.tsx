@@ -7,6 +7,10 @@ import { Button } from "@/components/ui/button";
 import { useProgress } from "@/components/progress-provider";
 import type { Quiz } from "@/lib/curriculum/types";
 import { QUIZ_PASS_PERCENT, didQuizPass } from "@/lib/progress/access";
+import {
+  QUIZ_SAMPLE_SIZE,
+  sampleQuizQuestions,
+} from "@/lib/quiz/sample-questions";
 import { shuffleQuestionOptions } from "@/lib/quiz/shuffle-options";
 import { slugifyHeading } from "@/lib/markdown-ids";
 import { cn } from "@/lib/utils";
@@ -21,10 +25,15 @@ export function ModuleQuiz({
   const { progress, setQuizScore } = useProgress();
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  // New seed per attempt so retries draw a different sample from the bank.
+  const [attemptSeed, setAttemptSeed] = useState(() => String(Date.now()));
 
   const displayQuestions = useMemo(
-    () => quiz.questions.map((question) => shuffleQuestionOptions(question)),
-    [quiz.questions],
+    () =>
+      sampleQuizQuestions(quiz.questions, QUIZ_SAMPLE_SIZE, attemptSeed).map(
+        (question) => shuffleQuestionOptions(question),
+      ),
+    [quiz.questions, attemptSeed],
   );
 
   const score = useMemo(() => {
@@ -156,7 +165,7 @@ export function ModuleQuiz({
         {!submitted ? (
           <Button
             type="button"
-            disabled={Object.keys(answers).length < quiz.questions.length}
+            disabled={Object.keys(answers).length < displayQuestions.length}
             onClick={() => {
               const correct = displayQuestions.filter(
                 (q) => answers[q.id] === q.correctOptionId,
@@ -184,6 +193,7 @@ export function ModuleQuiz({
               onClick={() => {
                 setAnswers({});
                 setSubmitted(false);
+                setAttemptSeed(String(Date.now()));
               }}
             >
               Retry

@@ -72,3 +72,75 @@ questions:
       glossaryIds:
         - grounding
         - hallucination
+  - id: q5
+    prompt: In the desk-and-binder picture, what is the binder?
+    options:
+      - id: a
+        label: The context window itself
+      - id: b
+        label: The model's training data
+      - id: c
+        label: Stored files you can pull pages from when a task needs them
+      - id: d
+        label: The list of wall rules
+    correctOptionId: c
+    explanation: The binder holds what you saved. Retrieval moves one page at a time onto the desk.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - binder
+        - retrieval
+  - id: q6
+    prompt: What does "no source, no claim" mean in practice?
+    options:
+      - id: a
+        label: Every number or fact should trace to a page that is actually on the desk
+      - id: b
+        label: Never make any claims at all
+      - id: c
+        label: Sources are only needed for big claims
+      - id: d
+        label: Only lawyers need sources
+    correctOptionId: a
+    explanation: If the page is not on the desk, the "fact" is a guess wearing a suit.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - citation
+        - grounding
+  - id: q7
+    prompt: Why not paste a whole document when one section will do?
+    options:
+      - id: a
+        label: Whole documents are usually copyrighted
+      - id: b
+        label: Pasting takes too long
+      - id: c
+        label: The helper refuses long text
+      - id: d
+        label: Extra pages crowd the desk and can bury the part that matters
+    correctOptionId: d
+    explanation: Retrieval is aiming, not dumping. The right section beats the whole binder.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - retrieval
+        - desk-space
+  - id: q8
+    prompt: How do you check that an answer is actually grounded?
+    options:
+      - id: a
+        label: It sounds confident
+      - id: b
+        label: Ask where each fact came from, then follow the pointer
+      - id: c
+        label: It is long and detailed
+      - id: d
+        label: It used a tool at some point
+    correctOptionId: b
+    explanation: Grounded answers can show their work. If the pointer leads nowhere, treat the claim as a guess.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - grounding
+        - verify

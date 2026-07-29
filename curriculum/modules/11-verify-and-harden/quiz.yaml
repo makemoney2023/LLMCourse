@@ -71,3 +71,75 @@ questions:
       glossaryIds:
         - playbook
         - standing-instructions
+  - id: q5
+    prompt: What makes a done check actually useful?
+    options:
+      - id: a
+        label: You can test it — "all links open" beats "make it good"
+      - id: b
+        label: It sounds inspiring
+      - id: c
+        label: Only you know what it means
+      - id: d
+        label: It is very long
+    correctOptionId: a
+    explanation: A check you cannot test is a wish. Testable checks let anyone verify, including the helper.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - done-checks
+        - verify
+  - id: q6
+    prompt: What is a smart spot-check strategy for a long output?
+    options:
+      - id: a
+        label: Read nothing and trust the tone
+      - id: b
+        label: Read everything twice, every time
+      - id: c
+        label: Verify the riskiest claims first — numbers, names, and anything you will act on
+      - id: d
+        label: Check only the introduction
+    correctOptionId: c
+    explanation: You cannot check everything, so check where being wrong costs the most.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
+        - citation
+  - id: q7
+    prompt: What is hardening, in plain words?
+    options:
+      - id: a
+        label: Making the text harder to read
+      - id: b
+        label: Turning each miss into a default — a rule, check, or playbook step that catches it next time
+      - id: c
+        label: Locking your computer at night
+      - id: d
+        label: Refusing all software updates
+    correctOptionId: b
+    explanation: Verification finds the miss once. Hardening makes sure the same miss cannot sneak by twice.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
+        - playbook
+  - id: q8
+    prompt: The helper says "all tests pass" but shows no output. What do you do?
+    options:
+      - id: a
+        label: Ship it — it sounds done
+      - id: b
+        label: Say thanks and move on
+      - id: c
+        label: Ask again more nicely
+      - id: d
+        label: Ask for the actual output — evidence before claims
+    correctOptionId: d
+    explanation: Claims without evidence are the softest spot in the loop. Make "show the output" a reflex.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - verify
+        - hallucination

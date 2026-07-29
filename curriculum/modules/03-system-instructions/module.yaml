@@ -21,7 +21,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: System / custom instructions
     surfaces: ChatGPT custom instructions, Claude project instructions, Cursor rules/system layers, Copilot instructions
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

@@ -70,3 +70,75 @@ questions:
       glossaryIds:
         - firecrawl
         - allow-list
+  - id: q5
+    prompt: What belongs on the never-without-a-person list?
+    options:
+      - id: a
+        label: Reading a wiki page
+      - id: b
+        label: Sending email, deleting data, or spending money
+      - id: c
+        label: Searching support tickets
+      - id: d
+        label: Formatting a table
+    correctOptionId: b
+    explanation: Reads are cheap to undo; sends, deletes, and payments are not. Those need a human gate.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - never-list
+        - approval
+  - id: q6
+    prompt: What is a tool result, once it comes back?
+    options:
+      - id: a
+        label: A new wall rule
+      - id: b
+        label: A permanent memory
+      - id: c
+        label: Invisible to the model
+      - id: d
+        label: An observation that lands on the desk and uses space
+    correctOptionId: d
+    explanation: Results are loaded into the chat like anything else. Big results crowd the desk.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - observation
+        - desk-space
+  - id: q7
+    prompt: The helper keeps picking the wrong tool. What is the first fix?
+    options:
+      - id: a
+        label: Trim the tool list and make names and descriptions clearer
+      - id: b
+        label: Add more tools so it has options
+      - id: c
+        label: Ban all tools permanently
+      - id: d
+        label: Restart your computer
+    correctOptionId: a
+    explanation: Tool picks follow the menu. A short menu with clear labels fixes most wrong picks.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - allow-list
+        - tool
+  - id: q8
+    prompt: Why review what a tool can do before turning it on?
+    options:
+      - id: a
+        label: Reviews are a polite formality
+      - id: b
+        label: All published tools are safe by default
+      - id: c
+        label: A tool acts on your behalf — its powers become your risks
+      - id: d
+        label: The desk requires a review stamp
+    correctOptionId: c
+    explanation: Whatever the tool can touch, the helper can now touch. Know that before you plug it in.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - mcp
+        - allow-list

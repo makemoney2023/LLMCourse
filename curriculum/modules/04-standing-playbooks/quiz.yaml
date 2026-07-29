@@ -71,3 +71,74 @@ questions:
       glossaryIds:
         - playbook
         - done-checks
+  - id: q5
+    prompt: What are done-when checks for in a playbook?
+    options:
+      - id: a
+        label: Decoration at the bottom of the card
+      - id: b
+        label: Making the card look thorough
+      - id: c
+        label: Banning extra tools
+      - id: d
+        label: Letting anyone tell the job is finished without asking you
+    correctOptionId: d
+    explanation: Done-when checks make quality testable. Without them, "finished" is a feeling.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - done-checks
+        - playbook
+  - id: q6
+    prompt: When is it time to write a new playbook?
+    options:
+      - id: a
+        label: After every single chat, no matter what
+      - id: b
+        label: Around the third time you repeat the same kind of job
+      - id: c
+        label: Before you have ever tried the job once
+      - id: d
+        label: Never — playbooks are for factories
+    correctOptionId: b
+    explanation: Repetition is the signal. One-offs do not earn a card; the third repeat does.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
+  - id: q7
+    prompt: A playbook step keeps producing bad results. What do you do?
+    options:
+      - id: a
+        label: Update the step — playbooks are living documents
+      - id: b
+        label: Delete the whole playbook
+      - id: c
+        label: Blame the helper and carry on
+      - id: d
+        label: Add ten extra steps just in case
+    correctOptionId: a
+    explanation: A failing step is feedback. Fix the card so the next run inherits the lesson.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
+        - verify
+  - id: q8
+    prompt: How do playbooks save desk space?
+    options:
+      - id: a
+        label: They compress the chat automatically
+      - id: b
+        label: They delete old tool results
+      - id: c
+        label: You load the card only when its trigger fires, not always
+      - id: d
+        label: They do not — playbooks always cost more space
+    correctOptionId: c
+    explanation: On-demand beats always-on. The card costs desk space only during the jobs that need it.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - playbook
+        - desk-space

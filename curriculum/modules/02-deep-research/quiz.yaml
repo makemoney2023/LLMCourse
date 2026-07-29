@@ -6,7 +6,7 @@ questions:
       - id: a
         label: So goals and words come from sources, not guesses
       - id: b
-        label: Because only Firecrawl works
+        label: Because one specific crawler tool is required
       - id: c
         label: To fill the desk with every page forever
       - id: d
@@ -72,3 +72,75 @@ questions:
       glossaryIds:
         - deep-research
         - context-pack
+  - id: q5
+    prompt: What belongs next to every link in SOURCES.md?
+    options:
+      - id: a
+        label: Nothing — links speak for themselves
+      - id: b
+        label: A full copy of the page
+      - id: c
+        label: Your account password, for convenience
+      - id: d
+        label: The date you found it and one line on why it matters
+    correctOptionId: d
+    explanation: Dated, annotated links let anyone judge freshness and relevance without re-reading everything.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - sources-md
+        - citation
+  - id: q6
+    prompt: What is the sign your research is done enough?
+    options:
+      - id: a
+        label: You can write a one-page BRIEF a stranger could act on
+      - id: b
+        label: You have read every page on the topic
+      - id: c
+        label: The chat is over a hundred messages long
+      - id: d
+        label: You feel busy
+    correctOptionId: a
+    explanation: Research serves the brief. When the brief holds up without you in the room, you can stop.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - brief-md
+        - deep-research
+  - id: q7
+    prompt: A new source contradicts your draft BRIEF. What now?
+    options:
+      - id: a
+        label: Ignore the source — the brief is already written
+      - id: b
+        label: Update the brief and record the source with its date
+      - id: c
+        label: Delete SOURCES.md and start over
+      - id: d
+        label: Keep both versions and let the helper pick
+    correctOptionId: b
+    explanation: The brief follows the evidence. Conflicting facts left unresolved become confident wrong answers later.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - brief-md
+        - sources-md
+  - id: q8
+    prompt: Why keep BRIEF.md short?
+    options:
+      - id: a
+        label: Long briefs are against the rules
+      - id: b
+        label: Storage is expensive
+      - id: c
+        label: It shares desk space with everything else in the chat
+      - id: d
+        label: Short files cannot be cited
+    correctOptionId: c
+    explanation: The brief gets loaded again and again. Every extra page costs desk space in every future chat.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - brief-md
+        - desk-space

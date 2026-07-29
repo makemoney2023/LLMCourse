@@ -21,7 +21,7 @@ toolMapping:
     surfaces: Chat history limits, token counters, "conversation too long" warnings
   - abstraction: Agent loop
     surfaces: Tool-using assistants, coding agents, research agents with browse/search
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

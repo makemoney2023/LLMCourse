@@ -71,3 +71,74 @@ questions:
       glossaryIds:
         - prune
         - memory
+  - id: q5
+    prompt: Which is a good candidate for saved memory?
+    options:
+      - id: a
+        label: An API key you use often
+      - id: b
+        label: A stable preference, like "plain words, short sentences"
+      - id: c
+        label: Today's half-finished draft
+      - id: d
+        label: A rumor you heard once
+    correctOptionId: b
+    explanation: Memory suits durable, low-risk preferences. Drafts change, secrets are forbidden, rumors are noise.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - memory
+  - id: q6
+    prompt: Chat memory versus binder files — which statement is right?
+    options:
+      - id: a
+        label: They are identical
+      - id: b
+        label: Binder files are invisible to the helper
+      - id: c
+        label: Memory is for facts and files are for tone
+      - id: d
+        label: Memory is convenient, but files are auditable — prefer files for important facts
+    correctOptionId: d
+    explanation: You can read, diff, and fix a file. Hidden memory is harder to inspect and easier to trust wrongly.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - memory
+        - binder
+  - id: q7
+    prompt: How do you find stale memory before it bites?
+    options:
+      - id: a
+        label: Review saved memories on a schedule and delete what no longer holds
+      - id: b
+        label: Wait for a confusing failure, then dig
+      - id: c
+        label: Memory cannot go stale
+      - id: d
+        label: Ask the helper to guess which notes are old
+    correctOptionId: a
+    explanation: Same habit as wall rules — a regular prune. Stale notes steer silently until removed.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prune
+        - memory
+  - id: q8
+    prompt: The helper keeps "remembering" a decision you reversed last month. What went wrong?
+    options:
+      - id: a
+        label: Nothing — that is expected behavior
+      - id: b
+        label: The desk is too big
+      - id: c
+        label: The old note was never pruned, so it still steers new chats
+      - id: d
+        label: Tools were turned off
+    correctOptionId: c
+    explanation: Reversed decisions must be removed from memory, or the old version keeps winning.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prune
+        - memory

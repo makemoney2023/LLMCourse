@@ -86,7 +86,7 @@ export function ModuleNav({
 }) {
   return (
     <aside
-      className="hidden w-64 shrink-0 lg:block"
+      className="hidden w-64 shrink-0 lg:block print:hidden"
       aria-label="Module navigation"
     >
       <div className="mb-3">

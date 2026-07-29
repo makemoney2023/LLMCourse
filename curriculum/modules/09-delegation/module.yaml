@@ -22,7 +22,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: Harness / workspace / delegation
     surfaces: Projects, agent modes, shared rules, subagents, approval gates, logs, branches, and team handoffs
-quizCount: 6
+quizCount: 8
 
 steps:
   - id: orient

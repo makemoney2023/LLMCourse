@@ -30,7 +30,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: Full stack
     surfaces: Whatever tools the learner actually uses day to day
-quizCount: 3
+quizCount: 8
 
 steps:
   - id: orient

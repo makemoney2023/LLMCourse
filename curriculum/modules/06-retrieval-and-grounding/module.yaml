@@ -22,7 +22,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: Retrieval
     surfaces: File upload, @file/@folder, web search, knowledge bases, RAG, codebase search
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

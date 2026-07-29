@@ -71,3 +71,77 @@ questions:
       glossaryIds:
         - standing-instructions
         - system-instructions
+  - id: q5
+    prompt: How often should you revisit your wall rules?
+    options:
+      - id: a
+        label: Never — rules are permanent
+      - id: b
+        label: Before every single message
+      - id: c
+        label: On a schedule, pruning rules nobody uses
+      - id: d
+        label: Only when you change tools
+    correctOptionId: c
+    explanation: Walls collect dead rules. A regular prune keeps the always-on text short and true.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - prune
+        - standing-instructions
+  - id: q6
+    prompt: Which of these belongs as a wall rule?
+    options:
+      - id: a
+        label: '"If a number is missing, ask — never invent it"'
+      - id: b
+        label: The full product pricing table
+      - id: c
+        label: Last week's meeting notes
+      - id: d
+        label: A forty-step deployment procedure
+    correctOptionId: a
+    explanation: Wall rules are short behaviors that apply to most tasks. Tables, notes, and procedures
+      belong in files or playbooks.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - standing-instructions
+        - playbook
+  - id: q7
+    prompt: What happens when the wall grows past a couple dozen rules?
+    options:
+      - id: a
+        label: The helper reads them faster
+      - id: b
+        label: Every rule gets stronger
+      - id: c
+        label: Nothing — more rules always help
+      - id: d
+        label: Rules start losing to each other and to the task, and some get missed
+    correctOptionId: d
+    explanation: Attention is shared. A long wall means each rule matters less, and conflicts multiply.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - standing-instructions
+        - context-window
+  - id: q8
+    prompt: 'Rules versus facts: which pairing is right?'
+    options:
+      - id: a
+        label: Facts on the wall, rules in the binder
+      - id: b
+        label: Rules on the wall, facts in files like BRIEF.md
+      - id: c
+        label: Both belong in the chat scroll
+      - id: d
+        label: Neither should ever be written down
+    correctOptionId: b
+    explanation: The wall says how to behave. Files hold what is true. Mixing them bloats the wall and
+      buries the facts.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - standing-instructions
+        - brief-md

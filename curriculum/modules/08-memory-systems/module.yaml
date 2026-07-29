@@ -20,7 +20,7 @@ exerciseTitles:
 toolMapping:
   - abstraction: Memory
     surfaces: Chat memory toggles, project docs, CLAUDE.md/AGENTS.md notes, personal knowledge bases
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

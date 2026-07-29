@@ -22,7 +22,7 @@ toolMapping:
     surfaces: Firecrawl, Perplexity-style research, Claude/ChatGPT deep research, browser agents, docs crawlers
   - abstraction: Cited context pack
     surfaces: Project BRIEF.md / research notes in repo, Notion/wiki pages, attached knowledge files
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

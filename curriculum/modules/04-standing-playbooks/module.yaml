@@ -23,7 +23,7 @@ toolMapping:
     surfaces: Project rules, AGENTS.md, team prompt headers, workspace guidelines
   - abstraction: On-demand skills / playbooks
     surfaces: Skills, saved prompts, slash commands, custom GPT instructions invoked by task
-quizCount: 4
+quizCount: 8
 
 steps:
   - id: orient

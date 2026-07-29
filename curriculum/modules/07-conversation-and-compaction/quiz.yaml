@@ -71,3 +71,74 @@ questions:
       glossaryIds:
         - observation
         - context-window
+  - id: q5
+    prompt: What is the telltale smell of a contaminated chat?
+    options:
+      - id: a
+        label: Old, wrong ideas keep coming back even after you correct them
+      - id: b
+        label: The chat is more than five messages long
+      - id: c
+        label: The helper asks a clarifying question
+      - id: d
+        label: A tool was used at some point
+    correctOptionId: a
+    explanation: When corrections stop sticking, the old context is winning. Time to compact or restart.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
+        - context-window
+  - id: q6
+    prompt: How is compaction different from a handoff note?
+    options:
+      - id: a
+        label: They are the same thing
+      - id: b
+        label: Handoffs happen automatically
+      - id: c
+        label: Compaction summarizes in place; a handoff is a note you write to start a fresh chat
+      - id: d
+        label: Compaction deletes your wall rules
+    correctOptionId: c
+    explanation: Compaction shrinks the current desk. A handoff clears it entirely and seeds a new one.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
+  - id: q7
+    prompt: What should you drop when writing a handoff?
+    options:
+      - id: a
+        label: The goal
+      - id: b
+        label: Dead ends, raw logs, and rejected drafts
+      - id: c
+        label: The done checks
+      - id: d
+        label: Decisions that are already locked
+    correctOptionId: b
+    explanation: The next chat needs conclusions, not the journey. Sludge stays behind.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - compaction
+        - done-checks
+  - id: q8
+    prompt: You need to debug one line inside a giant log. Better move than pasting it all?
+    options:
+      - id: a
+        label: Paste it twice so it is definitely seen
+      - id: b
+        label: Describe the log from memory instead
+      - id: c
+        label: Nothing — bigger context is always better
+      - id: d
+        label: Extract the relevant lines and paste only those
+    correctOptionId: d
+    explanation: Ten relevant lines beat ten thousand noisy ones. The rest of the log buries the goal.
+    remediation:
+      lessonHeading: Big ideas
+      glossaryIds:
+        - context-window
+        - desk-space
