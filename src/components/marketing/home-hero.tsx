@@ -2,6 +2,9 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
+const HERO_SUBHEAD =
+  "A 12-module course that gives managers one shared standard for quality, accuracy, and workflow—across ChatGPT, Claude, Cursor, and whatever tool comes next.";
+
 export function HomeHero() {
   return (
     <section className="relative isolate min-h-[calc(100svh-5rem)] overflow-hidden border-b border-border/70">
@@ -22,19 +25,14 @@ export function HomeHero() {
             Train teams to get reliable AI output—not longer prompts.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-muted-foreground sm:text-xl">
-            Tool-agnostic course for managers who need consistent quality,
-            fewer invented facts, and a shared way of working across ChatGPT,
-            Claude, Cursor, and similar tools.
+            {HERO_SUBHEAD}
           </p>
-          <div className="mt-10 flex flex-wrap gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-3">
             <Button asChild size="lg">
               <Link href="/modules/mental-model">Preview the course</Link>
             </Button>
-            <Button asChild size="lg" variant="secondary">
-              <Link href="#rollout">Plan a team rollout</Link>
-            </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="#contact">Talk to us</Link>
+              <Link href="#rollout">Plan a team rollout</Link>
             </Button>
           </div>
         </div>

@@ -1,8 +1,8 @@
 const outcomes = [
-  "Shared operating model (context loop)",
-  "Fewer ungrounded answers (BRIEF/SOURCES habits)",
-  "Role-relevant practice (ops / sales / eng / marketing overlays)",
-  "Measurable completion (sequenced modules, quizzes, checkpoints, certificates)",
+  "One shared method your whole team uses—no more reinvented prompts",
+  "Fewer made-up facts, because everyone checks sources by habit",
+  "Practice built for their actual role: ops, sales, engineering, or marketing",
+  "Proof it worked: quizzes, checkpoints, and a certificate per person",
 ] as const;
 
 export function HomeOutcomes() {

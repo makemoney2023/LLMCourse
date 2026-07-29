@@ -23,20 +23,48 @@ describe("marketing home section contracts", () => {
 
     expect(hero).toContain("export function HomeHero");
     expect(hero).toContain("LLM Leverage");
-    expect(hero).toContain("Train teams to get reliable AI output—not longer prompts.");
+    expect(hero).toContain(
+      "Train teams to get reliable AI output—not longer prompts.",
+    );
+    expect(hero).toContain(
+      "A 12-module course that gives managers one shared standard for quality, accuracy, and workflow—across ChatGPT, Claude, Cursor, and whatever tool comes next.",
+    );
     expect(hero).toContain("animate-in fade-in slide-in-from-bottom-2");
     expect(hero).toContain('href="/modules/mental-model"');
     expect(hero).toContain('href="#rollout"');
-    expect(hero).toContain('href="#contact"');
+    expect(hero).toContain("Preview the course");
+    expect(hero).toContain("Plan a team rollout");
+    expect(hero).not.toContain('href="#contact"');
+    expect(hero).not.toContain("Talk to us");
   });
 
   it("includes the approved narrative and inventory copy", () => {
-    expect(source("home-problem.tsx")).toContain(
-      "Tool access isn’t the same as capability.",
+    const problem = normalizedSource("home-problem.tsx");
+    expect(problem).toContain("Tool access isn’t the same as capability.");
+    expect(problem).toContain(
+      "Every seat has ChatGPT or Claude. Almost no one has a shared way to use it.",
     );
-    expect(source("home-outcomes.tsx")).toContain(
-      "Measurable completion (sequenced modules, quizzes, checkpoints, certificates)",
+    expect(problem).not.toContain("→");
+    expect(problem).toContain(
+      "Built from real workshop pilots with ops, sales, and eng teams.",
     );
+
+    const outcomes = source("home-outcomes.tsx");
+    expect(outcomes).toContain(
+      "One shared method your whole team uses—no more reinvented prompts",
+    );
+    expect(outcomes).toContain(
+      "Fewer made-up facts, because everyone checks sources by habit",
+    );
+    expect(outcomes).toContain(
+      "Practice built for their actual role: ops, sales, engineering, or marketing",
+    );
+    expect(outcomes).toContain(
+      "Proof it worked: quizzes, checkpoints, and a certificate per person",
+    );
+    expect(outcomes).not.toContain("BRIEF/SOURCES");
+    expect(outcomes).not.toContain("ungrounded");
+
     expect(normalizedSource("home-included.tsx")).toContain(
       "12 modules · 4 workshop decks · static sandboxes · templates · glossary · capstone gallery.",
     );
@@ -53,11 +81,10 @@ describe("marketing home section contracts", () => {
     expect(howItWorks).toContain("<LoopMap />");
     expect(rollout).toContain('id="rollout"');
     expect(contact).toContain('id="contact"');
-    expect(contact).toContain('type="button"');
-    expect(contact).toContain("disabled");
-    expect(contact).toContain(
-      "Email coming soon — reach us at [your address].",
-    );
+    expect(contact).toContain("mailto:");
+    expect(contact).toContain("Email us about a rollout");
+    expect(contact).not.toContain("disabled");
+    expect(contact).not.toContain("[your address]");
   });
 
   it("provides rollout and footer destinations", () => {

@@ -46,8 +46,11 @@ test("home marketing CTAs and learner entry", async ({ page }) => {
   await expect(page.getByRole("link", { name: /Preview the course/i })).toBeVisible();
   await page.getByRole("link", { name: /Plan a team rollout/i }).click();
   await expect(page.locator("#rollout")).toBeVisible();
-  await page.getByRole("link", { name: /Talk to us/i }).first().click();
+  await page.getByRole("link", { name: /^Contact$/i }).first().click();
   await expect(page.locator("#contact")).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: /Email us about a rollout/i }),
+  ).toBeVisible();
   await page.getByRole("link", { name: /Preview the course/i }).first().click();
   await expect(
     page.getByRole("heading", { level: 1, name: "Mental model", exact: true }),

@@ -2,6 +2,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
+/** Swap this when a production inbox or Cal.com URL is ready. */
+const CONTACT_EMAIL = "hello@llmleverage.course";
+const MAILTO_HREF = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+  "LLM Leverage team rollout",
+)}`;
+
 const fields = [
   { id: "contact-name", label: "Name", type: "text" },
   { id: "contact-email", label: "Work email", type: "email" },
@@ -21,13 +27,13 @@ export function HomeContact() {
             Talk to us about a rollout.
           </h2>
           <p className="mt-5 max-w-lg text-lg leading-8 text-muted-foreground">
-            Tell us what your team needs. This preview is honest about the next
-            step: the contact channel is not connected yet.
+            Tell us your team size, tools, and timeline. We’ll reply with a
+            suggested pilot plan.
           </p>
         </div>
         <div
           className="grid gap-5 rounded-xl border border-border/70 bg-card/70 p-6 shadow-sm sm:grid-cols-2 sm:p-8"
-          aria-label="Contact form preview"
+          aria-label="Contact details"
         >
           {fields.map((field) => (
             <div
@@ -44,14 +50,22 @@ export function HomeContact() {
             </div>
           ))}
           <div className="flex flex-col items-start gap-3 sm:col-span-2">
-            <Button type="button" disabled>
-              Send rollout request
+            <Button asChild>
+              <a href={MAILTO_HREF}>Email us about a rollout</a>
             </Button>
             <p
               id="contact-helper"
               className="text-sm leading-6 text-muted-foreground"
             >
-              Email coming soon — reach us at [your address].
+              Opens your email app to{" "}
+              <a
+                href={MAILTO_HREF}
+                className="underline underline-offset-4 hover:text-foreground"
+              >
+                {CONTACT_EMAIL}
+              </a>
+              . Include name, company, and team size in the note above if
+              helpful.
             </p>
           </div>
         </div>
