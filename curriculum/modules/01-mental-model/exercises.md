@@ -43,11 +43,11 @@ Too many jobs; huge PDF wastes desk space; style rules belong on the wall; vague
 
 Worked example fixes:
 
-1. Too many jobs → hurts user intent → pick one: "800-word API overview for developers."
-2. 80-page PDF → hurts desk space → attach one short section or a BRIEF.md summary.
-3. Oxford commas / Competitor X → hurts standing context → move to wall rules, not the chat ask.
-4. "Funny but serious" → hurts verify → write one tone example or a before/after pair.
-5. "Research trends" with no plan → hurts tools/observations → do deep research first; cite SOURCES.md.
+1. Too many jobs at once hurts user intent — the ask gets lost. Pick one: "800-word API overview for developers."
+2. An 80-page PDF eats up desk space. Attach one short section instead, or a BRIEF.md summary.
+3. Style rules like Oxford commas and naming Competitor X don't belong in a one-off chat ask — they hurt standing context. Move them to wall rules instead.
+4. "Funny but serious" gives verify nothing to check. Write one tone example, or a before/after pair, instead.
+5. "Research trends" with no plan floods the desk with random tool results. Do deep research first, and cite SOURCES.md.
 
 </details>
 

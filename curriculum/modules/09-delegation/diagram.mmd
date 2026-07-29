@@ -1,27 +1,25 @@
 flowchart LR
-  intent[UserIntent_and_Spec]
-  standing[StandingContext]
-  window[ContextWindow]
-  model[ModelReasoning]
-  tools[Tools_MCP_Retrieval]
-  observe[ToolResults_and_Observation]
-  memory[Memory_and_Compaction]
-  verify[HumanVerify]
-  delegate[SpecialistSubagent]
+  shared[SharedWorkspace]
+  framework[OptionalAgenticFramework]
+  mergeOwner[MergeOwner]
 
-  intent --> window
-  standing --> window
-  memory --> window
-  window --> model
-  model --> delegate
-  delegate --> tools
-  model --> tools
-  tools --> observe
-  observe --> window
-  observe --> delegate
-  model --> verify
-  verify --> intent
-  observe --> memory
+  subgraph harness [Agent Harness]
+    rules[RulesFilesMemory]
+    agent[AgentLoop]
+    specialist[SpecialistSubagent]
+    tools[ToolsAndMCP]
+    observe[ResultsAndLogs]
+    approval[ApprovalsAndChecks]
 
-  classDef focus fill:#fef3c7,stroke:#d97706,stroke-width:3px
-  class delegate,observe focus
+    rules --> agent
+    agent --> specialist
+    specialist --> tools
+    tools --> observe
+    observe --> specialist
+    observe --> approval
+  end
+
+  shared --> rules
+  framework -->|"Builds custom flow"| agent
+  approval --> mergeOwner
+  mergeOwner --> shared

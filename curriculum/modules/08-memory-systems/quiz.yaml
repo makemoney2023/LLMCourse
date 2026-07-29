@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [memory]
+      glossaryIds: [binder, brief-md]
   - id: q3
     prompt: "What should never go in memory?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [memory]
+      glossaryIds: [memory, never-list]
   - id: q4
     prompt: "Why prune memory?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [memory]
+      glossaryIds: [prune, memory]

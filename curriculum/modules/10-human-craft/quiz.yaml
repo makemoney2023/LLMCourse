@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [prompt, done-checks]
+      glossaryIds: [reverse-prompting]
   - id: q3
     prompt: "When should you require approval?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [prompt, done-checks]
+      glossaryIds: [approval]
   - id: q4
     prompt: "Why one job per turn?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [prompt, done-checks]
+      glossaryIds: [human-craft, context-window]

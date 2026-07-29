@@ -19,13 +19,13 @@ prerequisites:
   - verify-and-harden
 objectives:
   - Pick a real workflow you own and map it to the loop.
-  - Set up research pack, wall rules, tools, and checks.
+  - Package shared sources, rules, tools, handoffs, ownership, and checks.
   - Run once, measure, and write a short look-back.
 loopPlacement: "Capstone uses every stop: research, wall rules, desk, tools, memory, check."
 skipConsequence: Ideas stay only ideas. Monday habits do not change.
 exerciseTitles:
   - Choose and scope your capstone workflow
-  - Configure loop artifacts
+  - Configure a workspace starter pack
   - Run, measure, and write a look-back
 toolMapping:
   - abstraction: Full stack

@@ -12,6 +12,7 @@ By the end, you can:
 2. Do deep research before a project and save a short cited pack.
 3. Improve a real workflow with clearer goals and better checks.
 4. Use the same habits in ChatGPT, Claude, Cursor, Copilot, and similar tools.
+5. Share one safe agent workspace with clear tools, rules, and owners.
 
 ## Audience
 
@@ -42,6 +43,9 @@ Start here. The full course glossary (with hover tips in lessons) lives in the a
 | Deep research | Fact-finding before you start |
 | Compaction | A short note so you can clear the desk |
 | Memory | Sticky notes for next time |
+| Agent harness | The helper's workbench |
+| Agentic framework | A builder kit for custom helper workflows |
+| Shared workspace | A team project room |
 | Verify | Checking your work before you turn it in |
 
 ## The loop
@@ -85,7 +89,7 @@ flowchart LR
 | 6 | `retrieval-and-grounding` | Retrieval & grounding | Session 2 |
 | 7 | `conversation-and-compaction` | Conversation & compaction | Session 3 |
 | 8 | `memory-systems` | Memory systems | Session 3 |
-| 9 | `delegation` | Delegation | Session 3 |
+| 9 | `delegation` | Delegation and shared workspaces | Session 3 |
 | 10 | `human-craft` | Human craft | Session 4 |
 | 11 | `verify-and-harden` | Verify & harden | Session 4 |
 | 12 | `capstone-lab` | Capstone lab | Session 4 |
@@ -96,7 +100,7 @@ flowchart LR
 |---------|---------|--------|
 | 1 | 1–3 | Map, research pack, wall rules |
 | 2 | 4–6 | Recipe cards, tools, lookup |
-| 3 | 7–9 | Clean chats, memory, specialists |
+| 3 | 7–9 | Clean chats, memory, specialists, shared workspace |
 | 4 | 10–12 | Clear asks, checks, real practice |
 
 Slide decks live in `curriculum/workshops/session-XX.slides.yaml`.
@@ -106,4 +110,5 @@ Self-paced module links stay on each workshop page.
 
 - After Modules 1–3, you can explain the loop and make a BRIEF.md + SOURCES.md pack.
 - After the full course, you can set rules, tools, and checks on top of that pack.
+- You can tell a harness from a framework and share safe team defaults.
 - Class and self-paced learners share one syllabus.

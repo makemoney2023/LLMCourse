@@ -2,22 +2,22 @@ id: sales
 label: Sales
 modules:
   deep-research:
-    story: "You prep a first clinic call. Guessing pricing from chat burned last quarter."
-    exampleAsk: "Build BRIEF.md for Acme Clinic outreach. Three questions. No medical claims."
-    watchOut: "Do not invent competitor prices — put links in SOURCES.md."
+    story: "You're prepping for a first call with a clinic. Last quarter, guessing at pricing from a chat answer cost you the deal."
+    exampleAsk: "Research Acme Clinic outreach and write it up as BRIEF.md. Answer three narrow questions, and include no medical claims."
+    watchOut: "Don't invent competitor prices. Put a real link in SOURCES.md instead."
   tools-and-mcp:
-    story: "You want CRM lookup for a reply, not a send button."
-    exampleAsk: "Draft a follow-up using the account note. Do not send email."
-    watchOut: "Keep send/pay tools off your daily allow list."
+    story: "You want the helper to look up the account in your CRM and draft a reply — not to hit send."
+    exampleAsk: "Draft a follow-up using the account note, but don't send the email yourself."
+    watchOut: "Keep any tool that can send email or take a payment off your daily allow list."
   retrieval-and-grounding:
-    story: "Prospect asks about refund timing on a sample kit."
-    exampleAsk: "Answer from SOURCES.md#sample-policy. Cite the line."
-    watchOut: "If the binder is silent, say you will check — do not invent."
+    story: "A prospect asks how long refunds take on a sample kit."
+    exampleAsk: "Answer using the sample policy row in SOURCES.md, and quote the exact line."
+    watchOut: "If SOURCES.md doesn't cover it, say you'll check and get back to them — don't guess."
   human-craft:
-    story: "Your AE asks for 'something punchy' with no done checks."
-    exampleAsk: "One-pager for first call. Audience: clinic owner. Done: 5 bullets + 1 CTA."
-    watchOut: "Reverse-prompt when the ask has no audience or done checks."
+    story: "Your account executive (AE) asks for something 'punchy,' with no audience and no way to know when it's done."
+    exampleAsk: "Write a one-page sheet for a first sales call with a clinic owner. Keep it to five bullet points, plus one clear next step for the reader to take."
+    watchOut: "If the ask has no audience or no way to check it's done, ask the helper to question you first before it drafts anything."
   capstone-lab:
-    story: "Improve weekly prospect research notes."
-    exampleAsk: "Run the loop once: pack → wall → recipe → tools → verify."
-    watchOut: "Measure revision count vs last week's notes."
+    story: "You want to improve your weekly prospect research notes."
+    exampleAsk: "Run the full loop once on this workflow: build your research pack, set your rules, use a recipe card, pick your tools, then verify the result."
+    watchOut: "Count how many revisions this draft needed, and compare that to last week's notes."

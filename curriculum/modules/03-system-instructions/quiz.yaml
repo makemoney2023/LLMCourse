@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [standing-instructions]
+      glossaryIds: [standing-instructions, standing-context]
   - id: q3
     prompt: "Where should long facts live?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [standing-instructions]
+      glossaryIds: [brief-md, sources-md]
   - id: q4
     prompt: "What should you do with fighting rules?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [standing-instructions]
+      glossaryIds: [standing-instructions, system-instructions]

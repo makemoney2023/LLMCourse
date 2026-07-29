@@ -2,22 +2,22 @@ id: marketing
 label: Marketing
 modules:
   deep-research:
-    story: "Launch brief started from vibes; legal later killed three claims."
-    exampleAsk: "Research claims we can make. BRIEF.md + SOURCES.md with dates."
-    watchOut: "No medical or performance claims without a source id."
+    story: "A launch brief was written from gut feel, and legal later killed three of its claims."
+    exampleAsk: "Research which claims we're allowed to make, and write them up in BRIEF.md with a SOURCES.md that includes dates."
+    watchOut: "Don't make medical or performance claims unless you can point to a specific row in SOURCES.md."
   tools-and-mcp:
-    story: "You need web facts for a blog, then a clean writing pass."
-    exampleAsk: "Research mode first. Build mode: draft only from BRIEF.md."
-    watchOut: "Turn crawl tools off when polishing copy."
+    story: "You need to pull facts from the web for a blog post, then do a clean writing pass afterward."
+    exampleAsk: "Start in research mode to gather facts, then switch to build mode and draft using only what's in BRIEF.md."
+    watchOut: "Turn crawl tools off once you're polishing copy — you don't need them anymore."
   retrieval-and-grounding:
-    story: "Stakeholder wants a competitive blurb by lunch."
-    exampleAsk: "Use SOURCES.md competitors section. Cite each fact."
-    watchOut: "Do not blend three vendors into one made-up feature list."
+    story: "A stakeholder wants a competitor comparison blurb by lunchtime."
+    exampleAsk: "Pull from the competitors section of SOURCES.md, and cite the source for every fact you use."
+    watchOut: "Don't blend three vendors' features into one list that no single vendor actually offers."
   human-craft:
-    story: "'Make it pop' arrives with no audience or channel."
-    exampleAsk: "LinkedIn post, 120 words, CTA to webinar, tone calm."
-    watchOut: "Reverse-prompt for channel and length before drafting."
+    story: "A request to 'make it pop' arrives with no audience and no channel specified."
+    exampleAsk: "Write a LinkedIn post of about 120 words, in a calm tone, that ends with a clear invite to register for the webinar."
+    watchOut: "If the channel and length aren't clear, ask the helper to question you first before it starts drafting."
   capstone-lab:
-    story: "Improve the weekly social draft workflow."
-    exampleAsk: "Full loop once with verify for claims and tone."
-    watchOut: "Track legal review rounds before vs after."
+    story: "You want to improve your weekly social media draft workflow."
+    exampleAsk: "Run the full loop once on this workflow, and make sure your verify step checks both claims and tone."
+    watchOut: "Track how many rounds of legal review you needed before this change, and compare it to after."

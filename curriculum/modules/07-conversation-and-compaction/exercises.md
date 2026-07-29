@@ -36,8 +36,8 @@ For five short scenarios, pick **continue** or **restart** and say why in one se
 <details>
 <summary>Answer key</summary>
 
-Topic shift, stale tools, or repeated mistakes → restart with a handoff. Small polish on the same job → continue.
+If the topic shifts, tools are stale, or the same mistake keeps repeating, restart with a handoff. If you're just polishing the same job, continue.
 
-**Worked example:** Scenario: same FAQ, fix typo in Q2 → continue. Scenario: boss asks for sales email in same thread → restart with new Goal and Done lines.
+**Worked example:** Same FAQ, just fixing a typo in Q2? Continue. Your boss asks for a sales email in the same thread? That's a new job — restart with new Goal and Done lines.
 
 </details>

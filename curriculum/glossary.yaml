@@ -38,6 +38,36 @@ terms:
       You steer a loop: ask, act, observe, check. Simple chat only writes text.
     relatedModules: [mental-model, tools-and-mcp]
 
+  - id: agent-harness
+    term: agent harness
+    aliases: ["harness", "agent runtime"]
+    shortDefinition: "The workbench around an agent: rules, tools, files, memory, approvals, and checks."
+    longDefinition: |
+      An agent harness is the workbench around the model. It supplies rules,
+      tools, files, memory, approval gates, logs, and checks. A chat app or
+      coding agent may provide this workbench for you.
+    relatedModules: [tools-and-mcp, delegation, verify-and-harden]
+
+  - id: agentic-framework
+    term: agentic framework
+    aliases: ["agent framework", "agent frameworks"]
+    shortDefinition: "A builder kit for making a custom agent workflow."
+    longDefinition: |
+      An agentic framework is code builders use to join model calls, tools,
+      state, and approval steps. Most everyday workflows do not need one.
+      Choose one only when a ready-made harness cannot run the workflow safely.
+    relatedModules: [delegation]
+
+  - id: shared-workspace
+    term: shared workspace
+    aliases: ["team workspace", "shared team workspace"]
+    shortDefinition: "The team project room for shared rules, sources, playbooks, tools, and ownership."
+    longDefinition: |
+      A shared workspace holds the files and defaults a team uses together.
+      It names canonical sources, shared rules, tool setup, handoff formats,
+      and who owns each output. Personal scratch chats stay outside it.
+    relatedModules: [standing-playbooks, memory-systems, delegation, capstone-lab]
+
   - id: standing-instructions
     term: standing instructions
     aliases: ["wall rules", "classroom wall rules"]

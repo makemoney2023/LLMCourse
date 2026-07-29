@@ -8,9 +8,9 @@ List ten facts about a project you know. Sort each into **desk only**, **binder 
 <details>
 <summary>Answer key</summary>
 
-Secrets → never. Today's hypothesis → desk. Stable process → binder or wall. Light preference → product memory if you must.
+Secrets never get saved. Today's hypothesis stays on the desk only. A stable process belongs in the binder or on the wall. A light preference can go in product memory, if you save it at all.
 
-**Worked example:** "API key for staging" → never (use vault). "We prefer plain language" → product memory. "Q2 goal: reduce tickets 10%" → BRIEF.md binder note with date.
+**Worked example:** "API key for staging" should never be stored — use a vault instead. "We prefer plain language" is fine for product memory. "Q2 goal: reduce tickets 10%" belongs in a BRIEF.md binder note with a date.
 
 </details>
 

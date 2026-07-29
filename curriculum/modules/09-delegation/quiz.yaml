@@ -16,7 +16,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [delegation, subagent]
+      glossaryIds: [subagent]
   - id: q2
     prompt: "What must a delegation contract include?"
     options:
@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [delegation, subagent]
+      glossaryIds: [delegation, done-checks]
   - id: q3
     prompt: "Which parallel plan is unsafe?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [delegation, subagent]
+      glossaryIds: [merge-owner, delegation]
   - id: q4
     prompt: "When should you NOT delegate yet?"
     options:
@@ -67,4 +67,38 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [delegation, subagent]
+      glossaryIds: [delegation, user-intent]
+  - id: q5
+    prompt: "What is an agent harness?"
+    options:
+      - id: a
+        label: "The rules, tools, files, memory, approvals, logs, and checks around an agent"
+      - id: b
+        label: "Only the language model"
+      - id: c
+        label: "A list of every framework brand"
+      - id: d
+        label: "A private scratch note"
+    correctOptionId: a
+    explanation: "The harness is the workbench around the agent."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [agent-harness, agent]
+  - id: q6
+    prompt: "What belongs in a shared workspace?"
+    options:
+      - id: a
+        label: "Canonical sources, shared rules, handoffs, approvals, and ownership"
+      - id: b
+        label: "Every rejected personal draft"
+      - id: c
+        label: "Unverified product memory"
+      - id: d
+        label: "Two editors on one file with no owner"
+    correctOptionId: a
+    explanation: "Teams share trusted defaults and clear ownership, not scratch work."
+
+    remediation:
+      lessonHeading: "Big ideas"
+      glossaryIds: [shared-workspace, merge-owner]

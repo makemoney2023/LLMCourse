@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [capstone, context-loop]
+      glossaryIds: [context-loop, standing-instructions]
   - id: q3
     prompt: "What should a look-back include?"
     options:
@@ -50,4 +50,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [capstone, context-loop]
+      glossaryIds: [capstone, done-checks]

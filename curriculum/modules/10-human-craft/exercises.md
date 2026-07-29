@@ -36,8 +36,8 @@ For four tasks — email send, brainstorm, prod deploy, typo fix — choose **pl
 <details>
 <summary>Answer key</summary>
 
-High blast radius → plan + approvals. Clear checklist work with low risk → go with light gates. Rubber-stamp approvals count as skipping the gate.
+High-blast-radius work needs plan mode plus approvals. Clear checklist work with low risk can use go mode with light gates. Rubber-stamp approvals count as skipping the gate.
 
-**Worked example:** Prod deploy → plan mode + approval required (high risk, hard to undo). Typo fix in draft doc → go mode, no approval (low risk, reversible). Email send → go mode + approval required (easy to undo draft, hard to undo send).
+**Worked example:** A production deploy needs plan mode plus approval — it's high risk and hard to undo. A typo fix in a draft doc can use go mode with no approval — it's low risk and easy to reverse. Sending an email needs go mode plus approval — the draft is easy to undo, but the send is not.
 
 </details>

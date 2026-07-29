@@ -16,7 +16,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [tool, mcp]
+      glossaryIds: [tool]
   - id: q2
     prompt: "What is MCP like?"
     options:
@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [tool, mcp]
+      glossaryIds: [mcp]
   - id: q3
     prompt: "Why keep the tool list small?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [tool, mcp]
+      glossaryIds: [allow-list, observation]
   - id: q4
     prompt: "When do research crawl tools belong?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [tool, mcp]
+      glossaryIds: [firecrawl, allow-list]

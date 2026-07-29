@@ -1,27 +1,28 @@
 id: delegation
 order: 9
 slug: delegation
-title: Delegation
-subtitle: Ask a specialist for one clear job
-durationMinutes: 30
+title: Delegation and shared workspaces
+subtitle: Give specialists clear jobs inside a safe team space
+durationMinutes: 35
 workshopSession: 3
 prerequisites:
   - tools-and-mcp
   - conversation-and-compaction
 objectives:
-  - Know when to split work for a specialist.
-  - Write a short job contract for a helper or teammate.
-  - Spot unsafe parallel work on the same file.
-loopPlacement: A subagent is like a specialist classmate with their own desk. Results come back to you.
-skipConsequence: One desk carries every job—or two helpers overwrite the same work.
+  - Tell a model, agent, harness, and framework apart.
+  - Choose a harness with clear tools, approvals, logs, and handoffs.
+  - Write a shared workspace and delegation contract.
+  - Spot unsafe parallel work on the same output.
+loopPlacement: A harness surrounds specialist desks with shared rules, tools, files, approvals, and checks.
+skipConsequence: Personal notes become team truth—or two helpers overwrite the same work.
 exerciseTitles:
-  - Split a big job into specialist briefs
-  - Write a delegation contract
-  - Spot unsafe parallel work
+  - Map the four layers
+  - Write a shared workspace contract
+  - Repair a workspace collision
 toolMapping:
-  - abstraction: Delegation / subagents
-    surfaces: Subagents, custom GPTs per role, parallel coding agents, team handoffs to specialists
-quizCount: 4
+  - abstraction: Harness / workspace / delegation
+    surfaces: Projects, agent modes, shared rules, subagents, approval gates, logs, branches, and team handoffs
+quizCount: 6
 
 steps:
   - id: orient

@@ -16,7 +16,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [context-window, agent]
+      glossaryIds: [agent, context-loop]
 
   - id: q2
     prompt: "Why is the context window like limited desk space?"
@@ -34,7 +34,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [context-window, agent]
+      glossaryIds: [context-window, desk-space]
 
   - id: q3
     prompt: "Where does human verify fit in the loop?"
@@ -52,7 +52,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [context-window, agent]
+      glossaryIds: [verify, user-intent]
 
   - id: q4
     prompt: "Which item is an observation in the loop?"
@@ -70,4 +70,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [context-window, agent]
+      glossaryIds: [observation, agent]

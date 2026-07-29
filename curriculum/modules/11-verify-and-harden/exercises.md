@@ -24,7 +24,7 @@ Describe three bad outputs — real incidents from your work or realistic invent
 
 Name the stop, not the vibe. Tie the fix to a module habit — a wall rule, a pack file, a handoff template, or a tool trim. "Bad AI" is not a loop stop.
 
-**Worked example:** Wrong price in FAQ → retrieval miss → attach SOURCES.md excerpt before draft. Old rejected idea returned → compaction miss → restart with handoff note. Two agents edited same file → delegation miss → name one merge owner next time.
+**Worked example:** A wrong price in the FAQ traces back to a retrieval miss — attach the SOURCES.md excerpt before you draft next time. An old rejected idea coming back is a compaction miss — restart with a handoff note. Two agents editing the same file is a delegation miss — name one merge owner next time.
 
 </details>
 
@@ -38,6 +38,6 @@ Pick one workflow you use with a helper. List every tool it currently has access
 
 Remove unused apps. Require approval for send, delete, and prod. Keep research tools in research-only steps — not open during every draft. Least apps needed is the default.
 
-**Worked example:** Support reply workflow: keep file attach + search; remove unused calendar tool; require approval before "send email" action runs. Search stays because policy lookup needs it. Calendar goes because replies never schedule meetings.
+**Worked example:** Support reply workflow: keep file attach and search, remove the unused calendar tool, and require approval before the "send email" action runs. Search stays because policy lookup needs it. Calendar goes because replies never schedule meetings.
 
 </details>

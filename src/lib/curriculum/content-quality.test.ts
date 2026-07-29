@@ -111,6 +111,34 @@ describe("authored module content quality", () => {
     }
   });
 
+  it("delegation teaches harnesses, frameworks, and shared workspace ownership", () => {
+    const content = loadModuleContent("delegation");
+    expect(content).not.toBeNull();
+    const lesson = content!.lessonMarkdown.toLowerCase();
+    for (const needle of [
+      "agent harness",
+      "agentic framework",
+      "shared workspace",
+      "approval",
+      "merge owner",
+    ]) {
+      expect(lesson, `delegation missing ${needle}`).toContain(needle);
+    }
+  });
+
+  it("capstone produces a reusable shared workspace setup", () => {
+    const content = loadModuleContent("capstone-lab");
+    expect(content).not.toBeNull();
+    const lesson = content!.lessonMarkdown.toLowerCase();
+    for (const needle of [
+      "workspace starter pack",
+      "handoff",
+      "ownership",
+    ]) {
+      expect(lesson, `capstone missing ${needle}`).toContain(needle);
+    }
+  });
+
   it("priority modules ship worked demos", async () => {
     const { loadModuleDemo } = await import("./load-demo");
     for (const slug of [

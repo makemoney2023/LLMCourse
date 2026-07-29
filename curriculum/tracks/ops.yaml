@@ -2,22 +2,22 @@ id: ops
 label: Operations
 modules:
   deep-research:
-    story: "You are rewriting a ticket triage playbook. Folklore rules keep sneaking in."
-    exampleAsk: "Research our current SLA docs. BRIEF.md with citations only."
-    watchOut: "Paste policy links into SOURCES.md, not into wall rules."
+    story: "You're rewriting a ticket triage playbook, and folklore rules keep sneaking back in."
+    exampleAsk: "Research our current SLA docs, and write a BRIEF.md where every claim has a citation."
+    watchOut: "Paste policy links into SOURCES.md, not into your wall rules."
   tools-and-mcp:
     story: "Agents keep opening the wrong queue search."
-    exampleAsk: "Allow list: read wiki, search tickets. Never: close ticket, refund."
-    watchOut: "Mutating tools need human approval."
+    exampleAsk: "Allow the helper to read the wiki and search tickets. Never let it close a ticket or issue a refund on its own."
+    watchOut: "Any tool that changes real data needs a human to approve it first."
   retrieval-and-grounding:
-    story: "Shift handoff asks for yesterday's outage facts."
-    exampleAsk: "Summarize from the outage doc in the binder. Quote times."
-    watchOut: "Stale chat memory is not a source of truth."
+    story: "A shift handoff needs yesterday's outage facts."
+    exampleAsk: "Summarize the outage doc from the binder, and quote the exact timestamps."
+    watchOut: "Stale chat memory is not a source of truth — check the binder instead."
   human-craft:
     story: "A vague 'fix the bot' request lands in your inbox."
-    exampleAsk: "Spec: stop after plan. Done: root cause + two fix options."
-    watchOut: "Mode = plan-first when production is involved."
+    exampleAsk: "Ask the helper to stop after planning. It's done when you have the root cause plus two fix options to choose from."
+    watchOut: "Use plan mode first whenever production systems are involved."
   capstone-lab:
-    story: "Tighten the weekly status note workflow."
-    exampleAsk: "Configure pack + recipe + verify checklist; run once."
-    watchOut: "Track time-to-first-draft before and after."
+    story: "You want to tighten up your weekly status note workflow."
+    exampleAsk: "Set up your research pack, a recipe card, and a verify checklist, then run the workflow once."
+    watchOut: "Track how long it takes to get a first draft, before and after this change."

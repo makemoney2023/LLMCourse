@@ -1,8 +1,8 @@
 id: session-03
-title: Clean chats, memory, and specialists
+title: Clean chats, memory, and shared work
 subtitle: Workshop Session 3
 durationMinutes: 90
-outcome: Hand off cleanly, save the right sticky notes, and give specialists a clear job contract.
+outcome: Hand off cleanly, save trusted memory, and share agent work with clear ownership.
 moduleSlugs:
   - conversation-and-compaction
   - memory-systems
@@ -11,8 +11,8 @@ slides:
   - id: title
     layout: title
     title: LLM Leverage
-    subtitle: Session 3 — Conversation, memory & delegation
-    body: 90 minutes · Keep the desk clean; share clear jobs
+    subtitle: Session 3 — Conversation, memory & shared work
+    body: 90 minutes · Keep the desk clean; share safe jobs
     notes: Open with a long-thread horror story — ask for one from the room.
   - id: outcome
     layout: bullets
@@ -20,7 +20,7 @@ slides:
     bullets:
       - Choose continue vs fresh start
       - Sort facts into the right memory place
-      - Write a specialist job contract
+      - Map an agent harness and shared workspace
     notes: "Tie back to the loop nodes: observe → memory → window."
   - id: agenda
     layout: bullets
@@ -29,8 +29,9 @@ slides:
       - 0–10 · Long-thread stories
       - 10–30 · Clean chats and handoffs
       - 30–55 · Memory sticky notes
-      - 55–80 · Specialist contracts
-      - 80–90 · Loop review
+      - 55–70 · Agent layers and contracts
+      - 70–85 · Shared-workspace collision
+      - 85–90 · Loop review
     notes: Keep demos short so labs get oxygen.
   - id: section-conversation
     layout: section
@@ -138,55 +139,79 @@ slides:
       • Today's hypothesis → in-context only
   - id: section-delegation
     layout: section
-    title: Delegation
-    subtitle: Specialists need clear jobs
-    notes: Parallel without a merge owner is chaos.
+    title: Delegation & shared workspaces
+    subtitle: Specialists need clear jobs and safe boundaries
+    notes: A harness surrounds the agent. A workspace holds team truth.
   - id: delegation-points
     layout: bullets
-    title: When to split
+    title: Know the layers
     timing: 5 min
     bullets:
-      - Different tools or standing context
-      - Independent artifacts
-      - Clarify first — then delegate
-      - Cap parallel workers until merge is easy
-    notes: Human handoffs and subagents use the same contract shape.
+      - Model writes; agent acts
+      - Harness supplies rules, tools, memory, and checks
+      - Framework builds a custom flow when needed
+      - Shared workspace holds team truth and ownership
+    notes: Most teams should start with the harness they already have.
   - id: activity-delegation
     layout: activity
-    title: Lab — delegation contract
-    timing: 18 min
+    title: Lab — workspace contract
+    timing: 10 min
     body: Split a mega-task into two specialist briefs.
     bullets:
-      - Goal · inputs · tools · out of scope
-      - Done criteria · return format
-      - Merge owner named
+      - Canonical sources · shared rules · tools
+      - Approval · handoff · edit boundaries
+      - Output owners · merge owner
     notes: |-
       GOAL
-      A two-specialist delegation contract with a named merge owner.
+      A two-specialist workspace contract with safe boundaries.
 
-      HOW TO RUN (18 min)
+      HOW TO RUN (10 min)
       1) Pick a mega-task (launch checklist, research+draft, implement+review).
-      2) Split into Specialist A and B briefs using the slide fields.
-      3) Facilitator spot-check: are they editing the same file/rows? If yes, serialize or redefine ownership.
-      4) Read one contract aloud; room votes safe / unsafe parallelization.
+      2) Name canonical sources, shared rules, and allowed tools.
+      3) Split into Specialist A and B with separate outputs.
+      4) Name the approval gate, handoff, and merge owner.
 
       CONTRACT MUST INCLUDE
-      Goal, inputs, tools allowed/forbidden, out of scope, done criteria, return format, merge owner.
+      Sources, rules, tools, approval, handoff, edit boundaries, output owners, merge owner.
+  - id: activity-workspace-collision
+    layout: activity
+    title: Lab — repair the collision
+    timing: 15 min
+    body: Two agents changed one draft using stale memory and conflicting rules.
+    bullets:
+      - Pick one canonical source
+      - Remove stale memory and name the rule owner
+      - Separate outputs or serialize edits
+      - Add approval, handoff, and merge owner
+    notes: |-
+      GOAL
+      Repair four failures: duplicate edits, stale memory, conflicting rules, and no merge owner.
+
+      HOW TO RUN (15 min)
+      1) Pairs circle every source of shared mutable work.
+      2) Move facts into one dated source and delete stale memory.
+      3) Name one owner for rules and one owner per output.
+      4) Add a fact approval before drafting.
+      5) Return results through the shared handoff format.
+
+      CALL OUT
+      • Separate files, sections, rows, branches, or worktrees can run in parallel.
+      • One shared draft needs one editor at a time.
   - id: discussion
     layout: discussion
     title: Loop synthesis
-    timing: 8 min
+    timing: 5 min
     bullets:
       - Which node failed in your last long thread?
       - What belongs in memory vs a handoff brief?
-      - Where would a specialist have helped last week?
+      - What belongs in shared truth vs personal scratch?
     notes: Point at the loop diagram while people answer.
   - id: takeaway
     layout: takeaway
     title: Take-home
     bullets:
       - Finish Modules 7–9 in the app
-      - Bring a memory prune list to Session 4
-      - Reuse your job contract once at work
+      - Reuse your workspace contract once at work
+      - Bring one harness gap to Session 4
     body: Self-paced modules are linked below.
     notes: Show the links. Done.

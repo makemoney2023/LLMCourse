@@ -1,117 +1,135 @@
-# Delegation
+# Delegation and shared workspaces
 
 ## In plain words
 
-**Goal:** Split big work into small jobs so each helper has a clear desk and one owner merges the results.
+**Goal:** Split work safely and give the team one clear project room.
 
-**Do this:** Write a job contract for each specialist — goal, inputs, tools, out of scope, done checks, return format, merge owner. Run safe jobs in parallel. Verify sub-results before passing them on.
+**Do this:** Map the model, agent, harness, and optional framework. Share trusted files and rules. Give each job an owner, approval gate, and done checks.
 
-**You'll know:** No two helpers edited the same file without a plan. You can name who merges and what "done" looks like for each job.
+**You'll know:** Teammates can explain what is shared, what stays personal, and who merges each result.
 
 ## What this is
 
 **Delegation** means giving one clear job to a specialist. A **subagent** is like a specialist classmate with their own desk. You write a brief. They work. They return results. You merge.
 
-This lesson teaches when to split work, how to write a job contract, and why parallel helpers need a **merge owner**.
+An **agent harness** means the workbench around an agent. It supplies rules, tools, files, memory, approvals, logs, and checks.
 
-One messy chat tried to research, write, and review at once. The desk overflowed. This module fixes that pattern.
+An **agentic framework** means a builder kit for custom agent workflows. Builders use one when a ready-made harness cannot run the job safely.
+
+A **shared workspace** is the team project room. It holds trusted sources, shared rules, recipe-card playbooks, tool setup, handoffs, and ownership.
 
 ## Why it matters
 
-Priya asked one agent to research competitors, draft a blog post, and review legal risk. Tool dumps stacked up. The draft cited old search results. Then Priya launched two more helpers. Both edited the same file. She spent an hour untangling merges.
+Priya gave two agents the same launch folder. One used an old price from memory. Both edited the same draft. Nobody knew which rules were current.
 
-Clear jobs and one merge owner would have saved the afternoon. Delegation is not "more AI." It is smaller desks with sharper aim.
+The model was not the main problem. The workspace had no source owner, edit boundary, or merge owner.
+
+A clear harness and workspace would have stopped the collision. Delegation is not "more AI." It is smaller jobs inside safer boundaries.
 
 ## Big ideas
 
-### When to split
+### Know the four layers
 
-Split when jobs need **different rules or tools**. Split when work can proceed without sharing the same editable file.
+Do not treat every AI product as one mystery box.
 
-Do not split until the goal is clear. Use human craft (Module 10) or a short plan first. Vague parent goals make vague child jobs.
+1. The **model** reads words and writes words.
+2. The **agent** can use tools and continue after results.
+3. The **agent harness** supplies the workbench around that agent.
+4. An **agentic framework** lets builders create a custom workflow.
 
-**Design rule:** If two jobs would fight for the same file, split ownership — or run them one at a time.
+Most teams can start with a ready-made harness. Add a framework only when you need custom steps, state, or approval paths.
 
-### The job contract
+### Check the harness
 
-Every specialist brief is a small recipe card. Include:
+Use six checks before your team adopts a harness:
 
-- **Goal** — one outcome
-- **Inputs** — files, links, BRIEF.md excerpts
-- **Allowed tools** — least apps needed
-- **Out of scope** — what not to touch
-- **Done checks** — how to know it is finished
-- **Return format** — bullets, diff, table, etc.
-- **Merge owner** — one person who integrates results
+- **Tool fit** — Does it open only the apps this job needs?
+- **State and memory** — Can the team inspect and correct saved facts?
+- **Approval gates** — Does a person approve send, delete, pay, or deploy?
+- **Visibility** — Can reviewers see tool calls, logs, and changes?
+- **Portability** — Can you export the brief, sources, and handoff?
+- **Collaboration** — Can people share rules without sharing private scratch work?
 
-If merge owner is missing, stop and name one.
+If a tool hides risky actions or saved facts, do not use it for that job.
 
-### Safe vs unsafe parallel
+### Write a shared workspace contract
 
-**Safe parallel** examples:
+Share only what the team needs:
 
-- Research helper on competitors.doc
-- Writer helper on outline.doc
-- Two different docs, two different owners
+- One canonical source for each important fact
+- Short wall rules and named playbooks
+- A small tool allow list and clear approval gates
+- One handoff format for people and agents
+- One owner for each editable output
+- One merge owner for combined results
 
-**Unsafe parallel** examples:
+Keep experiments, rejected drafts, and personal chats outside the shared space.
 
-- Two helpers editing the same code module
-- Two helpers updating the same spreadsheet rows
-- Two merges with no owner and no file locks
+**Design rule:** Shared truth needs one home. Shared edits need one owner.
 
-Unsafe work needs serialization or a single merge owner with a clear lock.
+### Keep the job contract
+
+Every specialist brief still needs:
+
+- Goal and inputs
+- Allowed tools and approvals
+- Out of scope
+- Done checks
+- Return format
+- Output owner and merge owner
+
+Run jobs together only when they own separate files, sections, rows, branches, or worktrees. Otherwise, run them one at a time.
 
 ### A simple walkthrough
 
-You need a product launch one-pager with research and copy.
+You need a product launch one-pager.
 
-1. **Clarify** — Goal: one-page launch summary for sales. Done: cites SOURCES.md, plain tone.
-2. **Split** — Research job: gather three competitor facts. Writing job: draft from BRIEF.md only.
-3. **Contracts** — Each brief lists tools, out of scope, return format, merge owner (you).
-4. **Run research first** — Research returns ten bullets with links. You verify (Module 11).
-5. **Run writer second** — Writer gets bullets + BRIEF.md. No browse tools needed.
-6. **Merge** — You paste into one doc. You check done criteria. You compact if starting a fresh polish chat.
+1. **Map layers** — Your chat product is the harness. No framework is needed.
+2. **Set shared truth** — BRIEF.md owns product facts. SOURCES.md owns proof.
+3. **Split jobs** — A researcher returns cited bullets. A writer owns the draft.
+4. **Set gates** — A person approves facts before the writer starts.
+5. **Handoff** — The researcher returns ten bullets, not raw logs.
+6. **Merge and verify** — One owner checks sources, scope, and done criteria.
 
-If step 4 fails verify, do not pass bad bullets to the writer.
+If research fails verify, do not pass it to the writer.
 
 ## Where this sits in the loop
 
-Delegation sits after memory and before human craft sharpens your aim.
+Delegation sits after memory and before human craft.
 
-- Module 8: memory (sticky notes for later)
-- Module 9: delegation (specialist desks — this lesson)
-- Module 10: human craft (how you aim the helper)
+Memory brings trusted notes back. Delegation opens specialist desks. The harness controls which rules, tools, and checks surround those desks.
 
-You launch specialists with their own desk space. Their results return as new papers on your desk. Compaction and verify still apply to the merged outcome.
+Results return through a handoff. One merge owner puts them back into the shared workspace.
 
 ## What goes wrong if you skip it
 
-- One overloaded desk — research logs bury the draft ask.
-- Colliding edits — two helpers change the same file.
-- No merge owner — nobody integrates or checks conflicts.
-- Vague briefs — specialists invent scope.
-- Too many parallel helpers — merge cost explodes.
-- Skipped verify on sub-results — bad facts spread downstream.
+- The team buys a framework when a ready-made harness was enough.
+- Personal memory becomes team truth.
+- Conflicting rules steer different agents.
+- Two helpers edit the same output.
+- Risky actions run without approval.
+- Logs vanish, so nobody can verify what happened.
+- No merge owner combines and checks results.
 
 ## Where this shows up in tools
 
 | Idea | ChatGPT | Claude | Cursor | Copilot-style |
 |------|---------|--------|--------|---------------|
-| Subagents | Custom GPTs, tasks | Subagents, projects | Agent tasks, subagents | Agent modes |
-| Contracts | Task briefs | Project instructions | Task prompts, tickets | Work items |
+| Harness | Projects, tools | Projects, tools | Agent, rules, terminal | Agent mode, extensions |
+| Shared workspace | Shared project | Project files | Repo rules and files | Repo instructions |
+| Specialists | Custom GPTs, tasks | Subagents | Agent tasks, subagents | Agent modes |
+| Approval | Tool prompts | Tool prompts | Diff and command review | Action review |
 | Merge owner | Human reviewer | Human reviewer | PR author | PR owner |
-| Parallelism | Multiple chats | Parallel tasks | Parallel agents | Multi-agent flows |
 
-Names change. The contract and merge owner stay non-negotiable.
+Names change. The layers, ownership, and approval gates stay.
 
 ## Tips
 
-1. **Name the job, not the brand** of model — "research brief," not "GPT-5."
-2. **Cap parallel helpers** until merge is easy — start with two, not six.
-3. **Bring BRIEF.md into every brief** when facts matter.
-4. **Verify sub-results** before passing them downstream.
-5. **Serialize unsafe edits** — one file, one editor at a time.
-6. **Compact between acts** — handoff notes between research and writing phases.
+1. **Start with the harness you have.** Add a framework only for a real gap.
+2. **Keep one home per fact.** Link to it instead of copying it.
+3. **Separate scratch from shared truth.** Experiments should not steer teammates.
+4. **Cap parallel helpers.** Start with two, not six.
+5. **Verify sub-results before handoff.** Bad facts spread fast.
+6. **Name the merge owner.** Shared work without one is unfinished.
 
-Delegation multiplies desks. You still own the merged result.
+The harness supplies the workbench. Your team still owns the work.

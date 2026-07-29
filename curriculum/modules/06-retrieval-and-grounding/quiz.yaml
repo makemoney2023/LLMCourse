@@ -16,7 +16,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [retrieval, grounding]
+      glossaryIds: [retrieval, binder]
   - id: q2
     prompt: "What should you attach for project facts?"
     options:
@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [retrieval, grounding]
+      glossaryIds: [brief-md, sources-md]
   - id: q3
     prompt: "What is grounding?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [retrieval, grounding]
+      glossaryIds: [grounding, citation]
   - id: q4
     prompt: "What if the source is missing?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [retrieval, grounding]
+      glossaryIds: [grounding, hallucination]

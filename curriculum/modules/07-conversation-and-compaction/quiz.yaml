@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [compaction]
+      glossaryIds: [compaction, context-window]
   - id: q3
     prompt: "What should a handoff keep?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [compaction]
+      glossaryIds: [compaction, done-checks]
   - id: q4
     prompt: "Why are tool dumps risky in long chats?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [compaction]
+      glossaryIds: [observation, context-window]

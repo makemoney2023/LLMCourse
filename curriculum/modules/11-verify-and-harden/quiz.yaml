@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [verify]
+      glossaryIds: [verify, hallucination]
   - id: q3
     prompt: "What is a basic safety habit?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [verify]
+      glossaryIds: [never-list, approval]
   - id: q4
     prompt: "After a miss, what should you update?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [verify]
+      glossaryIds: [playbook, standing-instructions]

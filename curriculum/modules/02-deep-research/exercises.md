@@ -37,7 +37,7 @@ Worked example rows:
 |-----|------|----------------|
 | https://example-clinic.com/services | 2026-07-28 | Official service list for Q1 answer |
 | https://example-clinic.com/book | 2026-07-28 | Booking steps SDRs must quote correctly |
-| https://example-clinic.com/faq | 2026-07-28 | Refund wording we must not overstated |
+| https://example-clinic.com/faq | 2026-07-28 | Refund wording we must not overstate |
 | https://example-clinic.com/contact | 2026-07-28 | Phone hours for first-call script |
 | https://example-clinic.com/about | 2026-07-28 | Brand tone limits for outreach copy |
 

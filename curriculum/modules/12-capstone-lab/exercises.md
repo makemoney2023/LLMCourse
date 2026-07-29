@@ -14,17 +14,17 @@ If it needs a week, cut scope. One outcome only. The not-do line prevents scope 
 
 </details>
 
-## Exercise 2: Configure loop artifacts
+## Exercise 2: Configure a workspace starter pack
 **id:** ex-2
 
-Before generating anything, list what you will create or update for your capstone: BRIEF.md, SOURCES.md, wall rules, one playbook recipe card, tool allow list, and verify checklist. Draft at least two lines for each piece. Configure through verify before you run — no drafting until the spine is set.
+Before generating anything, assemble your workspace starter pack. Include BRIEF.md, SOURCES.md, wall rules, one playbook, a tool allow list, a handoff format, an ownership map, and a verify checklist. Draft at least two lines for each piece. Configure through verify before you run.
 
 <details>
 <summary>Answer key</summary>
 
-All six pieces should exist, even if short. Facts stay in the pack, not in huge wall text. Configure through verify before you run. The configure step is the dress rehearsal — skip it and Monday habits do not stick.
+All eight pieces should exist, even if short. Facts stay in their canonical files, not in huge wall text. The handoff must work without a private chat. Ownership must name who maintains shared rules and who merges outputs.
 
-**Worked example:** BRIEF.md: goal + owners. SOURCES.md: three ticket links with dates. Wall: plain tone, no invented metrics. Recipe: status spec with done checks. Tools: search + attach only. Verify: five done checks written before first draft.
+**Worked example:** BRIEF.md: goal + owners. SOURCES.md: three dated ticket links. Wall: plain tone, no invented metrics. Recipe: status spec. Tools: search + attach only. Handoff: Goal / Done / Sources / Open questions. Ownership: Lee owns the draft and merge. Verify: five checks before the first draft.
 
 </details>
 

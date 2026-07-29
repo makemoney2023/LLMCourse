@@ -2,22 +2,22 @@ id: eng
 label: Engineering
 modules:
   deep-research:
-    story: "You are scoping an API change. Chat invented endpoint names last time."
-    exampleAsk: "Deep research the official docs. BRIEF.md with linked endpoints only."
-    watchOut: "Code comments are not sources unless you cite the file path."
+    story: "You're scoping an API change. Last time, the chat invented endpoint names that didn't exist."
+    exampleAsk: "Do deep research on the official docs, then write a BRIEF.md that only lists endpoints you can link to."
+    watchOut: "Code comments are not sources unless you cite the file path they came from."
   tools-and-mcp:
-    story: "Agent mode has terminal + deploy enabled by habit."
-    exampleAsk: "Allow: read, search, test. Never: prod deploy, force-push."
-    watchOut: "Research crawl tools off during implementation turns."
+    story: "Out of habit, agent mode still has both the terminal and production deploy turned on."
+    exampleAsk: "Allow the helper to read files, search the repo, and run tests. Never let it deploy to production or force-push."
+    watchOut: "Turn research crawl tools off while you're actually writing code."
   retrieval-and-grounding:
-    story: "Bugfix needs the real error from the log, not a guess."
-    exampleAsk: "Attach the failing log excerpt. Propose a fix with file cites."
-    watchOut: "Huge log dumps — compact to ten bullets first."
+    story: "A bugfix needs the real error from the log, not a guess."
+    exampleAsk: "Attach the failing log excerpt, and ask for a fix that points to the exact files it touches."
+    watchOut: "Don't paste a huge log dump. Compact it to ten bullets first."
   human-craft:
-    story: "Ticket says 'make it better' with no acceptance criteria."
-    exampleAsk: "PR scope: one module. Done: tests green + diff under 200 lines."
-    watchOut: "Ask for stop-after-plan on risky refactors."
+    story: "A ticket says 'make it better,' with no acceptance criteria."
+    exampleAsk: "Scope the PR to one module. It's done when tests are green and the diff is under 200 lines."
+    watchOut: "On risky refactors, ask the helper to stop after planning so you can review before it touches any code."
   capstone-lab:
-    story: "Improve code-review comment drafting with the loop."
-    exampleAsk: "Pack + recipe for review comments; verify against style guide."
-    watchOut: "Measure comments revised after human review."
+    story: "You want to improve how you draft code review comments using the full loop."
+    exampleAsk: "Set up a research pack and a recipe card for review comments, then verify each draft against the style guide."
+    watchOut: "Track how many of your drafted comments get revised after human review."

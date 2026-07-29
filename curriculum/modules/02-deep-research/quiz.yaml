@@ -16,7 +16,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, brief-md]
+      glossaryIds: [deep-research, hallucination]
   - id: q2
     prompt: "What belongs in a simple project pack?"
     options:
@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, brief-md]
+      glossaryIds: [brief-md, sources-md]
   - id: q3
     prompt: "How should research files feed later chats?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, brief-md]
+      glossaryIds: [context-pack, retrieval]
   - id: q4
     prompt: "Which research question is best?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [deep-research, brief-md]
+      glossaryIds: [deep-research, context-pack]

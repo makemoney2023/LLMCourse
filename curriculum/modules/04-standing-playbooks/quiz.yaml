@@ -33,7 +33,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [playbook]
+      glossaryIds: [standing-instructions, playbook]
   - id: q3
     prompt: "Where do long fact lists belong?"
     options:
@@ -50,7 +50,7 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [playbook]
+      glossaryIds: [sources-md, brief-md]
   - id: q4
     prompt: "Why do playbooks need triggers?"
     options:
@@ -67,4 +67,4 @@ questions:
 
     remediation:
       lessonHeading: "Big ideas"
-      glossaryIds: [playbook]
+      glossaryIds: [playbook, done-checks]

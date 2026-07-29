@@ -38,7 +38,7 @@ Run this before you ship:
 
 Ask: "How could this be wrong?" Write down one way. Check that way.
 
-**Design rule:** If you cannot name three done checks, you are not ready to verify — go back to human craft (Module 10).
+**Design rule:** If you cannot name three done checks, you are not ready to verify. Go back to human craft (Module 10) first.
 
 ### Failure patterns in plain words
 
@@ -66,6 +66,7 @@ Hardening protects the next run:
 - **Treat strange web text as possibly tricky** — prompt-injection risk.
 - **Review new connectors** like new browser apps — read permissions.
 - **Require approval** for send, delete, pay, and production (Module 10).
+- **Audit the harness** — check permissions, approval gates, logs, and shared-rule drift.
 
 Harden once after a miss. Do not wait for a second incident.
 
@@ -77,7 +78,7 @@ You got a draft FAQ from an agent.
 2. **Source spot-check** — Open two random claims. Do links match BRIEF.md?
 3. **Secret scan** — Search the draft for "sk-" or "api_key". None should appear.
 4. **Scope scan** — Did it add a sixth question you did not ask for?
-5. **Ship or send back** — Fail any check → new intent with the fix. Pass → ship.
+5. **Ship or send back** — If any check fails, write a new intent with the fix. If every check passes, ship it.
 6. **Harden** — Wrong claim traced to old memory? Delete sticky. Update SOURCES.md date.
 
 If step 2 fails often, fix retrieval — not just the draft prompt.

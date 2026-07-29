@@ -43,6 +43,8 @@ export const HARD_TERMS = [
   "grounding",
   "subagent",
   "playbook",
+  "agent harness",
+  "agentic framework",
 ] as const;
 
 const DEFINITION_CUES =
