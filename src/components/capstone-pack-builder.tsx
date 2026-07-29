@@ -22,7 +22,13 @@ function downloadMarkdown(fileName: string, contents: string) {
   URL.revokeObjectURL(url);
 }
 
-function PackFileEditor({ file }: { file: PackTemplate }) {
+function PackFileEditor({
+  file,
+  defaultOpen = false,
+}: {
+  file: PackTemplate;
+  defaultOpen?: boolean;
+}) {
   const storageKey = `${STORAGE_PREFIX}${file.fileName}`;
   const [value, setValue] = useState(file.template);
   const [loaded, setLoaded] = useState(false);
@@ -50,54 +56,56 @@ function PackFileEditor({ file }: { file: PackTemplate }) {
   };
 
   return (
-    <section className="space-y-3" aria-label={file.fileName}>
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div>
-          <h2 className="font-heading text-2xl tracking-tight">
-            {file.label}
-          </h2>
+    <details
+      className="rounded-2xl border border-border/60 bg-card/30 px-4 py-3"
+      open={defaultOpen}
+    >
+      <summary className="cursor-pointer font-heading text-lg tracking-tight">
+        {file.label}
+      </summary>
+      <div className="mt-3 space-y-3">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm text-muted-foreground">{file.hint}</p>
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              size="sm"
+              onClick={() => downloadMarkdown(file.fileName, value)}
+            >
+              Download {file.fileName}
+            </Button>
+            <Button
+              type="button"
+              size="sm"
+              variant="ghost"
+              onClick={resetToTemplate}
+            >
+              Reset
+            </Button>
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Button
-            type="button"
-            size="sm"
-            onClick={() => downloadMarkdown(file.fileName, value)}
-          >
-            Download {file.fileName}
-          </Button>
-          <Button
-            type="button"
-            size="sm"
-            variant="ghost"
-            onClick={resetToTemplate}
-          >
-            Reset
-          </Button>
-        </div>
+        <textarea
+          className="min-h-56 w-full rounded-xl border border-border bg-background p-4 font-mono text-sm leading-relaxed"
+          value={value}
+          disabled={!loaded}
+          onChange={(event) => handleChange(event.target.value)}
+          aria-label={`${file.fileName} contents`}
+          spellCheck={false}
+        />
       </div>
-      <textarea
-        className="min-h-72 w-full rounded-xl border border-border bg-background p-4 font-mono text-sm leading-relaxed"
-        value={value}
-        disabled={!loaded}
-        onChange={(event) => handleChange(event.target.value)}
-        aria-label={`${file.fileName} contents`}
-        spellCheck={false}
-      />
-    </section>
+    </details>
   );
 }
 
 export function CapstonePackBuilder({ files }: { files: PackTemplate[] }) {
   return (
-    <div className="space-y-12">
-      <p className="text-sm text-muted-foreground">
-        Drafts save on this device as you type. Download each file when it is
-        ready and drop the three into your project folder — that is your
-        context pack.
-      </p>
-      {files.map((file) => (
-        <PackFileEditor key={file.fileName} file={file} />
+    <div className="space-y-3">
+      {files.map((file, index) => (
+        <PackFileEditor
+          key={file.fileName}
+          file={file}
+          defaultOpen={index === 0}
+        />
       ))}
     </div>
   );

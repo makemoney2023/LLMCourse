@@ -245,14 +245,50 @@ test("capstone builder seeds templates and persists edits", async ({
   await expect(
     page.getByRole("heading", { name: /Capstone pack builder/i }),
   ).toBeVisible();
+
+  // Scope form (Exercise 1 as fields).
+  await page
+    .getByLabel(/Workflow you own/i)
+    .fill("Weekly manager status");
+
+  // BRIEF.md is open by default and seeded from the template.
   const brief = page.getByLabel("BRIEF.md contents");
   await expect(brief).toHaveValue(/# Project brief/);
   await brief.fill("# BRIEF\n\nMy capstone project.");
+
+  // Collapsed pack files open on demand.
+  await page.getByText(/VERIFY\.md — the pre-ship checklist/i).click();
+  await expect(page.getByLabel("VERIFY.md contents")).toHaveValue(
+    /# Verify checklist/,
+  );
+
+  // Readiness checklist persists.
+  await page
+    .getByRole("checkbox", { name: /All eight pack files exist/i })
+    .click();
+
+  // Story sharing stays gated until the arc is filled in.
+  const copyButton = page.getByRole("button", { name: "Copy story" });
+  await expect(copyButton).toBeDisabled();
+  await page.getByLabel(/Before — the old habit/i).fill("45 min of copy-paste");
+  await page.getByLabel(/After — this run/i).fill("18 min, zero errors");
+  await page
+    .getByLabel(/The default you are keeping/i)
+    .fill("Always attach BRIEF.md");
+  await expect(copyButton).toBeEnabled();
+
+  // Everything survives a reload.
   await page.goto("/resources");
   await page.goto("/capstone");
   await expect(page.getByLabel("BRIEF.md contents")).toHaveValue(
     "# BRIEF\n\nMy capstone project.",
   );
+  await expect(page.getByLabel(/Workflow you own/i)).toHaveValue(
+    "Weekly manager status",
+  );
+  await expect(
+    page.getByRole("checkbox", { name: /All eight pack files exist/i }),
+  ).toBeChecked();
 });
 
 test("review page shows empty state before any module is complete", async ({

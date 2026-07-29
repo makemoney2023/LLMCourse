@@ -81,6 +81,36 @@ export default function ResourcesPage() {
               HANDOFF.md — clear-the-desk note
             </a>
           </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/WALL_RULES.md" download>
+              WALL_RULES.md — standing instructions
+            </a>
+          </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/PLAYBOOK.md" download>
+              PLAYBOOK.md — recipe card for one job
+            </a>
+          </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/TOOLS.md" download>
+              TOOLS.md — allow list and never-list
+            </a>
+          </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/OWNERSHIP.md" download>
+              OWNERSHIP.md — who maintains what
+            </a>
+          </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/VERIFY.md" download>
+              VERIFY.md — pre-ship checklist
+            </a>
+          </li>
+          <li>
+            <a className="text-primary underline underline-offset-2" href="/templates/LOOKBACK.md" download>
+              LOOKBACK.md — post-run reflection
+            </a>
+          </li>
         </ul>
       </section>
 

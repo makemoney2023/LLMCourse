@@ -36,7 +36,7 @@ Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates fr
 - **Recap card** appears at the quiz step once a module is complete, listing objectives and linking to the next module and `/review`.
 - **Review mode** (`/review`) samples up to 10 quiz questions from completed modules (`src/lib/quiz/review-sample.ts`); it never changes progress.
 - **Flashcards** (`/flashcards`) turn every glossary term into a flip card; missed cards re-queue until known (`src/lib/flashcards/deck.ts`).
-- **Capstone pack builder** (`/capstone`) seeds BRIEF/SOURCES/HANDOFF from `public/templates/`, saves drafts under `llm-course-capstone-<file>`, and downloads finished markdown files.
+- **Capstone pack builder** (`/capstone`) mirrors Module 12 end to end: a scope form (Exercise 1), all eight pack files seeded from `public/templates/` (BRIEF, SOURCES, WALL_RULES, PLAYBOOK, TOOLS, OWNERSHIP, HANDOFF, VERIFY), a readiness checklist from the exercise answer key, a LOOKBACK.md editor for after the run, and a "share your story" section that copies a gallery-format snippet. Drafts save under `llm-course-capstone-*` keys.
 - **Scratchpad**: per-module notes saved under `llm-course-notes-<moduleId>`, kept outside the progress store so Reset never deletes them.
 - **Returning-learner banner** on the marketing home shows percent complete and a Continue button when the device has progress.
 - **Certificates** remember the learner's name (`llm-course-learner-name`) and offer an "Add to LinkedIn" profile link alongside Print/PDF.
