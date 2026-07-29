@@ -15,10 +15,10 @@ Worked example inventory (build mode):
 | read_file | useful | Pull the one-page summary (BRIEF.md) and source snippets |
 | codebase_search | useful | Find policy strings in repo |
 | terminal | maybe | Only when running tests user requested |
-| Firecrawl | noise | Research-only — off for daily drafts |
+| crawl_tool | noise | Research-only — off for daily drafts |
 | send_email | noise | Never enable; violates never-list |
 
-If you cannot name a purpose in one line, it is probably noise for that workflow. Move Firecrawl to research sessions only — when you refresh your proof list (SOURCES.md).
+If you cannot name a purpose in one line, it is probably noise for that workflow. Move crawl tools to research sessions only — when you refresh your proof list (SOURCES.md).
 
 </details>
 
@@ -36,7 +36,7 @@ Allow: (1) read_file — open handbook slice. (2) search_repo — find template.
 
 Never-list: send_email, delete_ticket, charge_card, prod_deploy.
 
-Firecrawl and deep crawl tools are research-only. Enable them when refreshing SOURCES.md, not when drafting from files already on the desk.
+Deep crawl tools are research-only. Enable them when refreshing SOURCES.md, not when drafting from files already on the desk.
 
 </details>
 

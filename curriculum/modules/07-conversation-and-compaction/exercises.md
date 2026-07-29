@@ -10,21 +10,35 @@ Take a real or sample thread from your helper app. Label each turn as **user**, 
 
 Tool results are often the bulkiest desk items. Mark them clearly so you know what to compact first.
 
-**Worked example:** Turn 1 user ("Summarize refund policy"). Turn 2 tool result (40-page scrape). Turn 3 helper (summary). The tool turn is bulkiest — ask for ten bullets next time, then drop the raw log from the active thread.
+**Worked example** — thread:
+
+1. User: "Summarize our refund policy for a FAQ."
+2. Tool result: 40-page scrape of help center pages (bulkiest).
+3. Helper: five FAQ bullets.
+4. User: "Also write a sales email about the new plan." (topic shift)
+
+Why compact turn 2 first: the raw scrape crowds the desk and will poison the sales email if you keep going. Ask for ten bullets from the scrape, then drop the raw log before the next ask.
 
 </details>
 
 ## Exercise 2: Write a handoff note for a fresh chat
 **id:** ex-2
 
-Write a handoff with Goal, Done, Constraints, Sources, Do not, and Open questions. Keep it under fifteen lines. A teammate should continue from this note alone — no old chat needed.
+Write a handoff with Goal, Done checks, Locked choices, Sources, Do not, and Open questions. Keep it under fifteen lines. A teammate should continue from this note alone — no old chat needed.
 
 <details>
 <summary>Answer key</summary>
 
 If a teammate could continue from only this note, it is strong. Drop raw logs and rejected drafts.
 
-**Worked example:** Goal: FAQ on refunds. Done: five Q&A, cites SOURCES.md. Constraints: plain tone. Sources: SOURCES.md row 3. Do not: legal advice. Open: Q4 wording needs manager OK.
+**Worked example:**
+
+- Goal: five FAQ answers on refunds for clinic partners.
+- Done checks: each under 80 words; every claim cites SOURCES.md; no phone numbers invented.
+- Locked choices: plain tone; no medical claims.
+- Sources: BRIEF.md limits section; SOURCES.md row 3 (refund policy, dated).
+- Do not: legal advice; paste crawl dumps onto the desk.
+- Open questions: weekend support hours need ops confirmation.
 
 </details>
 
@@ -33,11 +47,25 @@ If a teammate could continue from only this note, it is strong. Drop raw logs an
 
 For five short scenarios, pick **continue** or **restart** and say why in one sentence each. Include at least one topic shift and one stale-tool case.
 
+Use these five (or swap in your own):
+
+1. Same FAQ; fix a typo in Q2.
+2. Boss asks for a sales email in the same refund FAQ thread.
+3. Tool returned outdated pricing; you now have a new SOURCES.md row.
+4. Helper keeps adding a sixth FAQ you did not ask for.
+5. You want one more polish pass on wording only.
+
 <details>
 <summary>Answer key</summary>
 
-If the topic shifts, tools are stale, or the same mistake keeps repeating, restart with a handoff. If you're just polishing the same job, continue.
+If the topic shifts, tools are stale, or the same mistake keeps repeating, restart with a handoff. If you are polishing the same job, continue.
 
-**Worked example:** Same FAQ, just fixing a typo in Q2? Continue. Your boss asks for a sales email in the same thread? That's a new job — restart with new Goal and Done lines.
+**Worked example:**
+
+1. Continue — same job, tiny polish.
+2. Restart — new job (sales email); handoff the FAQ separately.
+3. Restart — sources changed; do not trust the old tool dump on the desk.
+4. Restart — same mistake repeating; tighten Done and Do not in a fresh chat.
+5. Continue — still the same FAQ polish job.
 
 </details>

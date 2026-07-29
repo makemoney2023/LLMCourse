@@ -17,7 +17,6 @@ import type { ModuleDemo } from "@/lib/curriculum/load-demo";
 import type { ModuleMeta, Quiz } from "@/lib/curriculum/types";
 import type { ParsedExercise } from "@/lib/markdown";
 import {
-  isModuleUnlocked,
   isPracticeUnlocked,
   isQuizUnlocked,
   isStepUnlocked,
@@ -65,7 +64,6 @@ export function ModuleLearnerFlow({
 }) {
   const { progress, completeStep } = useProgress();
   const exerciseIds = exercises.map((e) => e.id);
-  const moduleUnlocked = isModuleUnlocked(progress, modules, meta.id);
   const practiceUnlocked = isPracticeUnlocked(progress, meta);
   const quizUnlocked = isQuizUnlocked(progress, meta, exerciseIds);
   const doneSteps = progress.completedSteps[meta.id] ?? [];
@@ -74,6 +72,7 @@ export function ModuleLearnerFlow({
     practiceUnlocked &&
     exerciseIds.every((id) => exercisesDone.includes(id));
   const moduleDone = progress.completedModules.includes(meta.id);
+  const jumpAheadReason = unlockReason(progress, modules, meta.id);
 
   const [focusStep, setFocusStep] = useState<string | null>(null);
 
@@ -89,9 +88,8 @@ export function ModuleLearnerFlow({
   // Keep focus on the first incomplete step as progress advances
   // (e.g. last exercise checked → jump to quiz).
   useEffect(() => {
-    if (!moduleUnlocked) return;
     setFocusStep(defaultFocus);
-  }, [moduleUnlocked, defaultFocus]);
+  }, [defaultFocus]);
 
   const activeStep = focusStep ?? defaultFocus;
 
@@ -131,22 +129,6 @@ export function ModuleLearnerFlow({
           : "available",
   });
 
-  if (!moduleUnlocked) {
-    const reason = unlockReason(progress, modules, meta.id);
-    return (
-      <div className="space-y-6 rounded-2xl border border-border/70 bg-card/40 p-6">
-        <p className="font-heading text-xl">This module is locked</p>
-        <p className="text-sm text-muted-foreground">
-          {reason ?? "Finish the previous module first."}
-        </p>
-        <ContinueCourseButton
-          modules={modules}
-          exerciseIdsByModule={exerciseIdsByModule}
-        />
-      </div>
-    );
-  }
-
   const activeChunk = stepChunks.find((c) => c.stepId === activeStep);
   const isLessonStep = Boolean(activeChunk);
   const lessonDone = activeChunk
@@ -163,6 +145,22 @@ export function ModuleLearnerFlow({
 
   return (
     <div className="flex min-h-[70vh] flex-col gap-4">
+      {jumpAheadReason ? (
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-border/70 bg-secondary/40 px-4 py-3">
+          <div>
+            <p className="font-heading text-base tracking-tight">
+              Jumping ahead
+            </p>
+            <p className="text-sm text-muted-foreground">{jumpAheadReason}</p>
+          </div>
+          <ContinueCourseButton
+            modules={modules}
+            exerciseIdsByModule={exerciseIdsByModule}
+            label="Back to recommended path"
+          />
+        </div>
+      ) : null}
+
       <ModuleStepper
         items={stepperItems}
         onSelect={(id) => {
@@ -266,15 +264,9 @@ export function ModuleLearnerFlow({
                 <span />
               )}
               {next ? (
-                isModuleUnlocked(progress, modules, next.id) ? (
-                  <Button asChild variant="ghost">
-                    <Link href={`/modules/${next.slug}`}>{next.title} →</Link>
-                  </Button>
-                ) : (
-                  <Button type="button" variant="ghost" disabled>
-                    {next.title} → (locked)
-                  </Button>
-                )
+                <Button asChild variant="ghost">
+                  <Link href={`/modules/${next.slug}`}>{next.title} →</Link>
+                </Button>
               ) : null}
             </nav>
           </div>

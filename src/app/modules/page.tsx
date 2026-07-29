@@ -22,8 +22,8 @@ export default function ModulesPage() {
         <div>
           <h1 className="font-heading text-4xl tracking-tight">Modules</h1>
           <p className="mt-2 text-muted-foreground">
-            Work in order. Finish each module&apos;s steps, practice, and pass
-            the quiz (75%+) before the next module unlocks.
+            Recommended order below. Jump ahead anytime — each module still
+            needs steps, practice, and a 75%+ quiz score to count as complete.
           </p>
         </div>
         <RoleTrackPicker />

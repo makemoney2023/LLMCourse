@@ -10,7 +10,13 @@ Pick a workflow you run often — status notes, support replies, research briefs
 
 Include source check, secret check, and at least one acceptance check from the spec. Checks should be yes/no, not vibes. If you cannot name three done checks, go back and write a stronger spec first.
 
-**Worked example:** Status note checks: (1) five bullets present, (2) each cites ticket or says blocked, (3) no invented metrics, (4) no API keys in text, (5) under 200 words total.
+**Worked example — weekly status note:**
+
+1. Five bullets present? (yes/no)
+2. Each bullet cites a ticket or says "blocked"? (yes/no)
+3. No invented metrics vs BRIEF.md / tickets? (yes/no)
+4. No API keys or secrets in the text? (yes/no)
+5. Under 200 words total? (yes/no)
 
 </details>
 
@@ -24,7 +30,11 @@ Describe three bad outputs — real incidents from your work or realistic invent
 
 Name the stop, not the vibe. Tie the fix to a module habit — a wall rule, a pack file, a handoff template, or a tool trim. "Bad AI" is not a loop stop.
 
-**Worked example:** A wrong price in the FAQ traces back to a retrieval miss — attach the SOURCES.md excerpt before you draft next time. An old rejected idea coming back is a compaction miss — restart with a handoff note. Two agents editing the same file is a delegation miss — name one merge owner next time.
+**Worked example:**
+
+1. Wrong price in the FAQ → **retrieval miss** — attach the SOURCES.md excerpt before drafting (Module 6).
+2. Old rejected joke returns in a new draft → **compaction miss** — restart with a handoff; drop rejected drafts (Module 7).
+3. Two agents edited the same file → **delegation miss** — name one merge owner and separate edit boundaries (Module 9).
 
 </details>
 
@@ -38,6 +48,15 @@ Pick one workflow you use with a helper. List every tool it currently has access
 
 Remove unused apps. Require approval for send, delete, and prod. Keep research tools in research-only steps — not open during every draft. Least apps needed is the default.
 
-**Worked example:** Support reply workflow: keep file attach and search, remove the unused calendar tool, and require approval before the "send email" action runs. Search stays because policy lookup needs it. Calendar goes because replies never schedule meetings.
+**Worked example — support reply workflow:**
+
+Before: browse, deep crawl, calendar, file attach, search, send email.
+
+After:
+
+- Keep: file attach (policy pages), search (tickets).
+- Remove: calendar (never used), deep crawl (research-only).
+- Approval: send email requires a human click.
+- Why search stays: policy lookup needs it. Why crawl goes: drafting from attached files does not.
 
 </details>

@@ -9,7 +9,10 @@ Use this for every learner-facing rewrite (lessons, exercises, quizzes, COURSE.m
 3. One idea per paragraph. One job per section.
 4. Voice: “you” + concrete examples (email, report, checklist).
 5. Lesson shape (exact H2 titles):
-   - In plain words (Goal / Do this / You’ll know it worked)
+   - In plain words — exact bullet lines:
+     - `- **Goal:** …`
+     - `- **Do this:** …`
+     - `- **You'll know it worked:** …`
    - What this is
    - Why it matters (one story)
    - Big ideas (plain meaning → tiny example; prefer before/after pairs)
@@ -17,6 +20,7 @@ Use this for every learner-facing rewrite (lessons, exercises, quizzes, COURSE.m
    - What goes wrong if you skip it
    - Where this shows up in tools
    - Tips
+   Keep vendor brand names out of lesson prose when a plain label works (e.g. “crawl tool”). Brand names may appear in tool-mapping tables and facilitator demos only.
 6. Keep accuracy. Same ideas, simpler words.
 7. Facilitator notes stay clear adult language with full demo steps.
 

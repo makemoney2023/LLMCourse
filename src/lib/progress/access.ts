@@ -19,17 +19,16 @@ function stepsDone(progress: CourseProgress, moduleId: string): string[] {
   return progress.completedSteps[moduleId] ?? [];
 }
 
+/**
+ * Soft open: every module is reachable. Use `unlockReason` for the
+ * recommended-order banner when a prior module is still incomplete.
+ */
 export function isModuleUnlocked(
-  progress: CourseProgress,
+  _progress: CourseProgress,
   modules: ModuleMeta[],
   moduleId: string,
 ): boolean {
-  const ordered = [...modules].sort((a, b) => a.order - b.order);
-  const index = ordered.findIndex((m) => m.id === moduleId);
-  if (index <= 0) return index === 0;
-  const prev = ordered[index - 1];
-  if (!prev) return false;
-  return progress.completedModules.includes(prev.id);
+  return modules.some((m) => m.id === moduleId);
 }
 
 export function isStepUnlocked(
@@ -90,9 +89,6 @@ export function getContinueTarget(
 ): ContinueTarget | null {
   const ordered = [...modules].sort((a, b) => a.order - b.order);
   for (const mod of ordered) {
-    if (!isModuleUnlocked(progress, ordered, mod.id)) {
-      return null;
-    }
     if (progress.completedModules.includes(mod.id)) continue;
 
     for (const step of mod.steps) {
@@ -125,15 +121,17 @@ export function getContinueTarget(
   return null;
 }
 
+/** Null when this module is next (or done) in the recommended path. */
 export function unlockReason(
   progress: CourseProgress,
   modules: ModuleMeta[],
   moduleId: string,
 ): string | null {
-  if (isModuleUnlocked(progress, modules, moduleId)) return null;
   const ordered = [...modules].sort((a, b) => a.order - b.order);
   const index = ordered.findIndex((m) => m.id === moduleId);
+  if (index <= 0) return null;
   const prev = ordered[index - 1];
-  if (!prev) return "Finish the previous module first.";
-  return `Finish Module ${prev.order}: ${prev.title} first.`;
+  if (!prev) return null;
+  if (progress.completedModules.includes(prev.id)) return null;
+  return `Recommended after Module ${prev.order}: ${prev.title}.`;
 }

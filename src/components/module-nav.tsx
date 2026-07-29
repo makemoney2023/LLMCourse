@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { Check, Lock } from "lucide-react";
+import { Check } from "lucide-react";
 import type { ModuleMeta } from "@/lib/curriculum/types";
 import { useProgress } from "@/components/progress-provider";
 import { ContinueCourseButton } from "@/components/continue-course-button";
-import { isModuleUnlocked, unlockReason } from "@/lib/progress/access";
+import { unlockReason } from "@/lib/progress/access";
 import { cn } from "@/lib/utils";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
@@ -37,7 +37,6 @@ export function ModuleNav({
         <ol className="space-y-1">
           {modules.map((mod) => {
             const done = progress.completedModules.includes(mod.id);
-            const unlocked = isModuleUnlocked(progress, modules, mod.id);
             const active = mod.slug === currentSlug;
             const reason = unlockReason(progress, modules, mod.id);
             return (
@@ -49,7 +48,6 @@ export function ModuleNav({
                     active
                       ? "bg-secondary text-foreground"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    !unlocked && "opacity-80",
                   )}
                   title={reason ?? undefined}
                 >
@@ -62,22 +60,16 @@ export function ModuleNav({
                     )}
                     aria-hidden
                   >
-                    {done ? (
-                      <Check className="size-3" />
-                    ) : !unlocked ? (
-                      <Lock className="size-3" />
-                    ) : (
-                      mod.order
-                    )}
+                    {done ? <Check className="size-3" /> : mod.order}
                   </span>
                   <span>
                     <span className="block font-medium text-foreground/90">
                       {mod.title}
                     </span>
                     <span className="block text-xs text-muted-foreground">
-                      {unlocked
-                        ? `${mod.durationMinutes} min · Workshop ${mod.workshopSession}`
-                        : reason}
+                      {reason
+                        ? reason
+                        : `${mod.durationMinutes} min · Workshop ${mod.workshopSession}`}
                     </span>
                   </span>
                 </Link>

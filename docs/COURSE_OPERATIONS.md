@@ -46,7 +46,8 @@ Learner progress is stored in `localStorage` under key `llm-course-progress-v2` 
 1. Lesson steps unlock in order (`orient` → `ideas` → `apply`).
 2. Practice unlocks when all three lesson steps are marked done.
 3. Quiz unlocks when every exercise in the module is marked done.
-4. Scoring 75%+ on the quiz marks the module complete and unlocks the next module. Below that, the score is saved (best kept) and the learner can retry.
+4. Scoring 75%+ on the quiz marks the module complete. Below that, the score is saved (best kept) and the learner can retry.
+5. Modules are soft-open: learners may jump ahead. A “recommended after Module N” banner appears when prior modules are incomplete. Continue still follows the recommended path.
 
 ## Contact email
 

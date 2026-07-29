@@ -10,7 +10,14 @@ Name the workflow you will capstone, the single artifact you will ship, and a ti
 
 If it needs a week, cut scope. One outcome only. The not-do line prevents scope creep mid-run. You should be able to name the artifact before you configure anything.
 
-**Worked example:** Workflow: weekly manager status. Artifact: five-bullet note. Time box: 45 minutes. Not doing: slide deck or code changes in this run.
+**Worked example:**
+
+- Workflow: weekly manager status.
+- Artifact: five-bullet status note.
+- Time box: 45 focused minutes.
+- Not doing: slide deck, code changes, or researching a new competitor in this run.
+
+Cut example: "Improve all customer email" → too big. Narrow to "one refund reply type" instead.
 
 </details>
 
@@ -24,7 +31,16 @@ Before generating anything, assemble your workspace starter pack. Include BRIEF.
 
 All eight pieces should exist, even if short. Facts stay in their canonical files, not in huge wall text. The handoff must work without a private chat. Ownership must name who maintains shared rules and who merges outputs.
 
-**Worked example:** BRIEF.md: goal + owners. SOURCES.md: three dated ticket links. Wall: plain tone, no invented metrics. Recipe: status spec. Tools: search + attach only. Handoff: Goal / Done / Sources / Open questions. Ownership: Lee owns the draft and merge. Verify: five checks before the first draft.
+**Worked example pack:**
+
+1. BRIEF.md — Goal: weekly status for manager. Owners: you. Limits: no invented metrics.
+2. SOURCES.md — Three dated ticket links; one wiki row for blockers.
+3. Wall rules — Plain tone. Ask if a number is missing. No secrets in chat.
+4. Playbook — Trigger: "weekly status." Steps: gather wins/risks/asks; draft five bullets. Done: dated, owner, one risk line.
+5. Tool allow list — Search tickets + attach wiki. Never: send email, deploy.
+6. Handoff — Goal / Done / Sources / Locked / Do not / Open questions.
+7. Ownership — You own the draft and merge; manager owns final send.
+8. Verify checklist — Five bullets? Citations? No secrets? No extra scope? Under 200 words?
 
 </details>
 
@@ -38,6 +54,11 @@ Run your capstone once with a timer. Record one metric — time to first draft, 
 
 Strong look-backs name a metric and one durable default — a rule, checklist, or pack habit — not vague praise. The default should survive beyond this one run.
 
-**Worked example:** Metric: 18 min vs old 28 min; zero source errors. Failed first: none. Default: always attach BRIEF.md before status drafts; share verify checklist with desk mate.
+**Worked example look-back:**
+
+- Metric: 18 minutes to first usable draft vs old 28 minutes; zero source errors in verify (old way had two guess errors).
+- Failed first: none this run. Closest risk was almost skipping the source spot-check — checklist caught it.
+- Team default: always attach BRIEF.md before status drafts; share the five-line verify checklist with a desk mate the same week.
+- Revisit in 30 days: prune any rule nobody used.
 
 </details>

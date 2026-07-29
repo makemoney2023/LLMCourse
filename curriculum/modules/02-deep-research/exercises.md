@@ -24,7 +24,7 @@ Worked example — project: clinic appointment reminder bot.
 ## Exercise 2: Capture sources with links and dates
 **id:** ex-2
 
-Answer your three questions with a research tool (Firecrawl, browse, or careful manual reading). List at least five sources. Each row: URL, date accessed, one line on why it matters.
+Answer your three questions with a research tool (browse, crawl, or careful manual reading). List at least five sources. Each row: URL, date accessed, one line on why it matters.
 
 <details>
 <summary>Answer key</summary>

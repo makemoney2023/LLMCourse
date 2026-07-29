@@ -9,6 +9,7 @@ import {
   LESSON_STEP_IDS,
   PRACTICE_STEP_ID,
   recordQuizAndCompleteModule,
+  unlockReason,
 } from "./access";
 import {
   emptyProgress,
@@ -75,14 +76,20 @@ const modules: ModuleMeta[] = [
 const exerciseIds = ["ex-1", "ex-2"];
 
 describe("access helpers", () => {
-  it("unlocks module 1 always; locks later modules until prior complete", () => {
+  it("soft-opens every module while tracking recommended order", () => {
     let p = emptyProgress();
     expect(isModuleUnlocked(p, modules, "mental-model")).toBe(true);
-    expect(isModuleUnlocked(p, modules, "deep-research")).toBe(false);
+    expect(isModuleUnlocked(p, modules, "deep-research")).toBe(true);
+    expect(isModuleUnlocked(p, modules, "system-instructions")).toBe(true);
+    expect(unlockReason(p, modules, "deep-research")).toMatch(
+      /Recommended after Module 1/,
+    );
 
     p = markModuleComplete(p, "mental-model");
-    expect(isModuleUnlocked(p, modules, "deep-research")).toBe(true);
-    expect(isModuleUnlocked(p, modules, "system-instructions")).toBe(false);
+    expect(unlockReason(p, modules, "deep-research")).toBeNull();
+    expect(unlockReason(p, modules, "system-instructions")).toMatch(
+      /Recommended after Module 2/,
+    );
   });
 
   it("unlocks lesson steps in order", () => {
