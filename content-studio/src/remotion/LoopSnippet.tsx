@@ -6,10 +6,13 @@ import {
   Sequence,
   useCurrentFrame,
 } from "remotion";
-import type { LoopSnippetProps } from "../render/props";
+import {
+  LOOP_NODE_FRAMES,
+  type LoopSnippetProps,
+} from "../render/props";
 
 const HOOK_FRAMES = 60;
-const NODE_FRAMES = 75;
+const NODE_FRAMES = LOOP_NODE_FRAMES;
 
 function KineticText({
   text,

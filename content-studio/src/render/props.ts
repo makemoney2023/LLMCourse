@@ -4,6 +4,8 @@ import type { ScriptPack } from "../schema/script-pack";
 
 const FPS = 30 as const;
 const HOOK_FRAMES = 2 * FPS;
+/** Post-hook window reserved for LoopSnippet node card before beats. */
+export const LOOP_NODE_FRAMES = 2 * FPS;
 const CTA_FRAMES = 3 * FPS;
 const MAX_CAPTION_LENGTH = 80;
 
@@ -70,21 +72,28 @@ function brandFromTokens(): BrandProps {
   };
 }
 
-function allocateTimedBeats(pack: ScriptPack): {
+function allocateTimedBeats(
+  pack: ScriptPack,
+  reservedAfterHook = 0,
+): {
   beats: TimedBeat[];
   durationInFrames: number;
 } {
   const durationInFrames = pack.duration_target_sec * FPS;
   const beatCount = pack.beats.length;
-  const remainingFrames = Math.max(0, durationInFrames - HOOK_FRAMES - CTA_FRAMES);
-  // Even split of the hook→CTA window. Prefer ~45 frames/beat when room allows
-  // (remaining/n ≥ 45); drop below 45 rather than overflowing durationInFrames.
+  const remainingFrames = Math.max(
+    0,
+    durationInFrames - HOOK_FRAMES - reservedAfterHook - CTA_FRAMES,
+  );
+  // Even split of the post-hook (and optional node) → CTA window.
+  // Prefer ~45 frames/beat when room allows; drop below 45 rather than
+  // overflowing durationInFrames.
   const durationFramesPerBeat = Math.max(
     1,
     Math.floor(remainingFrames / beatCount),
   );
 
-  let startFrame = HOOK_FRAMES;
+  let startFrame = HOOK_FRAMES + reservedAfterHook;
   const beats = pack.beats.map((beat) => {
     const timedBeat = {
       text: truncateCaption(beat.text),
@@ -149,7 +158,10 @@ export function scriptPackToLoopSnippetProps(
   pack: ScriptPack,
   opts?: PropAudioOpts,
 ): LoopSnippetProps {
-  const { beats, durationInFrames } = allocateTimedBeats(pack);
+  const { beats, durationInFrames } = allocateTimedBeats(
+    pack,
+    LOOP_NODE_FRAMES,
+  );
 
   return {
     courseName: brandTokens.courseName,

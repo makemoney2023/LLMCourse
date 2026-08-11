@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   compositionForSeries,
+  LOOP_NODE_FRAMES,
   scriptPackToListRevealProps,
   scriptPackToLoopSnippetProps,
   scriptPackToTitlePunchProps,
@@ -170,6 +171,26 @@ describe("scriptPackToLoopSnippetProps", () => {
     expect(last.startFrame + last.durationFrames).toBeLessThanOrEqual(
       props.durationInFrames,
     );
+  });
+
+  it("reserves a post-hook node window so the node card does not collapse to 1 frame", () => {
+    const HOOK_FRAMES = 60;
+    const pack = parseScriptPack({
+      ...basePack,
+      id: "loop-node-window-01",
+      anchor: "Observe → Decide → Act",
+      hook: "Zoom in on one node of the loop.",
+    });
+    const props = scriptPackToLoopSnippetProps(pack);
+    const firstBeatStart = props.beats[0]!.startFrame;
+    const nodeWindowDuration = firstBeatStart - HOOK_FRAMES;
+    const nodeEnd = HOOK_FRAMES + LOOP_NODE_FRAMES;
+
+    // LoopSnippet node Sequence is [HOOK_FRAMES, firstBeatStart); must be > 1 frame.
+    expect(nodeWindowDuration).toBeGreaterThan(1);
+    expect(nodeWindowDuration).toBe(LOOP_NODE_FRAMES);
+    // Beats must begin when the reserved node window ends (not at hook end).
+    expect(firstBeatStart).toBe(nodeEnd);
   });
 
   it("passes optional audioSrc through", () => {
