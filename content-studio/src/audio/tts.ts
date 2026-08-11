@@ -17,11 +17,11 @@ export type SynthesizeVoiceOptions = {
   fetchFn?: typeof fetch;
 };
 
-/** sha256 hex of `${voiceId}:${hook}:${beats text}`. */
+/** sha256 hex of `${voiceId}:${hook}:${beats text}:${cta}`. */
 export function voiceCacheKey(pack: ScriptPack, voiceId: string): string {
   const beatsText = pack.beats.map((beat) => beat.text).join("\n");
   return createHash("sha256")
-    .update(`${voiceId}:${pack.hook}:${beatsText}`)
+    .update(`${voiceId}:${pack.hook}:${beatsText}:${pack.cta}`)
     .digest("hex");
 }
 

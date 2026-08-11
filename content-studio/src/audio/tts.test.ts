@@ -24,7 +24,7 @@ function samplePack(overrides: Partial<ReturnType<typeof parseScriptPack>> = {})
 }
 
 describe("voiceCacheKey", () => {
-  it("is stable for same voiceId + hook + beats text", () => {
+  it("is stable for same voiceId + hook + beats text + cta", () => {
     const pack = samplePack();
     const a = voiceCacheKey(pack, "voice-abc");
     const b = voiceCacheKey(pack, "voice-abc");
@@ -33,12 +33,12 @@ describe("voiceCacheKey", () => {
 
     const beatsText = pack.beats.map((beat) => beat.text).join("\n");
     const expected = createHash("sha256")
-      .update(`voice-abc:${pack.hook}:${beatsText}`)
+      .update(`voice-abc:${pack.hook}:${beatsText}:${pack.cta}`)
       .digest("hex");
     expect(a).toBe(expected);
   });
 
-  it("changes when hook or beats text change", () => {
+  it("changes when hook, beats text, or cta change", () => {
     const base = samplePack();
     const key = voiceCacheKey(base, "voice-abc");
     expect(voiceCacheKey(samplePack({ hook: "Different hook." }), "voice-abc")).not.toBe(
@@ -51,6 +51,9 @@ describe("voiceCacheKey", () => {
         }),
         "voice-abc",
       ),
+    ).not.toBe(key);
+    expect(
+      voiceCacheKey(samplePack({ cta: "Different CTA — different link" }), "voice-abc"),
     ).not.toBe(key);
     expect(voiceCacheKey(base, "other-voice")).not.toBe(key);
   });
