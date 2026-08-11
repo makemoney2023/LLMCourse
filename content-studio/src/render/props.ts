@@ -4,7 +4,6 @@ import type { ScriptPack } from "../schema/script-pack";
 const FPS = 30 as const;
 const HOOK_FRAMES = 2 * FPS;
 const CTA_FRAMES = 3 * FPS;
-const MIN_BEAT_FRAMES = 45;
 const MAX_CAPTION_LENGTH = 80;
 
 export type TitlePunchProps = {
@@ -27,9 +26,11 @@ function truncateCaption(text: string, maxLength = MAX_CAPTION_LENGTH): string {
 export function scriptPackToTitlePunchProps(pack: ScriptPack): TitlePunchProps {
   const durationInFrames = pack.duration_target_sec * FPS;
   const beatCount = pack.beats.length;
-  const remainingFrames = durationInFrames - HOOK_FRAMES - CTA_FRAMES;
+  const remainingFrames = Math.max(0, durationInFrames - HOOK_FRAMES - CTA_FRAMES);
+  // Even split of the hook→CTA window. Prefer ~45 frames/beat when room allows
+  // (remaining/n ≥ 45); drop below 45 rather than overflowing durationInFrames.
   const durationFramesPerBeat = Math.max(
-    MIN_BEAT_FRAMES,
+    1,
     Math.floor(remainingFrames / beatCount),
   );
 
