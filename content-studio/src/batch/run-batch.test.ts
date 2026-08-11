@@ -193,4 +193,46 @@ describe("runBatch", () => {
       "music_caption",
     ]);
   });
+
+  it("selects Remotion composition from hook.series", async () => {
+    const seriesCurriculum = fs.mkdtempSync(
+      path.join(os.tmpdir(), "shorts-series-curriculum-"),
+    );
+    const moduleDir = path.join(seriesCurriculum, "modules", "01-series");
+    fs.mkdirSync(moduleDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(moduleDir, "module.yaml"),
+      [
+        "slug: series-mod",
+        "objectives:",
+        "  - One clear idea about desks",
+        "  - Common myth vs fix for context windows",
+        "loopPlacement: Observe node of the agent loop",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const outRoot = makeOutRoot();
+    const compositionIds: string[] = [];
+    const result = await runBatch({
+      date: "2026-08-15",
+      count: 3,
+      curriculumRoot: seriesCurriculum,
+      outRoot,
+      resolveAudio: stubResolveAudio,
+      render: ({ outputPath, compositionId }) => {
+        compositionIds.push(compositionId);
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+        fs.writeFileSync(outputPath, "");
+      },
+    });
+
+    expect(result.ids).toHaveLength(3);
+    expect(compositionIds).toEqual([
+      "TitlePunch",
+      "ListReveal",
+      "LoopSnippet",
+    ]);
+  });
 });

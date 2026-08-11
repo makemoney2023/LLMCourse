@@ -87,7 +87,7 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `content-studio/src/audio/tts.ts` | ElevenLabs TTS + sha256 cache under `out/.audio-cache/` |
 | `content-studio/src/audio/music.ts` | `music_caption` bed picker from `audio/beds/` |
 | `content-studio/audio/beds/` | Cleared music beds only (see README; empty until licensed) |
-| `content-studio/src/remotion/` | Remotion compositions (`TitlePunch` = P0; optional `audioSrc`) |
+| `content-studio/src/remotion/` | Remotion compositions: `TitlePunch` (one_idea), `ListReveal` (myth_fix), `LoopSnippet` (loop_moment); optional `audioSrc` |
 | `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → audio → render) |
 | `content-studio/src/publish/approval.ts` | Parse `approval.yaml`; publisher gate helper |
 | `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
@@ -100,7 +100,7 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `ELEVENLABS_VOICE_ID` | Voice id for `format: voice` |
 | `SHORTS_DRY_AUDIO=1` | Write silent wav stubs without API keys / beds (local dry runs) |
 
-Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/` and passes `audioSrc` into TitlePunch props (`<Audio>` when present).
+Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/` and passes `audioSrc` into composition props (`<Audio>` when present). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`.
 
 Golden render (1080×1920, 30fps):
 

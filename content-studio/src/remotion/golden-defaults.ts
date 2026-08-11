@@ -1,4 +1,11 @@
-import { scriptPackToTitlePunchProps, type TitlePunchProps } from "../render/props";
+import {
+  scriptPackToListRevealProps,
+  scriptPackToLoopSnippetProps,
+  scriptPackToTitlePunchProps,
+  type ListRevealProps,
+  type LoopSnippetProps,
+  type TitlePunchProps,
+} from "../render/props";
 import { parseScriptPack } from "../schema/script-pack";
 
 /**
@@ -30,5 +37,26 @@ const goldenFixture = {
   tags: ["context-window", "beginners"],
 };
 
+const goldenPack = parseScriptPack(goldenFixture);
+
 export const goldenTitlePunchProps: TitlePunchProps =
-  scriptPackToTitlePunchProps(parseScriptPack(goldenFixture));
+  scriptPackToTitlePunchProps(goldenPack);
+
+export const goldenListRevealProps: ListRevealProps =
+  scriptPackToListRevealProps(
+    parseScriptPack({
+      ...goldenFixture,
+      id: "myth-fix-desk-space-01",
+      hook: "Myth: more sticky notes always help.",
+    }),
+  );
+
+export const goldenLoopSnippetProps: LoopSnippetProps =
+  scriptPackToLoopSnippetProps(
+    parseScriptPack({
+      ...goldenFixture,
+      id: "loop-snippet-desk-space-01",
+      anchor: "Observe → Decide → Act",
+      hook: "Zoom in on one node of the loop.",
+    }),
+  );

@@ -7,7 +7,12 @@ import { resolveMusicBed } from "../audio/music";
 import { synthesizeVoice } from "../audio/tts";
 import type { HookCandidate } from "../extract/extract-hooks";
 import { extractHooks } from "../extract/extract-hooks";
-import { scriptPackToTitlePunchProps } from "../render/props";
+import type { HookSeries } from "../extract/extract-hooks";
+import {
+  compositionForSeries,
+  scriptPackToCompositionProps,
+  type CompositionId,
+} from "../render/props";
 import type { ScriptFormat, ScriptPack } from "../schema/script-pack";
 import { buildScriptFromHook } from "../write/build-script";
 
@@ -27,6 +32,8 @@ export type RenderShortFn = (args: {
   pack: ScriptPack;
   outputPath: string;
   audioSrc?: string;
+  compositionId: CompositionId;
+  series: HookSeries;
 }) => void | Promise<void>;
 
 export type ResolveAudioFn = (args: {
@@ -145,13 +152,17 @@ export function defaultRenderShort({
   pack,
   outputPath,
   audioSrc,
+  compositionId,
 }: {
   pack: ScriptPack;
   outputPath: string;
   audioSrc?: string;
+  compositionId: CompositionId;
 }): void {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  const props = scriptPackToTitlePunchProps(pack, { audioSrc });
+  const props = scriptPackToCompositionProps(pack, compositionId, {
+    audioSrc,
+  });
   const propsPath = path.join(
     path.dirname(outputPath),
     `${pack.id}-props.json`,
@@ -165,7 +176,7 @@ export function defaultRenderShort({
       "remotion",
       "render",
       entry,
-      "TitlePunch",
+      compositionId,
       outputPath,
       `--props=${propsPath}`,
     ],
@@ -249,6 +260,7 @@ export async function runBatch(opts: RunBatchOptions): Promise<BatchResult> {
 
   for (let i = 0; i < hooks.length; i += 1) {
     const hook = hooks[i]!;
+    const compositionId = compositionForSeries(hook.series);
     const built = buildScriptFromHook(hook, { format: formatForIndex(i) });
     const id = allocateUniqueScriptId(built.id, usedIds);
     const pack: ScriptPack = id === built.id ? built : { ...built, id };
@@ -259,7 +271,13 @@ export async function runBatch(opts: RunBatchOptions): Promise<BatchResult> {
     const outputPath = path.join(rendersDir, `${id}.mp4`);
     try {
       const audioSrc = await resolveAudio({ pack, audioDir });
-      await render({ pack, outputPath, audioSrc });
+      await render({
+        pack,
+        outputPath,
+        audioSrc,
+        compositionId,
+        series: hook.series,
+      });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       errors.push({ id, error: message });

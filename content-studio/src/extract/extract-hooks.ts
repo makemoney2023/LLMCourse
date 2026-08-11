@@ -24,6 +24,14 @@ type ModuleYaml = {
   toolMapping?: ToolMappingEntry[];
 };
 
+/** Heuristic: myth/fix lane when anchor text suggests contrast or common mistake. */
+export function seriesForAnchor(anchor: string): HookSeries {
+  if (/\b(myth|mistake)\b|\bvs\.?\b/i.test(anchor)) {
+    return "myth_fix";
+  }
+  return "one_idea";
+}
+
 export function extractHooks(moduleDirPath: string): HookCandidate[] {
   const moduleDir = path.basename(moduleDirPath);
   const yamlPath = path.join(moduleDirPath, "module.yaml");
@@ -38,7 +46,7 @@ export function extractHooks(moduleDirPath: string): HookCandidate[] {
       moduleSlug,
       anchor: objective,
       source: objective,
-      series: "one_idea",
+      series: seriesForAnchor(objective),
     });
   }
 
@@ -49,7 +57,7 @@ export function extractHooks(moduleDirPath: string): HookCandidate[] {
       moduleSlug,
       anchor,
       source: anchor,
-      series: "one_idea",
+      series: seriesForAnchor(anchor),
     });
   }
 

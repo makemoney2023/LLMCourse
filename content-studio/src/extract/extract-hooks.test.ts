@@ -1,3 +1,5 @@
+import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { extractHooks } from "./extract-hooks";
@@ -62,6 +64,29 @@ describe("extractHooks", () => {
       "This map shows the whole loop. Later modules zoom in on each part.",
     );
     expect(loopMoments[0]?.source).toBe(loopMoments[0]?.anchor);
+  });
+
+  it("tags myth/vs/mistake objectives as myth_fix", () => {
+    const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "shorts-myth-"));
+    const dir = path.join(tmp, "01-myth");
+    fs.mkdirSync(dir, { recursive: true });
+    fs.writeFileSync(
+      path.join(dir, "module.yaml"),
+      [
+        "slug: myth-mod",
+        "objectives:",
+        "  - Common myth vs fix for crowded desks",
+        "  - Name the context window plainly",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const hooks = extractHooks(dir);
+    const myth = hooks.find((h) => h.series === "myth_fix");
+    const idea = hooks.find((h) => h.series === "one_idea");
+    expect(myth?.anchor).toMatch(/myth vs fix/i);
+    expect(idea?.anchor).toMatch(/context window/i);
   });
 
   it("sets moduleDir to folder basename and moduleSlug from yaml slug", () => {
