@@ -76,7 +76,7 @@ Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel
 
 `src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
-## YouTube Shorts studio (P0)
+## YouTube Shorts studio (P0 / P1 batch)
 
 Curriculum under `curriculum/` remains the source of truth. The sibling `content-studio/` package turns Module anchors into faceless Shorts (kinetic text on branded backgrounds) without changing learner routes.
 
@@ -85,6 +85,8 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `content-studio/src/schema/script-pack.ts` | Script pack schema + validation |
 | `content-studio/fixtures/*.yaml` | Golden / hand packs (e.g. Module 1 desk-space) |
 | `content-studio/src/remotion/` | Remotion compositions (`TitlePunch` = P0) |
+| `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → render) |
+| `content-studio/src/publish/approval.ts` | Parse `approval.yaml`; publisher gate helper |
 | `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
 
 Golden render (1080×1920, 30fps):
@@ -93,7 +95,18 @@ Golden render (1080×1920, 30fps):
 npm run shorts:render:golden
 ```
 
-Output: `content-studio/out/golden/mental-model-desk-space-01.mp4`. Preview in Studio with `npm run shorts:studio`. Schema/extract/write/props unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
+Output: `content-studio/out/golden/mental-model-desk-space-01.mp4`. Preview in Studio with `npm run shorts:studio`.
+
+Weekly batch (default 7 Shorts, round-robin across modules):
+
+```bash
+npm run shorts:batch
+# optional: npm run shorts:batch -- --date 2026-08-11 --count 7
+```
+
+Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish (P2) refuses unapproved ids.
+
+Schema/extract/write/props/batch/approval unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
 
 ## Deploy
 
