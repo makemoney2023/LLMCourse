@@ -85,6 +85,49 @@ function listModuleDirs(modulesRoot: string): string[] {
     .sort();
 }
 
+function hookKey(hook: HookCandidate): string {
+  return `${hook.moduleSlug}::${hook.series}::${hook.anchor}`;
+}
+
+/**
+ * Prefer at least one loop_moment and one myth_fix when the pool has them.
+ * For count≥7 always; for smaller counts when count≥2 (room for both series).
+ */
+function ensureSeriesMix(
+  selected: HookCandidate[],
+  pool: HookCandidate[],
+  count: number,
+): void {
+  if (count < 2) return;
+
+  const preferred: HookSeries[] = ["loop_moment", "myth_fix"];
+  const selectedKeys = new Set(selected.map(hookKey));
+
+  for (const series of preferred) {
+    if (selected.some((h) => h.series === series)) continue;
+    const candidate = pool.find(
+      (h) => h.series === series && !selectedKeys.has(hookKey(h)),
+    );
+    if (!candidate) continue;
+
+    const replaceIdx = selected.findIndex((h) => h.series === "one_idea");
+    if (replaceIdx === -1) {
+      if (selected.length === 0) {
+        selected.push(candidate);
+      } else {
+        const removed = selected[selected.length - 1]!;
+        selectedKeys.delete(hookKey(removed));
+        selected[selected.length - 1] = candidate;
+      }
+    } else {
+      const removed = selected[replaceIdx]!;
+      selectedKeys.delete(hookKey(removed));
+      selected[replaceIdx] = candidate;
+    }
+    selectedKeys.add(hookKey(candidate));
+  }
+}
+
 /** Round-robin across modules so week one does not exhaust Module 1. */
 export function selectHooks(
   modulesRoot: string,
@@ -92,6 +135,7 @@ export function selectHooks(
 ): HookCandidate[] {
   const moduleDirs = listModuleDirs(modulesRoot);
   const perModule = moduleDirs.map((dir) => extractHooks(dir));
+  const pool = perModule.flat();
   const selected: HookCandidate[] = [];
   let round = 0;
 
@@ -109,6 +153,7 @@ export function selectHooks(
     round += 1;
   }
 
+  ensureSeriesMix(selected, pool, count);
   return selected;
 }
 

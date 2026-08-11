@@ -108,7 +108,7 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 
 OAuth setup steps: `content-studio/docs/YOUTUBE_OAUTH.md`.
 
-Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/`, then `defaultRenderShort` stages each file into `public/batch-audio/` and passes a public-relative `audioSrc` (e.g. `batch-audio/<id>.wav`). Compositions call `staticFile()` via `toRemotionAudioSrc` so Remotion’s `/public` static base applies (raw absolute FS paths 404 as `http://localhost:3000/Users/...`). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`.
+Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/`, then `defaultRenderShort` stages each file into `public/batch-audio/` and passes a public-relative `audioSrc` (e.g. `batch-audio/<id>.wav`). Compositions call `staticFile()` via `toRemotionAudioSrc` so Remotion’s `/public` static base applies (raw absolute FS paths 404 as `http://localhost:3000/Users/...`). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`. Hook selection round-robins modules and, when the pool allows, prefers at least one `loop_moment` and one `myth_fix` (especially for count≥7).
 
 Golden render (1080×1920, 30fps):
 
@@ -125,7 +125,7 @@ npm run shorts:batch
 # optional: npm run shorts:batch -- --date 2026-08-11 --count 7
 ```
 
-Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish skips unapproved ids and errors if none are approved. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
+Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. The batch CLI exits non-zero when `errors.json` is non-empty. Flip `approve: true` only after human QA; publish skips unapproved ids and errors if none are approved. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
 
 ### Approval → publish workflow
 
@@ -138,7 +138,7 @@ npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-da
 # equivalent: ... --dry-run
 ```
 
-Writes `publish-plan.json` with title (hook), UTM description, and `publishAt` ISO times (daily 09:00 America/New_York from `--start-date`). Skips unapproved ids; errors if none are approved.
+Writes `publish-plan.json` with title (hook clamped to 100 chars), UTM description, and `publishAt` ISO times (daily 09:00 America/New_York from `--start-date`). Skips unapproved ids; errors if none are approved.
 
 4. Live upload + schedule (requires YouTube OAuth env vars):
 
@@ -146,7 +146,7 @@ Writes `publish-plan.json` with title (hook), UTM description, and `publishAt` I
 npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-date 2026-08-12 --live
 ```
 
-Uploads each approved `renders/<id>.mp4` via YouTube resumable upload with `privacyStatus=private` and `publishAt` from the plan. Writes `publish-result.json` with YouTube video ids. Course link in every description: `https://llm-leverage-course.vercel.app?utm_source=youtube&utm_medium=shorts&utm_campaign=<id>`.
+Preflight: every approved id must have `renders/<id>.mp4` or live publish throws listing missing files. Uploads via YouTube resumable upload with `privacyStatus=private` and `publishAt` from the plan. Appends `publish-result.json` after each success (crash-safe); re-runs skip ids that already have a `videoId`. Course link in every description: `https://llm-leverage-course.vercel.app?utm_source=youtube&utm_medium=shorts&utm_campaign=<id>`.
 
 ### Shorts commands
 

@@ -5,9 +5,11 @@ import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 import { isApproved, parseApproval } from "../publish/approval";
 import type { ScriptPack } from "../schema/script-pack";
-import { runBatch } from "./run-batch";
+import { runBatch, selectHooks } from "./run-batch";
+import { extractHooks } from "../extract/extract-hooks";
 
 const curriculumRoot = path.resolve(__dirname, "../../../curriculum");
+const modulesRoot = path.join(curriculumRoot, "modules");
 
 function makeOutRoot(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), "shorts-batch-"));
@@ -192,6 +194,23 @@ describe("runBatch", () => {
       "voice",
       "music_caption",
     ]);
+  });
+
+  it("prefers loop_moment and myth_fix in a count-7 curriculum mix when available", () => {
+    const moduleDirs = fs
+      .readdirSync(modulesRoot, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => path.join(modulesRoot, entry.name));
+    const pool = moduleDirs.flatMap((dir) => extractHooks(dir));
+    const poolSeries = new Set(pool.map((h) => h.series));
+    expect(poolSeries.has("loop_moment")).toBe(true);
+    expect(poolSeries.has("myth_fix")).toBe(true);
+
+    const selected = selectHooks(modulesRoot, 7);
+    expect(selected).toHaveLength(7);
+    const selectedSeries = new Set(selected.map((h) => h.series));
+    expect(selectedSeries.has("loop_moment")).toBe(true);
+    expect(selectedSeries.has("myth_fix")).toBe(true);
   });
 
   it("selects Remotion composition from hook.series", async () => {

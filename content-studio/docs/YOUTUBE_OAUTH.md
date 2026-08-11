@@ -66,9 +66,11 @@ npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-da
 Behavior:
 
 - Only ids with `approve: true` in `approval.yaml` are uploaded.
-- Each approved Short’s `renders/<id>.mp4` (vertical 1080×1920) is uploaded via resumable `videos.insert`.
+- Titles are clamped to 100 characters (YouTube limit).
+- Preflight requires every approved `renders/<id>.mp4` before any upload.
+- Each approved Short’s mp4 (vertical 1080×1920) is uploaded via resumable `videos.insert`.
 - Metadata sets `status.privacyStatus=private` and `status.publishAt` (daily 09:00 America/New_York from `--start-date`). YouTube publishes at that time.
-- Writes `publish-plan.json` always; live also writes `publish-result.json` with YouTube video ids.
+- Writes `publish-plan.json` always; live appends `publish-result.json` after each success and skips ids that already have a `videoId` on re-run.
 
 ## Notes
 

@@ -59,6 +59,14 @@ const RESUMABLE_UPLOAD_URL =
 /** People & Blogs — reasonable default for educational Shorts. */
 const DEFAULT_CATEGORY_ID = "22";
 
+/** YouTube title hard limit. */
+export const YOUTUBE_TITLE_MAX_CHARS = 100;
+
+export function clampYoutubeTitle(title: string): string {
+  if (title.length <= YOUTUBE_TITLE_MAX_CHARS) return title;
+  return title.slice(0, YOUTUBE_TITLE_MAX_CHARS);
+}
+
 function addCalendarDays(ymd: string, days: number): string {
   const [y, m, d] = ymd.split("-").map(Number);
   const utc = new Date(Date.UTC(y!, m! - 1, d! + days));
@@ -271,6 +279,51 @@ function renderPathFor(batchDir: string, id: string): string {
   return path.join(batchDir, "renders", `${id}.mp4`);
 }
 
+function publishResultPath(batchDir: string): string {
+  return path.join(batchDir, "publish-result.json");
+}
+
+function loadPriorUploads(batchDir: string): UploadedShort[] {
+  const resultPath = publishResultPath(batchDir);
+  if (!fs.existsSync(resultPath)) return [];
+  try {
+    const raw = JSON.parse(fs.readFileSync(resultPath, "utf8")) as {
+      uploaded?: UploadedShort[];
+    };
+    return (raw.uploaded ?? []).filter(
+      (entry) =>
+        typeof entry?.id === "string" &&
+        typeof entry?.videoId === "string" &&
+        entry.videoId.length > 0,
+    );
+  } catch {
+    return [];
+  }
+}
+
+function writePublishResult(batchDir: string, uploaded: UploadedShort[]): void {
+  fs.writeFileSync(
+    publishResultPath(batchDir),
+    JSON.stringify({ uploaded }, null, 2),
+    "utf8",
+  );
+}
+
+/** Fail before any network upload if approved renders are missing. */
+export function assertRendersPresent(
+  batchDir: string,
+  approvedIds: readonly string[],
+): void {
+  const missing = approvedIds.filter(
+    (id) => !fs.existsSync(renderPathFor(batchDir, id)),
+  );
+  if (missing.length === 0) return;
+  const listed = missing
+    .map((id) => path.join("renders", `${id}.mp4`))
+    .join(", ");
+  throw new Error(`Missing render(s) for approved id(s): ${listed}`);
+}
+
 export async function publishBatch(
   batchDir: string,
   opts: PublishBatchOptions,
@@ -295,7 +348,7 @@ export async function publishBatch(
     const pack = loadScriptPack(batchDir, id);
     return {
       id: pack.id,
-      title: pack.hook,
+      title: clampYoutubeTitle(pack.hook),
       description: buildDescription(pack),
       publishAt: nineAmEasternIso(opts.startDate, index),
     };
@@ -312,12 +365,23 @@ export async function publishBatch(
     return { planned, skipped, planPath };
   }
 
+  assertRendersPresent(batchDir, approvedIds);
+
+  const prior = loadPriorUploads(batchDir);
+  const priorById = new Map(prior.map((entry) => [entry.id, entry]));
+  const uploaded: UploadedShort[] = [...prior];
+  const pending = planned.filter((item) => !priorById.has(item.id));
+
+  if (pending.length === 0) {
+    writePublishResult(batchDir, uploaded);
+    return { planned, skipped, planPath, uploaded };
+  }
+
   const fetchFn = opts.fetchFn ?? fetch;
   const creds = readYoutubeCredentialsFromEnv();
   const accessToken = await refreshAccessToken(creds, fetchFn);
-  const uploaded: UploadedShort[] = [];
 
-  for (const item of planned) {
+  for (const item of pending) {
     const filePath = renderPathFor(batchDir, item.id);
     const { videoId } = await uploadScheduledShort({
       accessToken,
@@ -326,13 +390,8 @@ export async function publishBatch(
       fetchFn,
     });
     uploaded.push({ id: item.id, videoId, publishAt: item.publishAt });
+    writePublishResult(batchDir, uploaded);
   }
-
-  fs.writeFileSync(
-    path.join(batchDir, "publish-result.json"),
-    JSON.stringify({ uploaded }, null, 2),
-    "utf8",
-  );
 
   return { planned, skipped, planPath, uploaded };
 }

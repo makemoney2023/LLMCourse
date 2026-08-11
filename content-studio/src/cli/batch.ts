@@ -1,11 +1,16 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { runBatch } from "../batch/run-batch";
+import { runBatch, type BatchError } from "../batch/run-batch";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const studioRoot = path.resolve(__dirname, "../..");
 const repoRoot = path.resolve(studioRoot, "..");
+
+/** Non-zero when any short failed so CI/shell pipelines fail the batch step. */
+export function batchExitCode(errors: ReadonlyArray<BatchError> | { length: number }): number {
+  return errors.length > 0 ? 1 : 0;
+}
 
 function todayIsoDate(): string {
   return new Date().toISOString().slice(0, 10);
@@ -50,9 +55,16 @@ async function main() {
     console.log("errors: none");
   }
   console.log("Review APPROVAL.md and set approve: true in approval.yaml before publish.");
+  process.exitCode = batchExitCode(result.errors);
 }
 
-main().catch((err) => {
-  console.error(err instanceof Error ? err.message : err);
-  process.exitCode = 1;
-});
+const isDirectRun =
+  process.argv[1] !== undefined &&
+  path.resolve(process.argv[1]) === __filename;
+
+if (isDirectRun) {
+  main().catch((err) => {
+    console.error(err instanceof Error ? err.message : err);
+    process.exitCode = 1;
+  });
+}
