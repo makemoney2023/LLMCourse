@@ -47,3 +47,6 @@ next-env.d.ts
 
 # Git worktrees
 .worktrees/
+
+/content-studio/out/
+/content-studio/node_modules/

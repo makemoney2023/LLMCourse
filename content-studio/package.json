@@ -1,0 +1,23 @@
+{
+  "name": "content-studio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "studio": "remotion studio src/remotion/index.ts",
+    "render": "remotion render src/remotion/index.ts",
+    "batch": "tsx src/cli/batch.ts",
+    "publish": "tsx src/cli/publish.ts",
+    "test": "cd .. && npx vitest run content-studio"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.20.0",
+    "typescript": "^5"
+  }
+}
