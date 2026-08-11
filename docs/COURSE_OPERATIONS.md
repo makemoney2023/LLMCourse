@@ -76,7 +76,7 @@ Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel
 
 `src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
-## YouTube Shorts studio (P0 / P1 batch)
+## YouTube Shorts studio (P0 / P1 batch + P2 dry-run publish)
 
 Curriculum under `curriculum/` remains the source of truth. The sibling `content-studio/` package turns Module anchors into faceless Shorts (kinetic text on branded backgrounds) without changing learner routes.
 
@@ -90,6 +90,8 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `content-studio/src/remotion/` | Remotion compositions: `TitlePunch` (one_idea), `ListReveal` (myth_fix), `LoopSnippet` (loop_moment); optional `audioSrc` |
 | `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → audio → render) |
 | `content-studio/src/publish/approval.ts` | Parse `approval.yaml`; publisher gate helper |
+| `content-studio/src/publish/description.ts` | CTA + course URL with UTM (`utm_campaign=<pack.id>`) |
+| `content-studio/src/publish/youtube.ts` | Dry-run publish plan (`publish-plan.json`); live upload is Task 10 |
 | `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
 
 ### Shorts audio env
@@ -117,9 +119,17 @@ npm run shorts:batch
 # optional: npm run shorts:batch -- --date 2026-08-11 --count 7
 ```
 
-Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish (P2) refuses unapproved ids. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
+Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish skips unapproved ids and errors if none are approved. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
 
-Schema/extract/write/props/audio/batch/approval unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
+Dry-run publish (default; no YouTube API call):
+
+```bash
+npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-date 2026-08-12
+```
+
+Writes `publish-plan.json` with title (hook), UTM description, and `publishAt` ISO times (daily 09:00 America/New_York from `--start-date`). Use `--live` only after Task 10 OAuth upload is wired. Course link in every description: `https://llm-leverage-course.vercel.app?utm_source=youtube&utm_medium=shorts&utm_campaign=<id>`.
+
+Schema/extract/write/props/audio/batch/approval/publish unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
 
 ## Deploy
 
