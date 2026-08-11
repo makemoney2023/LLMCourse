@@ -104,6 +104,21 @@ function writeScriptYaml(pack: ScriptPack, filePath: string): void {
   fs.writeFileSync(filePath, stringifyYaml(pack), "utf8");
 }
 
+/** When buildId always ends in -01, collisions overwrite batch files — bump. */
+export function allocateUniqueScriptId(
+  id: string,
+  used: ReadonlySet<string>,
+): string {
+  if (!used.has(id)) return id;
+  const base = id.replace(/-\d+$/, "");
+  let n = 2;
+  while (true) {
+    const candidate = `${base}-${String(n).padStart(2, "0")}`;
+    if (!used.has(candidate)) return candidate;
+    n += 1;
+  }
+}
+
 function writeApprovalArtifacts(dir: string, ids: string[]): void {
   const approval = {
     items: ids.map((id) => ({ id, approve: false })),
@@ -187,20 +202,24 @@ export function runBatch(opts: RunBatchOptions): BatchResult {
 
   const render = opts.render ?? defaultRenderShort;
   const ids: string[] = [];
+  const usedIds = new Set<string>();
   const errors: BatchError[] = [];
 
   for (let i = 0; i < hooks.length; i += 1) {
     const hook = hooks[i]!;
-    const pack = buildScriptFromHook(hook, { format: formatForIndex(i) });
-    ids.push(pack.id);
-    writeScriptYaml(pack, path.join(scriptsDir, `${pack.id}.yaml`));
+    const built = buildScriptFromHook(hook, { format: formatForIndex(i) });
+    const id = allocateUniqueScriptId(built.id, usedIds);
+    const pack: ScriptPack = id === built.id ? built : { ...built, id };
+    usedIds.add(id);
+    ids.push(id);
+    writeScriptYaml(pack, path.join(scriptsDir, `${id}.yaml`));
 
-    const outputPath = path.join(rendersDir, `${pack.id}.mp4`);
+    const outputPath = path.join(rendersDir, `${id}.mp4`);
     try {
       render({ pack, outputPath });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
-      errors.push({ id: pack.id, error: message });
+      errors.push({ id, error: message });
     }
   }
 

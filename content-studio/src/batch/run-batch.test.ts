@@ -95,4 +95,53 @@ describe("runBatch", () => {
       fs.existsSync(path.join(result.dir, "approval.yaml")),
     ).toBe(true);
   });
+
+  it("bumps id suffix when two hooks produce the same base id", () => {
+    const collidingCurriculum = fs.mkdtempSync(
+      path.join(os.tmpdir(), "shorts-curriculum-"),
+    );
+    const moduleDir = path.join(collidingCurriculum, "modules", "01-dup");
+    fs.mkdirSync(moduleDir, { recursive: true });
+    fs.writeFileSync(
+      path.join(moduleDir, "module.yaml"),
+      [
+        "slug: dup-mod",
+        "objectives:",
+        "  - Desk Space",
+        "  - desk space",
+        "",
+      ].join("\n"),
+      "utf8",
+    );
+
+    const outRoot = makeOutRoot();
+    const result = runBatch({
+      date: "2026-08-13",
+      count: 2,
+      curriculumRoot: collidingCurriculum,
+      outRoot,
+      render: ({ outputPath }) => {
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+        fs.writeFileSync(outputPath, "");
+      },
+    });
+
+    expect(result.ids).toEqual([
+      "dup-mod-desk-space-01",
+      "dup-mod-desk-space-02",
+    ]);
+    expect(new Set(result.ids).size).toBe(2);
+
+    for (const id of result.ids) {
+      const scriptPath = path.join(result.dir, "scripts", `${id}.yaml`);
+      expect(fs.existsSync(scriptPath)).toBe(true);
+      const pack = parseYaml(fs.readFileSync(scriptPath, "utf8")) as {
+        id: string;
+      };
+      expect(pack.id).toBe(id);
+      expect(fs.existsSync(path.join(result.dir, "renders", `${id}.mp4`))).toBe(
+        true,
+      );
+    }
+  });
 });
