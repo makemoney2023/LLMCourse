@@ -6,6 +6,42 @@ import { readFileSync } from "node:fs";
 import { parse as parseYaml } from "yaml";
 
 describe("buildScriptFromHook", () => {
+  it("rewrites plain anchors into punchy hooks", () => {
+    const anchor = "Standing playbooks";
+    const pack = buildScriptFromHook({
+      moduleDir: "02-playbooks",
+      moduleSlug: "playbooks",
+      anchor,
+      source: "One sentence only.",
+      series: "one_idea",
+    });
+    expect(pack.hook.trim().toLowerCase()).not.toBe(anchor.trim().toLowerCase());
+    expect(pack.hook.replace(/\.$/, "").trim().toLowerCase()).not.toBe(
+      anchor.trim().toLowerCase(),
+    );
+    expect(pack.hook.length).toBeGreaterThan(anchor.length);
+    expect(pack.hook.length).toBeLessThanOrEqual(80);
+  });
+
+  it("uses the first four sentences when source has five or more", () => {
+    const source =
+      "First sentence here. Second sentence here. Third sentence here. Fourth sentence here. Fifth sentence should be dropped.";
+    const pack = buildScriptFromHook({
+      moduleDir: "01-mental-model",
+      moduleSlug: "mental-model",
+      anchor: "Test anchor",
+      source,
+      series: "one_idea",
+    });
+    expect(pack.beats).toHaveLength(4);
+    expect(pack.beats.map((beat) => beat.text)).toEqual([
+      "First sentence here.",
+      "Second sentence here.",
+      "Third sentence here.",
+      "Fourth sentence here.",
+    ]);
+  });
+
   it("builds a valid pack with cta and 2–4 beats", () => {
     const pack = buildScriptFromHook({
       moduleDir: "01-mental-model",

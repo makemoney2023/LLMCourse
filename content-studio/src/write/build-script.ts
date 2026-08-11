@@ -36,7 +36,7 @@ function punchyHook(anchor: string): string {
     return `Stop ignoring ${metaphor} — it changes everything.`;
   }
 
-  return anchor.endsWith(".") ? anchor : `${anchor}.`;
+  return `What if ${anchor.toLowerCase()} changed everything?`;
 }
 
 function splitSentences(text: string): string[] {
@@ -58,6 +58,9 @@ function fallbackBeats(anchor: string, source: string): string[] {
 
 function buildBeatTexts(anchor: string, source: string): string[] {
   const sentences = splitSentences(source);
+  if (sentences.length > 4) {
+    return sentences.slice(0, 4);
+  }
   if (sentences.length >= 2 && sentences.length <= 4) {
     return sentences;
   }
