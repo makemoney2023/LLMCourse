@@ -76,6 +76,25 @@ Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel
 
 `src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
+## YouTube Shorts studio (P0)
+
+Curriculum under `curriculum/` remains the source of truth. The sibling `content-studio/` package turns Module anchors into faceless Shorts (kinetic text on branded backgrounds) without changing learner routes.
+
+| Path | Purpose |
+|------|---------|
+| `content-studio/src/schema/script-pack.ts` | Script pack schema + validation |
+| `content-studio/fixtures/*.yaml` | Golden / hand packs (e.g. Module 1 desk-space) |
+| `content-studio/src/remotion/` | Remotion compositions (`TitlePunch` = P0) |
+| `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
+
+Golden render (1080×1920, 30fps):
+
+```bash
+npm run shorts:render:golden
+```
+
+Output: `content-studio/out/golden/mental-model-desk-space-01.mp4`. Preview in Studio with `npm run shorts:studio`. Schema/extract/write/props unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
+
 ## Deploy
 
 ```bash

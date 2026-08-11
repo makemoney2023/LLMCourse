@@ -9,7 +9,11 @@
     "lint": "eslint",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "shorts:studio": "npm run studio --prefix content-studio",
+    "shorts:render:golden": "npm run render --prefix content-studio -- TitlePunch out/golden/mental-model-desk-space-01.mp4",
+    "shorts:batch": "npm run batch --prefix content-studio",
+    "shorts:publish": "npm run publish --prefix content-studio"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "studio": "remotion studio src/remotion/index.ts",
-    "render": "remotion render src/remotion/index.ts",
+    "render": "tsx src/cli/render-one.ts",
     "batch": "tsx src/cli/batch.ts",
     "publish": "tsx src/cli/publish.ts",
     "test": "cd .. && npx vitest run content-studio"
