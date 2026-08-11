@@ -7,6 +7,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import type { ListRevealProps } from "../render/props";
+import { toRemotionAudioSrc } from "./remotion-audio-src";
 
 const HOOK_FRAMES = 60;
 
@@ -206,7 +207,7 @@ export const ListReveal: React.FC<ListRevealProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: brand.bg }}>
-      {audioSrc ? <Audio src={audioSrc} /> : null}
+      {audioSrc ? <Audio src={toRemotionAudioSrc(audioSrc)} /> : null}
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse at 30% 15%, ${brand.accent}28 0%, transparent 50%), linear-gradient(180deg, ${brand.bg} 0%, #020617 100%)`,

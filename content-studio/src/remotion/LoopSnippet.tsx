@@ -10,6 +10,7 @@ import {
   LOOP_NODE_FRAMES,
   type LoopSnippetProps,
 } from "../render/props";
+import { toRemotionAudioSrc } from "./remotion-audio-src";
 
 const HOOK_FRAMES = 60;
 const NODE_FRAMES = LOOP_NODE_FRAMES;
@@ -218,7 +219,7 @@ export const LoopSnippet: React.FC<LoopSnippetProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: brand.bg }}>
-      {audioSrc ? <Audio src={audioSrc} /> : null}
+      {audioSrc ? <Audio src={toRemotionAudioSrc(audioSrc)} /> : null}
       <AbsoluteFill
         style={{
           background: `radial-gradient(circle at 50% 40%, ${brand.accent}30 0%, transparent 45%), linear-gradient(180deg, ${brand.bg} 0%, #020617 100%)`,

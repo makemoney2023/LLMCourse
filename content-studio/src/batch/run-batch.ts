@@ -8,6 +8,7 @@ import { synthesizeVoice } from "../audio/tts";
 import type { HookCandidate } from "../extract/extract-hooks";
 import { extractHooks } from "../extract/extract-hooks";
 import type { HookSeries } from "../extract/extract-hooks";
+import { resolveAudioSrc } from "../render/audio-src";
 import {
   compositionForSeries,
   scriptPackToCompositionProps,
@@ -160,8 +161,12 @@ export function defaultRenderShort({
   compositionId: CompositionId;
 }): void {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  // Remotion cannot load absolute FS paths (404s as http://localhost:3000/Users/...).
+  const remotionAudioSrc = audioSrc
+    ? resolveAudioSrc(audioSrc, studioRoot)
+    : undefined;
   const props = scriptPackToCompositionProps(pack, compositionId, {
-    audioSrc,
+    audioSrc: remotionAudioSrc,
   });
   const propsPath = path.join(
     path.dirname(outputPath),

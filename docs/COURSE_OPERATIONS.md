@@ -100,7 +100,7 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `ELEVENLABS_VOICE_ID` | Voice id for `format: voice` |
 | `SHORTS_DRY_AUDIO=1` | Write silent wav stubs without API keys / beds (local dry runs) |
 
-Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/` and passes `audioSrc` into composition props (`<Audio>` when present). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`.
+Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/`, then `defaultRenderShort` stages each file into `public/batch-audio/` and passes a public-relative `audioSrc` (e.g. `batch-audio/<id>.wav`). Compositions call `staticFile()` via `toRemotionAudioSrc` so Remotion’s `/public` static base applies (raw absolute FS paths 404 as `http://localhost:3000/Users/...`). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`.
 
 Golden render (1080×1920, 30fps):
 

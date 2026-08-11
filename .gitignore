@@ -50,3 +50,5 @@ next-env.d.ts
 
 /content-studio/out/
 /content-studio/node_modules/
+# Staged Remotion audio (copied from batch audio/ for staticFile)
+/content-studio/public/batch-audio/
