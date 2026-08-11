@@ -14,6 +14,8 @@ export type TitlePunchProps = {
   brand: { bg: string; fg: string; accent: string };
   fps: 30;
   durationInFrames: number;
+  /** Optional voiceover or music bed path/URL for Remotion <Audio>. */
+  audioSrc?: string;
 };
 
 function truncateCaption(text: string, maxLength = MAX_CAPTION_LENGTH): string {
@@ -23,7 +25,10 @@ function truncateCaption(text: string, maxLength = MAX_CAPTION_LENGTH): string {
   return `${text.slice(0, maxLength - 3)}...`;
 }
 
-export function scriptPackToTitlePunchProps(pack: ScriptPack): TitlePunchProps {
+export function scriptPackToTitlePunchProps(
+  pack: ScriptPack,
+  opts?: { audioSrc?: string },
+): TitlePunchProps {
   const durationInFrames = pack.duration_target_sec * FPS;
   const beatCount = pack.beats.length;
   const remainingFrames = Math.max(0, durationInFrames - HOOK_FRAMES - CTA_FRAMES);
@@ -57,5 +62,6 @@ export function scriptPackToTitlePunchProps(pack: ScriptPack): TitlePunchProps {
     },
     fps: FPS,
     durationInFrames,
+    ...(opts?.audioSrc ? { audioSrc: opts.audioSrc } : {}),
   };
 }

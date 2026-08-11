@@ -1,6 +1,7 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Audio,
   interpolate,
   Sequence,
   useCurrentFrame,
@@ -124,6 +125,7 @@ export const TitlePunch: React.FC<TitlePunchProps> = ({
   cta,
   brand,
   durationInFrames,
+  audioSrc,
 }) => {
   const lastBeatEnd =
     beats.length > 0
@@ -135,6 +137,7 @@ export const TitlePunch: React.FC<TitlePunchProps> = ({
 
   return (
     <AbsoluteFill style={{ backgroundColor: brand.bg }}>
+      {audioSrc ? <Audio src={audioSrc} /> : null}
       <AbsoluteFill
         style={{
           background: `radial-gradient(ellipse at 50% 20%, ${brand.accent}22 0%, transparent 55%), linear-gradient(180deg, ${brand.bg} 0%, #020617 100%)`,

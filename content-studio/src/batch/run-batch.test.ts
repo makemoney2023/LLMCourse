@@ -4,6 +4,7 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { parse as parseYaml } from "yaml";
 import { isApproved, parseApproval } from "../publish/approval";
+import type { ScriptPack } from "../schema/script-pack";
 import { runBatch } from "./run-batch";
 
 const curriculumRoot = path.resolve(__dirname, "../../../curriculum");
@@ -12,14 +13,28 @@ function makeOutRoot(): string {
   return fs.mkdtempSync(path.join(os.tmpdir(), "shorts-batch-"));
 }
 
+async function stubResolveAudio({
+  pack,
+  audioDir,
+}: {
+  pack: ScriptPack;
+  audioDir: string;
+}): Promise<string> {
+  fs.mkdirSync(audioDir, { recursive: true });
+  const audioPath = path.join(audioDir, `${pack.id}.wav`);
+  fs.writeFileSync(audioPath, "");
+  return audioPath;
+}
+
 describe("runBatch", () => {
-  it("writes scripts, stub renders, approval.yaml, and errors array", () => {
+  it("writes scripts, stub renders, approval.yaml, and errors array", async () => {
     const outRoot = makeOutRoot();
-    const result = runBatch({
+    const result = await runBatch({
       date: "2026-08-11",
       count: 2,
       curriculumRoot,
       outRoot,
+      resolveAudio: stubResolveAudio,
       render: ({ outputPath }) => {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
         fs.writeFileSync(outputPath, "");
@@ -34,12 +49,16 @@ describe("runBatch", () => {
     expect(fs.existsSync(path.join(result.dir, "approval.yaml"))).toBe(true);
     expect(fs.existsSync(path.join(result.dir, "APPROVAL.md"))).toBe(true);
     expect(fs.existsSync(path.join(result.dir, "errors.json"))).toBe(true);
+    expect(fs.existsSync(path.join(result.dir, "audio"))).toBe(true);
 
     for (const id of result.ids) {
       expect(fs.existsSync(path.join(result.dir, "scripts", `${id}.yaml`))).toBe(
         true,
       );
       expect(fs.existsSync(path.join(result.dir, "renders", `${id}.mp4`))).toBe(
+        true,
+      );
+      expect(fs.existsSync(path.join(result.dir, "audio", `${id}.wav`))).toBe(
         true,
       );
     }
@@ -60,14 +79,15 @@ describe("runBatch", () => {
     expect(checklist).toMatch(/approve:\s*true/i);
   });
 
-  it("records render failures in errors.json and continues", () => {
+  it("records render failures in errors.json and continues", async () => {
     const outRoot = makeOutRoot();
     let calls = 0;
-    const result = runBatch({
+    const result = await runBatch({
       date: "2026-08-12",
       count: 2,
       curriculumRoot,
       outRoot,
+      resolveAudio: stubResolveAudio,
       render: ({ outputPath }) => {
         calls += 1;
         if (calls === 1) {
@@ -96,7 +116,7 @@ describe("runBatch", () => {
     ).toBe(true);
   });
 
-  it("bumps id suffix when two hooks produce the same base id", () => {
+  it("bumps id suffix when two hooks produce the same base id", async () => {
     const collidingCurriculum = fs.mkdtempSync(
       path.join(os.tmpdir(), "shorts-curriculum-"),
     );
@@ -115,11 +135,12 @@ describe("runBatch", () => {
     );
 
     const outRoot = makeOutRoot();
-    const result = runBatch({
+    const result = await runBatch({
       date: "2026-08-13",
       count: 2,
       curriculumRoot: collidingCurriculum,
       outRoot,
+      resolveAudio: stubResolveAudio,
       render: ({ outputPath }) => {
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
         fs.writeFileSync(outputPath, "");
@@ -143,5 +164,33 @@ describe("runBatch", () => {
         true,
       );
     }
+  });
+
+  it("routes voice vs music_caption through resolveAudio", async () => {
+    const outRoot = makeOutRoot();
+    const formats: string[] = [];
+    const result = await runBatch({
+      date: "2026-08-14",
+      count: 5,
+      curriculumRoot,
+      outRoot,
+      resolveAudio: async ({ pack, audioDir }) => {
+        formats.push(pack.format);
+        return stubResolveAudio({ pack, audioDir });
+      },
+      render: ({ outputPath }) => {
+        fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+        fs.writeFileSync(outputPath, "");
+      },
+    });
+
+    expect(result.ids).toHaveLength(5);
+    expect(formats).toEqual([
+      "voice",
+      "voice",
+      "voice",
+      "voice",
+      "music_caption",
+    ]);
   });
 });

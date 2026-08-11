@@ -3,6 +3,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { stringify as stringifyYaml } from "yaml";
+import { resolveMusicBed } from "../audio/music";
+import { synthesizeVoice } from "../audio/tts";
 import type { HookCandidate } from "../extract/extract-hooks";
 import { extractHooks } from "../extract/extract-hooks";
 import { scriptPackToTitlePunchProps } from "../render/props";
@@ -24,7 +26,13 @@ export type BatchResult = {
 export type RenderShortFn = (args: {
   pack: ScriptPack;
   outputPath: string;
-}) => void;
+  audioSrc?: string;
+}) => void | Promise<void>;
+
+export type ResolveAudioFn = (args: {
+  pack: ScriptPack;
+  audioDir: string;
+}) => Promise<string>;
 
 export type RunBatchOptions = {
   date: string;
@@ -34,6 +42,8 @@ export type RunBatchOptions = {
   outRoot?: string;
   /** Injected renderer for tests; production uses Remotion CLI. */
   render?: RenderShortFn;
+  /** Injected audio resolver for tests; production uses TTS / music beds. */
+  resolveAudio?: ResolveAudioFn;
 };
 
 const CHECKLIST = `# Batch approval checklist
@@ -134,12 +144,14 @@ function writeApprovalArtifacts(dir: string, ids: string[]): void {
 export function defaultRenderShort({
   pack,
   outputPath,
+  audioSrc,
 }: {
   pack: ScriptPack;
   outputPath: string;
+  audioSrc?: string;
 }): void {
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  const props = scriptPackToTitlePunchProps(pack);
+  const props = scriptPackToTitlePunchProps(pack, { audioSrc });
   const propsPath = path.join(
     path.dirname(outputPath),
     `${pack.id}-props.json`,
@@ -177,7 +189,34 @@ export function defaultRenderShort({
   }
 }
 
-export function runBatch(opts: RunBatchOptions): BatchResult {
+/** Resolve voice TTS or music bed into the batch audio/ folder. */
+export async function defaultResolveAudio({
+  pack,
+  audioDir,
+}: {
+  pack: ScriptPack;
+  audioDir: string;
+}): Promise<string> {
+  fs.mkdirSync(audioDir, { recursive: true });
+
+  if (pack.format === "music_caption") {
+    const bed = resolveMusicBed(pack);
+    const dest = path.join(audioDir, `${pack.id}${path.extname(bed) || ".mp3"}`);
+    fs.copyFileSync(bed, dest);
+    return dest;
+  }
+
+  const dest = path.join(audioDir, `${pack.id}.mp3`);
+  // Dry mode writes .wav; prefer matching extension when dry.
+  const outPath =
+    process.env.SHORTS_DRY_AUDIO === "1" &&
+    (!process.env.ELEVENLABS_API_KEY || !process.env.ELEVENLABS_VOICE_ID)
+      ? path.join(audioDir, `${pack.id}.wav`)
+      : dest;
+  return synthesizeVoice(pack, outPath);
+}
+
+export async function runBatch(opts: RunBatchOptions): Promise<BatchResult> {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(opts.date)) {
     throw new Error(`Invalid date (expected YYYY-MM-DD): ${opts.date}`);
   }
@@ -188,8 +227,10 @@ export function runBatch(opts: RunBatchOptions): BatchResult {
   const outRoot = opts.outRoot ?? path.join(studioRoot, "out");
   const dir = path.join(outRoot, `batch-${opts.date}`);
   const scriptsDir = path.join(dir, "scripts");
+  const audioDir = path.join(dir, "audio");
   const rendersDir = path.join(dir, "renders");
   fs.mkdirSync(scriptsDir, { recursive: true });
+  fs.mkdirSync(audioDir, { recursive: true });
   fs.mkdirSync(rendersDir, { recursive: true });
 
   const modulesRoot = resolveModulesRoot(opts.curriculumRoot);
@@ -201,6 +242,7 @@ export function runBatch(opts: RunBatchOptions): BatchResult {
   }
 
   const render = opts.render ?? defaultRenderShort;
+  const resolveAudio = opts.resolveAudio ?? defaultResolveAudio;
   const ids: string[] = [];
   const usedIds = new Set<string>();
   const errors: BatchError[] = [];
@@ -216,7 +258,8 @@ export function runBatch(opts: RunBatchOptions): BatchResult {
 
     const outputPath = path.join(rendersDir, `${id}.mp4`);
     try {
-      render({ pack, outputPath });
+      const audioSrc = await resolveAudio({ pack, audioDir });
+      await render({ pack, outputPath, audioSrc });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       errors.push({ id, error: message });

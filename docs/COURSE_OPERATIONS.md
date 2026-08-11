@@ -84,10 +84,23 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 |------|---------|
 | `content-studio/src/schema/script-pack.ts` | Script pack schema + validation |
 | `content-studio/fixtures/*.yaml` | Golden / hand packs (e.g. Module 1 desk-space) |
-| `content-studio/src/remotion/` | Remotion compositions (`TitlePunch` = P0) |
-| `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → render) |
+| `content-studio/src/audio/tts.ts` | ElevenLabs TTS + sha256 cache under `out/.audio-cache/` |
+| `content-studio/src/audio/music.ts` | `music_caption` bed picker from `audio/beds/` |
+| `content-studio/audio/beds/` | Cleared music beds only (see README; empty until licensed) |
+| `content-studio/src/remotion/` | Remotion compositions (`TitlePunch` = P0; optional `audioSrc`) |
+| `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → audio → render) |
 | `content-studio/src/publish/approval.ts` | Parse `approval.yaml`; publisher gate helper |
 | `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
+
+### Shorts audio env
+
+| Variable | Purpose |
+|----------|---------|
+| `ELEVENLABS_API_KEY` | TTS API key (never commit) |
+| `ELEVENLABS_VOICE_ID` | Voice id for `format: voice` |
+| `SHORTS_DRY_AUDIO=1` | Write silent wav stubs without API keys / beds (local dry runs) |
+
+Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/` and passes `audioSrc` into TitlePunch props (`<Audio>` when present).
 
 Golden render (1080×1920, 30fps):
 
@@ -104,9 +117,9 @@ npm run shorts:batch
 # optional: npm run shorts:batch -- --date 2026-08-11 --count 7
 ```
 
-Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish (P2) refuses unapproved ids.
+Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish (P2) refuses unapproved ids. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
 
-Schema/extract/write/props/batch/approval unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
+Schema/extract/write/props/audio/batch/approval unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
 
 ## Deploy
 

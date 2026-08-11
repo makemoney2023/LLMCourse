@@ -35,9 +35,9 @@ function parseArgs(argv: string[]) {
   return { date, count, curriculumRoot };
 }
 
-function main() {
+async function main() {
   const { date, count, curriculumRoot } = parseArgs(process.argv.slice(2));
-  const result = runBatch({ date, count, curriculumRoot });
+  const result = await runBatch({ date, count, curriculumRoot });
 
   console.log(`Batch written to ${result.dir}`);
   console.log(`ids: ${result.ids.join(", ")}`);
@@ -52,4 +52,7 @@ function main() {
   console.log("Review APPROVAL.md and set approve: true in approval.yaml before publish.");
 }
 
-main();
+main().catch((err) => {
+  console.error(err instanceof Error ? err.message : err);
+  process.exitCode = 1;
+});

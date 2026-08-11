@@ -56,6 +56,24 @@ describe("scriptPackToTitlePunchProps", () => {
     expect(props.beats.every((b) => b.durationFrames > 0)).toBe(true);
   });
 
+  it("passes optional audioSrc through to TitlePunch props", () => {
+    const pack = parseScriptPack({
+      id: "audio-prop-pack",
+      module: "01-mental-model",
+      anchor: "Audio wiring",
+      format: "voice",
+      hook: "Hook with audio.",
+      beats: [{ text: "Beat one.", visual: "title_card" }],
+      cta: "Free LLM Leverage course — link in bio",
+      duration_target_sec: 30,
+    });
+    const withAudio = scriptPackToTitlePunchProps(pack, {
+      audioSrc: "/tmp/voice.wav",
+    });
+    expect(withAudio.audioSrc).toBe("/tmp/voice.wav");
+    expect(scriptPackToTitlePunchProps(pack).audioSrc).toBeUndefined();
+  });
+
   it("truncates beat captions over 80 chars with ellipsis", () => {
     const longText =
       "This beat caption is intentionally longer than eighty characters so truncation must kick in and append an ellipsis.";
