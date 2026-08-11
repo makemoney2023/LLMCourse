@@ -76,7 +76,7 @@ Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel
 
 `src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
-## YouTube Shorts studio (P0 / P1 batch + P2 dry-run publish)
+## YouTube Shorts studio (P0 / P1 batch + P2 publish)
 
 Curriculum under `curriculum/` remains the source of truth. The sibling `content-studio/` package turns Module anchors into faceless Shorts (kinetic text on branded backgrounds) without changing learner routes.
 
@@ -91,16 +91,22 @@ Curriculum under `curriculum/` remains the source of truth. The sibling `content
 | `content-studio/src/batch/run-batch.ts` | Weekly batch orchestrator (extract → script → audio → render) |
 | `content-studio/src/publish/approval.ts` | Parse `approval.yaml`; publisher gate helper |
 | `content-studio/src/publish/description.ts` | CTA + course URL with UTM (`utm_campaign=<pack.id>`) |
-| `content-studio/src/publish/youtube.ts` | Dry-run publish plan (`publish-plan.json`); live upload is Task 10 |
+| `content-studio/src/publish/youtube.ts` | Dry-run plan + live OAuth resumable upload / schedule |
+| `content-studio/docs/YOUTUBE_OAUTH.md` | One-time OAuth setup for live publish |
 | `content-studio/out/` | Rendered mp4 batches (**gitignored** — never commit) |
 
-### Shorts audio env
+### Shorts env vars (names only — never commit secrets)
 
 | Variable | Purpose |
 |----------|---------|
-| `ELEVENLABS_API_KEY` | TTS API key (never commit) |
+| `ELEVENLABS_API_KEY` | TTS API key |
 | `ELEVENLABS_VOICE_ID` | Voice id for `format: voice` |
 | `SHORTS_DRY_AUDIO=1` | Write silent wav stubs without API keys / beds (local dry runs) |
+| `YOUTUBE_CLIENT_ID` | OAuth client ID (live publish) |
+| `YOUTUBE_CLIENT_SECRET` | OAuth client secret (live publish) |
+| `YOUTUBE_REFRESH_TOKEN` | OAuth refresh token (live publish) |
+
+OAuth setup steps: `content-studio/docs/YOUTUBE_OAUTH.md`.
 
 Batch writes per-id files under `out/batch-YYYY-MM-DD/audio/`, then `defaultRenderShort` stages each file into `public/batch-audio/` and passes a public-relative `audioSrc` (e.g. `batch-audio/<id>.wav`). Compositions call `staticFile()` via `toRemotionAudioSrc` so Remotion’s `/public` static base applies (raw absolute FS paths 404 as `http://localhost:3000/Users/...`). Composition is chosen from hook series: `myth_fix` → ListReveal, `loop_moment` → LoopSnippet, else TitlePunch. Extractor tags objectives containing myth / vs / mistake as `myth_fix`.
 
@@ -121,13 +127,35 @@ npm run shorts:batch
 
 Writes `content-studio/out/batch-YYYY-MM-DD/` with `scripts/`, `audio/`, best-effort `renders/`, `errors.json` (partial failures continue), `approval.yaml` (all `approve: false`), and `APPROVAL.md` checklist. Flip `approve: true` only after human QA; publish skips unapproved ids and errors if none are approved. For local batches without ElevenLabs/beds, export `SHORTS_DRY_AUDIO=1`.
 
-Dry-run publish (default; no YouTube API call):
+### Approval → publish workflow
+
+1. Run `npm run shorts:batch` and review renders under `content-studio/out/batch-YYYY-MM-DD/renders/`.
+2. Complete `APPROVAL.md` checklist; set `approve: true` in `approval.yaml` only for Shorts that pass QA.
+3. Dry-run (default; no YouTube API call — safe for CI):
 
 ```bash
 npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-date 2026-08-12
+# equivalent: ... --dry-run
 ```
 
-Writes `publish-plan.json` with title (hook), UTM description, and `publishAt` ISO times (daily 09:00 America/New_York from `--start-date`). Use `--live` only after Task 10 OAuth upload is wired. Course link in every description: `https://llm-leverage-course.vercel.app?utm_source=youtube&utm_medium=shorts&utm_campaign=<id>`.
+Writes `publish-plan.json` with title (hook), UTM description, and `publishAt` ISO times (daily 09:00 America/New_York from `--start-date`). Skips unapproved ids; errors if none are approved.
+
+4. Live upload + schedule (requires YouTube OAuth env vars):
+
+```bash
+npm run shorts:publish -- --batch content-studio/out/batch-YYYY-MM-DD --start-date 2026-08-12 --live
+```
+
+Uploads each approved `renders/<id>.mp4` via YouTube resumable upload with `privacyStatus=private` and `publishAt` from the plan. Writes `publish-result.json` with YouTube video ids. Course link in every description: `https://llm-leverage-course.vercel.app?utm_source=youtube&utm_medium=shorts&utm_campaign=<id>`.
+
+### Shorts commands
+
+| Command | Purpose |
+|---------|---------|
+| `npm run shorts:studio` | Remotion Studio preview |
+| `npm run shorts:render:golden` | Golden 1080×1920 fixture render |
+| `npm run shorts:batch` | Weekly batch (scripts, audio, renders, approval) |
+| `npm run shorts:publish` | Dry-run plan (default) or `--live` upload/schedule |
 
 Schema/extract/write/props/audio/batch/approval/publish unit tests live under `content-studio/**/*.test.ts` and run with root `npm test`.
 

@@ -55,14 +55,16 @@ async function main() {
   console.log(
     dryRun
       ? `Dry-run publish plan: ${result.planPath}`
-      : `Published ${result.planned.length} Shorts`,
+      : `Uploaded ${result.uploaded?.length ?? 0} Shorts (scheduled)`,
   );
   console.log(`planned: ${result.planned.map((p) => p.id).join(", ")}`);
   if (result.skipped.length > 0) {
     console.log(`skipped (unapproved): ${result.skipped.join(", ")}`);
   }
   for (const item of result.planned) {
-    console.log(`  - ${item.id} @ ${item.publishAt}`);
+    const uploaded = result.uploaded?.find((u) => u.id === item.id);
+    const suffix = uploaded ? ` → ${uploaded.videoId}` : "";
+    console.log(`  - ${item.id} @ ${item.publishAt}${suffix}`);
   }
 }
 
