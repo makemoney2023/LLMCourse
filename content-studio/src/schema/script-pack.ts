@@ -28,10 +28,11 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function requireNonEmptyString(
   record: Record<string, unknown>,
   field: string,
+  context = "Script pack",
 ): string {
   const value = record[field];
   if (typeof value !== "string" || value.trim() === "") {
-    throw new Error(`Script pack missing or invalid ${field}`);
+    throw new Error(`${context} missing or invalid ${field}`);
   }
   return value;
 }
@@ -41,9 +42,10 @@ function parseBeat(raw: unknown, index: number): ScriptBeat {
     throw new Error(`Script pack beat ${index} must be an object`);
   }
 
+  const context = `Script pack beat ${index}`;
   return {
-    text: requireNonEmptyString(raw, "text"),
-    visual: requireNonEmptyString(raw, "visual"),
+    text: requireNonEmptyString(raw, "text", context),
+    visual: requireNonEmptyString(raw, "visual", context),
   };
 }
 
