@@ -1,5 +1,6 @@
-/** Public contact inbox for rollout inquiries. Set via env — never hardcode a personal address. */
-export function getContactEmail(): string | null {
-  const raw = process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim();
-  return raw ? raw : null;
+/** Abracadabra demand-gen mailbox. Public on purpose — not a personal inbox. */
+export const CONTACT_EMAIL = "houdini@abra-ca-dabra.app";
+
+export function getContactEmail(): string {
+  return CONTACT_EMAIL;
 }

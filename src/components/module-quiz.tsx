@@ -106,7 +106,7 @@ export function ModuleQuiz({
                           : "border-border hover:bg-muted/50",
                         submitted &&
                           isCorrect &&
-                          "border-emerald-700/50 bg-emerald-700/10",
+                          "border-phosphor/50 bg-phosphor/10",
                         showState &&
                           !isCorrect &&
                           "border-destructive/40 bg-destructive/5",

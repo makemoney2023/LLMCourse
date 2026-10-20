@@ -100,7 +100,7 @@ export function ReviewSession({
                         "flex cursor-pointer items-start gap-2 rounded-lg border border-border/70 px-3 py-2 text-sm",
                         submitted &&
                           isCorrect &&
-                          "border-emerald-700/50 bg-emerald-700/10",
+                          "border-phosphor/50 bg-phosphor/10",
                         submitted &&
                           isChosen &&
                           !isCorrect &&

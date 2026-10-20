@@ -9,9 +9,11 @@ import { unlockReason } from "@/lib/progress/access";
 export function ModuleList({
   modules,
   variant = "list",
+  entitled = false,
 }: {
   modules: ModuleMeta[];
   variant?: "list" | "grid";
+  entitled?: boolean;
 }) {
   const { progress } = useProgress();
 
@@ -41,9 +43,15 @@ export function ModuleList({
                     {variant === "grid" ? `Module ${mod.order}` : mod.order}
                   </Badge>
                   {done ? (
-                    <span className="text-xs text-emerald-800 dark:text-emerald-300">
+                    <span className="text-xs text-phosphor">
                       Complete
                     </span>
+                  ) : !entitled && mod.order === 1 ? (
+                    <span className="text-xs text-muted-foreground">
+                      Free preview
+                    </span>
+                  ) : !entitled ? (
+                    <span className="text-xs text-muted-foreground">Locked</span>
                   ) : reason ? (
                     <span className="text-xs text-muted-foreground">
                       Jump ahead OK

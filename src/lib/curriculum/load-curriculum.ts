@@ -1,6 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import {
+  listProjectEntries,
+  projectFileExists,
+  readProjectText,
+} from "@/lib/files/project-files";
 import { parseExercises } from "@/lib/markdown";
 import type {
   ModuleContent,
@@ -25,22 +28,16 @@ const WORKSHOP_MODULE_MAP: Record<string, string[]> = {
   "session-04": ["human-craft", "verify-and-harden", "capstone-lab"],
 };
 
-function curriculumRoot(): string {
-  return path.join(process.cwd(), "curriculum");
-}
+const CURRICULUM = "curriculum";
+const MODULES = `${CURRICULUM}/modules`;
 
-function modulesRoot(): string {
-  return path.join(curriculumRoot(), "modules");
-}
-
-function readOptional(filePath: string): string {
-  if (!fs.existsSync(filePath)) return "";
-  return fs.readFileSync(filePath, "utf8");
+function readOptional(relativePath: string): string {
+  return readProjectText(relativePath) ?? "";
 }
 
 function parseModuleYaml(dirName: string): ModuleMeta {
-  const filePath = path.join(modulesRoot(), dirName, "module.yaml");
-  const raw = fs.readFileSync(filePath, "utf8");
+  const raw = readProjectText(`${MODULES}/${dirName}/module.yaml`);
+  if (!raw) throw new Error(`Missing module.yaml for ${dirName}`);
   const data = parseYaml(raw) as Omit<ModuleMeta, "dirName">;
   return {
     ...data,
@@ -50,14 +47,10 @@ function parseModuleYaml(dirName: string): ModuleMeta {
 }
 
 export function listModules(): ModuleMeta[] {
-  const root = modulesRoot();
-  if (!fs.existsSync(root)) return [];
-
-  const dirs = fs
-    .readdirSync(root, { withFileTypes: true })
-    .filter((d) => d.isDirectory())
-    .map((d) => d.name)
-    .filter((name) => fs.existsSync(path.join(root, name, "module.yaml")));
+  const dirs = listProjectEntries(MODULES)
+    .filter((entry) => entry.isDirectory)
+    .map((entry) => entry.name)
+    .filter((name) => projectFileExists(`${MODULES}/${name}/module.yaml`));
 
   return dirs
     .map(parseModuleYaml)
@@ -69,9 +62,9 @@ export function getModuleBySlug(slug: string): ModuleMeta | null {
 }
 
 function loadQuiz(dirName: string, moduleId: string): Quiz | null {
-  const quizPath = path.join(modulesRoot(), dirName, "quiz.yaml");
-  if (!fs.existsSync(quizPath)) return null;
-  const data = parseYaml(fs.readFileSync(quizPath, "utf8")) as Quiz;
+  const raw = readProjectText(`${MODULES}/${dirName}/quiz.yaml`);
+  if (!raw) return null;
+  const data = parseYaml(raw) as Quiz;
   return { ...data, moduleId: data.moduleId ?? moduleId };
 }
 
@@ -79,13 +72,13 @@ export function loadModuleContent(slug: string): ModuleContent | null {
   const meta = getModuleBySlug(slug);
   if (!meta) return null;
 
-  const dir = path.join(modulesRoot(), meta.dirName);
+  const dir = `${MODULES}/${meta.dirName}`;
   return {
     meta,
-    lessonMarkdown: readOptional(path.join(dir, "lesson.mdx")),
-    exercisesMarkdown: readOptional(path.join(dir, "exercises.md")),
-    workshopMarkdown: readOptional(path.join(dir, "workshop.md")),
-    diagramSource: readOptional(path.join(dir, "diagram.mmd")),
+    lessonMarkdown: readOptional(`${dir}/lesson.mdx`),
+    exercisesMarkdown: readOptional(`${dir}/exercises.md`),
+    workshopMarkdown: readOptional(`${dir}/workshop.md`),
+    diagramSource: readOptional(`${dir}/diagram.mmd`),
     quiz: loadQuiz(meta.dirName, meta.id),
   };
 }
@@ -113,13 +106,9 @@ type WorkshopDeckYaml = {
 };
 
 function loadWorkshopDeckFile(id: string): WorkshopDeckYaml | null {
-  const filePath = path.join(
-    curriculumRoot(),
-    "workshops",
-    `${id}.slides.yaml`,
-  );
-  if (!fs.existsSync(filePath)) return null;
-  return parseYaml(fs.readFileSync(filePath, "utf8")) as WorkshopDeckYaml;
+  const raw = readProjectText(`${CURRICULUM}/workshops/${id}.slides.yaml`);
+  if (!raw) return null;
+  return parseYaml(raw) as WorkshopDeckYaml;
 }
 
 export function getWorkshopDeck(id: string): WorkshopSession | null {
@@ -127,11 +116,10 @@ export function getWorkshopDeck(id: string): WorkshopSession | null {
 }
 
 export function listWorkshopSessions(): WorkshopSession[] {
-  const root = path.join(curriculumRoot(), "workshops");
-  if (!fs.existsSync(root)) return [];
-
+  const root = `${CURRICULUM}/workshops`;
   const ids = new Set<string>();
-  for (const name of fs.readdirSync(root)) {
+  for (const entry of listProjectEntries(root)) {
+    const name = entry.name;
     const slidesMatch = name.match(/^(session-\d+)\.slides\.yaml$/);
     const mdMatch = name.match(/^(session-\d+)\.md$/);
     if (slidesMatch) ids.add(slidesMatch[1]!);
@@ -142,8 +130,7 @@ export function listWorkshopSessions(): WorkshopSession[] {
     .sort()
     .map((id) => {
       const deck = loadWorkshopDeckFile(id);
-      const markdownPath = path.join(root, `${id}.md`);
-      const markdown = readOptional(markdownPath);
+      const markdown = readOptional(`${root}/${id}.md`);
       const titleMatch = markdown.match(/^#\s+(.+)$/m);
       const order = Number(id.split("-")[1] ?? "0");
 

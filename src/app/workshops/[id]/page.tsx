@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Paywall } from "@/components/paywall";
 import { WorkshopDeck } from "@/components/workshop-deck";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,8 +10,11 @@ import {
   listModules,
   listWorkshopSessions,
 } from "@/lib/curriculum/load-curriculum";
+import { getCourseAccess } from "@/lib/access/session";
 
 type Props = { params: Promise<{ id: string }> };
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return listWorkshopSessions().map((s) => ({ id: s.id }));
@@ -18,12 +22,18 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
+  const access = await getCourseAccess();
+  if (!access.entitled) return { title: "Workshop" };
   const session = getWorkshopDeck(id);
   return { title: session?.title ?? "Workshop" };
 }
 
 export default async function WorkshopSessionPage({ params }: Props) {
   const { id } = await params;
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Workshop deck" kicker="Live class" />;
+  }
   const session = getWorkshopDeck(id);
   if (!session || session.slides.length === 0) notFound();
 

@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
 import { FlashcardDeck } from "@/components/flashcard-deck";
+import { Paywall } from "@/components/paywall";
+import { getCourseAccess } from "@/lib/access/session";
 import { loadGlossary } from "@/lib/curriculum/glossary";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Flashcards",
   description: "Flip-card practice for every glossary term in the course.",
 };
 
-export default function FlashcardsPage() {
+export default async function FlashcardsPage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Flashcards" kicker="Practice" />;
+  }
   const terms = loadGlossary().terms.map((t) => ({
     id: t.id,
     term: t.term,

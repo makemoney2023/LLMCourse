@@ -71,7 +71,7 @@ Learners mark each step done in order. Practice (exercises) then quiz unlock nex
 ## Worked demos (optional per module)
 
 - File: `curriculum/modules/<nn-slug>/demo.yaml`
-- Images: `public/course/demos/<slug>/before.svg` (or `.png`) and `after.svg`
+- Images: `curriculum/demos/<slug>/before.svg` (or `.png`) and `after.svg`, referenced from `demo.yaml` as `/api/course-files/demos/<slug>/before.svg`
 - Required for modules 5 (tools-and-mcp), 6 (retrieval-and-grounding), and 11 (verify-and-harden)
 - Keep chrome tool-agnostic (generic “Helper” UI). Prefer before/after pairs that match Big ideas.
 

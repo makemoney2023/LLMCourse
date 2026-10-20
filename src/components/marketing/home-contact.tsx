@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { buildRolloutMailto } from "@/lib/marketing/build-rollout-mailto";
-import { getContactEmail } from "@/lib/marketing/contact-email";
+import { CONTACT_EMAIL, getContactEmail } from "@/lib/marketing/contact-email";
 
 const CONTACT_SUBJECT = "LLM Leverage team rollout";
 
@@ -85,39 +85,23 @@ export function HomeContact() {
             </div>
           ))}
           <div className="flex flex-col items-start gap-3 sm:col-span-2">
-            {mailtoHref ? (
-              <Button asChild>
-                <a href={mailtoHref}>Email us about a rollout</a>
-              </Button>
-            ) : (
-              <Button type="button" disabled aria-disabled="true">
+            <Button asChild>
+              <a href={mailtoHref ?? `mailto:${CONTACT_EMAIL}`}>
                 Email us about a rollout
-              </Button>
-            )}
+              </a>
+            </Button>
             <p
               id="contact-helper"
               className="text-sm leading-6 text-muted-foreground"
             >
-              {mailtoHref ? (
-                <>
-                  Opens your email app to{" "}
-                  <a
-                    href={mailtoHref}
-                    className="underline underline-offset-4 hover:text-foreground"
-                  >
-                    {contactEmail}
-                  </a>
-                  . Your name, company, and note are included in the message.
-                </>
-              ) : (
-                <>
-                  Email coming soon — set{" "}
-                  <code className="rounded bg-muted px-1 py-0.5 text-xs">
-                    NEXT_PUBLIC_CONTACT_EMAIL
-                  </code>{" "}
-                  to enable this form.
-                </>
-              )}
+              Opens your email app to{" "}
+              <a
+                href={mailtoHref ?? `mailto:${CONTACT_EMAIL}`}
+                className="underline underline-offset-4 hover:text-foreground"
+              >
+                {contactEmail}
+              </a>
+              . Your name, company, and note are included in the message.
             </p>
           </div>
         </div>

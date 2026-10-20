@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import type { GlossaryTermView } from "@/components/glossary-prose";
+import { Paywall } from "@/components/paywall";
 import { ModuleLearnerFlow } from "@/components/module-learner-flow";
 import { MobileModuleNav, ModuleNav } from "@/components/module-nav";
 import { RoleExampleCallout } from "@/components/role-example-callout";
@@ -26,8 +27,12 @@ import {
 } from "@/lib/curriculum/tracks";
 import type { RoleTrackId } from "@/lib/curriculum/types";
 import { parseExercises, renderLearnerMarkdown } from "@/lib/markdown";
+import { canReadModule } from "@/lib/access/policy";
+import { getCourseAccess } from "@/lib/access/session";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const dynamic = "force-dynamic";
 
 export async function generateStaticParams() {
   return listModules().map((m) => ({ slug: m.slug }));
@@ -42,6 +47,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ModulePage({ params }: Props) {
   const { slug } = await params;
+  const preview = getModuleBySlug(slug);
+  if (!preview) notFound();
+  const access = await getCourseAccess();
+  if (!canReadModule(slug, access.entitled)) {
+    return <Paywall kicker={`Module ${preview.order}`} title={preview.title} />;
+  }
+
   const modules = listModules();
   const content = loadModuleContent(slug);
   if (!content) notFound();
@@ -127,7 +139,7 @@ export default async function ModulePage({ params }: Props) {
               Templates:{" "}
               <a
                 className="text-primary underline underline-offset-2"
-                href="/templates/BRIEF.md"
+                href="/api/templates/BRIEF.md"
                 download
               >
                 BRIEF.md
@@ -135,7 +147,7 @@ export default async function ModulePage({ params }: Props) {
               {" · "}
               <a
                 className="text-primary underline underline-offset-2"
-                href="/templates/SOURCES.md"
+                href="/api/templates/SOURCES.md"
                 download
               >
                 SOURCES.md
@@ -147,7 +159,7 @@ export default async function ModulePage({ params }: Props) {
               Templates:{" "}
               <a
                 className="text-primary underline underline-offset-2"
-                href="/templates/BRIEF.md"
+                href="/api/templates/BRIEF.md"
                 download
               >
                 BRIEF.md
@@ -155,7 +167,7 @@ export default async function ModulePage({ params }: Props) {
               {" · "}
               <a
                 className="text-primary underline underline-offset-2"
-                href="/templates/SOURCES.md"
+                href="/api/templates/SOURCES.md"
                 download
               >
                 SOURCES.md
@@ -163,7 +175,7 @@ export default async function ModulePage({ params }: Props) {
               {" · "}
               <a
                 className="text-primary underline underline-offset-2"
-                href="/templates/HANDOFF.md"
+                href="/api/templates/HANDOFF.md"
                 download
               >
                 HANDOFF.md

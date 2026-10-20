@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { PurchaseActions } from "@/components/purchase-actions";
 import { listModules } from "@/lib/curriculum/load-curriculum";
 
 export function HomeIncluded() {
@@ -36,6 +38,22 @@ export function HomeIncluded() {
             </li>
           ))}
         </ol>
+        <div className="mt-12 max-w-xl border-t border-border/70 pt-8">
+          <h3 className="font-heading text-2xl tracking-tight">
+            Buy the self-paced course
+          </h3>
+          <div className="mt-4">
+            <PurchaseActions />
+          </div>
+          <p className="mt-4 text-sm">
+            <Link
+              href="/access"
+              className="text-primary underline underline-offset-2"
+            >
+              Already purchased? Sign in
+            </Link>
+          </p>
+        </div>
       </div>
     </section>
   );

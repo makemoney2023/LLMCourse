@@ -16,17 +16,17 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "linear-gradient(135deg, #0c1f17 0%, #123527 100%)",
-          color: "#f4f1ea",
-          fontFamily: "serif",
+          background: "#070706",
+          color: "#f5f0e8",
+          fontFamily: "sans-serif",
         }}
       >
         <div
           style={{
-            fontSize: 28,
-            letterSpacing: 6,
+            fontSize: 22,
+            letterSpacing: 4,
             textTransform: "uppercase",
-            color: "#7fd8a8",
+            color: "#ff4b24",
           }}
         >
           LLM Leverage Course
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
         >
           Master the context loop, not the tool of the week.
         </div>
-        <div style={{ marginTop: 32, fontSize: 32, color: "#c8d8cd" }}>
+        <div style={{ marginTop: 32, fontSize: 32, color: "#aaa49a" }}>
           12 modules · rules, tools, memory, verification · free
         </div>
       </div>

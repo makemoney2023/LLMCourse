@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import { readProjectText } from "@/lib/files/project-files";
 import type { RoleTrackId } from "./types";
 
 export type TrackModuleOverlay = {
@@ -23,10 +22,6 @@ const TRACK_IDS: RoleTrackId[] = [
   "marketing",
 ];
 
-function tracksRoot(): string {
-  return path.join(process.cwd(), "curriculum", "tracks");
-}
-
 export function listRoleTracks(): RoleTrack[] {
   return TRACK_IDS.map((id) => loadRoleTrack(id)).filter(
     (t): t is RoleTrack => t != null,
@@ -34,9 +29,9 @@ export function listRoleTracks(): RoleTrack[] {
 }
 
 export function loadRoleTrack(id: RoleTrackId): RoleTrack | null {
-  const filePath = path.join(tracksRoot(), `${id}.yaml`);
-  if (!fs.existsSync(filePath)) return null;
-  const data = parseYaml(fs.readFileSync(filePath, "utf8")) as RoleTrack;
+  const raw = readProjectText(`curriculum/tracks/${id}.yaml`);
+  if (!raw) return null;
+  const data = parseYaml(raw) as RoleTrack;
   return {
     id: data.id ?? id,
     label: data.label ?? id,

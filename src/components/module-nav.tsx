@@ -52,7 +52,7 @@ function ModuleNavList({
                 className={cn(
                   "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full border text-[10px]",
                   done
-                    ? "border-emerald-700/40 bg-emerald-700/15 text-emerald-800 dark:border-emerald-300/40 dark:bg-emerald-300/15 dark:text-emerald-300"
+                    ? "border-phosphor/40 bg-phosphor/15 text-phosphor"
                     : "border-border",
                 )}
                 aria-hidden

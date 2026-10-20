@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
+import { Paywall } from "@/components/paywall";
 import { ReviewSession } from "@/components/review-session";
+import { getCourseAccess } from "@/lib/access/session";
 import {
   listModules,
   loadModuleContent,
 } from "@/lib/curriculum/load-curriculum";
 import type { Quiz } from "@/lib/curriculum/types";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Review",
@@ -12,7 +16,11 @@ export const metadata: Metadata = {
     "Practice questions drawn from the modules you have already completed.",
 };
 
-export default function ReviewPage() {
+export default async function ReviewPage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Review what you learned" kicker="Practice" />;
+  }
   const modules = listModules();
   const quizzes = modules
     .map((mod) => loadModuleContent(mod.slug)?.quiz)

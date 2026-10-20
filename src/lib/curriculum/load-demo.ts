@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import { projectFileExists, readProjectText } from "@/lib/files/project-files";
 import { getModuleBySlug } from "./load-curriculum";
 
 export type ModuleDemo = {
@@ -16,13 +15,9 @@ export type ModuleDemo = {
 export function loadModuleDemo(slug: string): ModuleDemo | null {
   const meta = getModuleBySlug(slug);
   if (!meta) return null;
-  const filePath = path.join(
-    process.cwd(),
-    "curriculum",
-    "modules",
-    meta.dirName,
-    "demo.yaml",
-  );
-  if (!fs.existsSync(filePath)) return null;
-  return parseYaml(fs.readFileSync(filePath, "utf8")) as ModuleDemo;
+  const filePath = `curriculum/modules/${meta.dirName}/demo.yaml`;
+  if (!projectFileExists(filePath)) return null;
+  const raw = readProjectText(filePath);
+  if (!raw) return null;
+  return parseYaml(raw) as ModuleDemo;
 }

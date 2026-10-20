@@ -1,0 +1,30 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "llm-leverage-course",
+  "compatibility_date": "2026-10-20",
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
+  "main": "vinext/server/fetch-handler",
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "traces": {
+      "enabled": true,
+      "head_sampling_rate": 0.01
+    }
+  },
+  // Every request except hashed static assets hits the Worker, so the paywall
+  // runs before a lesson, deck, template, or diagram is rendered.
+  "assets": {
+    "directory": "dist/client",
+    "html_handling": "none",
+    "not_found_handling": "none",
+    "binding": "ASSETS",
+    "run_worker_first": ["/*", "!/_next/static/*", "!/*/_next/static/*"]
+  }
+  // Secrets are not required at deploy time. Missing Stripe keys fail closed.
+  // Set them with `npx wrangler secret put <NAME>`:
+  //   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_ID,
+  //   ACCESS_TOKEN_SECRET, RESEND_API_KEY, EMAIL_FROM
+  // Non-secret: NEXT_PUBLIC_SITE_URL overrides the default canonical origin
+  // https://learn.abra-ca-dabra.app. Put a different origin under "vars" if needed.
+}
