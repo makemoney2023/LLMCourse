@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { expect, type Page, test } from "@playwright/test";
 import { parse as parseYaml } from "yaml";
+import { grantLifetimeAccess } from "./session";
 
 async function completeLessonSteps(page: Page) {
   for (let i = 0; i < 3; i++) {
@@ -82,8 +83,10 @@ test("home marketing CTAs and learner entry", async ({ page }) => {
   await expect(page.locator("#rollout")).toBeVisible();
   await page.getByRole("link", { name: /^Contact$/i }).first().click();
   await expect(page.locator("#contact")).toBeVisible();
-  // Without NEXT_PUBLIC_CONTACT_EMAIL baked into the build, the contact CTA
-  // renders as a disabled button with a setup hint instead of a mailto link.
+  await expect(
+    page.locator('a[href^="mailto:houdini@abra-ca-dabra.app"]').first(),
+  ).toBeVisible();
+  await expect(page.getByRole("button", { name: "Coming soon" })).toBeDisabled();
   await expect(
     page.getByText(/Email us about a rollout/i).first(),
   ).toBeVisible();
@@ -135,6 +138,7 @@ test("glossary page lists terms and hash targets", async ({ page }) => {
 });
 
 test("resources hub and try-it sandbox", async ({ page }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/resources");
   await expect(page.getByRole("heading", { name: "Resources" })).toBeVisible();
   await page.getByRole("link", { name: /Write a grounded wall rule/i }).click();
@@ -149,6 +153,7 @@ test("resources hub and try-it sandbox", async ({ page }) => {
 });
 
 test("capstone gallery loads", async ({ page }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/gallery");
   await expect(
     page.getByRole("heading", { name: "Capstone gallery" }),
@@ -157,6 +162,7 @@ test("capstone gallery loads", async ({ page }) => {
 });
 
 test("workshops index links to slide deck and modules", async ({ page }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/workshops");
   await page
     .getByRole("link")
@@ -178,6 +184,7 @@ test("workshops index links to slide deck and modules", async ({ page }) => {
 test("quiz gates on steps and exercises; passing completes the module", async ({
   page,
 }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/modules/mental-model");
   await expect(
     page.getByRole("heading", { name: "Get oriented" }),
@@ -243,6 +250,7 @@ test("quiz gates on steps and exercises; passing completes the module", async ({
 });
 
 test("flashcards flip and track known cards", async ({ page }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/flashcards");
   await expect(page.getByRole("heading", { name: "Flashcards" })).toBeVisible();
   await expect(page.getByText(/0 of \d+ known/)).toBeVisible();
@@ -255,6 +263,7 @@ test("flashcards flip and track known cards", async ({ page }) => {
 test("capstone builder seeds templates and persists edits", async ({
   page,
 }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/capstone");
   await expect(
     page.getByRole("heading", { name: /Capstone pack builder/i }),
@@ -308,6 +317,7 @@ test("capstone builder seeds templates and persists edits", async ({
 test("review page shows empty state before any module is complete", async ({
   page,
 }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/review");
   await expect(
     page.getByRole("heading", { name: /Review what you learned/i }),
@@ -327,6 +337,7 @@ test("command palette opens and navigates", async ({ page }) => {
 });
 
 test("jumping ahead shows the recommended-path banner", async ({ page }) => {
+  await grantLifetimeAccess(page);
   await page.goto("/modules/deep-research");
   await expect(
     page.getByRole("heading", { level: 1, name: "Deep research", exact: true }),
@@ -342,4 +353,30 @@ test("jumping ahead shows the recommended-path banner", async ({ page }) => {
   await expect(
     page.getByRole("button", { name: "Mark step done" }).first(),
   ).toBeVisible();
+});
+
+test("paid course content stays locked without a session", async ({ page }) => {
+  await page.goto("/modules/deep-research");
+  await expect(page.getByRole("heading", { name: "Deep research" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Coming soon" })).toBeDisabled();
+  await expect(page.getByText(/Sam started a new AI project/)).toHaveCount(0);
+  await expect(page.getByText(/clinic appointment reminder/)).toHaveCount(0);
+
+  await page.goto("/workshops/session-01");
+  await expect(page.getByRole("heading", { name: "Workshop deck" })).toBeVisible();
+  await expect(page.getByText(/Slide 1/)).toHaveCount(0);
+
+  await page.goto("/api/templates/BRIEF.md");
+  await expect(page.getByText("Payment required")).toBeVisible();
+  await expect(page.getByText(/Project brief/)).toHaveCount(0);
+
+  const demo = await page.request.get(
+    "/api/course-files/demos/retrieval-and-grounding/before.svg",
+  );
+  expect(demo.status()).toBe(401);
+  expect(await demo.text()).not.toContain("Ask without binder");
+
+  await page.goto("/certificates/module-mental-model");
+  await expect(page.getByRole("heading", { name: "Certificate" })).toBeVisible();
+  await expect(page.getByRole("button", { name: /Print/i })).toHaveCount(0);
 });

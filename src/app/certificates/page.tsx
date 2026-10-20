@@ -1,13 +1,21 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Paywall } from "@/components/paywall";
 import { Button } from "@/components/ui/button";
+import { getCourseAccess } from "@/lib/access/session";
 import { listModules } from "@/lib/curriculum/load-curriculum";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Certificates",
 };
 
-export default function CertificatesIndexPage() {
+export default async function CertificatesIndexPage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Certificates" kicker="Proof you finished" />;
+  }
   const modules = listModules();
 
   return (

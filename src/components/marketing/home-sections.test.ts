@@ -86,9 +86,14 @@ describe("marketing home section contracts", () => {
     expect(contact).toContain('id="contact"');
     expect(contact).toContain("getContactEmail");
     expect(contact).toContain("buildRolloutMailto");
-    expect(contact).toContain("NEXT_PUBLIC_CONTACT_EMAIL");
     expect(contact).toContain("Email us about a rollout");
-    expect(contact).toContain("disabled");
+    expect(contact).not.toContain("NEXT_PUBLIC_CONTACT_EMAIL");
+    expect(
+      readFileSync(
+        join(process.cwd(), "src/lib/marketing/contact-email.ts"),
+        "utf8",
+      ),
+    ).toContain("houdini@abra-ca-dabra.app");
     expect(contact).not.toContain("chrisb@superpatch.com");
     expect(contact).not.toContain("hello@llmleverage.course");
     expect(contact).not.toContain("[your address]");

@@ -13,15 +13,15 @@ The marketing home (`/`) is the buyer-facing course overview. The learner hub st
 
 | Path | Purpose |
 |------|---------|
-| `curriculum/templates/` | BRIEF / SOURCES / HANDOFF starters (also copied to `public/templates/`) |
+| `curriculum/templates/` | BRIEF / SOURCES / HANDOFF starters, served only to paid learners at `/api/templates/<file>` |
 | `curriculum/tracks/*.yaml` | Role-track example overlays (all 12 modules for each track) |
 | `curriculum/sandboxes/*.yaml` | Static try-it exercises (`session-*` for workshops; `module-*` preferred on module pages) |
 | `curriculum/gallery/capstone-examples.yaml` | Capstone before/after stories |
-| `curriculum/modules/*/demo.yaml` + `public/course/demos/` | Worked before/after visuals |
+| `curriculum/modules/*/demo.yaml` + `curriculum/demos/` | Worked before/after visuals, served only to paid learners |
 | `curriculum/modules/*/module.yaml` `steps:` | Lesson submodules (orient / ideas / apply) mapped to H2 headings |
 | `curriculum/glossary.yaml` | Hover/sheet glossary |
 
-After editing templates, copy into `public/templates/` so downloads work.
+Templates and demo SVGs stay outside `public/`. Paid learners download them through `/api/templates/` and `/api/course-files/demos/`.
 
 Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates from v1). Fields include `completedSteps` (per-module lesson steps). A module completes when the learner scores **75% or higher** on its quiz (best score is kept across retries). Each quiz keeps a bank of **8+ questions** and samples **5 per attempt** (`src/lib/quiz/sample-questions.ts`), so retries see different questions; options are shuffled with a deterministic seed per question so the correct choice is not always first. The header notes that progress saves on this device only. Continue links use `#step-*` hashes; the module page focuses that step once it is unlocked.
 
@@ -36,9 +36,9 @@ Progress is stored in `localStorage` under `llm-course-progress-v2` (migrates fr
 - **Recap card** appears at the quiz step once a module is complete, listing objectives and linking to the next module and `/review`.
 - **Review mode** (`/review`) samples up to 10 quiz questions from completed modules (`src/lib/quiz/review-sample.ts`); it never changes progress.
 - **Flashcards** (`/flashcards`) turn every glossary term into a flip card; missed cards re-queue until known (`src/lib/flashcards/deck.ts`). Per-card stats persist under `llm-course-flashcard-stats`, so previously missed cards surface first on the next visit (`src/lib/flashcards/stats.ts`).
-- **Feedback link**: every module step shows a "Tell us about this section" mailto prefilled with the module and step (`src/lib/feedback/feedback-mailto.ts`); it requires `NEXT_PUBLIC_CONTACT_EMAIL` and hides otherwise.
+- **Feedback link**: every module step shows a "Tell us about this section" mailto prefilled with the module and step (`src/lib/feedback/feedback-mailto.ts`). It writes to `houdini@abra-ca-dabra.app`.
 - **Print**: printing a module page outputs the full lesson (all steps) with app chrome hidden; certificates keep their own print styles.
-- **Capstone pack builder** (`/capstone`) mirrors Module 12 end to end: a scope form (Exercise 1), all eight pack files seeded from `public/templates/` (BRIEF, SOURCES, WALL_RULES, PLAYBOOK, TOOLS, OWNERSHIP, HANDOFF, VERIFY), a readiness checklist from the exercise answer key, a LOOKBACK.md editor for after the run, and a "share your story" section that copies a gallery-format snippet. Drafts save under `llm-course-capstone-*` keys.
+- **Capstone pack builder** (`/capstone`) mirrors Module 12 end to end: a scope form (Exercise 1), all eight pack files seeded from `curriculum/templates/` (BRIEF, SOURCES, WALL_RULES, PLAYBOOK, TOOLS, OWNERSHIP, HANDOFF, VERIFY), a readiness checklist from the exercise answer key, a LOOKBACK.md editor for after the run, and a "share your story" section that copies a gallery-format snippet. Drafts save under `llm-course-capstone-*` keys. The page is behind the paywall.
 - **Scratchpad**: per-module notes saved under `llm-course-notes-<moduleId>`, kept outside the progress store so Reset never deletes them.
 - **Returning-learner banner** on the marketing home shows percent complete and a Continue button when the device has progress.
 - **Certificates** remember the learner's name (`llm-course-learner-name`) and offer an "Add to LinkedIn" profile link alongside Print/PDF.
@@ -70,7 +70,11 @@ Learner progress is stored in `localStorage` under key `llm-course-progress-v2` 
 
 ## Contact email
 
-Set `NEXT_PUBLIC_CONTACT_EMAIL` in the environment (local `.env.local` or Vercel project settings) to enable the home-page rollout form. Without it, the contact CTA stays disabled and shows a setup hint. Do not hardcode a personal inbox in the source.
+Rollout mail and lesson feedback go to `houdini@abra-ca-dabra.app` (`src/lib/marketing/contact-email.ts`). That address is the Abracadabra demand-gen mailbox, not a personal inbox.
+
+## Payments
+
+See the README section "Access and payments" for the Stripe env vars, the setup script, and what stays free. Locked pages call `getCourseAccess()` before reading lesson, deck, exercise, or template files.
 
 ## SEO and sharing
 

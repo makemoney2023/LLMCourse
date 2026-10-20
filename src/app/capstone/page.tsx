@@ -1,9 +1,12 @@
-import fs from "node:fs";
-import path from "node:path";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CapstoneFlow } from "@/components/capstone-flow";
 import type { PackTemplate } from "@/components/capstone-pack-builder";
+import { Paywall } from "@/components/paywall";
+import { readTemplate } from "@/lib/access/course-files";
+import { getCourseAccess } from "@/lib/access/session";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Capstone pack builder",
@@ -60,21 +63,19 @@ const LOOKBACK_FILE: Omit<PackTemplate, "template"> = {
   hint: "One metric vs the old habit, which loop stop failed first, and the default you keep.",
 };
 
-function readTemplate(fileName: string): string {
-  return fs.readFileSync(
-    path.join(process.cwd(), "public", "templates", fileName),
-    "utf8",
-  );
-}
+export default async function CapstonePage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Capstone pack builder" kicker="Module 12" />;
+  }
 
-export default function CapstonePage() {
   const packFiles: PackTemplate[] = PACK_FILES.map((file) => ({
     ...file,
-    template: readTemplate(file.fileName),
+    template: readTemplate(file.fileName) ?? "",
   }));
   const lookbackFile: PackTemplate = {
     ...LOOKBACK_FILE,
-    template: readTemplate(LOOKBACK_FILE.fileName),
+    template: readTemplate(LOOKBACK_FILE.fileName) ?? "",
   };
 
   return (

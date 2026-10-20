@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CertificateView } from "@/components/certificate-view";
+import { Paywall } from "@/components/paywall";
+import { getCourseAccess } from "@/lib/access/session";
 import { listModules } from "@/lib/curriculum/load-curriculum";
 import { SESSION_MODULE_IDS } from "@/lib/progress/checkpoints";
+
+export const dynamic = "force-dynamic";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -20,6 +24,8 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const access = await getCourseAccess();
+  if (!access.entitled) return { title: "Certificate" };
   const { id } = await params;
   if (id.startsWith("module-")) {
     const moduleId = id.slice("module-".length);
@@ -35,6 +41,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CertificatePage({ params }: Props) {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Certificate" kicker="Proof you finished" />;
+  }
   const { id } = await params;
   if (!id || (!id.startsWith("module-") && !id.startsWith("checkpoint-"))) {
     notFound();

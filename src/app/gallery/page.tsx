@@ -1,13 +1,21 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { Paywall } from "@/components/paywall";
+import { getCourseAccess } from "@/lib/access/session";
 import { loadCapstoneGallery } from "@/lib/curriculum/load-gallery";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Capstone gallery",
   description: "Anonymized before/after runs from the LLM Leverage course.",
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Capstone gallery" kicker="Examples" />;
+  }
   const examples = loadCapstoneGallery();
 
   return (

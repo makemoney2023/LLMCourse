@@ -3,16 +3,20 @@ import { CheckpointBanner } from "@/components/checkpoint-banner";
 import { ContinueCourseButton } from "@/components/continue-course-button";
 import { ModuleList } from "@/components/module-list";
 import { RoleTrackPicker } from "@/components/role-track-picker";
+import { getCourseAccess } from "@/lib/access/session";
 import {
   listModuleExerciseIds,
   listModules,
 } from "@/lib/curriculum/load-curriculum";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Modules",
 };
 
-export default function ModulesPage() {
+export default async function ModulesPage() {
+  const access = await getCourseAccess();
   const modules = listModules();
   const exerciseIdsByModule = listModuleExerciseIds();
 
@@ -22,8 +26,9 @@ export default function ModulesPage() {
         <div>
           <h1 className="font-heading text-4xl tracking-tight">Modules</h1>
           <p className="mt-2 text-muted-foreground">
-            Recommended order below. Jump ahead anytime — each module still
-            needs steps, practice, and a 75%+ quiz score to count as complete.
+            Module 1 is a free preview. Modules 2–12 are part of lifetime
+            access. Each module still needs steps, practice, and a 75%+ quiz
+            score to count as complete.
           </p>
         </div>
         <RoleTrackPicker />
@@ -36,7 +41,7 @@ export default function ModulesPage() {
         <CheckpointBanner />
       </div>
       <div className="mt-8">
-        <ModuleList modules={modules} />
+        <ModuleList modules={modules} entitled={access.entitled} />
       </div>
     </div>
   );

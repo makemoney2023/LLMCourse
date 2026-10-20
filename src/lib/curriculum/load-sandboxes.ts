@@ -27,7 +27,13 @@ export function listSandboxes(): Sandbox[] {
     .sort((a, b) => a.id.localeCompare(b.id));
 }
 
+export function sandboxExists(id: string): boolean {
+  if (!/^[a-z0-9-]+$/.test(id)) return false;
+  return fs.existsSync(path.join(sandboxesRoot(), `${id}.yaml`));
+}
+
 export function loadSandbox(id: string): Sandbox | null {
+  if (!sandboxExists(id)) return null;
   const filePath = path.join(sandboxesRoot(), `${id}.yaml`);
   if (!fs.existsSync(filePath)) return null;
   const data = parseYaml(fs.readFileSync(filePath, "utf8")) as Sandbox;

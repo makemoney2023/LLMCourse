@@ -1,14 +1,20 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { Paywall } from "@/components/paywall";
 import { TryItSandbox } from "@/components/try-it-sandbox";
 import { Button } from "@/components/ui/button";
+import { canReadSandbox } from "@/lib/access/policy";
+import { getCourseAccess } from "@/lib/access/session";
 import {
   listSandboxes,
   loadSandbox,
+  sandboxExists,
 } from "@/lib/curriculum/load-sandboxes";
 
 type Props = { params: Promise<{ sessionId: string }> };
+
+export const dynamic = "force-dynamic";
 
 export function generateStaticParams() {
   return listSandboxes().map((s) => ({ sessionId: s.id }));
@@ -16,12 +22,21 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { sessionId } = await params;
+  const access = await getCourseAccess();
+  if (!canReadSandbox(sessionId, access.entitled)) {
+    return { title: "Practice sandbox" };
+  }
   const sandbox = loadSandbox(sessionId);
   return { title: sandbox ? sandbox.title : "Try it" };
 }
 
 export default async function TryPage({ params }: Props) {
   const { sessionId } = await params;
+  if (!sandboxExists(sessionId)) notFound();
+  const access = await getCourseAccess();
+  if (!canReadSandbox(sessionId, access.entitled)) {
+    return <Paywall title="Practice sandbox" kicker="Exercise" />;
+  }
   const sandbox = loadSandbox(sessionId);
   if (!sandbox) notFound();
 

@@ -25,6 +25,7 @@ const links = [
   { href: "/resources", label: "Resources" },
   { href: "/glossary", label: "Glossary" },
   { href: "/workshops", label: "Workshops" },
+  { href: "/access", label: "Sign in" },
 ];
 
 export function SiteHeader({

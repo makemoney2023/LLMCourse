@@ -1,14 +1,22 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { CheckpointBanner } from "@/components/checkpoint-banner";
+import { Paywall } from "@/components/paywall";
 import { RoleTrackPicker } from "@/components/role-track-picker";
+import { getCourseAccess } from "@/lib/access/session";
 import { listSandboxes } from "@/lib/curriculum/load-sandboxes";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Resources",
 };
 
-export default function ResourcesPage() {
+export default async function ResourcesPage() {
+  const access = await getCourseAccess();
+  if (!access.entitled) {
+    return <Paywall title="Resources" kicker="Templates and practice" />;
+  }
   const sandboxes = listSandboxes();
 
   return (
@@ -67,47 +75,47 @@ export default function ResourcesPage() {
         <h2 className="font-heading text-2xl">Download templates</h2>
         <ul className="space-y-2 text-sm">
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/BRIEF.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/BRIEF.md" download>
               BRIEF.md — one-page project summary
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/SOURCES.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/SOURCES.md" download>
               SOURCES.md — links, dates, why they matter
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/HANDOFF.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/HANDOFF.md" download>
               HANDOFF.md — clear-the-desk note
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/WALL_RULES.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/WALL_RULES.md" download>
               WALL_RULES.md — standing instructions
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/PLAYBOOK.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/PLAYBOOK.md" download>
               PLAYBOOK.md — recipe card for one job
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/TOOLS.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/TOOLS.md" download>
               TOOLS.md — allow list and never-list
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/OWNERSHIP.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/OWNERSHIP.md" download>
               OWNERSHIP.md — who maintains what
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/VERIFY.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/VERIFY.md" download>
               VERIFY.md — pre-ship checklist
             </a>
           </li>
           <li>
-            <a className="text-primary underline underline-offset-2" href="/templates/LOOKBACK.md" download>
+            <a className="text-primary underline underline-offset-2" href="/api/templates/LOOKBACK.md" download>
               LOOKBACK.md — post-run reflection
             </a>
           </li>
