@@ -7,6 +7,7 @@ import { listModules } from "@/lib/curriculum/load-curriculum";
 import { loadGlossary } from "@/lib/curriculum/glossary";
 import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
+import "./site-nav.css";
 
 const plexSans = IBM_Plex_Sans({
   variable: "--font-body",

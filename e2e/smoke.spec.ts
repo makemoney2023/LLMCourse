@@ -72,7 +72,14 @@ async function submitQuizWithAnswers(
 
 test("home marketing CTAs and learner entry", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("link", { name: "LLM Leverage" }).first()).toBeVisible();
+  await expect(page.getByRole("link", { name: "Abracadabra AI home" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Start a project" })).toHaveAttribute(
+    "href",
+    "https://abra-ca-dabra.app/start/",
+  );
+  const courseNav = page.getByRole("navigation", { name: "Course" });
+  await expect(courseNav.getByRole("link", { name: "Modules" })).toBeVisible();
+  await expect(courseNav.getByRole("link", { name: "Sign in" })).toBeVisible();
   await expect(
     page.getByRole("heading", {
       name: /Train teams to get reliable AI output/i,
