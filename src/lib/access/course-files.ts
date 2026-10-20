@@ -1,5 +1,4 @@
-import fs from "node:fs";
-import path from "node:path";
+import { readProjectBytes, readProjectText } from "@/lib/files/project-files";
 
 export const TEMPLATE_FILES = [
   "BRIEF.md",
@@ -29,9 +28,7 @@ export function isTemplateName(name: string): name is TemplateName {
 
 export function readTemplate(name: string): string | null {
   if (!isTemplateName(name)) return null;
-  const filePath = path.join(process.cwd(), "curriculum", "templates", name);
-  if (!fs.existsSync(filePath)) return null;
-  return fs.readFileSync(filePath, "utf8");
+  return readProjectText(`curriculum/templates/${name}`);
 }
 
 export function isDemoFile(module: string, file: string): boolean {
@@ -41,17 +38,9 @@ export function isDemoFile(module: string, file: string): boolean {
   );
 }
 
-export function readDemoFile(module: string, file: string): Buffer | null {
+export function readDemoFile(module: string, file: string): Uint8Array | null {
   if (!isDemoFile(module, file)) return null;
-  const filePath = path.join(
-    process.cwd(),
-    "curriculum",
-    "demos",
-    module,
-    file,
-  );
-  if (!fs.existsSync(filePath)) return null;
-  return fs.readFileSync(filePath);
+  return readProjectBytes(`curriculum/demos/${module}/${file}`);
 }
 
 export const PRIVATE_NO_STORE = {

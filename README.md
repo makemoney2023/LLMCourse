@@ -19,12 +19,17 @@ Open [http://localhost:3000](http://localhost:3000).
 ```bash
 npm test          # vitest unit/content tests
 npm run test:e2e  # Playwright smoke (builds via webServer start)
-npm run build     # production build
+npm run build     # Next.js production build (local smoke)
+npm run build:vinext  # Cloudflare Worker build
 ```
 
 ## Live deploy
 
-Production: [https://llm-leverage-course.vercel.app](https://llm-leverage-course.vercel.app)
+The course runs as a Cloudflare Worker (`llm-leverage-course`) with static assets. The older Vercel alias [https://llm-leverage-course.vercel.app](https://llm-leverage-course.vercel.app) is a previous deploy of this repo, not the target host.
+
+```bash
+npm run deploy:cloudflare
+```
 
 ## Access and payments
 
@@ -48,7 +53,7 @@ The lock is on the server. Locked routes do not render the lesson, deck, or file
 
 ### Environment variables
 
-Set these on the Vercel project (Production and Preview) and redeploy. A missing value fails closed.
+Store these as Worker secrets (or, for the public site URL, a var). The Worker reads them from `process.env` (`nodejs_compat` plus `nodejs_compat_populate_process_env`). A missing Stripe value fails closed: locked routes stay locked and the buy button is a disabled **Coming soon**. Deploy does not require the secrets to exist.
 
 | Variable | Required | Purpose |
 | --- | --- | --- |
@@ -58,9 +63,11 @@ Set these on the Vercel project (Production and Preview) and redeploy. A missing
 | `ACCESS_TOKEN_SECRET` | recommended | Signs the session cookie and access code. If unset, the webhook secret is used. |
 | `RESEND_API_KEY` | optional | Sends magic-link email. Without it, buyers use the access code. |
 | `EMAIL_FROM` | optional | From address for Resend, for example `LLM Leverage <houdini@abra-ca-dabra.app>` |
-| `NEXT_PUBLIC_SITE_URL` | recommended | Canonical origin for Checkout return URLs when `VERCEL_URL` is not the public host |
+| `NEXT_PUBLIC_SITE_URL` | recommended | Canonical origin for sitemap and share links. Checkout return URLs use the request host. |
 
 Rollout mail and the in-lesson feedback link go to `houdini@abra-ca-dabra.app`.
+
+Local Worker dev reads `.dev.vars` (see `.dev.vars.example`). Do not commit that file.
 
 ### Turn on checkout
 
@@ -72,12 +79,30 @@ Rollout mail and the in-lesson feedback link go to `houdini@abra-ca-dabra.app`.
    STRIPE_SECRET_KEY=sk_live_… STRIPE_ALLOW_LIVE=1 npm run stripe:setup
    ```
 
-2. Put `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, and the printed `STRIPE_PRICE_ID` in Vercel. Add `ACCESS_TOKEN_SECRET` (a long random string) so rotating the Stripe key does not sign buyers out.
-3. In Stripe, add a webhook endpoint for this deployment:
+2. From a Cloudflare API token that can edit this Worker, set the secrets (each command prompts for the value; it is not stored in the repo):
+
+   ```bash
+   npx wrangler secret put STRIPE_SECRET_KEY
+   npx wrangler secret put STRIPE_WEBHOOK_SECRET
+   npx wrangler secret put STRIPE_PRICE_ID
+   npx wrangler secret put ACCESS_TOKEN_SECRET
+   # optional mail
+   npx wrangler secret put RESEND_API_KEY
+   npx wrangler secret put EMAIL_FROM
+   ```
+
+   `ACCESS_TOKEN_SECRET` should be a long random string so rotating the Stripe key does not sign buyers out.
+3. Set the public origin once the hostname is known:
+
+   ```bash
+   npx wrangler secret put NEXT_PUBLIC_SITE_URL
+   # or add it under "vars" in wrangler.jsonc if you want it visible in the dashboard
+   ```
+4. In Stripe, add a webhook endpoint for this deployment:
    - URL: `https://<your-host>/api/webhooks/stripe`
    - Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`
-4. Redeploy. The buy button stays **Coming soon** until all three `STRIPE_*` values are present at request time.
-5. Optional: set `RESEND_API_KEY` and `EMAIL_FROM` so "Email me a sign-in link" can send mail. Until then, the confirmation page shows an access code the buyer can paste on `/access`.
+5. Redeploy with `npm run deploy:cloudflare`. The buy button stays **Coming soon** until all three `STRIPE_*` values are present at request time.
+6. Optional: `RESEND_API_KEY` and `EMAIL_FROM` so "Email me a sign-in link" can send mail. Until then, the confirmation page shows an access code the buyer can paste on `/access`.
 
 A completed checkout sets Stripe customer metadata `llm_leverage_access=active`. The success URL and the webhook both do this, so a replay does not grant access twice. A refund for this product sets the metadata to `revoked`; the next sign-in is refused. A browser that already has a session cookie keeps it until the cookie expires (400 days) or the buyer signs out.
 
@@ -96,14 +121,24 @@ curriculum/
     quiz.yaml
 ```
 
-The app loads YAML + Markdown from `curriculum/` at build/request time. Do not maintain a second syllabus in the UI.
+The app loads YAML + Markdown from `curriculum/`. The Cloudflare build copies those files into the Worker server bundle so they are not public assets. Do not maintain a second syllabus in the UI.
 
 ## Stack
 
-- Next.js App Router, TypeScript, Tailwind CSS v4
+- Next.js App Router on Cloudflare Workers via vinext, TypeScript, Tailwind CSS v4
 - shadcn/ui
 - Mermaid diagrams
 - LocalStorage progress, plus a server-side Stripe paywall for everything after Module 1
+
+## Cloudflare
+
+`wrangler.jsonc` is the Worker config. `npm run build:vinext` produces `dist/`, and `npm run deploy:cloudflare` uploads it with Wrangler. Static files under `public/` are assets. Curriculum, templates, and diagrams are read only after the Worker checks the session cookie.
+
+```bash
+npm run dev:vinext          # Vite + workerd on port 3001
+npm run preview:cloudflare  # production Worker build, local
+npm run deploy:cloudflare   # build and deploy llm-leverage-course
+```
 
 ## Audience
 

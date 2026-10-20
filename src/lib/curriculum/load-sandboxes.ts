@@ -1,6 +1,9 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import {
+  listProjectEntries,
+  projectFileExists,
+  readProjectText,
+} from "@/lib/files/project-files";
 
 export type Sandbox = {
   id: string;
@@ -12,15 +15,11 @@ export type Sandbox = {
   rubric: string[];
 };
 
-function sandboxesRoot(): string {
-  return path.join(process.cwd(), "curriculum", "sandboxes");
-}
+const SANDBOXES = "curriculum/sandboxes";
 
 export function listSandboxes(): Sandbox[] {
-  const root = sandboxesRoot();
-  if (!fs.existsSync(root)) return [];
-  return fs
-    .readdirSync(root)
+  return listProjectEntries(SANDBOXES)
+    .map((entry) => entry.name)
     .filter((name) => name.endsWith(".yaml"))
     .map((name) => loadSandbox(name.replace(/\.yaml$/, "")))
     .filter((s): s is Sandbox => s != null)
@@ -29,14 +28,14 @@ export function listSandboxes(): Sandbox[] {
 
 export function sandboxExists(id: string): boolean {
   if (!/^[a-z0-9-]+$/.test(id)) return false;
-  return fs.existsSync(path.join(sandboxesRoot(), `${id}.yaml`));
+  return projectFileExists(`${SANDBOXES}/${id}.yaml`);
 }
 
 export function loadSandbox(id: string): Sandbox | null {
   if (!sandboxExists(id)) return null;
-  const filePath = path.join(sandboxesRoot(), `${id}.yaml`);
-  if (!fs.existsSync(filePath)) return null;
-  const data = parseYaml(fs.readFileSync(filePath, "utf8")) as Sandbox;
+  const raw = readProjectText(`${SANDBOXES}/${id}.yaml`);
+  if (!raw) return null;
+  const data = parseYaml(raw) as Sandbox;
   return {
     ...data,
     constraints: data.constraints ?? [],

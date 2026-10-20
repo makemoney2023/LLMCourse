@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import { readProjectText } from "@/lib/files/project-files";
 
 export type GlossaryTerm = {
   id: string;
@@ -23,10 +22,6 @@ type RawTerm = {
   longDefinition?: unknown;
   relatedModules?: unknown;
 };
-
-function curriculumRoot(): string {
-  return path.join(process.cwd(), "curriculum");
-}
 
 function asStringArray(value: unknown): string[] {
   if (!Array.isArray(value)) return [];
@@ -76,8 +71,8 @@ export function validateGlossary(glossary: Glossary): void {
 }
 
 export function loadGlossary(): Glossary {
-  const filePath = path.join(curriculumRoot(), "glossary.yaml");
-  const raw = fs.readFileSync(filePath, "utf8");
+  const raw = readProjectText("curriculum/glossary.yaml");
+  if (!raw) throw new Error("Missing curriculum/glossary.yaml");
   const parsed = parseYaml(raw) as { terms?: RawTerm[] };
   const terms = (parsed.terms ?? []).map(normalizeTerm);
   const glossary = { terms };

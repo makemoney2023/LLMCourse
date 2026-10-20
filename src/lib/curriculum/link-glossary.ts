@@ -1,4 +1,4 @@
-import { JSDOM } from "jsdom";
+import { parseHTML } from "linkedom";
 import type { GlossaryTerm } from "./glossary";
 
 type Phrase = {
@@ -104,14 +104,15 @@ export function linkGlossaryTerms(
   if (!html.trim() || terms.length === 0) return html;
 
   const phrases = buildPhrases(terms);
-  const dom = new JSDOM(`<div id="root">${html}</div>`);
-  const root = dom.window.document.getElementById("root");
+  const { document } = parseHTML(`<div id="root">${html}</div>`);
+  const root = document.getElementById("root");
   if (!root) return html;
 
   const linkedIds = new Set<string>();
-  const walker = dom.window.document.createTreeWalker(
+  const nodeFilter = document.defaultView?.NodeFilter;
+  const walker = document.createTreeWalker(
     root,
-    dom.window.NodeFilter.SHOW_TEXT,
+    nodeFilter?.SHOW_TEXT ?? 4,
   );
 
   const textNodes: Text[] = [];
@@ -132,21 +133,19 @@ export function linkGlossaryTerms(
     const parent = textNode.parentNode;
     if (!parent) continue;
 
-    const frag = dom.window.document.createDocumentFragment();
+    const frag = document.createDocumentFragment();
     let safety = 0;
     while (safety++ < 50) {
       const match = findMatch(remaining, phrases, linkedIds);
       if (!match) {
-        if (remaining) frag.append(dom.window.document.createTextNode(remaining));
+        if (remaining) frag.append(document.createTextNode(remaining));
         break;
       }
       if (match.start > 0) {
-        frag.append(
-          dom.window.document.createTextNode(remaining.slice(0, match.start)),
-        );
+        frag.append(document.createTextNode(remaining.slice(0, match.start)));
       }
       const original = remaining.slice(match.start, match.end);
-      const anchor = dom.window.document.createElement("a");
+      const anchor = document.createElement("a");
       anchor.className = "glossary-term";
       anchor.href = `/glossary#${match.phrase.id}`;
       anchor.setAttribute("data-glossary-id", match.phrase.id);

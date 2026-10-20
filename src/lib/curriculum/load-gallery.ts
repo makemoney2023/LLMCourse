@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
 import { parse as parseYaml } from "yaml";
+import { readProjectText } from "@/lib/files/project-files";
 
 export type GalleryExample = {
   id: string;
@@ -13,14 +12,9 @@ export type GalleryExample = {
 };
 
 export function loadCapstoneGallery(): GalleryExample[] {
-  const filePath = path.join(
-    process.cwd(),
-    "curriculum",
-    "gallery",
-    "capstone-examples.yaml",
-  );
-  if (!fs.existsSync(filePath)) return [];
-  const data = parseYaml(fs.readFileSync(filePath, "utf8")) as {
+  const raw = readProjectText("curriculum/gallery/capstone-examples.yaml");
+  if (!raw) return [];
+  const data = parseYaml(raw) as {
     examples?: GalleryExample[];
   };
   return data.examples ?? [];

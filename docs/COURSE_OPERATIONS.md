@@ -78,7 +78,7 @@ See the README section "Access and payments" for the Stripe env vars, the setup 
 
 ## SEO and sharing
 
-`src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` in production so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL`, then localhost). A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
+`src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` on the Worker so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL` for an old preview, then localhost). Checkout return URLs use the request host. A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
 ## YouTube Shorts studio (P0 / P1 batch + P2 publish)
 
@@ -165,10 +165,12 @@ Schema/extract/write/props/audio/batch/approval/publish unit tests live under `c
 
 ## Deploy
 
+The course deploys to Cloudflare Workers, not Vercel.
+
 ```bash
-npx vercel --yes
+npm run deploy:cloudflare
 ```
 
-Or connect the GitHub repo to a Vercel project. Framework: Next.js.
+Worker name: `llm-leverage-course`. Config: `wrangler.jsonc`. Secrets and the paywall setup are in the README section **Access and payments**.
 
-Current production alias: https://llm-leverage-course.vercel.app
+The previous production alias https://llm-leverage-course.vercel.app is an older deploy of this repo.
