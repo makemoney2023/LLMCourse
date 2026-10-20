@@ -132,7 +132,7 @@ The app loads YAML + Markdown from `curriculum/`. The Cloudflare build copies th
 
 ## Cloudflare
 
-`wrangler.jsonc` is the Worker config. `npm run build:vinext` produces `dist/`, and `npm run deploy:cloudflare` uploads it with Wrangler. Static files under `public/` are assets. Curriculum, templates, and diagrams are read only after the Worker checks the session cookie.
+`wrangler.jsonc` is the Worker config. `npm run build:vinext` copies `curriculum/` into the Worker server bundle and refuses to finish if that text is missing. `npm run deploy:cloudflare` runs that build, then uploads `dist/` with `vinext-cloudflare deploy --skip-build`. The deploy command's own rebuild reads the empty curriculum stub and produces a Worker that 500s, so the npm script does not use it. Static files under `public/` are assets. Curriculum, templates, and diagrams are read only after the Worker checks the session cookie.
 
 ```bash
 npm run dev:vinext          # Vite + workerd on port 3001

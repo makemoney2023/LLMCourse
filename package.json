@@ -16,10 +16,9 @@
     "shorts:publish": "npm run publish --prefix content-studio",
     "stripe:setup": "node scripts/stripe-setup.mjs",
     "dev:vinext": "node scripts/with-curriculum-bundle.mjs vite dev --port 3001",
-    "build:vinext": "node scripts/with-curriculum-bundle.mjs vite build",
+    "build:vinext": "node scripts/with-curriculum-bundle.mjs vite build && node scripts/assert-curriculum-bundled.mjs",
     "preview:cloudflare": "npm run build:vinext && wrangler dev --config dist/server/wrangler.json --port 8787",
-    "deploy:vinext": "vinext-cloudflare deploy --config dist/server/wrangler.json",
-    "deploy:cloudflare": "npm run deploy:vinext"
+    "deploy:cloudflare": "npm run build:vinext && vinext-cloudflare deploy --config dist/server/wrangler.json --skip-build"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.64.0",

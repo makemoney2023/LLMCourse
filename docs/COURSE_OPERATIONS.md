@@ -171,6 +171,8 @@ The course deploys to Cloudflare Workers, not Vercel.
 npm run deploy:cloudflare
 ```
 
+That script builds with the curriculum bundled, checks the Worker output contains lesson text, then uploads with `--skip-build`. Do not run `vinext-cloudflare deploy` on its own: its rebuild omits the curriculum and every page 500s.
+
 Worker name: `llm-leverage-course`. Config: `wrangler.jsonc`. Secrets and the paywall setup are in the README section **Access and payments**.
 
 The previous production alias https://llm-leverage-course.vercel.app is an older deploy of this repo.
