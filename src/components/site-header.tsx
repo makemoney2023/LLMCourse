@@ -50,9 +50,7 @@ export function SiteHeader({
             <p className="font-heading text-lg tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-xl">
               LLM Leverage
             </p>
-            <p className="text-xs text-muted-foreground">
-              The context loop course
-            </p>
+            <p className="kicker">The context loop course</p>
           </Link>
           <div className="flex items-center gap-1">
             <nav

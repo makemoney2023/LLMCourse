@@ -22,8 +22,8 @@ export default async function AccessPage({ searchParams }: Props) {
   return (
     <div className="mx-auto grid max-w-5xl gap-16 px-4 py-16 sm:px-6 lg:grid-cols-2">
       <section>
-        <p className="text-sm text-muted-foreground">LLM Leverage course</p>
-        <h1 className="mt-2 font-heading text-4xl tracking-tight">
+        <p className="kicker text-primary">LLM Leverage course</p>
+        <h1 className="mt-3 font-heading text-4xl">
           Lifetime access, $149
         </h1>
         <p className="mt-4 text-base leading-7 text-muted-foreground">
@@ -64,8 +64,8 @@ export default async function AccessPage({ searchParams }: Props) {
           </p>
         ) : null}
       </section>
-      <section className="rounded-xl border border-border/70 bg-card/70 p-6 sm:p-8">
-        <h2 className="font-heading text-2xl tracking-tight">Sign in later</h2>
+      <section className="rounded-[var(--ui-r-card)] border border-border bg-card p-6 shadow-[var(--ui-shadow)] sm:p-8">
+        <h2 className="font-heading text-2xl">Sign in later</h2>
         <p className="mt-2 text-sm leading-6 text-muted-foreground">
           Use the email from checkout, or the access code shown after payment.
         </p>

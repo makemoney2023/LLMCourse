@@ -78,7 +78,7 @@ See the README section "Access and payments" for the Stripe env vars, the setup 
 
 ## SEO and sharing
 
-`src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). Set `NEXT_PUBLIC_SITE_URL` on the Worker so `metadataBase`, the sitemap, and share links use the canonical origin (falls back to `VERCEL_URL` for an old preview, then localhost). Checkout return URLs use the request host. A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
+`src/app/sitemap.ts` and `robots.ts` cover every static page, module, and workshop. OpenGraph/Twitter cards use a generated image (`src/app/opengraph-image.tsx`). `metadataBase`, the sitemap, and share links use `NEXT_PUBLIC_SITE_URL` when set, then `VERCEL_URL` for an old preview, then `https://learn.abra-ca-dabra.app` (localhost only while `next dev` is running). Checkout return URLs use the request host. A custom 404 (`src/app/not-found.tsx`) routes lost visitors back to `/modules`.
 
 ## YouTube Shorts studio (P0 / P1 batch + P2 publish)
 

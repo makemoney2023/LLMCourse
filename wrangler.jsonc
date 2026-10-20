@@ -25,6 +25,6 @@
   // Set them with `npx wrangler secret put <NAME>`:
   //   STRIPE_SECRET_KEY, STRIPE_WEBHOOK_SECRET, STRIPE_PRICE_ID,
   //   ACCESS_TOKEN_SECRET, RESEND_API_KEY, EMAIL_FROM
-  // Non-secret: `npx wrangler secret put` is unnecessary for NEXT_PUBLIC_SITE_URL.
-  // Put that canonical origin in vars once the workers.dev or custom hostname is known.
+  // Non-secret: NEXT_PUBLIC_SITE_URL overrides the default canonical origin
+  // https://learn.abra-ca-dabra.app. Put a different origin under "vars" if needed.
 }

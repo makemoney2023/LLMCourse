@@ -72,13 +72,13 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
       className={cn(
         "flex flex-col gap-4",
         presenting &&
-          "fixed inset-0 z-50 bg-[oklch(0.16_0.03_240)] p-4 text-[oklch(0.96_0.01_220)] sm:p-8",
+          "fixed inset-0 z-50 bg-canvas p-4 text-ink sm:p-8",
       )}
     >
       <div
         className={cn(
           "flex flex-wrap items-center justify-between gap-3",
-          presenting && "text-[oklch(0.85_0.02_220)]",
+          presenting && "text-ink-soft",
         )}
       >
         <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -142,10 +142,10 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
 
       <div
         className={cn(
-          "relative flex min-h-[28rem] flex-1 flex-col justify-center overflow-hidden rounded-3xl border px-8 py-10 sm:min-h-[32rem] sm:px-14 sm:py-14",
+          "relative flex min-h-[28rem] flex-1 flex-col justify-center overflow-hidden rounded-[var(--ui-r-card)] border px-8 py-10 sm:min-h-[32rem] sm:px-14 sm:py-14",
           presenting
-            ? "border-white/10 bg-[radial-gradient(ellipse_at_20%_0%,oklch(0.28_0.06_210/.55),transparent_55%),oklch(0.18_0.03_240)]"
-            : "border-border/70 bg-card/70 shadow-sm",
+            ? "border-white/10 bg-[radial-gradient(ellipse_at_20%_0%,color-mix(in_oklab,var(--primary)_28%,transparent),transparent_55%),var(--surface)]"
+            : "border-border bg-card shadow-[var(--ui-shadow)]",
         )}
         role="group"
         aria-roledescription="slide"
@@ -197,7 +197,7 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
                   <span
                     className={cn(
                       "mt-2 size-2 shrink-0 rounded-full",
-                      presenting ? "bg-teal-300" : "bg-primary",
+                      presenting ? "bg-optic" : "bg-primary",
                     )}
                     aria-hidden
                   />
@@ -237,7 +237,7 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
             "max-h-[40vh] overflow-y-auto rounded-2xl border p-4 text-sm",
             presenting
               ? "border-white/15 bg-black/30 text-white/85"
-              : "border-amber-700/20 bg-amber-50/80 text-foreground/90 dark:border-amber-300/20 dark:bg-amber-950/40",
+              : "border-border bg-card text-foreground/90 shadow-[var(--ui-shadow)]",
           )}
           aria-label="Facilitator notes"
         >
@@ -260,7 +260,7 @@ export function WorkshopDeck({ session }: { session: WorkshopSession }) {
               "h-1.5 min-w-8 flex-1 rounded-full transition-colors",
               i === index
                 ? presenting
-                  ? "bg-teal-300"
+                  ? "bg-optic"
                   : "bg-primary"
                 : presenting
                   ? "bg-white/20 hover:bg-white/35"
@@ -307,7 +307,7 @@ function SlideChrome({
     <p
       className={cn(
         "mb-4 text-xs font-semibold uppercase tracking-[0.18em]",
-        presenting ? "text-teal-200/80" : "text-primary/80",
+        presenting ? "text-optic/80" : "text-primary/80",
       )}
     >
       {labels[layout] ?? layout}

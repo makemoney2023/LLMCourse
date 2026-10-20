@@ -63,7 +63,7 @@ Store these as Worker secrets (or, for the public site URL, a var). The Worker r
 | `ACCESS_TOKEN_SECRET` | recommended | Signs the session cookie and access code. If unset, the webhook secret is used. |
 | `RESEND_API_KEY` | optional | Sends magic-link email. Without it, buyers use the access code. |
 | `EMAIL_FROM` | optional | From address for Resend, for example `LLM Leverage <houdini@abra-ca-dabra.app>` |
-| `NEXT_PUBLIC_SITE_URL` | recommended | Canonical origin for sitemap and share links. Checkout return URLs use the request host. |
+| `NEXT_PUBLIC_SITE_URL` | optional | Canonical origin for sitemap and share links. Defaults to `https://learn.abra-ca-dabra.app` outside local dev. Checkout return URLs use the request host. |
 
 Rollout mail and the in-lesson feedback link go to `houdini@abra-ca-dabra.app`.
 
@@ -92,14 +92,14 @@ Local Worker dev reads `.dev.vars` (see `.dev.vars.example`). Do not commit that
    ```
 
    `ACCESS_TOKEN_SECRET` should be a long random string so rotating the Stripe key does not sign buyers out.
-3. Set the public origin once the hostname is known:
+3. The public origin defaults to `https://learn.abra-ca-dabra.app`. Set `NEXT_PUBLIC_SITE_URL` only when this deployment should advertise a different origin:
 
    ```bash
    npx wrangler secret put NEXT_PUBLIC_SITE_URL
    # or add it under "vars" in wrangler.jsonc if you want it visible in the dashboard
    ```
 4. In Stripe, add a webhook endpoint for this deployment:
-   - URL: `https://<your-host>/api/webhooks/stripe`
+   - URL: `https://learn.abra-ca-dabra.app/api/webhooks/stripe`
    - Events: `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `charge.refunded`
 5. Redeploy with `npm run deploy:cloudflare`. The buy button stays **Coming soon** until all three `STRIPE_*` values are present at request time.
 6. Optional: `RESEND_API_KEY` and `EMAIL_FROM` so "Email me a sign-in link" can send mail. Until then, the confirmation page shows an access code the buyer can paste on `/access`.

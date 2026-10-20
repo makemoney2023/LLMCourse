@@ -112,11 +112,9 @@ export function CertificateView({
         ) : null}
       </div>
 
-      <article className="rounded-3xl border-2 border-border bg-card p-8 print:border-black">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          LLM Leverage Course
-        </p>
-        <h1 className="mt-2 font-heading text-3xl tracking-tight">{title}</h1>
+      <article className="rounded-[var(--ui-r-card)] border border-border border-l-2 border-l-primary bg-card p-8 shadow-[var(--shadow-raised)] print:border-black print:shadow-none">
+        <p className="kicker">LLM Leverage Course</p>
+        <h1 className="mt-3 font-heading text-3xl">{title}</h1>
         {!unlocked ? (
           <p className="mt-6 text-muted-foreground">
             This certificate is locked. Finish the related modules (and Session 1

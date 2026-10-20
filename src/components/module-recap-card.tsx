@@ -14,11 +14,11 @@ export function ModuleRecapCard({
 }) {
   return (
     <section
-      className="space-y-4 rounded-2xl border border-emerald-700/30 bg-emerald-700/5 p-5 dark:border-emerald-300/30 dark:bg-emerald-300/5"
+      className="space-y-4 rounded-[var(--ui-r-card)] border border-phosphor/30 bg-phosphor/5 p-5"
       aria-label="Module recap"
     >
       <div>
-        <p className="text-xs font-medium uppercase tracking-wide text-emerald-800 dark:text-emerald-300">
+        <p className="kicker text-phosphor">
           Module {meta.order} complete
         </p>
         <h2 className="mt-1 font-heading text-2xl tracking-tight">
