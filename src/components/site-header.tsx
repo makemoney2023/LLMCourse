@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 import { Progress } from "@/components/ui/progress";
 import { useProgress } from "@/components/progress-provider";
 import { ResetProgressButton } from "@/components/reset-progress-button";
@@ -12,21 +13,18 @@ import {
   type PaletteModule,
   type PaletteTerm,
 } from "@/components/command-palette";
+import { NavIcon } from "@/components/site-nav-icons";
 import {
   formatMinutes,
   remainingMinutes,
   type ModuleDuration,
 } from "@/lib/progress/time-remaining";
-import { cn } from "@/lib/utils";
-
-const links = [
-  { href: "/", label: "Home" },
-  { href: "/modules", label: "Modules" },
-  { href: "/resources", label: "Resources" },
-  { href: "/glossary", label: "Glossary" },
-  { href: "/workshops", label: "Workshops" },
-  { href: "/access", label: "Sign in" },
-];
+import {
+  courseLinks,
+  marketingGroups,
+  marketingHomeHref,
+  marketingTopLinks,
+} from "@/lib/marketing/site-nav";
 
 export function SiteHeader({
   moduleDurations,
@@ -41,50 +39,140 @@ export function SiteHeader({
   const { progress, percent } = useProgress();
   const showProgress = pathname !== "/";
   const minutesLeft = remainingMinutes(progress, moduleDurations);
+  const barRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const bar = barRef.current;
+    if (!bar) return;
+    const menu = bar.querySelector<HTMLDetailsElement>(".site-nav__menu");
+    const services = bar.querySelector<HTMLDetailsElement>(".site-nav__services");
+
+    const onClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element) || !target.closest("a")) return;
+      if (menu) menu.open = false;
+      if (services) services.open = false;
+    };
+    const onMenuToggle = () => {
+      document.documentElement.classList.toggle("menu-open", Boolean(menu?.open));
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      if (services?.open) {
+        services.open = false;
+        services.querySelector("summary")?.focus();
+        return;
+      }
+      if (menu?.open) {
+        menu.open = false;
+        menu.querySelector("summary")?.focus();
+      }
+    };
+
+    const syncHeight = () => {
+      document.documentElement.style.setProperty("--nav-h", `${bar.offsetHeight}px`);
+      const chrome = bar.parentElement;
+      if (chrome) {
+        document.documentElement.style.scrollPaddingTop = `${chrome.offsetHeight}px`;
+      }
+    };
+    syncHeight();
+    const observer =
+      typeof ResizeObserver === "undefined"
+        ? undefined
+        : new ResizeObserver(syncHeight);
+    observer?.observe(bar);
+    if (bar.parentElement) observer?.observe(bar.parentElement);
+
+    bar.addEventListener("click", onClick);
+    menu?.addEventListener("toggle", onMenuToggle);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      bar.removeEventListener("click", onClick);
+      menu?.removeEventListener("toggle", onMenuToggle);
+      document.removeEventListener("keydown", onKeyDown);
+      observer?.disconnect();
+      document.documentElement.classList.remove("menu-open");
+    };
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border/70 bg-[color-mix(in_oklab,var(--background)_88%,transparent)] backdrop-blur-md print:hidden">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6">
-        <div className="flex items-center justify-between gap-2">
-          <Link href="/" className="group min-w-0">
-            <p className="font-heading text-lg tracking-tight text-foreground transition-colors group-hover:text-primary sm:text-xl">
-              LLM Leverage
-            </p>
-            <p className="kicker">The context loop course</p>
-          </Link>
-          <div className="flex items-center gap-1">
-            <nav
-              aria-label="Primary"
-              className="flex items-center gap-1 sm:gap-2"
+    <div className="site-chrome print:hidden">
+      <header className="site-nav" ref={barRef}>
+        <a className="site-nav__mark" href={marketingHomeHref} aria-label="Abracadabra AI home">
+          abracadabra<span className="wm-dot">.</span>
+        </a>
+        <details className="site-nav__menu">
+          <summary className="site-nav__toggle" aria-label="Menu">
+            <span className="site-nav__glyph" aria-hidden="true" />
+          </summary>
+        </details>
+        <nav className="site-nav__links" aria-label="Site">
+          <details className="site-nav__services">
+            <summary>Services</summary>
+            <div className="site-nav__mega">
+              {marketingGroups.map((group) => (
+                <div
+                  key={group.label}
+                  className="site-nav__group"
+                  role="group"
+                  aria-label={group.label}
+                >
+                  <p className="site-nav__fn-name" aria-hidden="true">
+                    {group.label}
+                  </p>
+                  {group.links.map((link) => (
+                    <a key={link.href} className="site-nav__mega-link" href={link.href}>
+                      <NavIcon name={link.icon} />
+                      <span className="site-nav__text">
+                        <strong>{link.title}</strong>
+                        <span className="site-nav__desc">{link.description}</span>
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </details>
+          {marketingTopLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className={"cta" in link && link.cta ? "btn btn--primary site-nav__cta" : undefined}
             >
-              {links.map((link) => {
-                const active =
-                  link.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(link.href);
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    className={cn(
-                      "rounded-md px-2.5 py-1.5 text-sm transition-colors",
-                      active
-                        ? "bg-secondary text-foreground"
-                        : "text-muted-foreground hover:bg-muted hover:text-foreground",
-                    )}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
+              {link.label}
+            </a>
+          ))}
+        </nav>
+      </header>
+      <div className="course-nav">
+        <div className="course-nav__row">
+          <p className="course-nav__kicker">This course</p>
+          <nav className="course-nav__links" aria-label="Course">
+            {courseLinks.map((link) => {
+              const active =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+          <div className="course-nav__tools">
             <CommandPalette modules={paletteModules} terms={paletteTerms} />
             <ThemeToggle />
           </div>
         </div>
         {showProgress ? (
-          <div className="space-y-1.5" aria-label="Course progress">
-            <div className="flex items-center gap-3">
+          <div className="course-nav__progress" aria-label="Course progress">
+            <div className="course-nav__progress-row">
               <Progress value={percent} className="h-1.5" />
               <span className="w-12 shrink-0 text-right text-xs tabular-nums text-muted-foreground">
                 {Math.round(percent)}%
@@ -92,7 +180,7 @@ export function SiteHeader({
               <ProgressBackupButtons />
               <ResetProgressButton />
             </div>
-            <p className="text-[11px] leading-4 text-muted-foreground">
+            <p>
               Progress saves on this device only.
               {minutesLeft > 0
                 ? ` About ${formatMinutes(minutesLeft)} of lessons left.`
@@ -101,6 +189,6 @@ export function SiteHeader({
           </div>
         ) : null}
       </div>
-    </header>
+    </div>
   );
 }
